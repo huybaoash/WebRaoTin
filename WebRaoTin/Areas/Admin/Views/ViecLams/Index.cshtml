@@ -32,39 +32,41 @@
 
             @foreach (var item in Model)
             {
-            <li id="item_li">
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.TinTucId })">
+                    <li id="item_li">
 
-                @foreach (var item2 in @ViewBag.ngaygio)
-                {
-                    if (item2.IdTinTucs.Equals(item.TinTucId))
-                    {
-                        <img src=" @item2.ImageViecLam" alt="">
-                        
-                    }
-                }
-                <h3>@Html.DisplayFor(modelItem => item.TinTuc.Title)</h3>
-                <div class="desc">
-                    <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiViecLam.Name)</span>
-
-                    @foreach (var item2 in @ViewBag.ngaygio)
-                    {
-                        if (item2.IdTinTucs.Equals(item.TinTucId))
+                        @foreach (var item2 in @ViewBag.ngaygio)
                         {
-                            <span><i class="fas fa-clock"></i> @item2.LuaChon</span>
+                            if (item2.IdTinTucs.Equals(item.TinTucId))
+                            {
+                                <img src=" @item2.ImageViecLam" alt="">
+
+                            }
                         }
+                        <h3>@Html.DisplayFor(modelItem => item.TinTuc.Title)</h3>
+                        <div class="desc">
+                            <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiViecLam.Name)</span>
+
+                            @foreach (var item2 in @ViewBag.ngaygio)
+                            {
+                                if (item2.IdTinTucs.Equals(item.TinTucId))
+                                {
+                                    <span><i class="fas fa-clock"></i> @item2.LuaChon</span>
+                                }
+                            }
+
+
+                            <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
+                            <span class="gia">
+                                <i class="fas fa-tag"></i>
+                                @Html.DisplayFor(modelItem => item.Salary)
+                            </span>
+                        </div>
+                    </li>
+                    </a>
                     }
 
-
-                    <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
-                    <span class="gia">
-                        <i class="fas fa-tag"></i>
-                        @Html.DisplayFor(modelItem => item.Salary)
-                    </span>
-                </div>
-            </li>
-            }
-
-        </ul>
+            </ul>
         @Html.PagedListPager(Model, page => Url.Action("Index", new
         {
             page,
