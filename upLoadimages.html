@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn và hiển thị nhiều ảnh trước khi upload bằng javascript</title>
+    <style type="text/css">
+        .wrapper {
+            margin: 20% auto;
+            width: 60%;
+        }
+        
+        #displayImg {
+            margin-top: 30px;
+        }
+        
+        #displayImg img {
+            height: 50px;
+            width: 50px;
+            margin-right: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>hiện thị nhiều ảnh trước khi upload bằng javascript :))</h1>
+        <h3 style="color: red;">cccccccccccccccccccccc ???</h3>
+        <input type="file" name="upload" id="upload" onchange="ImagesFileAsURL()" multiple />
+        <div id="displayImg">
+            
+        </div>
+        <script type="text/javascript">
+            function ImagesFileAsURL() {
+                var fileSelected = document.getElementById('upload').files;
+                if (fileSelected.length > 0) {
+                    for (var i = 0; i < fileSelected.length; i++) {
+                        var fileToLoad = fileSelected[i];
+                        var fileReader = new FileReader();
+                        fileReader.onload = function(fileLoaderEvent) {
+                            var srcData = fileLoaderEvent.target.result;
+                            var newImage = document.createElement('img');
+                            newImage.src = srcData;
+                            document.getElementById('displayImg').innerHTML += newImage.outerHTML;
+                        }
+                        fileReader.readAsDataURL(fileToLoad);
+                    }
+
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

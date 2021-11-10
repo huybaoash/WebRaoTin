@@ -1,0 +1,59 @@
+﻿@model WebRaoTin.Models.ChiTietPhieuXetTuyen
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietPhieuXetTuyen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PhieuXetUngTuyen.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhieuXetUngTuyen.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ViecLam.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ViecLam.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutYou)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AboutYou)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

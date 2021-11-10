@@ -1,0 +1,101 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebRaoTin.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="menu">
+    <ul class="menu-list">
+        @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+        {
+            <li class="menu-item"><a> @ViewBag.LoaiSanPhams[i].Name</a></li>
+        }
+
+    </ul>
+
+</div>
+
+@using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+{
+    <div id="Search_TT" style="margin-bottom:5px;margin-left:110px;">
+            <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Search..." style="border-radius:40px;padding-left:10px;border: 0.7px solid #808080;width:30%;"/>
+            <input class="search_item" type="submit" value="Search" style="height:24px; width:100px; background-color:#ff6a00; color:white; border-radius:40px; border:none;" />
+        </div>
+  }
+
+<div id="main">
+    <div id="left">
+        <ul>
+
+            @foreach (var item in Model)
+            {
+            <li id="item_li">
+                @foreach (var item2 in @ViewBag.ngaygio)
+                {
+                    if (item2.IdTinTucs.Equals(item.TinTucId))
+                    {
+                        <img src=" @item2.ImageSanPham" alt="">
+                    }
+                }
+
+                <h3>@Html.DisplayFor(modelItem => item.TinTuc.Title)</h3>
+                <div class="desc">
+                    <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiSanPham.Name)</span>
+
+                    @foreach (var item2 in @ViewBag.ngaygio)
+                    {
+                        if (item2.IdTinTucs.Equals(item.TinTucId))
+                        {
+                            <span><i class="fas fa-clock"></i> @item2.LuaChon</span>
+                        }
+                    }
+
+                    <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
+                    <span class="gia">
+                        <i class="fas fa-tag"></i>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </span>
+                </div>
+
+            </li>
+            }
+        </ul>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+        {
+            page,
+            searchString = ViewBag.Keyword
+        }),
+        PagedListRenderOptions.PageNumbersOnly)
+
+    </div>
+    <div id="right">
+        <h3><i class="fas fa-search"></i> TÌM KIẾM NHIỀU HƠN</h3>
+        <div class="select">
+            <select class="form-control form-control-lg">
+                <option>Tìm Việc</option>
+                <option>Bất động sản</option>
+                <option>Ôtô</option>
+                <option>Xe máy</option>
+                <option>Đồ điện tự</option>
+                <option>Dịch vụ</option>
+            </select>
+            <select class="form-control form-control-lg">
+                <option>Quận 1</option>
+                <option>Quận 2</option>
+                <option>Quận 3</option>
+                <option>Quận 4</option>
+                <option>Quận Gò Vấp</option>
+                <option>.....</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <a href="" class="btn btn-primary">Tìm Kiếm</a>
+        </div>
+    </div>
+</div>

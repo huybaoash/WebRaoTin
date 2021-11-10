@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .menu {
+            background-color: rgb(161, 14, 8);
+            text-align: center;
+            margin: 2px 0px 5px 0px;
+        }
+
+            .menu li {
+                display: inline;
+                padding: 30px 30px;
+                line-height: 40px;
+            }
+
+                .menu li a {
+                    text-decoration: none;
+                    color: white;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                }
+
+                    .menu li a:hover {
+                        color: rgb(202, 209, 209);
+                    }
+
+        .header {
+            background-color: white;
+            min-height: 80px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap-reverse;
+            color: #ff6a00;
+        }
+
+      
+
+        .header_item {
+            list-style: none;
+            margin-left:20px;
+            margin-right:50px;
+            display: inline-block;
+        }
+        
+
+        .btn {
+            text-decoration: none;
+            display: inline-block;
+            outline: none;
+            border: none;
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+
+          
+        }
+
+        .btn--warn {
+            background-color: rgb(161, 14, 8);
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .cardn {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .header_item h3 {
+            cursor: pointer;
+          
+            
+        }
+
+        #RowTT{
+            background-color: #e6dddd;
+        }
+        .row h3{
+            text-align: left;
+            margin-left: 10px;
+            border-bottom: 1px solid #454444;
+        }
+
+        .boxDiv {
+            background-color: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 5px 10px 5px;
+            color: black;
+            margin-bottom: 5px;
+            text-align:center;
+          
+        }
+        .boxDiv img{
+            width:250px;
+            height:200px;
+        }
+        .btn_more{
+            border-top: 1px solid rgb(202, 209, 209);
+            background-color: transparent;
+            text-align:center;
+            margin-bottom:20px;
+        }
+        .btn_more h5{
+            margin-top:0;
+        }
+        .row h3{
+            text-align:left;
+        }
+        .card-body label {
+            height: 80px;
+            background-color: palegoldenrod;
+        }
+        .card .form-group p{
+                color: #ff6a00;
+        }
+        #loginLink, #registerLink {
+            color: inherit;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            margin-top: 55px;
+        }
+        .container {
+            margin-bottom: 170px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <ul class="heard-list">
+            <li class="header_item" style="padding-right:100px;"><h3 style="font: bolder">RAO TIN</h3></li>
+            <li class="header_item active-cyan-3 active-cyan-4 mb-4">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
+            </li>
+            <li class="header_item">  <button class="btn btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button></li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li><a><i class="fas fa-toolbox"></i> Tìm việc</a></li>
+            <li><a><i class="fas fa-car-side"></i> bất động sản</a></li>
+            <li><a><i class="fas fa-hotel"></i> ô tô</a></li>
+            <li><a><i class="fas fa-motorcycle"></i> xe máy</a></li>
+            <li><a><i class="fas fa-microchip"></i> đồ điện tử</a></li>
+            <li><a><i class="fas fa-dice-d20"></i> dịch vụ</a></li>
+        </ul>
+    </div>
+    @*
+        <div class="row">
+            <h3>TIN MỚI</h3>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3>TIM NỔI BẬT</h3>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <div class="card" style="width: 18rem;">
+                            <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3>CÁC TIN BẠN ĐÃ XEM</h3>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                    <div class="warp-layout_item">
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>Thuộc Danh mục nào: VD(DỊCH VỤ)</p>
+                        <div class="card" style="width: 18rem;">
+
+                            <img src="https://cdn.nguyenkimmall.com/images/detailed/555/may-anh-cho-nguoi-moi.jpg" alt="" style="width:230px; height:200px;" />
+
+                            <div class="card-body">
+                                <p class="card-text">Chính chủ bán nhà số 114 Mặt Phố Hàng Bông, Phường Hàng Bông</p>
+                                <p class="card-text">Gía: 1800000</p>
+                                <p class="card-text">Time: 6 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  <div class="warp-layout">
+              <div class="warp-layout_item">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="warp-layout_item col-md-3">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="warp-layout_item col-md-3">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="warp-layout_item col-md-3">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="warp-layout_item col-md-3">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="warp-layout_item col-md-3">
+                  <div class="card" style="width: 18rem;">
+                      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+                      <div class="card-body">
+                          <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            -->
+    *@
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+    <footer style="height: 170px">
+        <div class="row">
+            <div class="col-sm-4" style="padding-left:50px;">
+                <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                <img src="~/Content/images/logo.png" style="width: 100px" />
+            </div>
+            <div class="col-sm-4 text-center">
+                <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                <p>Tên đồ án:Web RAO TIN</p>
+                <p>Nhóm: Yuong Boys</p>
+            </div>
+            <div class="col-sm-4 text-right" style="padding-right:50px;">
+                <p>Phạm Trần Huy Bảo - 1811060047</p>
+                <p>Vũ Duy Linh - 1811060430</p>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

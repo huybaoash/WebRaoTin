@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="detailNew.css" class="css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+    <style>
+       .col{
+           background-color:  rgb(88, 86, 86);
+           border: 1px solid none;
+            padding: 30px 0px;
+           margin: 10px;
+           height: 325px;
+         
+           font-size: 20px;
+           font-weight: 900;
+           cursor: pointer;
+           transition: opacity 0.6s ease;
+         
+           color: white;
+           border-radius: 5px;
+            background-image: url("images/3ddaf5e479338a6dd3223.jpg");
+       } 
+       .rowbtn-create{
+           width: 50%;
+           margin: auto;
+           margin-top: 30px;
+           text-align: center;
+       }
+       .col:hover{
+           background-color: rgb(121, 116, 116) ;
+           opacity: 0.4;
+       }
+      a{
+        text-decoration: none
+      }
+
+      .small-container  {
+        display: none;
+      }
+      
+      #huybao {
+        display: none; 
+      }
+    </style>
+</head>
+<body>
+    <div class="row rowbtn-create">
+        <div class="col img-dv" id = "boxDV" onclick="clickDV()">
+            Dich Vu
+        </div>
+        <div class="col img-vl" id = "boxVL" onclick="clickVL()">
+            Tim viec
+        </div>
+        
+        
+        <div  class="w-100"></div>
+        <div id = "boxSP" class="col img-sp" onclick="clickSP()">San Pham</div>
+        <div id = "boxBDS" class="col img-bds" onclick="clickBDS()" >Bat Dong San</div>
+
+        
+        <div id = "infoSP" class="small-container single-product">
+            <div class="row_Detail">
+                <div class="col-2 picture">
+                    <img src="images/5c747945f59206cc5f834.jpg" width="500px" id="ProductImg">
+                   <div class="small-img-row">
+    
+                    <div class="small-img-col">
+                        <img src="images/3ddaf5e479338a6dd3223.jpg" width="100%" height="72px" class="small-img">
+                    </div>
+                    
+                    <div class="small-img-col">
+                        <img src="images/3ddaf5e479338a6dd3223.jpg" width="100%" height="72px" class="small-img">
+                    </div>
+                  
+                    <div class="small-img-col">
+                        <img src="images/08a6059a894d7a13235c2.jpg" width="100%" height="72px" class="small-img">
+                    </div>
+                   
+                    <div class="small-img-col">
+                        <img src="images/sk.jpg" width="100%" height="72px" class="small-img">
+                    </div>
+    
+                   </div>
+    
+                </div>
+                <div class="col-2">
+                        <p>Home / T-shirts</p>
+                        <h1>BAN AO VESR NAM DEP BAN AO VESR NAM DEP BAN AO VESR NAM DEP BAN AO VESR NAM DEP BAN AO VESR NAM DEP</h1>
+                        <p>Dia chi: 102/25 Quang Trung,P11,Q.GoVap,TP.HCM</p>
+                        <p>Gia: 100000000</p>
+                        <h4>Noi Dung</h4>
+                        <div style="border: 1px solid rgba(214, 189, 240, 0.918); padding: 20px;">
+                            <p>Tổng Bí thư bày tỏ tin tưởng sâu sắc rằng, cả nước góp sức, toàn Đảng, toàn dân đồng lòng, thống nhất ý chí và hành động, cùng với sự giúp đỡ chí tình của đồng bào ta ở nước ngoài và bạn bè quốc tế, nhất định chúng ta sẽ chiến thắng đại dịch COVID-19 và phải chiến thắng cho bằng được, góp phần xứng đáng vào sự nỗ lực chung của toàn nhân loại vì một thế giới an toàn, lành mạnh, hoà bình, hữu nghị, hợp tác và thịnh vượng, xứng đáng với truyền thống anh hùng vẻ vang của Đất nước ta, Dân tộc ta! hợp tác và thịnh vượng, xứng đáng với truyền thống anh hùng vẻ vang của Đất nước ta, Dân tộc ta!</p>
+                        </div>
+                </div>
+              
+            </div>
+      </div>    
+      
+      <div id="huybao">
+          <input type="text">
+      </div>
+
+      <script>
+       
+       
+
+      function clickDV(){
+            var boxdv = document.getElementById("boxDV");
+            var boxvl = document.getElementById("boxVL");
+            var boxsp = document.getElementById("boxSP");
+            var boxbds = document.getElementById("boxBDS");
+            var hieninput = document.getElementById("huybao"); 
+
+            boxdv.style.display="none";
+            boxvl.style.display="none";
+            boxsp.style.display="none";
+            boxbds.style.display="none";
+            hieninput.style.display = "block";
+            
+      }
+
+      function clickVL(){
+            var boxdv = document.getElementById("boxDV");
+            var boxvl = document.getElementById("boxVL");
+            var boxsp = document.getElementById("boxSP");
+            var boxbds = document.getElementById("boxBDS");
+
+            boxdv.style.display="none";
+            boxvl.style.display="none";
+            boxsp.style.display="none";
+            boxbds.style.display="none";
+        }
+      function clickSP(){
+            var boxdv = document.getElementById("boxDV");
+            var boxvl = document.getElementById("boxVL");
+            var boxsp = document.getElementById("boxSP");
+            var boxbds = document.getElementById("boxBDS");
+
+            boxdv.style.display="none";
+            boxvl.style.display="none";
+            boxsp.style.display="none";
+            boxbds.style.display="none";
+
+            var infoSP = document.getElementById("infoSP");
+            infoSP.style.display = "block";
+        }
+        
+      function clickBDS(){
+        var boxdv = document.getElementById("boxDV");
+            var boxvl = document.getElementById("boxVL");
+            var boxsp = document.getElementById("boxSP");
+            var boxbds = document.getElementById("boxBDS");
+
+            boxdv.style.display="none";
+            boxvl.style.display="none";
+            boxsp.style.display="none";
+            boxbds.style.display="none";
+      }
+
+      </script>
+
+</body> 
+</html>

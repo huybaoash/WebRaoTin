@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebRaoTin.Models.BinhLuan>
+
+@{
+    ViewBag.Title = "CMT_ofUser";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CMT_ofUser</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinTuc.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {   <a href="@Url.Action("Details", "TinTucs", new { id = item.TinTucId })"> 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TinTuc.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+        </a>
+        
+    }
+
+</table>

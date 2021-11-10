@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    <!-- Custom script -->
+
+    <link href="@Url.Content("~/Content/customDOAN.css")" rel="stylesheet" type="text/css" />
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    <style>
+        @* Ngày 7/11 - Huybaoash*@
+        .response1, .response2, .response3, .response0, .response4, .response5 {
+            display: none;
+        }
+
+        #LuaChon {
+            display:none;
+        }
+
+        #displayImg1{
+            margin-top: 30px;
+        }
+        #displayImg1 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg2 {
+            margin-top: 30px;
+        }
+        #displayImg2 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg3 {
+            margin-top: 30px;
+        }
+
+        #displayImg3 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg4 {
+            margin-top: 30px;
+        }
+
+        #displayImg4 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+            /*-------------------------------------*/
+            .col {
+                background-color: rgb(247, 129, 51);
+                border: 1px solid none;
+                margin: 0px 20px;
+                height: 200px;
+                font-size: 20px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: opacity 0.6s ease;
+                color: black;
+                border-radius: 5px;
+                box-shadow: 10px;
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+                width: 100%;
+                background-size: 250px 200px;
+                background-repeat: no-repeat;
+            }
+        .img-dv {
+            background-image: url("/images/Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg");
+        }
+        .img-vl {
+            background-image: url("/images/tong-hop-cac-cach-cai-thien-ky-nang-noi-chuyen.png");
+        }
+        .img-bds {
+            background-image: url("/images/thutucmuabannha01.jpg");
+        }
+        .img-sp {
+            background-image: url("/images/quy-trinh-ban-hang-truc-tiep.jpg");
+        }
+        .rowbtn-create {
+        
+            text-align: center;
+            display: flex;
+        }
+
+        .col:hover {
+            background-color: rgb(248, 155, 94);
+            opacity: 0.8;
+        }
+
+        /*-------------------------------------*/
+
+
+        a {
+            text-decoration: none
+        }
+
+        .small-container {
+            display: none;
+        }
+
+        @*==========================================*@
+        body {
+            background-color: #f8f8f8;
+            margin:0;
+            padding:0;
+        }
+
+        .menu {
+            background-color: rgb(161, 14, 8);
+            text-align: center;
+            margin: 2px 0px 5px 0px;
+        }
+
+            .menu li {
+                display: inline;
+                padding: 30px 30px;
+                line-height: 40px;
+            }
+
+                .menu li a {
+                    text-decoration: none;
+                    color: white;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                }
+
+                    .menu li a:hover {
+                        color: rgb(202, 209, 209);
+                    }
+
+        .header {
+            background-color: white;
+            min-height: 80px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap-reverse;
+            color: #ff6a00;
+
+        }
+
+
+
+        .header_item {
+            list-style: none;
+            margin-left: 20px;
+            margin-right: 50px;
+            display: inline-block;
+        }
+
+
+        .btn {
+            text-decoration: none;
+            display: inline-block;
+            outline: none;
+            border: none;
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn--warn {
+            background-color: rgb(161, 14, 8);
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .cardn {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .header_item h3 {
+            cursor: pointer;
+        }
+
+        #RowTT {
+            border:1px solid #808080;
+        }
+
+        .row h3 {
+            text-align: left;
+            margin-left: 10px;
+            border-bottom: 1px solid #454444;
+        }
+
+        .boxDiv {
+            background-color: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 5px 10px 5px;
+            color: black;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+            .boxDiv img {
+                width: 250px;
+                height: 200px;
+            }
+
+        .btn_more {
+            border-top: 1px solid rgb(202, 209, 209);
+            background-color: transparent;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .btn_more h5 {
+                margin-top: 0;
+            }
+
+        .row h3 {
+            text-align: left;
+        }
+
+        .card-body label {
+            height: 80px;
+            background-color: palegoldenrod;
+        }
+
+        .card .form-group p {
+            color: #ff6a00;
+        }
+
+        #loginLink, #registerLink {
+            color: inherit;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.2);
+            width:100%;
+           margin-top:55px;
+         
+        }
+        .container{
+            margin-bottom:150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <ul class="heard-list">
+            <li class="header_item" style="padding-right:100px;"><h3 style="font: bolder">RAO TIN-ADMIN</h3></li>
+            <li class="header_item active-cyan-3 active-cyan-4 mb-4">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
+            </li>
+            <li class="header_item">
+                <button class="btn btn--warn">
+                    <i class="far fa-plus-square"></i>
+                    <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create"> ĐĂNG TIN NGAY</a>
+                </button>
+            </li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
+            <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
+            <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
+            <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
+            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+            <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs")</a></li>
+        </ul>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+       
+
+        <footer style="height: 170px">
+            <div class="row">
+                <div class="col-sm-4" style="padding-left:50px;">
+                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                    <img src="~/Content/images/logo.png" style="width: 100px" />
+                </div>
+                <div class="col-sm-4 text-center">
+                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                    <p>Tên đồ án:Web RAO TIN</p>
+                    <p>Nhóm: Yuong Boys</p>
+                </div>
+                <div class="col-sm-4 text-right" style="padding-right:50px;">
+                    <p>Phạm Trần Huy Bảo - 1811060047</p>
+                    <p>Vũ Duy Linh - 1811060430</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

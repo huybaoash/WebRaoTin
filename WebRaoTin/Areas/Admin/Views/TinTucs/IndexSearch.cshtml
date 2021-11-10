@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebRaoTin.Models.TinTuc>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("IndexSearch", "TinTucs", FormMethod.Get))
+{
+    <p>
+        Find by name: <input type="text" name="searchString" value="@ViewBag.Keyword" />
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th style="width:10%; text-align:left"> @Html.Label("ID")</th>
+        <th style="width:10%; text-align:left">@Html.Label("Mã người dùng")</th>
+        <th style="width:15%; text-align:left">@Html.Label("Tiêu đề")</th>
+        <th style="width:15%; text-align:left">@Html.Label("Ngày đăng")</th>
+        <th style="width:5%; text-align:left">@Html.Label("Ngày hết hạn")</th>
+        <th style="width:15%; text-align:left">@Html.Label("Thông tin liên lạc")</th>
+        <th style="width:15%; text-align:left">@Html.Label("Số điện thoại")</th>
+        <th style="width:15%; text-align:left">@Html.Label("Tình trạng")</th>
+
+    </tr>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr style="border:1px solid red">
+            <td>@Model[i].Id</td>
+            <td>@Model[i].Customer.Id</td>
+            <td>@Model[i].Title</td>
+            <td>@Model[i].PublishDay</td>
+            <td>@Model[i].EndDay</td>
+            <td>@Model[i].Contract</td>
+            <td>@Model[i].ContractPhoneNumber</td>
+            <td>@Model[i].Status</td>
+        </tr>
+    }
+    </table>
+    
+@Html.PagedListPager(Model, page => Url.Action("IndexSearch", new
+{
+page,
+searchString = ViewBag.Keyword
+}),
+PagedListRenderOptions.PageNumbersOnly)

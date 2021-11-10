@@ -1,0 +1,593 @@
+﻿@model WebRaoTin.ViewModel.TinTucsViewModel
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    Nếu tin tức được chọn là 1 sản phẩm. Thì LuaChon của nó = "1";
+    Nếu tin tức được chọn là 1 dịch vụ. Thì LuaChon của nó = "2";
+    Nếu tin tức được chọn là 1 bất động sản. Thì LuaChon của nó = "3";
+    Nếu tin tức được chọn là 1 việc làm. Thì LuaChon của nó = "4";
+
+
+*@
+
+@using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <h2>Details</h2>
+
+
+
+    if (Model.LuaChon.Equals("1"))
+    {
+        <div>
+            <h4>TinTuc</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdTinTucs)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContractPhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PublishDayTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceSanPham)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PriceSanPham)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescriptionSanPham)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescriptionSanPham)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImageSanPham)
+                </dt>
+
+                <dd id="displayImg1">
+                    
+                   @foreach (var item in @ViewBag.HinhAnh){
+                     <img src=@item>  
+                    }
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationSanPham)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LocationSanPham)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TenLoaiSanPham)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenLoaiSanPham)
+                </dd>
+
+
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+    @*
+        Dịch vụ
+    *@
+
+    if (Model.LuaChon.Equals("2"))
+    {
+        <div>
+            <h4>TinTuc</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdTinTucs)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContractPhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PublishDayTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceDichVu)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PriceDichVu)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescriptionDichVu)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescriptionDichVu)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImageDichVu)
+                </dt>
+
+                <dd id="displayImg2">
+
+                    @foreach (var item in @ViewBag.HinhAnh)
+                    {
+                        <img src=@item>
+                    }
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationDichVu)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LocationDichVu)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TenLoaiDichVu)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenLoaiDichVu)
+                </dd>
+
+
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+    @*
+        Bất động sản
+    *@
+
+    if (Model.LuaChon.Equals("3"))
+    {
+        <div>
+            <h4>TinTuc</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdTinTucs)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContractPhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PublishDayTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceBatDongSan)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PriceBatDongSan)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Area)
+                </dt>
+
+                <dd>
+                    @Model.Area m²
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescriptionBatDongSan)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescriptionBatDongSan)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImageBatDongSan)
+                </dt>
+
+                <dd id="displayImg3">
+
+                    @foreach (var item in @ViewBag.HinhAnh)
+                    {
+                        <img style="width:200px; height:200px" src=@item>
+                    }
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.VideoBatDongSan)
+                </dt>
+
+                <dd>
+                    <video style="width: 100%; height: auto" controls>
+                        <source src="@Html.DisplayFor(model => Model.VideoBatDongSan)" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationBatDongSan)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LocationBatDongSan)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TenLoaiBatDongSan)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenLoaiBatDongSan)
+                </dd>
+
+
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+    @*
+        Việc làm
+    *@
+
+    if (Model.LuaChon.Equals("4"))
+    {
+        <div>
+            <h4>TinTuc</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdTinTucs)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </dt>
+
+
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContractPhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PublishDayTinTucs)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Salary)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Salary)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescriptioViecLamn)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescriptioViecLamn)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Benefit)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Benefit)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImageViecLam)
+                </dt>
+
+                <dd id="displayImg4">
+                   
+                    @foreach (var item in @ViewBag.HinhAnh)
+                    {
+                        <img src=@item>
+                    }
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationViecLam)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LocationViecLam)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TenLoaiViecLam)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenLoaiViecLam)
+                </dd>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+    if (Request.IsAuthenticated)
+    {
+        <div>
+            <h4>Bình luận</h4>
+            <hr />
+
+            <ul>
+
+                @foreach (var item in @ViewBag.dsBLcuaTT)
+                {
+
+                    <br />
+
+                    <b>@item.CustomerEmail      </b>
+                    @item.PublishDay
+                    if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                    {
+
+                        <a href = "@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })" > Xóa</a>
+                    };
+                    <br />
+                    @item.Description
+
+
+                }
+
+            </ul>
+
+
+
+            <dl class="dl-horizontal">
+
+
+
+                <dt style="width:200px">
+                    @ViewBag.currentUser.Email
+                    <br />
+                    <input class="form-control text-box single-line" id="TinTucId" name="TinTucId" type="text" value="@Model.IdTinTucs">
+                </dt>
+
+
+
+                <dd>
+                    <input class="form-control text-box single-line" id="Description" name="Description" type="text" value="">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Gửi" />
+                    </div>
+                </dd>
+
+
+            </dl>
+        </div>
+    }
+    else
+    {
+<div>
+    <h4>Bình luận</h4>
+    <hr />
+    <ul>
+
+        @foreach (var item in @ViewBag.dsBLcuaTT)
+        {
+
+            <br />
+
+            <b>@item.CustomerEmail      </b>
+            @item.PublishDay
+
+            <br />
+            @item.Description
+
+
+        }
+
+    </ul>
+
+    Bạn phải đăng nhập mới có thế bình luận.
+    
+</div>
+    }
+
+}
+
+
+<script type='text/javascript'>
+    window.onload = function () {
+        document.getElementById("TinTucId").style.display = 'none';
+    }
+</script>
+
+
+
+
+
