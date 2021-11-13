@@ -93,266 +93,276 @@
 
     @* Sản phẩm *@
 
-    <div class='response1' data-response="op1">
-        @*
-                <div class="form-group">
-                @Html.LabelFor(model => model.NameSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NameSanPham, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NameSanPham, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        *@
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescriptionSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class='response1' data-response="op1">
+    @*
+            <div class="form-group">
+            @Html.LabelFor(model => model.NameSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.DescriptionSanPham, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.NameSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameSanPham, "", new { @class = "text-danger" })
             </div>
         </div>
+    *@
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="LuaChon">Chọn loại sản phẩm:</label>
-            <select class="form-control valid" id="IdLoaiSanPham" name="IdLoaiSanPham" aria-invalid="false">
-                @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
-                {
-                    <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
-                }
-            </select>
-            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiSanPham" data-valmsg-replace="true"></span>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PriceSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
 
-                @Html.EditorFor(model => model.PriceSanPham, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.LocationSanPham, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="wrapper col-md-10">
-                <input type="file" value="" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" multiple />
-                <div id="displayImg1"></div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptionSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DescriptionSanPham, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="LuaChon">Chọn loại sản phẩm:</label>
+        <select class="form-control valid" id="IdLoaiSanPham" name="IdLoaiSanPham" aria-invalid="false">
+            @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+            {
+                <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
+            }
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiSanPham" data-valmsg-replace="true"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PriceSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.EditorFor(model => model.PriceSanPham, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.LocationSanPham, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="wrapper col-md-10">
+            <input type="file" value="" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" multiple />
+            <div id="displayImg1"></div>
+        </div>
+    </div>
+</div>
     
     @* Dịch Vụ *@
 
-    <div class='response2' data-response="op2">
-        @*
-               <div class="form-group">
-                @Html.LabelFor(model => model.NameDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NameDichVu, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NameDichVu, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        *@
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescriptionDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class='response2' data-response="op2">
+    @*
+           <div class="form-group">
+            @Html.LabelFor(model => model.NameDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.DescriptionDichVu, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.NameDichVu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameDichVu, "", new { @class = "text-danger" })
             </div>
         </div>
+    *@
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="LuaChon">Chọn loại dịch vụ:</label>
-            <select class="form-control valid" id="IdLoaiDichVu" name="IdLoaiDichVu" aria-invalid="false">
-                @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
-                {
-                    <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
-                }
-            </select>
-            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiDichVu" data-valmsg-replace="true"></span>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PriceDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PriceDichVu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.LocationDichVu, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="wrapper col-md-10">
-                <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
-                <div id="displayImg2"></div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptionDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DescriptionDichVu, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="LuaChon">Chọn loại dịch vụ:</label>
+        <select class="form-control valid" id="IdLoaiDichVu" name="IdLoaiDichVu" aria-invalid="false">
+            @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
+            {
+                <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
+            }
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiDichVu" data-valmsg-replace="true"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PriceDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PriceDichVu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.LocationDichVu, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="wrapper col-md-10">
+            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
+            <div id="displayImg2"></div>
+        </div>
+    </div>
+</div>
 
 
     @* Bất Động Sản *@
 
-    <div class='response3' data-response="op3">
-        @*
-                <div class="form-group">
-
+<div class='response3' data-response="op3">
+    @*
             <div class="form-group">
-                @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.DescriptionBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        *@
-
-
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.DescriptionBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
             </div>
         </div>
+    *@
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="LuaChon">Chọn loại bất động sản:</label>
-            <select class="form-control valid" id="IdLoaiBatDongSan" name="IdLoaiBatDongSan" aria-invalid="false">
-                @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
-                {
-                    <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
-                }
-            </select>
-            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiBatDongSan" data-valmsg-replace="true"></span>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PriceBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PriceBatDongSan, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.LocationBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" multiple />
-                <div id="displayImg3"></div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VideoBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="wrapper col-md-10">
-                <input type="file" value="" name="video" id="video" required title="Chọn đường dẫn Video" />
-
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="LuaChon">Chọn loại bất động sản:</label>
+        <select class="form-control valid" id="IdLoaiBatDongSan" name="IdLoaiBatDongSan" aria-invalid="false">
+            @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
+            {
+                <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
+            }
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiBatDongSan" data-valmsg-replace="true"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PriceBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PriceBatDongSan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.LocationBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" multiple />
+            <div id="displayImg3"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VideoBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="wrapper col-md-10">
+            <input type="file" value="" name="video" id="video" required title="Chọn đường dẫn Video" />
+
+        </div>
+    </div>
+</div>
 
     @* Việc Làm *@
-    <div class='response4' data-response="op4">
-        @*
-                <div class="form-group">
-                @Html.LabelFor(model => model.NameViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NameViecLam, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NameViecLam, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        *@
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescriptioViecLamn, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class='response4' data-response="op4">
+    @*
+            <div class="form-group">
+            @Html.LabelFor(model => model.NameViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.DescriptioViecLamn, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.NameViecLam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameViecLam, "", new { @class = "text-danger" })
             </div>
         </div>
+    *@
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="LuaChon">Chọn loại việc làm:</label>
-            <select class="form-control valid" id="IdLoaiViecLam" name="IdLoaiViecLam" aria-invalid="false">
-                @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
-                {
-                    <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
-                }
-            </select>
-            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiViecLam" data-valmsg-replace="true"></span>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Require, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Require, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Benefit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Benefit, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.LocationViecLam, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="wrapper col-md-10">
-                <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
-                <div id="displayImg4"></div>
-
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptioViecLamn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DescriptioViecLamn, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="LuaChon">Chọn loại việc làm:</label>
+        <select class="form-control valid" id="IdLoaiViecLam" name="IdLoaiViecLam" aria-invalid="false">
+            @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
+            {
+                <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
+            }
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiViecLam" data-valmsg-replace="true"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Require, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Require, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Benefit, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Benefit, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.LocationViecLam, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="wrapper col-md-10">
+            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
+            <div id="displayImg4"></div>
+
+        </div>
+    </div>
+</div>
 
 
     <div class="form-group">
@@ -423,6 +433,8 @@
             }
         });
     });
+
+   
 
     function Images1FileAsURL() {
         var fileSelected = document.getElementById('image1').files;
@@ -498,11 +510,11 @@
 
     function clickDV() {
       
-        
-        $("#boxDV").fadeOut('slow');
-        $("#boxVL").fadeOut('slow');
-        $("#boxSP").fadeOut('slow');
-        $("#boxBDS").fadeOut('slow');
+
+        $("#boxDV").hide();
+        $("#boxVL").hide();
+        $("#boxSP").hide();
+        $("#boxBDS").hide();
         $('#LuaChon').val('2').trigger('change');
         
     }
@@ -510,10 +522,10 @@
     function clickVL() {
 
         
-        $("#boxDV").fadeOut('slow');
-        $("#boxVL").fadeOut('slow');
-        $("#boxSP").fadeOut('slow');
-        $("#boxBDS").fadeOut('slow');
+        $("#boxDV").hide();
+        $("#boxVL").hide();
+        $("#boxSP").hide();
+        $("#boxBDS").hide();
         $('#LuaChon').val('4').trigger('change');
 
 
@@ -521,10 +533,10 @@
     function clickSP() {
 
         
-        $("#boxDV").fadeOut('slow');
-        $("#boxVL").fadeOut('slow');
-        $("#boxSP").fadeOut('slow');
-        $("#boxBDS").fadeOut('slow');
+        $("#boxDV").hide();
+        $("#boxVL").hide();
+        $("#boxSP").hide();
+        $("#boxBDS").hide();
         $('#LuaChon').val('1').trigger('change');
 
 
@@ -533,10 +545,10 @@
     function clickBDS() {
 
         
-        $("#boxDV").fadeOut('slow');
-        $("#boxVL").fadeOut('slow');
-        $("#boxSP").fadeOut('slow');
-        $("#boxBDS").fadeOut('slow');
+        $("#boxDV").hide();
+        $("#boxVL").hide();
+        $("#boxSP").hide();
+        $("#boxBDS").hide();
         $('#LuaChon').val('3').trigger('change');
     }
 
