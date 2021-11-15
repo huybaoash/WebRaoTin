@@ -18,11 +18,13 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
+
+
     <!-- Custom script -->
 
     <link href="@Url.Content("~/Content/customDOAN.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/DetailsNewsSP.css")" rel="stylesheet" type="text/css" />
+
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
@@ -31,6 +33,13 @@
         @* Ngày 7/11 - Huybaoash*@
         .response1, .response2, .response3, .response0, .response4, .response5 {
             display: none;
+        }
+
+        @*Ngày 15/11 Huybaoash*@
+
+        #carouselExampleControls {
+            width: 30%;
+            margin: auto;
         }
 
         #LuaChon {
@@ -75,6 +84,89 @@
                 margin-right: 15px;
                 display: inline-block;
             }
+
+
+
+        /*---------------User Details---------------------------  */
+
+
+
+        .bd {
+            margin: 20px;
+        }
+
+        .main {
+            padding: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+            .main .topbar_ {
+                background-color: teal;
+                overflow: hidden;
+            }
+
+                .main .topbar_ a {
+                    float: right;
+                    color: whitesmoke;
+                    text-align: center;
+                    padding: 20px 26px;
+                    text-decoration: none;
+                    font-size: 26px;
+                }
+
+                    .main .topbar_ a:hover {
+                        color: lightgray;
+                    }
+
+        .row .sidebar {
+            background-color: #333;
+            color: white;
+            height: 820px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+            .row .sidebar a {
+                margin-left: 10px;
+                display: block;
+                color: white;
+                padding-bottom: 10px;
+                font-size: 30px;
+                text-decoration: none;
+            }
+
+                .row .sidebar a:hover {
+                    color: lightgray;
+                }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid lightgrey;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+
+        hr {
+            margin-right: 20px;
+        }
+
+        .text-secondary {
+            margin-top: 10px;
+        }
+
+        .card-body {
+            margin-top: 10px;
+        }
+
+
             /*-------------------------------------*/
             .col {
                 background-color: rgb(247, 129, 51);
@@ -106,7 +198,7 @@
             background-image: url("/images/quy-trinh-ban-hang-truc-tiep.jpg");
         }
         .rowbtn-create {
-        
+
             text-align: center;
             display: flex;
         }
@@ -265,11 +357,13 @@
             background-color: rgba(0, 0, 0, 0.2);
             width:100%;
            margin-top:55px;
-         
+
         }
         .container{
             margin-bottom:150px;
         }
+
+
     </style>
 </head>
 <body>
@@ -299,6 +393,9 @@
             <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs")</a></li>
         </ul>
     </div>
+
+
+
     <div class="container body-content">
         @RenderBody()
     </div>

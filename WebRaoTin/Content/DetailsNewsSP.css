@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial;
+}
+.small-container1{
+    max-width: 100%;
+    border: 1px solid rgb(240, 239, 239);
+    
+}
+.row_Detail{
+    align-items: center;   
+}
+.single-product{
+    margin: 0px 0px 0px 0px;
+ 
+}
+ .small-img-row{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;   
+    margin-top: 5px;
+   
+} 
+
+ .small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+   
+} 
+
+.small-img-col img{
+    width: 100%;
+}
+
+
+.single-product .col-2_{
+    padding: 20px;
+  
+}
+.Content_Details{
+    min-width:300px;
+}
+.col-2_ h1{
+    font-size: 25px;
+    margin: 25px 0;
+}
+.CMT{
+    margin-top: 80px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.Update{
+    margin-left: 65%;
+}
+
+.TheLoai{
+    text-align: left;
+    color: rgb(41, 41, 41);
+    background-color: rgb(212, 208, 208);
+  
+}
+.col-addr{
+    float: left;
+    width: 50%;
+    padding-left: 10px;
+   
+}
+.row-inf:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+.col-addr .infor p i{
+    color: orangered;
+    font-size: 18px;
+}
+.col-addr .infor p{
+    font-size: 14px;
+}
+
+.small-img-rowDV {
+    display: flex;
+} 
+
+.small-img-colDV {
+    margin-right: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+    .small-img-colDV img {
+        width: 150px;
+        height: 80px;
+    }
+
+

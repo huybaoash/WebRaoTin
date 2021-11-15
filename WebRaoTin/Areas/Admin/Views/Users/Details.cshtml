@@ -1,102 +1,145 @@
 ﻿@model WebRaoTin.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ApplicationUser</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
+<div class="container">
+    <div class="main">
+        <div class="topbar_">
+            <a href="">Đổi mật khẩu</a>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mt-1">
+                <div class="card text-center sidebar">
+                    <div class="card-body ">
+                        <img src="~/images/ImageUser.png" alt="" class="img-circle" width="150">
+                        <div class="mt-3">
+                            <h3 style="margin-bottom: 50px; text-align:center">@Html.DisplayFor(model => model.FullName)</h3>
+                            <a href="">Home</a>
+                            <a href="">Work</a>
+                            <a href="">Support</a>
+                            <a href="">Setting</a>
+                            <a href="">Signout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-1">
+                <div class="card mb-3 content">
+                    <h1 class="m-3 pt-3"> About</h1>
+                    <div class="card-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Tài khoản</h4>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                @Html.DisplayFor(model => model.FullName)
+                            </div>
+                        </div>
+                        <hr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Phone</h4>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                @Html.DisplayFor(model => model.PhoneNumber)
+                            </div>
+                        </div>
+                        
 
-        <dd>
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
+                        @if (Model.Id.Equals(User.Identity.GetUserId()))
+                        {
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Họ tên</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.FullName)
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Giới tính</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.Gender)
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Ngày sinh</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.DateBorn)
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Status</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    Cong khai
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Email</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.Email)
+                                </div>
+                            </div>
+                            <hr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeAdress)
-        </dt>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Address</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.HomeAdress)
+                                </div>
+                            </div>
+                            <hr>
+                        }
 
-        <dd>
-            @Html.DisplayFor(model => model.HomeAdress)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateBorn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateBorn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ConfirmPublicInfo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ConfirmPublicInfo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CMND)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CMND)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
- 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-    </dl>
+                    </div>
+                </div>
+                <div class="card mb-3 content">
+                    <h1 class="m-3">Thông tin khác</h1>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Lịch sử bình luận</h4>
+                            </div>
+                            <div class="col-md-6 text-secondary">
+                                <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = Model.Id })"> Xem thêm</a> <br />
+                                
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Lịch sử đăng tin</h4>
+                            </div>
+                            <div class="col-md-6 text-secondary">
+                                <a href="@Url.Action("Index_ofUser", "TinTucs", new { page = 1, searchString = "",id = Model.Id })"> Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = Model.Id })"> Xem lịch sử bình luận</a> <br />
-    <a href="@Url.Action("Index_ofUser", "TinTucs", new { page = 1, searchString = "",id = Model.Id })"> Xem lịch sử đăng tin</a><br /><br />
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

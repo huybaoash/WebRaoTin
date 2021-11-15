@@ -48,7 +48,8 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên người đăng")]
         public string CustomerName { get; set; }
 
-
+        [Display(Name = "Email người đăng")]
+        public string CustomerEmail { get; set; }
         public int IdLoaiViecLam { get; set; }
         public int IdViecLam { get; set; }
         [Display(Name = "Tên loại việc làm")]
@@ -170,7 +171,7 @@ namespace WebRaoTin.ViewModel
 
         }
 
-        public TinTucsViewModel(int idTinTucs, string title, DateTime publishDayTinTucs, DateTime endDayTinTucs, string contract, string contractPhoneNumber, string status, string customerID, string customerName, int idLoaiVietLam, int idViecLam, string tenLoaiViecLam, string nameViecLam, string descriptioViecLamn, string require, string benefit, decimal salary, string locationViecLam, string imageViecLam, int idBatDongSan, int idLoaiBatDongSan, string tenLoaiBatDongSan, string nameBatDongSan, decimal priceBatDongSan, int area, string imageBatDongSan, string videoBatDongSan, string descriptionBatDongSan, string locationBatDongSan, int idDichVu, int idLoaiDichVu, string tenLoaiDichVu, string nameDichVu, decimal priceDichVu, string imageDichVu, string descriptionDichVu, string locationDichVu, int idSanPham, int idLoaiSanPham, string tenLoaiSanPham, string nameSanPham, decimal priceSanPham, string imageSanPham, string descriptionSanPham, string locationSanPham, string luaChon)
+        public TinTucsViewModel(int idTinTucs, string title, DateTime publishDayTinTucs, DateTime endDayTinTucs, string contract, string contractPhoneNumber, string status, string customerID, string customerName,string customerEmail, int idLoaiVietLam, int idViecLam, string tenLoaiViecLam, string nameViecLam, string descriptioViecLamn, string require, string benefit, decimal salary, string locationViecLam, string imageViecLam, int idBatDongSan, int idLoaiBatDongSan, string tenLoaiBatDongSan, string nameBatDongSan, decimal priceBatDongSan, int area, string imageBatDongSan, string videoBatDongSan, string descriptionBatDongSan, string locationBatDongSan, int idDichVu, int idLoaiDichVu, string tenLoaiDichVu, string nameDichVu, decimal priceDichVu, string imageDichVu, string descriptionDichVu, string locationDichVu, int idSanPham, int idLoaiSanPham, string tenLoaiSanPham, string nameSanPham, decimal priceSanPham, string imageSanPham, string descriptionSanPham, string locationSanPham, string luaChon)
         {
             IdTinTucs = idTinTucs;
             Title = title;
@@ -181,6 +182,7 @@ namespace WebRaoTin.ViewModel
             Status = status;
             CustomerID = customerID;
             CustomerName = customerName;
+            CustomerEmail = customerEmail;
             IdLoaiViecLam = idLoaiVietLam;
             IdViecLam = idViecLam;
             TenLoaiViecLam = tenLoaiViecLam;
@@ -230,7 +232,11 @@ namespace WebRaoTin.ViewModel
             
             foreach(var item in db.Users)
             {
-                if (item.Id.Equals(tinTuc.CustomerID)) this.CustomerName = item.UserName;
+                if (item.Id.Equals(tinTuc.CustomerID)) 
+                { 
+                    this.CustomerName = item.FullName;
+                    this.CustomerEmail = item.Email;
+                }
             }
             this.DescriptionSanPham = sp.Description;
             this.EndDayTinTucs = tinTuc.EndDay;
@@ -262,7 +268,11 @@ namespace WebRaoTin.ViewModel
 
             foreach (var item in db.Users)
             {
-                if (item.Id.Equals(tinTuc.CustomerID)) this.CustomerName = item.UserName;
+                if (item.Id.Equals(tinTuc.CustomerID))
+                {
+                    this.CustomerName = item.FullName;
+                    this.CustomerEmail = item.Email;
+                }
             }
             this.DescriptionBatDongSan = bds.Description;
             this.EndDayTinTucs = tinTuc.EndDay;
@@ -297,7 +307,11 @@ namespace WebRaoTin.ViewModel
 
             foreach (var item in db.Users)
             {
-                if (item.Id.Equals(tinTuc.CustomerID)) this.CustomerName = item.UserName;
+                if (item.Id.Equals(tinTuc.CustomerID))
+                {
+                    this.CustomerName = item.FullName;
+                    this.CustomerEmail = item.Email;
+                }
             }
             this.DescriptionDichVu = dv.Description;
             this.EndDayTinTucs = tinTuc.EndDay;
@@ -334,7 +348,11 @@ namespace WebRaoTin.ViewModel
 
             foreach (var item in db.Users)
             {
-                if (item.Id.Equals(tinTuc.CustomerID)) this.CustomerName = item.UserName;
+                if (item.Id.Equals(tinTuc.CustomerID))
+                {
+                    this.CustomerName = item.FullName;
+                    this.CustomerEmail = item.Email;
+                }
             }
             this.DescriptioViecLamn = vl.Description;
             this.EndDayTinTucs = tinTuc.EndDay;

@@ -24,112 +24,90 @@
 
     if (Model.LuaChon.Equals("1"))
     {
-        <div>
-            <h4>TinTuc</h4>
-            <hr />
-            <dl class="dl-horizontal">
+
+        <div class="small-container1 single-product">
+            <div class="row_Detail">
+                <div class="TheLoai">Thể loại > Sản phẩm > @Model.TenLoaiSanPham</div>
+
+                <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
+                    <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.IdTinTucs)
-                </dt>
-
-
-                <dd>
-                    @Html.DisplayFor(model => model.IdTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </dt>
-
-
-                <dd>
-                    @Html.DisplayFor(model => model.CustomerName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ContractPhoneNumber)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PublishDayTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contract)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Contract)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PriceSanPham)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PriceSanPham)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DescriptionSanPham)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DescriptionSanPham)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ImageSanPham)
-                </dt>
-
-                <dd id="displayImg1">
                     
-                   @foreach (var item in @ViewBag.HinhAnh){
-                     <img src=@item>  
-                    }
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LocationSanPham)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.LocationSanPham)
-                </dd>
+                    <div class="img">
+                        <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.TenLoaiSanPham)
-                </dt>
+                    </div>
+                    <div class="small-img-row">
+                        @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                        {
+                            <div class="small-img-col">
+                                <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                            </div>
+                            
+                        }
 
-                <dd>
-                    @Html.DisplayFor(model => model.TenLoaiSanPham)
-                </dd>
+                    </div>
+                </div>
 
 
+                <hr style=" margin: 0px 10px; background-color: black;">
 
-            </dl>
+                <div class="col-2_">
+                    <p>Mã Tin: @Model.IdTinTucs</p>
+                    <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                    <h1>@Model.Title</h1>
+
+                    <div class="row-inf">
+                        <div class="col-addr">
+                            <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                            <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                        </div>
+
+                        <div class="col-addr">
+                            <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                            <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationSanPham</p></div>
+                        </div>
+                    </div>
+
+
+                    <h4>Nôi Dung</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
+                        <p>
+                            @Model.DescriptionSanPham
+                        </p>
+                    </div>
+                    <hr>
+
+                    <div class="inf-more" style="margin-top: 10px; ">
+                        <h6>Thông tin san pham</h6>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p>Giá: @Model.PriceSanPham </p>
+                        </div>
+                        <br>
+                        <h6>Thông tin liên lạc</h6>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p>Liên hệ: @Model.Contract </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            
+
+
         </div>
+
+
+        
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
             @Html.ActionLink("Back to List", "Index")
         </p>
+
+
     }
 
     @*
@@ -138,108 +116,84 @@
 
     if (Model.LuaChon.Equals("2"))
     {
-        <div>
-            <h4>TinTuc</h4>
-            <hr />
-            <dl class="dl-horizontal">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.IdTinTucs)
-                </dt>
+<div class="small-container1 single-product">
+    <div class="row_Detail">
+        <div class="TheLoai">Thể loại > Dịch vụ > @Model.TenLoaiDichVu</div>
 
-
-                <dd>
-                    @Html.DisplayFor(model => model.IdTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </dt>
-
-
-                <dd>
-                    @Html.DisplayFor(model => model.CustomerName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ContractPhoneNumber)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PublishDayTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contract)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Contract)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PriceDichVu)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PriceDichVu)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DescriptionDichVu)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DescriptionDichVu)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ImageDichVu)
-                </dt>
-
-                <dd id="displayImg2">
-
-                    @foreach (var item in @ViewBag.HinhAnh)
-                    {
-                        <img src=@item>
-                    }
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LocationDichVu)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.LocationDichVu)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TenLoaiDichVu)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TenLoaiDichVu)
-                </dd>
+        <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
+            <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
 
 
 
-            </dl>
+
+            <div class="img">
+                <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
+
+            </div>
+            <div class="small-img-rowDV">
+                @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                {
+                    <div class="small-img-colDV">
+                        <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                    </div>
+
+                }
+
+            </div>
         </div>
+
+
+        <hr style=" margin: 0px 10px; background-color: black;">
+
+        <div class="col-2_">
+            <p>Mã Tin: @Model.IdTinTucs</p>
+            <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+            <h1>@Model.Title</h1>
+
+            <div class="row-inf">
+                <div class="col-addr">
+                    <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                    <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                </div>
+
+                <div class="col-addr">
+                    <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                    <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationDichVu</p></div>
+                </div>
+            </div>
+
+
+            <h4>Nôi Dung</h4>
+            <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
+                <p>
+                    @Model.DescriptionDichVu
+                </p>
+            </div>
+            <hr>
+
+            <div class="inf-more" style="margin-top: 10px; ">
+                <h6>Thông tin dịch vụ</h6>
+                <div style="padding-left: 10px; line-height: 0.8rem;">
+                    <p>Giá: @Model.PriceDichVu </p>
+                </div>
+                <br>
+                <h6>Thông tin liên lạc</h6>
+                <div style="padding-left: 10px; line-height: 0.8rem;">
+                    <p>Liên hệ: @Model.Contract </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+
+
+
+</div>
+        
+        
+            
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
             @Html.ActionLink("Back to List", "Index")
@@ -252,127 +206,89 @@
 
     if (Model.LuaChon.Equals("3"))
     {
-        <div>
-            <h4>TinTuc</h4>
-            <hr />
-            <dl class="dl-horizontal">
+        <div class="small-container1 single-product">
+          
+            <div class="row_Detail" >
+                <div class="TheLoai">Thể loại > Bất động sản > @Model.TenLoaiBatDongSan</div>
+                <div class="Khung-img" style="width: 65%; margin: 0px auto;">
+                    <p style="font-weight: 600; margin-bottom: 0px;">Hinh</p>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.IdTinTucs)
-                </dt>
+                    <div class="img">
+                        <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
 
+                    </div>
+                    <div class="small-img-row">
+                        @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                        {
+                            <div class="small-img-col">
+                                <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                            </div>
 
-                <dd>
-                    @Html.DisplayFor(model => model.IdTinTucs)
-                </dd>
+                        }
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </dt>
+                    </div>
 
+                   
+                </div>
+    
+                   <div class="vid" style="width: 65%; margin: 5px auto;">
+                    <p style="margin-bottom: 0px; font-weight: 600;">Video</p>
+                    <video src="@Model.VideoBatDongSan"  name="video" width="100%" type="video/mp4" controls> </video>
+                </div>  
 
-                <dd>
-                    @Html.DisplayFor(model => model.CustomerName)
-                </dd>
+                <hr style=" margin: 0px 10px; background-color: black;">
+                
+                <div class="col-2_">
+                    <p>Mã Tin: @Model.IdTinTucs</p>
+                    <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                    <h1>@Model.Title</h1>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
+                    <!-- row infor-->
+                    <div class="row-inf">
+                        <div class="col-addr">
+                            <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                            <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                        </div>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ContractPhoneNumber)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PublishDayTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contract)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Contract)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PriceBatDongSan)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PriceBatDongSan)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Area)
-                </dt>
-
-                <dd>
-                    @Model.Area m²
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DescriptionBatDongSan)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DescriptionBatDongSan)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ImageBatDongSan)
-                </dt>
-
-                <dd id="displayImg3">
-
-                    @foreach (var item in @ViewBag.HinhAnh)
-                    {
-                        <img style="width:200px; height:200px" src=@item>
-                    }
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.VideoBatDongSan)
-                </dt>
-
-                <dd>
-                    <video style="width: 100%; height: auto" controls>
-                        <source src="@Html.DisplayFor(model => Model.VideoBatDongSan)" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LocationBatDongSan)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.LocationBatDongSan)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TenLoaiBatDongSan)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TenLoaiBatDongSan)
-                </dd>
+                        <div class="col-addr">
+                            <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                            <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationBatDongSan</p></div>
+                        </div>
+                    </div>
 
 
+                    <h4>Nôi Dung</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
+                        <p>
+                            @Model.DescriptionBatDongSan
+                        </p>
+                    </div>
+                    <hr>
 
-            </dl>
+                    <div class="inf-more" style="margin-top: 10px; ">
+                        <h6>Thông tin bất động sản</h6>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p>Diện tích: @Model.Area m²</p>
+                            <p>Giá: @Model.PriceBatDongSan</p>
+                        </div>
+
+                    </div>
+
+                    <div class="inf-more" style="margin-top: 10px; ">
+                        <h6>Thông tin liên lạc</h6>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p>Liên hệ: @Model.Contract</p>
+                          
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+    
         </div>
+
+        
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
             @Html.ActionLink("Back to List", "Index")
@@ -385,111 +301,92 @@
 
     if (Model.LuaChon.Equals("4"))
     {
-        <div>
-            <h4>TinTuc</h4>
-            <hr />
-            <dl class="dl-horizontal">
+        <div class="small-container1 single-product">
+            <div class="row_Detail">
+                <div class="row_Detail">
+                    <div class="TheLoai">Thể loại > Việc Làm > @Model.TenLoaiViecLam</div>
+                    <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
+                        <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
+                        <div class="img">
+                            <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.IdTinTucs)
-                </dt>
+                        </div>
+                        <div class="small-img-row">
+                            @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                            {
+                                <div class="small-img-col">
+                                    <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                                </div>
 
+                            }
 
-                <dd>
-                    @Html.DisplayFor(model => model.IdTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </dt>
-
-
-                <dd>
-                    @Html.DisplayFor(model => model.CustomerName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ContractPhoneNumber)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PublishDayTinTucs)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PublishDayTinTucs)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contract)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Contract)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Salary)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Salary)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DescriptioViecLamn)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DescriptioViecLamn)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Benefit)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Benefit)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ImageViecLam)
-                </dt>
-
-                <dd id="displayImg4">
-                   
-                    @foreach (var item in @ViewBag.HinhAnh)
-                    {
-                        <img src=@item>
-                    }
-                </dd>
+                        </div>
+                    </div>
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.LocationViecLam)
-                </dt>
+                    <hr style=" margin: 0px 10px; background-color: black;">
 
-                <dd>
-                    @Html.DisplayFor(model => model.LocationViecLam)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.TenLoaiViecLam)
-                </dt>
+                    <div class="col-2_">
+                        <p>Mã Tin: @Model.IdTinTucs</p>
+                        <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                        <h1>@Model.Title</h1>
 
-                <dd>
-                    @Html.DisplayFor(model => model.TenLoaiViecLam)
-                </dd>
-            </dl>
+                        <div class="row-inf">
+                            <div class="col-addr">
+                                <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                                <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                            </div>
+
+                            <div class="col-addr">
+                                <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                                <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationViecLam.</p></div>
+                            </div>
+                        </div>
+
+
+
+                        <h6>Nội dung công việc</h6>
+                        <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
+                            <p>
+                                @Model.DescriptioViecLamn
+                            </p>
+                        </div>
+
+                        <h6 style="margin-top: 5px;">Quyền lợi</h6>
+                        <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
+                            <p>
+                                @Model.Benefit
+                            </p>
+                        </div>
+
+                        <hr>
+
+                        <div class="inf-more" style="margin-top: 10px; ">
+                            <h6>Thông tin việc làm</h6>
+                            <div style="padding-left: 10px; line-height: 0.8rem;">
+                                <p>Lương: @Model.Salary</p>
+                            </div>
+
+                        </div>
+
+                        <div class="inf-more" style="margin-top: 10px; ">
+                            <h6>Thông tin liên lạc</h6>
+                            <div style="padding-left: 10px; line-height: 0.8rem;">
+                                <p>Liên hệ: @Model.Contract</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                
+
+            </div>
+            <hr>
+            
+
+
         </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
@@ -515,7 +412,7 @@
                     if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
                     {
 
-                        <a href = "@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })" > Xóa</a>
+                        <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })"> Xóa</a>
                     };
                     <br />
                     @item.Description
@@ -525,68 +422,76 @@
 
             </ul>
 
-
-
-            <dl class="dl-horizontal">
-
-
-
-                <dt style="width:200px">
-                    @ViewBag.currentUser.Email
-                    <br />
-                    <input class="form-control text-box single-line" id="TinTucId" name="TinTucId" type="text" value="@Model.IdTinTucs">
-                </dt>
-
-
-
-                <dd>
+            <div class="CMT">
+                <form class="form-inline" action="">
+                    <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                    <input type="text" class="w-75 form-control" placeholder="Bình luận ..." id="TinTucId" name="TinTucId"  style="margin-right: 5px;" value="@Model.IdTinTucs">
                     <input class="form-control text-box single-line" id="Description" name="Description" type="text" value="">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Gửi" />
-                    </div>
-                </dd>
 
+                    <button class="btn btn-secondary">Gửi</button>
+                </form>
+            </div>
 
-            </dl>
+            
         </div>
     }
     else
     {
-<div>
-    <h4>Bình luận</h4>
-    <hr />
-    <ul>
+        <div>
+            <h4>Bình luận</h4>
+            <hr />
+            <ul>
 
-        @foreach (var item in @ViewBag.dsBLcuaTT)
-        {
+                @foreach (var item in @ViewBag.dsBLcuaTT)
+                {
 
-            <br />
+                    <br />
 
-            <b>@item.CustomerEmail      </b>
-            @item.PublishDay
+                    <b>@item.CustomerEmail      </b>
+                    @item.PublishDay
 
-            <br />
-            @item.Description
+                    <br />
+                    @item.Description
 
 
-        }
+                }
 
-    </ul>
+            </ul>
 
-    Bạn phải đăng nhập mới có thế bình luận.
-    
-</div>
+            Bạn phải đăng nhập mới có thế bình luận.
+
+        </div>
     }
 
 }
+
+
+
+
+
 
 
 <script type='text/javascript'>
     window.onload = function () {
         document.getElementById("TinTucId").style.display = 'none';
     }
-</script>
 
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallIng = document.getElementsByClassName("small-img");
+
+    SmallIng[0].onclick = function () {
+        ProductImg.src = SmallIng[0].src;
+    }
+    SmallIng[1].onclick = function () {
+        ProductImg.src = SmallIng[1].src;
+    }
+    SmallIng[2].onclick = function () {
+        ProductImg.src = SmallIng[2].src;
+    }
+    SmallIng[3].onclick = function () {
+        ProductImg.src = SmallIng[3].src;
+    }
+</script>
 
 
 

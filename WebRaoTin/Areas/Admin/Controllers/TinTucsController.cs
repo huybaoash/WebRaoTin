@@ -210,6 +210,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                     BinhLuanViewModel bl = new BinhLuanViewModel()
                     {
+                        
                         CustomerID = item.CustomerID,
                         Description = item.Description,
                         PublishDay = item.PublishDay,
