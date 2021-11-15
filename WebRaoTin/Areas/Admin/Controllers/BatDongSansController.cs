@@ -81,6 +81,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
+
                     batDongSans = batDongSans.Where(s => s.TinTuc.Title.Contains(searchString)).ToList();
                 }
             }

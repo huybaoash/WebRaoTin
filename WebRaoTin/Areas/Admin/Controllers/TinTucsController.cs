@@ -415,11 +415,15 @@ namespace WebRaoTin.Areas.Admin.Controllers
            
             db.TinTucs.Add(tinTuc);db.SaveChanges();
 
-
+            int demSP = 0;
+            int demDV = 0;
+            int demBDS = 0;
+            int demVL = 0;
             if (tinTucsViewModel.LuaChon.Equals("1"))
             {
                 foreach (var image in image1)
                 {
+                    if (demSP == 4) break;
                     if (image?.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
@@ -430,6 +434,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
 
                     }
+                    demSP++;
+
                 }
                 // Lưu folder chứa hình sản phẩm
                 
@@ -472,13 +478,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 {
                     if (image?.ContentLength > 0)
                     {
+                        if (demDV == 4) break;
                         var fileName = Path.GetFileName(image.FileName);
 
                         var path = Path.Combine(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"), fileName);
                         var dir = Directory.CreateDirectory(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"));
                         tinTucsViewModel.ImageDichVu = tinTucsViewModel.ImageDichVu + "/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image/" + fileName;
                         image.SaveAs(path);
-
+                        demDV++;
                     }
                 }
                 
@@ -527,13 +534,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 {
                     if (image?.ContentLength > 0)
                     {
+                        if (demBDS == 4) break;
                         var fileName = Path.GetFileName(image.FileName);
 
                         var path = Path.Combine(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"), fileName);
                         var dir = Directory.CreateDirectory(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"));
                         tinTucsViewModel.ImageBatDongSan = tinTucsViewModel.ImageBatDongSan + "/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image/" + fileName;
                         image.SaveAs(path);
-
+                        demBDS++;
                     }
                 }
                 
@@ -570,13 +578,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 {
                     if (image?.ContentLength > 0)
                     {
+                        if (demVL == 4) break;
                         var fileName = Path.GetFileName(image.FileName);
 
                         var path = Path.Combine(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"), fileName);
                         var dir = Directory.CreateDirectory(Server.MapPath("~/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image"));
                         tinTucsViewModel.ImageViecLam = tinTucsViewModel.ImageViecLam + "/Content/TinTuc/TinTucID" + tinTucsViewModel.IdTinTucs.ToString() + "/Image/" + fileName;
                         image.SaveAs(path);
-
+                        demVL++;
                     }
                     
                 }
@@ -792,7 +801,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             db.SaveChanges();
 
 
-
+            int demSP = 0;
+            int demDV = 0;
+            int demBDS = 0;
+            int demVL = 0;
 
 
             if (tinTucsViewModel.LuaChon.Equals("1"))
@@ -812,6 +824,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 // Lưu folder chứa hình sản phẩm
                 foreach (var image in image1)
                 {
+                    if (demSP == 4) break;
                     if (image?.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
@@ -822,6 +835,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
 
                     }
+                    demSP++;
                 }
 
 
@@ -881,6 +895,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 // Lưu folder chứa hình dịch vụ
                 foreach (var image in image2)
                 {
+                    if (demDV == 4) break;
                     if (image?.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
@@ -891,6 +906,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
 
                     }
+                    demDV++;
                 }
 
                 LoaiDichVu loaiDichVu = new LoaiDichVu();
@@ -970,6 +986,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 // Lưu folder chứa hình bất động sản
                 foreach (var image in image3)
                 {
+                    if (demBDS == 4) break;
                     if (image?.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
@@ -980,6 +997,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
 
                     }
+                    demBDS++;
                 }
 
                 LoaiBatDongSan loaiBatDongSan = new LoaiBatDongSan();
@@ -1036,6 +1054,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 // Lưu folder chứa hình việc làm
                 foreach (var image in image4)
                 {
+                    if (demVL == 4) break;
                     if (image?.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
@@ -1046,7 +1065,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
 
                     }
-
+                    demVL++;
                 }
 
 
