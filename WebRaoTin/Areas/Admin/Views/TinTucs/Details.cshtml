@@ -74,7 +74,7 @@
                     <h4>Nôi Dung</h4>
                     <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                         <p>
-                            @Model.DescriptionSanPham
+                            @Html.Raw(Html.Encode(Model.DescriptionSanPham).Replace("\n", "<br />"))
                         </p>
                     </div>
                     <hr>
@@ -165,7 +165,7 @@
             <h4>Nôi Dung</h4>
             <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                 <p>
-                    @Model.DescriptionDichVu
+                    @Html.Raw(Html.Encode(Model.DescriptionDichVu).Replace("\n", "<br />"))
                 </p>
             </div>
             <hr>
@@ -258,7 +258,7 @@
                     <h4>Nôi Dung</h4>
                     <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                         <p>
-                            @Model.DescriptionBatDongSan
+                            @Html.Raw(Html.Encode(Model.DescriptionBatDongSan).Replace("\n", "<br />"))
                         </p>
                     </div>
                     <hr>
@@ -345,21 +345,21 @@
                         <h6>Yêu cầu</h6>
                         <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                             <p>
-                                @Model.Require
+                                @Html.Raw(Html.Encode(Model.Require).Replace("\n", "<br />"))
                             </p>
                         </div>
 
                         <h6>Nội dung công việc</h6>
                         <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                             <p>
-                                @Model.DescriptioViecLamn
+                                @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />")) 
                             </p>
                         </div>
 
                         <h6 style="margin-top: 5px;">Quyền lợi</h6>
                         <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
                             <p>
-                                @Model.Benefit
+                                @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                             </p>
                         </div>
 
