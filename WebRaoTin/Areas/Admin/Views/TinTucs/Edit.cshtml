@@ -23,6 +23,11 @@
     @Html.HiddenFor(model => model.IdSanPham)
     @Html.HiddenFor(model => model.IdDichVu)
     @Html.HiddenFor(model => model.IdBatDongSan)
+    @Html.HiddenFor(model => model.NameBatDongSan)
+    @Html.HiddenFor(model => model.NameDichVu)
+    @Html.HiddenFor(model => model.NameSanPham)
+    @Html.HiddenFor(model => model.NameViecLam)
+
 
 
     <div class="form-group">
@@ -91,13 +96,7 @@
 
     @if (Model.LuaChon.Equals("1"))
     {
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameSanPham, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameSanPham, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.DescriptionSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -170,13 +169,7 @@
 
     @if (Model.LuaChon.Equals("2"))
     {
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameDichVu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameDichVu, "", new { @class = "text-danger" })
-            </div>
-        </div>
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.DescriptionDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -250,13 +243,7 @@
 
     @if (Model.LuaChon.Equals("3"))
     {
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameBatDongSan, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameBatDongSan, "", new { @class = "text-danger" })
-            </div>
-        </div>
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -349,13 +336,7 @@
 
     @if (Model.LuaChon.Equals("4"))
     {
-        <div class="form-group">
-            @Html.LabelFor(model => model.NameViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameViecLam, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameViecLam, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.DescriptioViecLamn, htmlAttributes: new { @class = "control-label col-md-2" })
