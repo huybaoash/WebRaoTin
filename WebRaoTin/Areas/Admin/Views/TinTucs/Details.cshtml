@@ -29,14 +29,13 @@
             <div class="row_Detail">
                 <div class="TheLoai">Thể loại > Sản phẩm > @Model.TenLoaiSanPham</div>
 
-                <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
-                    <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
+                <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
 
 
-                    
+
 
                     <div class="img">
-                        <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
+                        <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
 
                     </div>
                     <div class="small-img-row">
@@ -45,7 +44,7 @@
                             <div class="small-img-col">
                                 <img src="@ViewBag.HinhAnh[i]" class="small-img">
                             </div>
-                            
+
                         }
 
                     </div>
@@ -121,14 +120,13 @@
     <div class="row_Detail">
         <div class="TheLoai">Thể loại > Dịch vụ > @Model.TenLoaiDichVu</div>
 
-        <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
-            <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
+        <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
 
 
 
 
             <div class="img">
-                <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
+                <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
 
             </div>
             <div class="small-img-rowDV">
@@ -186,7 +184,7 @@
         </div>
 
     </div>
-    <hr>
+
 
 
 
@@ -208,13 +206,13 @@
     {
         <div class="small-container1 single-product">
           
-            <div class="row_Detail" >
+            <div class="row_Detail">
                 <div class="TheLoai">Thể loại > Bất động sản > @Model.TenLoaiBatDongSan</div>
-                <div class="Khung-img" style="width: 65%; margin: 0px auto;">
-                    <p style="font-weight: 600; margin-bottom: 0px;">Hinh</p>
+
+                <div class="Khung-img" style="width: 65%;background-color:  #f5ebeb; margin: 0px auto;">
 
                     <div class="img">
-                        <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
+                        <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
 
                     </div>
                     <div class="small-img-row">
@@ -228,16 +226,16 @@
 
                     </div>
 
-                   
+
                 </div>
-    
-                   <div class="vid" style="width: 65%; margin: 5px auto;">
+
+                <div class="vid" style="width: 65%; margin: 5px auto;">
                     <p style="margin-bottom: 0px; font-weight: 600;">Video</p>
-                    <video src="@Model.VideoBatDongSan"  name="video" width="100%" type="video/mp4" controls> </video>
-                </div>  
+                    <video src="@Model.VideoBatDongSan" name="video" width="100%" type="video/mp4" controls> </video>
+                </div>
 
                 <hr style=" margin: 0px 10px; background-color: black;">
-                
+
                 <div class="col-2_">
                     <p>Mã Tin: @Model.IdTinTucs</p>
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
@@ -278,12 +276,12 @@
                         <h6>Thông tin liên lạc</h6>
                         <div style="padding-left: 10px; line-height: 0.8rem;">
                             <p>Liên hệ: @Model.Contract</p>
-                          
+
                         </div>
 
                     </div>
                 </div>
-                <hr>
+               
             </div>
     
         </div>
@@ -305,10 +303,11 @@
             <div class="row_Detail">
                 <div class="row_Detail">
                     <div class="TheLoai">Thể loại > Việc Làm > @Model.TenLoaiViecLam</div>
-                    <div class="Khung-img" style="width: 55%;background-color: aquamarine; margin: 5px auto;">
-                        <p style="font-weight: 600; margin-bottom: 0px">Hinh</p>
+
+                    <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
+
                         <div class="img">
-                            <img src="@ViewBag.HinhAnh[0]" width="100%" id="ProductImg">
+                            <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
 
                         </div>
                         <div class="small-img-row">
@@ -384,11 +383,11 @@
                     </div>
 
                 </div>
-                <hr>
+             
                 
 
             </div>
-            <hr>
+         
             
 
 
@@ -401,44 +400,44 @@
 
     if (Request.IsAuthenticated)
     {
-        <div>
-            <h4>Bình luận</h4>
-            <hr />
+    <div style="padding:10px">
+        <h4>Bình luận</h4>
+        <hr />
 
-            <ul>
+    <ul>
 
-                @foreach (var item in @ViewBag.dsBLcuaTT)
-                {
+        @foreach (var item in @ViewBag.dsBLcuaTT)
+        {
 
-                    <br />
+            <br />
 
-                    <b>@item.CustomerEmail      </b>
-                    @item.PublishDay
-                    if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
-                    {
+            <b>@item.CustomerEmail</b>
+            @item.PublishDay
+            if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+            {
 
-                        <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })"> Xóa</a>
-                    };
-                    <br />
-                    @item.Description
+                <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+            };
+            <br />
+
+            @item.Description
+
+        }
+
+    </ul>
+        <hr />
+    <div class="CMT">
+        <form class="form-inline" action="">
+            <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+            <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+
+            <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+        </form>
+    </div>
 
 
-                }
-
-            </ul>
-
-            <div class="CMT">
-                <form class="form-inline" action="">
-                    <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
-                    <input type="text" class="w-75 form-control" placeholder="Bình luận ..." id="TinTucId" name="TinTucId"  style="margin-right: 5px;" value="@Model.IdTinTucs">
-                    <input class="form-control text-box single-line" id="Description" name="Description" type="text" value="">
-
-                    <button class="btn btn-secondary">Gửi</button>
-                </form>
-            </div>
-
-            
-        </div>
+</div>
     }
     else
     {

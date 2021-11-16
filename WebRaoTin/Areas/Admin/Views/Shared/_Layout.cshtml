@@ -5,15 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -90,7 +84,7 @@
         /*---------------User Details---------------------------  */
 
 
-
+           
         .bd {
             margin: 20px;
         }
@@ -101,13 +95,13 @@
         }
 
             .main .topbar_ {
-                background-color: teal;
+               
                 overflow: hidden;
             }
 
                 .main .topbar_ a {
                     float: right;
-                    color: whitesmoke;
+                 
                     text-align: center;
                     padding: 20px 26px;
                     text-decoration: none;
@@ -115,7 +109,7 @@
                 }
 
                     .main .topbar_ a:hover {
-                        color: lightgray;
+                       
                     }
 
         .row .sidebar {
@@ -269,7 +263,7 @@
         }
 
 
-        .btn {
+        .btn-DT {
             text-decoration: none;
             display: inline-block;
             outline: none;
@@ -285,7 +279,7 @@
             background-color: rgb(161, 14, 8);
         }
 
-        .btn:hover {
+        .btn-DT:hover {
             opacity: 0.8;
         }
 
@@ -301,48 +295,43 @@
             cursor: pointer;
         }
 
-        #RowTT {
-            border:1px solid #808080;
-        }
 
         .row h3 {
             text-align: left;
             margin-left: 10px;
-            border-bottom: 1px solid #454444;
+            border-bottom: 1px solid lightgray;
+            width: 98%;
+        }
+        #RowTT {
+            margin: auto;
         }
 
         .boxDiv {
             background-color: none;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 10px 5px 10px 5px;
+            padding: 5px 5px 0px 5px;
             color: black;
             margin-bottom: 5px;
-            text-align: center;
+            text-align: left;
+            border-radius: 4px;
         }
 
             .boxDiv img {
-                width: 250px;
                 height: 200px;
             }
 
         .btn_more {
-            border-top: 1px solid rgb(202, 209, 209);
-            background-color: transparent;
-            text-align: center;
             margin-bottom: 20px;
+            padding-left: 93.5%;
+            margin-top: 2px;
+            border-bottom: 1px solid #de1c1c;
         }
-
-            .btn_more h5 {
-                margin-top: 0;
-            }
-
         .row h3 {
             text-align: left;
         }
 
         .card-body label {
-            height: 80px;
-            background-color: palegoldenrod;
+            margin-bottom: 15px;
         }
 
         .card .form-group p {
@@ -396,7 +385,7 @@
 
 
 
-    <div class="container body-content">
+    <div class="container body-content" style="background-color:white">
         @RenderBody()
     </div>
        

@@ -20,21 +20,18 @@ body{
 }
  .small-img-row{
     display: flex;
-    justify-content: space-around;
-    width: 100%;   
-    margin-top: 5px;
-   
-} 
-
- .small-img-col{
-    flex-basis: 24%;
-    cursor: pointer;
-   
-} 
-
-.small-img-col img{
-    width: 100%;
 }
+
+.small-img-col {
+    margin-right: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+    .small-img-col img {
+        width: 150px;
+        height: 80px;
+    }
 
 
 .single-product .col-2_{
@@ -48,14 +45,13 @@ body{
     font-size: 25px;
     margin: 25px 0;
 }
-.CMT{
-    margin-top: 80px;
-    margin-bottom: 20px;
-    padding-left: 25px;
+.CMT {
+    margin-top: 15px;
+    padding: 6px;
 }
 
-.Update{
-    margin-left: 65%;
+.Update {
+    margin-left: 75%;
 }
 
 .TheLoai{

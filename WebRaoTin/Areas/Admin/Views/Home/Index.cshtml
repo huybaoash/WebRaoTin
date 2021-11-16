@@ -17,46 +17,45 @@
 
                             @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
                             {
-                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageDichVu" alt="" style="width:230px; height:200px;" />
+                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageDichVu" alt="" />
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
                             {
-                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageSanPham" alt="" style="width:230px; height:200px;" />
+                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageSanPham" alt="" />
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
                             {
-                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageViecLam" alt="" style="width:230px; height:200px;" />
+                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageViecLam" alt="" />
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
                             {
-                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageBatDongSan" alt="" style="width:230px; height:200px;" />
+                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageBatDongSan" alt="" />
                             }
 
 
                             <div class="card-body">
                                 <label class="card-text">@ViewBag.TinTuc_4Lastest[i].Title</label>
                             </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
+
+                            <div class="form-group" style="display:inline-flex;">
                                 @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
                                 {
-                                    <p class="col-md-6"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceDichVu</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceDichVu</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
                                 {
-                                    <p class="col-md-6"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceSanPham</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceSanPham</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
                                 {
-                                    <p class="col-md-6"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].Salary</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].Salary</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
                                 {
-                                    <p class="col-md-6"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceBatDongSan</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceBatDongSan</p>
                                 }
 
-                                <p class="col-md-6"><i class="far fa-clock"></i> @ViewBag.TinTuc_4Lastest[i].LuaChon</p>
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4Lastest[i].LuaChon</p>
                             </div>
                         </div>
 
@@ -70,7 +69,7 @@
     }
 
 </div>
-<div class="btn_more"> <h5 class="btn btn-primary">XEM THEM</h5></div>
+<div class="btn_more"></div>
 
 
 @*SẢN PHẨM*@
@@ -87,18 +86,18 @@
                         <p>SẢN PHẨM</p>
                         <div class="card" style="">
 
-                            <img src="@item.ImageSanPham" alt="" style="width:230px; height:200px;" />
+                            <img src="@item.ImageSanPham" alt="" />
 
                             <div class="card-body">
                                 <label class="card-text">@item.Title</label>
 
                             </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <p class="col-md-6"><i class="fas fa-coins"></i> @item.PriceSanPham</p>
-                                <p class="col-md-6"><i class="far fa-clock"></i> @item.LuaChon</p>
+                          
+                            <div class="form-group" style="display:inline-flex;">
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham</p>
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -108,7 +107,7 @@
 
 
     </div>
-<div class="btn_more"> <h5 class="btn btn-primary">XEM THEM</h5></div>
+<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
 
 
 @*DỊCH VỤ*@
@@ -124,17 +123,16 @@
                         <p>DỊCH VỤ</p>
                         <div class="card" style="">
 
-                            <img src="@item.ImageDichVu" alt="" style="width:230px; height:200px;" />
+                            <img src="@item.ImageDichVu" alt="" />
 
                             <div class="card-body">
                                 <label class="card-text">@item.Title</label>
 
                             </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <p class="col-md-6"><i class="fas fa-coins"></i> @item.PriceDichVu</p>
-                                <p class="col-md-6"><i class="far fa-clock"></i> @item.LuaChon</p>
+
+                            <div class="form-group" style="display:inline-flex;">
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu</p>
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
@@ -142,10 +140,8 @@
             </div>
             </a>
             }
-
-
     </div>
-<div class="btn_more"> <h5 class="btn btn-primary">XEM THEM</h5></div>
+<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
 
 
 @*BẤT ĐỘNG SẢN*@
@@ -162,17 +158,16 @@
                         <p>BẤT ĐỘNG SẢN</p>
                         <div class="card" style="">
 
-                            <img src="@item.ImageBatDongSan" alt="" style="width:230px; height:200px;" />
+                            <img src="@item.ImageBatDongSan" alt="" />
 
                             <div class="card-body">
                                 <label class="card-text">@item.Title</label>
 
                             </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <p class="col-md-6"><i class="fas fa-coins"></i> @item.PriceBatDongSan</p>
-                                <p class="col-md-6"><i class="far fa-clock"></i> @item.LuaChon</p>
+
+                            <div class="form-group" style="display:inline-flex;">
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan</p>
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +178,7 @@
 
 
     </div>
-<div class="btn_more"> <h5 class="btn btn-primary">XEM THEM</h5></div>
+<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
 
 
 @*VIỆC LÀM*@
@@ -199,16 +194,15 @@
                         <p>VIỆC LÀM</p>
                         <div class="card" style="">
 
-                            <img src="@item.ImageViecLam" alt="" style="width:230px; height:200px;" />
+                            <img src="@item.ImageViecLam" alt="" />
 
                             <div class="card-body">
                                 <label class="card-text">@item.Title</label>
                             </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <p class="col-md-6"><i class="fas fa-coins"></i> @item.Salary</p>
-                                <p class="col-md-6"><i class="far fa-clock"></i> @item.LuaChon</p>
+                          
+                            <div class="form-group" style="display:inline-flex;">
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary</p>
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
@@ -219,5 +213,5 @@
 
 
     </div>
-<div class="btn_more"> <h5 class="btn btn-primary">XEM THEM</h5></div>
+<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
 
