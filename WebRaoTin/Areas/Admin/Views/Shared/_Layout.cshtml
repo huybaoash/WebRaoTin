@@ -249,7 +249,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap-reverse;
-            color: #ff6a00;
+        
 
         }
 
@@ -351,14 +351,18 @@
         .container{
             margin-bottom:150px;
         }
-
+        .heard-list .header_item h3 a {
+            color: #ff6a00;
+            font-weight:900;
+            text-decoration:none;
+        }
 
     </style>
 </head>
 <body>
     <div class="header">
         <ul class="heard-list">
-            <li class="header_item" style="padding-right:100px;"><h3 style="font: bolder">@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
+            <li class="header_item" style="padding-right:100px;"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
             <li class="header_item active-cyan-3 active-cyan-4 mb-4">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
             </li>
@@ -372,7 +376,7 @@
         </ul>
         @Html.Partial("_LoginPartial")
     </div>
-
+  
     <div class="menu">
         <ul>
             <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
@@ -389,27 +393,27 @@
     <div class="container body-content" style="background-color:white">
         @RenderBody()
     </div>
-       
 
-        <footer style="height: 170px">
-            <div class="row">
-                <div class="col-sm-4" style="padding-left:50px;">
-                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                    <img src="~/Content/images/logo.png" style="width: 100px" />
-                </div>
-                <div class="col-sm-4 text-center">
-                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                    <p>Tên đồ án:Web RAO TIN</p>
-                    <p>Nhóm: Yuong Boys</p>
-                </div>
-                <div class="col-sm-4 text-right" style="padding-right:50px;">
-                    <p>Phạm Trần Huy Bảo - 1811060047</p>
-                    <p>Vũ Duy Linh - 1811060430</p>
-                </div>
+
+    <footer style="height: 170px">
+        <div class="row">
+            <div class="col-sm-4" style="padding-left:50px;">
+                <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                <img src="~/Content/images/logo.png" style="width: 100px" />
             </div>
-        </footer>
+            <div class="col-sm-4 text-center">
+                <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                <p>Tên đồ án:Web RAO TIN</p>
+                <p>Nhóm: Yuong Boys</p>
+            </div>
+            <div class="col-sm-4 text-right" style="padding-right:50px;">
+                <p>Phạm Trần Huy Bảo - 1811060047</p>
+                <p>Vũ Duy Linh - 1811060430</p>
+            </div>
+        </div>
+    </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -351,6 +351,7 @@
     <Content Include="images\quy-trinh-ban-hang-truc-tiep.jpg" />
     <Content Include="images\thutucmuabannha01.jpg" />
     <Content Include="images\tong-hop-cac-cach-cai-thien-ky-nang-noi-chuyen.png" />
+    <Content Include="images\unnamed.gif" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

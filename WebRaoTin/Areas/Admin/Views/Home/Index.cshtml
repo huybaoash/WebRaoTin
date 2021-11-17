@@ -10,27 +10,32 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="boxDiv">
                     <div class="warp-layout_item">
-
-
                         <p>@ViewBag.TinTuc_TenDM_4Lastest[i]</p>
+                    
                         <div class="card" style="">
 
                             @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
                             {
-                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageDichVu" alt="" />
+                                <img src="@ViewBag.TinTuc_4Lastest[i].ImageDichVu" alt="" style="position:relative" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
                             {
                                 <img src="@ViewBag.TinTuc_4Lastest[i].ImageSanPham" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
                             {
                                 <img src="@ViewBag.TinTuc_4Lastest[i].ImageViecLam" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px;  height:40px; width:40px">
                             }
                             else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
                             {
                                 <img src="@ViewBag.TinTuc_4Lastest[i].ImageBatDongSan" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
                             }
+
+
 
 
                             <div class="card-body">
