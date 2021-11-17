@@ -303,7 +303,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         string[] chuoiSplit = new string[] { ".jpg" };
                         string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
                         tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
-
+                        
                         a.Add(tinTucsViewModel);
                         
                         continue;

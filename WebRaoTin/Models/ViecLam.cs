@@ -26,6 +26,7 @@ namespace WebRaoTin.Models
         public string Benefit { get; set; }
 
         [Display(Name = "Lương")]
+        [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal Salary { get; set; }
 
         [Display(Name = "Địa điểm")]

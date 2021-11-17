@@ -1,35 +1,27 @@
 ﻿
 @using PagedList;
 @using PagedList.Mvc;
-@model IPagedList<WebRaoTin.Models.SanPham>
-
+@model IPagedList<WebRaoTin.Models.BatDongSan>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index_LoaiBDS";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 <div id="menu">
     <ul class="menu-list">
-        @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+        @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
         {
             <li class="menu-item">
-                <a href="@Url.Action("Index_LoaiSP", "SanPhams",new { searchString = @ViewBag.LoaiSanPhams[i].Name })"> 
-                    @ViewBag.LoaiSanPhams[i].Name
-                </a>
+                <a href="@Url.Action("Index_LoaiBDS", "BatDongSans",new { searchString = @ViewBag.LoaiBatDongSans[i].Name })">@ViewBag.LoaiBatDongSans[i].Name</a>
             </li>
         }
 
     </ul>
-
 </div>
 
-@using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+@using (Html.BeginForm("Index", "BatDongSans", FormMethod.Get))
 {
-    <div id="Search_TT" style="margin-bottom:5px;margin-left:110px;">
-            <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Search..." style="border-radius:40px;padding-left:10px;border: 0.7px solid #808080;width:30%;"/>
-            <input class="search_item" type="submit" value="Search" style="height:24px; width:100px; background-color:#ff6a00; color:white; border-radius:40px; border:none;" />
-        </div>
-  }
+   
+}
 
 <div id="main">
     <div id="left">
@@ -39,17 +31,21 @@
             {
                 <a href="@Url.Action("Details", "TinTucs",new { id= item.TinTucId })">
                     <li id="item_li">
+
                         @foreach (var item2 in @ViewBag.ngaygio)
                         {
                             if (item2.IdTinTucs.Equals(item.TinTucId))
                             {
-                                <img src=" @item2.ImageSanPham" alt="">
+                                <img src=" @item2.ImageBatDongSan" alt="">
                             }
                         }
 
+
                         <h3>@Html.DisplayFor(modelItem => item.TinTuc.Title)</h3>
                         <div class="desc">
-                            <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiSanPham.Name)</span>
+                            <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiBatDongSan.Name)</span>
+
+
 
                             @foreach (var item2 in @ViewBag.ngaygio)
                             {
@@ -59,26 +55,29 @@
                                 }
                             }
 
+
+
+
                             <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
                             <span class="gia">
                                 <i class="fas fa-tag"></i>
                                 @Html.DisplayFor(modelItem => item.Price) đ
                             </span>
                         </div>
-
                     </li>
-                    </a>
-                    }
-            </ul>
-
+                </a>
+            }
+        </ul>
         @Html.PagedListPager(Model, page => Url.Action("Index", new
         {
             page,
             searchString = ViewBag.Keyword
         }),
         PagedListRenderOptions.PageNumbersOnly)
-
     </div>
+
+
+
     <div id="right">
         <h3><i class="fas fa-search"></i> TÌM KIẾM NHIỀU HƠN</h3>
         <div class="select">
@@ -105,3 +104,4 @@
         </div>
     </div>
 </div>
+

@@ -11,7 +11,7 @@
     <ul class="menu-list">
         @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
         {
-            <li class="menu-item"><a>@ViewBag.LoaiViecLams[i].Name</a></li>
+            <li class="menu-item"><a href="@Url.Action("Index_LoaiVL", "ViecLams",new { searchString = @ViewBag.LoaiViecLams[i].Name })">@ViewBag.LoaiViecLams[i].Name</a></li>
         }
 
     </ul>
@@ -59,7 +59,7 @@
                             <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
                             <span class="gia">
                                 <i class="fas fa-tag"></i>
-                                @Html.DisplayFor(modelItem => item.Salary)
+                                @Html.DisplayFor(modelItem => item.Salary) đ
                             </span>
                         </div>
                     </li>

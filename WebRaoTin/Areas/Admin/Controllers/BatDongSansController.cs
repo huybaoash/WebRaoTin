@@ -86,8 +86,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
             }
             catch (Exception ex) { }
-            batDongSans.OrderByDescending(v => v.Id);
-            var finalList = batDongSans.ToPagedList(page.Value, recordsPerPage);
+            
+            var finalList = batDongSans.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
 
 
 
@@ -120,6 +120,62 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View(finalList);
 
                
+        }
+
+        public ActionResult Index_LoaiBDS(string searchString, int? page)
+        {
+            int recordsPerPage = 5;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+
+            var batDongSans = db.BatDongSans.Include(b => b.LoaiBatDongSan).Include(b => b.TinTuc).ToList();
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+
+                    batDongSans = batDongSans.Where(s => s.LoaiBatDongSan.Name.Equals(searchString)).ToList();
+                }
+            }
+            catch (Exception ex) { }
+
+            var finalList = batDongSans.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+
+
+
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            foreach (var item in batDongSans)
+            {
+                TinTucsViewModel tinTucsViewModel;
+                if (item.Location.Length > 25)
+                {
+                    String str1 = item.Location;
+                    item.Location = str1.Substring(0, 25) + "...";
+
+                }
+
+                tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
+                tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
+
+                string[] chuoiSplit = new string[] { ".jpg" };
+                string[] images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None);
+                tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
+
+                a.Add(tinTucsViewModel);
+
+            }
+
+            ViewBag.ngaygio = a;
+
+
+
+            return View(finalList);
+
+
         }
 
         // GET: Admin/BatDongSans/Details/5

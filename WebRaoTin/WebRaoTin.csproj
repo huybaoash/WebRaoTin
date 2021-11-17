@@ -372,6 +372,10 @@
     <Content Include="Areas\Admin\Views\BinhLuans\XoaBL.cshtml" />
     <Content Include="Areas\Admin\Views\BinhLuans\CMT_ofUser.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Index_ofUser.cshtml" />
+    <Content Include="Areas\Admin\Views\BatDongSans\Index_LoaiBDS.cshtml" />
+    <Content Include="Areas\Admin\Views\ViecLams\Index_LoaiVL.cshtml" />
+    <Content Include="Areas\Admin\Views\DichVus\Index_LoaiDV.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index_LoaiSP.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

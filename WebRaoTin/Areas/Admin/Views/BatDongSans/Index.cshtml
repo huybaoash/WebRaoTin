@@ -13,7 +13,7 @@
             @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
             {
                 <li class="menu-item">
-                    <a>@ViewBag.LoaiBatDongSans[i].Name</a>
+                    <a href="@Url.Action("Index_LoaiBDS", "BatDongSans",new { searchString = @ViewBag.LoaiBatDongSans[i].Name })">@ViewBag.LoaiBatDongSans[i].Name</a>
                 </li>
             }
 
@@ -66,7 +66,7 @@
                             <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
                             <span class="gia">
                                 <i class="fas fa-tag"></i>
-                                @Html.DisplayFor(modelItem => item.Price)
+                                @Html.DisplayFor(modelItem => item.Price) đ
                             </span>
                         </div>
                     </li>

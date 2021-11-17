@@ -155,7 +155,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             catch (Exception ex) { }
             tinTucs.OrderByDescending(v => v.Id);
 
-            var finalList = tinTucs.ToPagedList(page.Value, recordsPerPage);
+            var finalList = tinTucs.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
             return View(finalList);
         }
 

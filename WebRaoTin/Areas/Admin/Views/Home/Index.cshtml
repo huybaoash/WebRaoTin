@@ -11,7 +11,7 @@
                 <div class="boxDiv">
                     <div class="warp-layout_item">
                         <p>@ViewBag.TinTuc_TenDM_4Lastest[i]</p>
-                    
+
                         <div class="card" style="">
 
                             @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
@@ -45,19 +45,19 @@
                             <div class="form-group" style="display:inline-flex;">
                                 @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
                                 {
-                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceDichVu</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceDichVu.ToString("0.##") đ</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
                                 {
-                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceSanPham</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceSanPham.ToString("0.##") đ</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
                                 {
-                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].Salary</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].Salary.ToString("0.##") đ</p>
                                 }
                                 else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
                                 {
-                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceBatDongSan</p>
+                                    <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4Lastest[i].PriceBatDongSan.ToString("0.##") đ</p>
                                 }
 
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4Lastest[i].LuaChon</p>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </a>
-        
+
     }
 
 </div>
@@ -97,9 +97,9 @@
                                 <label class="card-text">@item.Title</label>
 
                             </div>
-                          
+
                             <div class="form-group" style="display:inline-flex;">
-                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham</p>
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham.ToString("0.##") đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
 
@@ -107,12 +107,12 @@
                     </div>
                 </div>
             </div>
-            </a>
-            }
+        </a>
+    }
 
 
-    </div>
-<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
+</div>
+<div class="btn_more"> <a href="@Url.Action("Index", "SanPhams")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
 
 
 @*DỊCH VỤ*@
@@ -136,17 +136,17 @@
                             </div>
 
                             <div class="form-group" style="display:inline-flex;">
-                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu</p>
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu.ToString("0.##") đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </a>
-            }
-    </div>
-<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
+        </a>
+    }
+</div>
+<div class="btn_more"> <a href="@Url.Action("Index", "DichVus")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
 
 
 @*BẤT ĐỘNG SẢN*@
@@ -171,19 +171,19 @@
                             </div>
 
                             <div class="form-group" style="display:inline-flex;">
-                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan</p>
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan.ToString("0.##") đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </a>
-            }
+        </a>
+    }
 
 
-    </div>
-<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
+</div>
+<div class="btn_more"> <a href="@Url.Action("Index", "BatDongSans")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
 
 
 @*VIỆC LÀM*@
@@ -204,19 +204,19 @@
                             <div class="card-body">
                                 <label class="card-text">@item.Title</label>
                             </div>
-                          
+
                             <div class="form-group" style="display:inline-flex;">
-                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary</p>
+                                <p class="" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary.ToString("0.##") đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </a>
-            }
+        </a>
+    }
 
 
-    </div>
-<div class="btn_more"> <button class="btn btn-default btn-sm">xem thêm</button></div>
+</div>
+<div class="btn_more"> <a href="@Url.Action("Index", "ViecLams")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
 

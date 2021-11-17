@@ -132,8 +132,57 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
             }
             catch (Exception ex) { }
-            dichVus.OrderByDescending(v => v.Id);
-            var finalList = dichVus.ToPagedList(page.Value, recordsPerPage);
+            
+            var finalList = dichVus.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            foreach (var item in dichVus)
+            {
+                TinTucsViewModel tinTucsViewModel;
+                if (item.Location.Length > 25)
+                {
+                    String str1 = item.Location;
+                    item.Location = str1.Substring(0, 25) + " ...";
+
+                }
+
+                tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
+                tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
+
+                string[] chuoiSplit = new string[] { ".jpg" };
+                string[] images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None);
+                tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
+                a.Add(tinTucsViewModel);
+
+            }
+
+            ViewBag.ngaygio = a;
+
+            return View(finalList);
+        }
+
+        public ActionResult Index_LoaiDV(string searchString, int? page)
+        {
+            int recordsPerPage = 5;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+
+            var dichVus = db.DichVus.Include(d => d.LoaiDichVu).Include(d => d.TinTuc).ToList();
+
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    dichVus = dichVus.Where(s => s.LoaiDichVu.Name.Equals(searchString)).ToList();
+                }
+            }
+            catch (Exception ex) { }
+
+            var finalList = dichVus.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
 
             List<TinTucsViewModel> a = new List<TinTucsViewModel>();
             foreach (var item in dichVus)

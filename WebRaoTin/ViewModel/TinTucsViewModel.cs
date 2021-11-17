@@ -70,6 +70,7 @@ namespace WebRaoTin.ViewModel
 
 
         [Display(Name = "Lương")]
+        [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal Salary { get; set; }
 
         [Display(Name = "Địa điểm")]
@@ -89,8 +90,9 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên bất động sản")]
         public string NameBatDongSan { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+    
         [Display(Name = "Giá")]
+        [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceBatDongSan { get; set; }
 
         
@@ -123,8 +125,10 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên dịch vụ")]
         public string NameDichVu { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+       
+        
         [Display(Name = "Giá")]
+        [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceDichVu { get; set; }
 
         [Required(AllowEmptyStrings = true)]
@@ -149,6 +153,7 @@ namespace WebRaoTin.ViewModel
         public string NameSanPham { get; set; }
 
         [Display(Name = "Giá")]
+        [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceSanPham { get; set; }
 
         [Required(AllowEmptyStrings = true)]
@@ -225,7 +230,7 @@ namespace WebRaoTin.ViewModel
         public TinTucsViewModel(TinTuc tinTuc,SanPham sp)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-
+            
             this.Contract = tinTuc.Contract;
             this.ContractPhoneNumber = tinTuc.ContractPhoneNumber;
             this.CustomerID = tinTuc.CustomerID;

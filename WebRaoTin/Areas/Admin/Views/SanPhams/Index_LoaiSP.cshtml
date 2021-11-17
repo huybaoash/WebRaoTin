@@ -4,16 +4,17 @@
 @model IPagedList<WebRaoTin.Models.SanPham>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index_LoaiSP";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 <div id="menu">
     <ul class="menu-list">
         @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
         {
             <li class="menu-item">
-                <a href="@Url.Action("Index_LoaiSP", "SanPhams",new { searchString = @ViewBag.LoaiSanPhams[i].Name })"> 
+                <a href="@Url.Action("Index_LoaiSP", "SanPhams",new { searchString = @ViewBag.LoaiSanPhams[i].Name })">
                     @ViewBag.LoaiSanPhams[i].Name
                 </a>
             </li>
@@ -25,11 +26,8 @@
 
 @using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
 {
-    <div id="Search_TT" style="margin-bottom:5px;margin-left:110px;">
-            <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Search..." style="border-radius:40px;padding-left:10px;border: 0.7px solid #808080;width:30%;"/>
-            <input class="search_item" type="submit" value="Search" style="height:24px; width:100px; background-color:#ff6a00; color:white; border-radius:40px; border:none;" />
-        </div>
-  }
+    
+}
 
 <div id="main">
     <div id="left">
@@ -67,9 +65,9 @@
                         </div>
 
                     </li>
-                    </a>
-                    }
-            </ul>
+                </a>
+            }
+        </ul>
 
         @Html.PagedListPager(Model, page => Url.Action("Index", new
         {

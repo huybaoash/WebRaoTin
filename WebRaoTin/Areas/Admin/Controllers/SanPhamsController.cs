@@ -132,7 +132,56 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             catch (Exception ex) { }
             sanPhams.OrderByDescending(v => v.Id);
-            var finalList = sanPhams.ToPagedList(page.Value, recordsPerPage);
+            var finalList = sanPhams.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            foreach (var item in sanPhams)
+            {
+                TinTucsViewModel tinTucsViewModel;
+                if (item.Location.Length > 25)
+                {
+                    String str1 = item.Location;
+                    item.Location = str1.Substring(0, 25) + " ...";
+
+                }
+
+                tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
+                tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
+
+                string[] chuoiSplit = new string[] { ".jpg" };
+                string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
+                tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
+                a.Add(tinTucsViewModel);
+
+            }
+
+            ViewBag.ngaygio = a;
+
+            return View(finalList);
+        }
+
+        public ActionResult Index_LoaiSP(string searchString, int? page)
+        {
+
+            int recordsPerPage = 5;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+            var sanPhams = db.SanPhams.Include(s => s.LoaiSanPham).Include(s => s.TinTuc).ToList();
+
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    sanPhams = sanPhams.Where(s => s.LoaiSanPham.Name.Equals(searchString)).ToList();
+                }
+            }
+            catch (Exception ex) { }
+            sanPhams.OrderByDescending(v => v.Id);
+            var finalList = sanPhams.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
 
             List<TinTucsViewModel> a = new List<TinTucsViewModel>();
             foreach (var item in sanPhams)

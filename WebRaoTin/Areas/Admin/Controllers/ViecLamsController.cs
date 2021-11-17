@@ -133,7 +133,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             catch (Exception ex) { }
             viecLams.OrderByDescending(v => v.Id);
-            var finalList = viecLams.ToPagedList(page.Value, recordsPerPage);
+            var finalList = viecLams.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
 
             List<TinTucsViewModel> a = new List<TinTucsViewModel>();
             foreach (var item in viecLams)
@@ -143,6 +143,54 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 {
                     String str1 = item.Location;
                     item.Location = str1.Substring(0,25) + " ...";
+
+                }
+
+                tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
+                tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
+
+                string[] chuoiSplit = new string[] { ".jpg" };
+                string[] images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None);
+                tinTucsViewModel.ImageViecLam = images[0] + ".jpg";
+                a.Add(tinTucsViewModel);
+
+            }
+
+            ViewBag.ngaygio = a;
+            return View(finalList);
+        }
+
+        public ActionResult Index_LoaiVL(string searchString, int? page)
+        {
+            int recordsPerPage = 5;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+
+            var viecLams = db.ViecLams.Include(s => s.LoaiViecLam).Include(v => v.TinTuc).ToList();
+
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    viecLams = viecLams.Where(s => s.LoaiViecLam.Name.Equals(searchString)).ToList();
+                }
+            }
+            catch (Exception ex) { }
+            viecLams.OrderByDescending(v => v.Id);
+            var finalList = viecLams.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            foreach (var item in viecLams)
+            {
+                TinTucsViewModel tinTucsViewModel;
+                if (item.Location.Length > 25)
+                {
+                    String str1 = item.Location;
+                    item.Location = str1.Substring(0, 25) + " ...";
 
                 }
 
