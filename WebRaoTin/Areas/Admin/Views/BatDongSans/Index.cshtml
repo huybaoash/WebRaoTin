@@ -22,9 +22,9 @@
 
     @using (Html.BeginForm("Index", "BatDongSans", FormMethod.Get))
     {
-        <div id="Search_TT" style="margin-bottom:5px;margin-left:110px;">
-            <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Search..." style="border-radius:40px;padding-left:10px;border: 0.7px solid #808080;width:30%;"/>
-            <input class="search_item" type="submit" value="Search" style="height:24px; width:100px; background-color:#ff6a00; color:white; border-radius:40px; border:none;" />
+        <div id="Search_TT" style="margin-bottom:5px;margin-left:100px;">
+            <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Nhập thông tin tìm kiếm ..." style="border-radius:5px;padding-left:10px;border: 0.7px solid #808080;width:56%"/>
+            <input class="search_item" type="submit" value="Tìm"  />
         </div>
     }
 
@@ -84,29 +84,8 @@
 
 
     <div id="right">
-        <h3><i class="fas fa-search"></i> TÌM KIẾM NHIỀU HƠN</h3>
-        <div class="select">
-            <select class="form-control form-control-lg">
-                <option>Tìm Việc</option>
-                <option>Bất động sản</option>
-                <option>Ôtô</option>
-                <option>Xe máy</option>
-                <option>Đồ điện tự</option>
-                <option>Dịch vụ</option>
-            </select>
-            <select class="form-control form-control-lg">
-                <option>Quận 1</option>
-                <option>Quận 2</option>
-                <option>Quận 3</option>
-                <option>Quận 4</option>
-                <option>Quận Gò Vấp</option>
-                <option>.....</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <a href="" class="btn btn-primary">Tìm Kiếm</a>
-        </div>
+        <img src="~/imagesGIF/bds.gif" alt="" style="height:470px;width:100% ; margin-bottom:1px" />
+        <img src="~/imagesGIF/dulich.gif" alt="" style="height:200px;width:100%" />
     </div>
 </div>
 

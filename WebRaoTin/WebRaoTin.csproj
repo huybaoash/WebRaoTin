@@ -343,6 +343,15 @@
     <Content Include="Areas\Admin\Views\LoaiViecLams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiViecLams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiViecLams\Index.cshtml" />
+    <Content Include="imagesGIF\bds.gif" />
+    <Content Include="imagesGIF\dmx.gif" />
+    <Content Include="imagesGIF\dulich.gif" />
+    <Content Include="imagesGIF\gamett.gif" />
+    <Content Include="imagesGIF\giphy.gif" />
+    <Content Include="imagesGIF\non.gif" />
+    <Content Include="imagesGIF\vieclam.jpg" />
+    <Content Include="imagesGIF\xeDapdien.gif" />
+    <Content Include="imagesGIF\xemayvs.gif" />
     <Content Include="images\BanTra.jpg" />
     <Content Include="images\Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg" />
     <Content Include="images\ImageUser.png" />
