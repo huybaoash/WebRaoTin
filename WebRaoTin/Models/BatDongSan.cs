@@ -22,7 +22,7 @@ namespace WebRaoTin.Models
 
 
         [Display(Name = "Giá")]
-        [DisplayFormat(DataFormatString = "{0:0.##}")]
+        [DisplayFormat(DataFormatString = "{0:#,##00.##}")]
         public decimal Price { get; set; }
 
         [Display(Name = "Hình ảnh")]
