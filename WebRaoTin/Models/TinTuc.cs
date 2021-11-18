@@ -32,7 +32,7 @@ namespace WebRaoTin.Models
         [Display(Name = "Thông tin liên lạc")]
         public string Contract { get; set; }
 
-      
+        [Required(AllowEmptyStrings = true)]
         [Display(Name = "Số điện thoại liên hệ")]
         public string ContractPhoneNumber { get; set; }
 

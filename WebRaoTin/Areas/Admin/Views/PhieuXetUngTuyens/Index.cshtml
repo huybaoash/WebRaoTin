@@ -13,10 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Customer.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PublishDay)
@@ -24,29 +21,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+        <th>
+            CV
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PublishDay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        <a href="@Url.Action("DownloadFile", "PhieuXetUngTuyens", new { fileName =item.Description,TinTucId = item.ViecLam.TinTucId })">
+            Tải về</a>
+    </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

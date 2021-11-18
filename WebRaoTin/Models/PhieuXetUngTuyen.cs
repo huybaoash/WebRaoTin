@@ -13,10 +13,10 @@ namespace WebRaoTin.Models
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Tiêu đề")]
-        public string Title { get; set; }
+        [Display(Name = "Nội dung")]
+        public string Description { get; set; }
 
-        [Display(Name = "Ngày lập")]
+        [Display(Name = "Ngày gửi")]
 
         /*[DataType(DataType.Date, ErrorMessage = "Date only")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*/
@@ -29,6 +29,10 @@ namespace WebRaoTin.Models
         public string CustomerID { get; set; }
         public ApplicationUser Customer { get; set; }
 
-        private ICollection<ChiTietPhieuXetTuyen> ChiTietPhieuXetTuyens { get; set; }
+        [ForeignKey("ViecLam")]
+        [Display(Name = "Mã việc làm")]
+        public int ViecLamId { get; set; }
+        public ViecLam ViecLam { get; set; }
+
     }
 }

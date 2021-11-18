@@ -69,7 +69,7 @@ namespace WebRaoTin.Models
         public DbSet<ViecLam> ViecLams { get; set; }
         public DbSet<PhieuXetUngTuyen> PhieuXetUngTuyens { get; set; }
 
-        public DbSet<ChiTietPhieuXetTuyen> ChiTietPhieuXetTuyens { get; set; }
+        
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

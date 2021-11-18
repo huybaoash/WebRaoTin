@@ -200,6 +200,22 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             ViewBag.currentUser = user;
 
+            int kiemtra_hasSentCV = 0;
+            PhieuXetUngTuyen phieuXetUngTuyen = new PhieuXetUngTuyen();
+            foreach(var item in db.PhieuXetUngTuyens.ToList())
+            {
+                if (item.CustomerID.Equals(User.Identity.GetUserId()) && item.ViecLam.TinTucId == id)
+                {
+                    kiemtra_hasSentCV = 1;
+                    phieuXetUngTuyen = item;
+                }
+                
+            }
+            ViewBag.phieuXetUngTuyen = phieuXetUngTuyen;
+            ViewBag.kiemtra_hasSentCV = kiemtra_hasSentCV;
+
+            
+
             List<BinhLuanViewModel> dsBLcuaTT = new List<BinhLuanViewModel>();
             foreach (var item in BinhLuans)
             {
@@ -354,7 +370,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }*/
 
         
-        [HttpPost]
+
+
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
         {

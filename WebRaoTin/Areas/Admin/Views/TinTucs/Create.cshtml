@@ -150,7 +150,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" multiple />
+            <input type="file" value="" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" accept="image/jpg" multiple />
             <div id="displayImg1"></div>
         </div>
     </div>
@@ -211,7 +211,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
+            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" accept="image/jpg" multiple />
             <div id="displayImg2"></div>
         </div>
     </div>
@@ -281,7 +281,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" multiple />
+            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" accept="image/jpg" multiple />
             <div id="displayImg3"></div>
         </div>
     </div>
@@ -289,7 +289,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.VideoBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="video" id="video" required title="Chọn đường dẫn Video" />
+            <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav" required title="Chọn đường dẫn Video" />
 
         </div>
     </div>
@@ -364,9 +364,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
+            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple/>
             <div id="displayImg4"></div>
-
         </div>
     </div>
 </div>
@@ -374,7 +373,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" id="Create" class="btn btn-default" style="display:none;" />
         </div>
     </div>
 </div>
@@ -398,8 +397,8 @@
                 $('.response0').hide();
                 $('.response4').hide();
                 $('.response5').hide();
-
-                ;
+                
+                
             }
             else if ($('.target').val() == '1') {
                 $('.response1').show();
@@ -409,6 +408,7 @@
                 $('.response4').hide();
                 $('.response5').show();
                 $('.target').hide();
+                $('#Create').show();
             }
             else if ($('.target').val() == '2') {
                 $('.response1').hide();
@@ -418,6 +418,7 @@
                 $('.response4').hide();
                 $('.response5').show();
                 $('.target').hide();
+                $('#Create').show();
             }
             else if ($('.target').val() == '3') {
                 $('.response1').hide();
@@ -427,6 +428,7 @@
                 $('.response4').hide();
                 $('.response5').show();
                 $('.target').hide();
+                $('#Create').show();
             }
 
             else if ($('.target').val() == '4') {
@@ -437,6 +439,7 @@
                 $('.response4').show();
                 $('.response5').show();
                 $('.target').hide();
+                $('#Create').show();
             }
         });
     });

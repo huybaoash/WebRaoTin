@@ -54,6 +54,10 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -179,7 +183,6 @@
     <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\BatDongSansController.cs" />
     <Compile Include="Areas\Admin\Controllers\BinhLuansController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ChiTietPhieuXetTuyensController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVusController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiBatDongSansController.cs" />
@@ -252,11 +255,18 @@
     <Compile Include="Migrations\202110301839585_Config_BinhLuan.Designer.cs">
       <DependentUpon>202110301839585_Config_BinhLuan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111181655060_Update_PhieuXetUngTuyen.cs" />
+    <Compile Include="Migrations\202111181655060_Update_PhieuXetUngTuyen.Designer.cs">
+      <DependentUpon>202111181655060_Update_PhieuXetUngTuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111182027125_update_model.cs" />
+    <Compile Include="Migrations\202111182027125_update_model.Designer.cs">
+      <DependentUpon>202111182027125_update_model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BatDongSan.cs" />
     <Compile Include="Models\BinhLuan.cs" />
-    <Compile Include="Models\ChiTietPhieuXetTuyen.cs" />
     <Compile Include="Models\DichVu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiBatDongSan.cs" />
@@ -303,11 +313,6 @@
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietPhieuXetTuyens\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietPhieuXetTuyens\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietPhieuXetTuyens\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietPhieuXetTuyens\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietPhieuXetTuyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiBatDongSans\Create.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiBatDongSans\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiBatDongSans\Details.cshtml" />
@@ -323,11 +328,6 @@
     <Content Include="Areas\Admin\Views\LoaiSanPhams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSanPhams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSanPhams\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Details.cshtml" />
@@ -385,6 +385,11 @@
     <Content Include="Areas\Admin\Views\ViecLams\Index_LoaiVL.cshtml" />
     <Content Include="Areas\Admin\Views\DichVus\Index_LoaiDV.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhams\Index_LoaiSP.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -504,6 +509,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110301839585_Config_BinhLuan.resx">
       <DependentUpon>202110301839585_Config_BinhLuan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111181655060_Update_PhieuXetUngTuyen.resx">
+      <DependentUpon>202111181655060_Update_PhieuXetUngTuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111182027125_update_model.resx">
+      <DependentUpon>202111182027125_update_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

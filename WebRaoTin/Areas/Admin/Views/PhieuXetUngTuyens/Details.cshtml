@@ -12,19 +12,23 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.Role)
+            @Html.DisplayNameFor(model => model.Customer.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.Role)
+            @Html.DisplayFor(model => model.Customer.FullName)
         </dd>
 
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            <button class="btn-check" id="showCV" onclick="showOnclick()">Hiện</button>
+            <button class="btn-check" id="hideCV" onclick="hideOnclick()" style="display:none;">Ẩn</button>
+
+            <div id="CV" style="display:none;">@Html.Raw(ViewBag.WordHtml)</div>
         </dd>
 
         <dt>
@@ -49,3 +53,21 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script>
+    
+
+    function showOnclick() {
+        $("#showCV").hide();
+        $("#hideCV").show();
+        $("#CV").show();
+        
+    }
+
+    function hideOnclick() {
+        $("#showCV").show();
+        $("#hideCV").hide();
+        $("#CV").hide();
+    }
+
+</script>

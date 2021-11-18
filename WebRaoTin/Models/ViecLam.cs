@@ -16,6 +16,7 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên công việc")]
         public string Name { get; set; }
 
+
         [Display(Name = "Nội dung công việc")]
         public string Description { get; set; }
 
@@ -46,7 +47,7 @@ namespace WebRaoTin.Models
         public LoaiViecLam LoaiViecLam { get; set; }
 
 
-        private ICollection<ChiTietPhieuXetTuyen> ChiTietPhieuXetTuyens { get; set; }
+        private ICollection<PhieuXetUngTuyen> PhieuXetUngTuyen { get; set; }
 
 
        
