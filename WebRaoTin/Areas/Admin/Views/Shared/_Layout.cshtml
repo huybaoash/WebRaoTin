@@ -360,7 +360,10 @@
             padding-left:4px;
             padding-right:4px;
         }
-
+        /* create tin tuc*/
+        #Create:hover{
+           
+        }
     </style>
 </head>
 <body>
@@ -371,11 +374,9 @@
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
             </li>
             <li class="header_item">
-                <button class="btn-DT btn--warn">
-                    <i class="far fa-plus-square"></i>
-                    <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create"> ĐĂNG TIN NGAY</a>
-
-                </button>
+                <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create">
+                    <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
+                </a>
             </li>
         </ul>
         @Html.Partial("_LoginPartial")

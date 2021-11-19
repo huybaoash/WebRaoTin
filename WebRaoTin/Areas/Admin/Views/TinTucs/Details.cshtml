@@ -15,7 +15,7 @@
 
 *@
 
-
+ @* san phẩm *@
 <h2>Details</h2>
 
 @if (Model.LuaChon.Equals("1"))
@@ -56,7 +56,11 @@
 
                 <div class="row-inf">
                     <div class="col-addr">
-                        <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                        </div>
+
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
                     </div>
 
@@ -84,6 +88,7 @@
                     <h6>Thông tin liên lạc</h6>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
                         <p>Liên hệ: @Model.Contract </p>
+                         
                     </div>
                 </div>
             </div>
@@ -147,9 +152,14 @@
 
                 <div class="row-inf">
                     <div class="col-addr">
-                        <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                        </div>
+
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
                     </div>
+
 
                     <div class="col-addr">
                         <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
@@ -240,7 +250,11 @@
                 <!-- row infor-->
                 <div class="row-inf">
                     <div class="col-addr">
-                        <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                        </div>
+
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
                     </div>
 
@@ -324,36 +338,16 @@
                 <div class="col-2_">
                     <p>Mã Tin: @Model.IdTinTucs</p>
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
-                    @if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
-                    {
-                        if (@ViewBag.kiemtra_hasSentCV == 1)
-                        {
-                            <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Đã gửi CV</button>
-                            </a>
-                            
-                        }
-                        else
-                        {
-                            using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV"/>
-                                <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
-                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi CV</button>
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Nhận danh sách CV </a>
-                    }
+                    
                     <h1>@Model.Title</h1>
 
                     <div class="row-inf">
                         <div class="col-addr">
-                            <div class="infor"> <p><i class="fas fa-user-circle"></i> @Model.CustomerName</p></div>
+                            <div class="infor" style="display:flex;">
+                                <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                                <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                            </div>
+
                             <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
                         </div>
 
@@ -400,7 +394,35 @@
                             <p>Liên hệ: @Model.Contract</p>
                         </div>
 
+
+
                     </div>
+                    
+                    @if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
+                    {
+                        if (@ViewBag.kiemtra_hasSentCV == 1)
+                        {
+                            <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Đã gửi CV</button>
+                            </a>
+                            
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV"/>
+                                <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
+                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi CV</button>
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Nhận danh sách CV </a>
+                    }
                 </div>
 
             </div>

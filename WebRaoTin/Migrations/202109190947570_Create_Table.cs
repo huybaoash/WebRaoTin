@@ -151,7 +151,7 @@ namespace WebRaoTin.Migrations
             AddColumn("dbo.AspNetUsers", "HomeAdress", c => c.String());
             AddColumn("dbo.AspNetUsers", "Gender", c => c.String());
             AddColumn("dbo.AspNetUsers", "DateBorn", c => c.DateTime(nullable: false));
-            AddColumn("dbo.AspNetUsers", "ConfirmPublicInfo", c => c.String());
+            AddColumn("dbo.AspNetUsers", "Status", c => c.String());
             AddColumn("dbo.AspNetUsers", "CMND", c => c.String());
         }
         
@@ -178,7 +178,7 @@ namespace WebRaoTin.Migrations
             DropIndex("dbo.TinTucs", new[] { "CustomerID" });
             DropIndex("dbo.BatDongSans", new[] { "TinTucId" });
             DropColumn("dbo.AspNetUsers", "CMND");
-            DropColumn("dbo.AspNetUsers", "ConfirmPublicInfo");
+            DropColumn("dbo.AspNetUsers", "Status");
             DropColumn("dbo.AspNetUsers", "DateBorn");
             DropColumn("dbo.AspNetUsers", "Gender");
             DropColumn("dbo.AspNetUsers", "HomeAdress");

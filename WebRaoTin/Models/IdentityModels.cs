@@ -34,9 +34,9 @@ namespace WebRaoTin.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateBorn { get; set; }
 
-        [Display(Name = "Xác nhận công khai thông tin")]
+        [Display(Name = "Trạng thái tài khoản")]
 
-        public string ConfirmPublicInfo { get; set; }
+        public string Status { get; set; }
 
         [Display(Name = "Chứng minh nhân dân")]
 

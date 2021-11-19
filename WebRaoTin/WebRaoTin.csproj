@@ -263,6 +263,10 @@
     <Compile Include="Migrations\202111182027125_update_model.Designer.cs">
       <DependentUpon>202111182027125_update_model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111191246065_Add_Status_Account.cs" />
+    <Compile Include="Migrations\202111191246065_Add_Status_Account.Designer.cs">
+      <DependentUpon>202111191246065_Add_Status_Account.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BatDongSan.cs" />
@@ -515,6 +519,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111182027125_update_model.resx">
       <DependentUpon>202111182027125_update_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111191246065_Add_Status_Account.resx">
+      <DependentUpon>202111191246065_Add_Status_Account.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

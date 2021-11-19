@@ -19,8 +19,8 @@
                         <img src="~/images/ImageUser.png" alt="" class="img-circle" width="150">
                         <div class="mt-3">
                             <h4 style="margin-bottom: 50px; text-align:center">@Html.DisplayFor(model => model.FullName)</h4>
-                            <a href="">Home</a>
-                            <a href="">Work</a>
+                            <a href="">Số tin đã đăng:</a>
+                            <a href="">Chỉnh sửa thông tin</a>
                             <a href="">Support</a>
                             <a href="">Setting</a>
                             <a href="">Signout</a>
@@ -32,28 +32,20 @@
                 <div class="card mb-3 content">
                     <h1 class="m-3 pt-3"> About</h1>
                     <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4>Tài khoản</h4>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                @Html.DisplayFor(model => model.FullName)
-                            </div>
-                        </div>
-                        <hr>
-
                         @if (Model.Id.Equals(User.Identity.GetUserId()))
                         {
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Họ tên</h4>
+                                    <h4>Tên tài khoản</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.FullName)
                                 </div>
                             </div>
                             <hr>
+
+
+
                             <div class="row">
                                 <div class="col-md-3">
                                     <h4>Giới tính</h4>
@@ -91,7 +83,7 @@
                             </div>
                             <hr>
 
-                           
+
                             <div class="row">
                                 <div class="col-md-3">
                                     <h4>Address</h4>
@@ -100,17 +92,40 @@
                                     @Html.DisplayFor(model => model.HomeAdress)
                                 </div>
                             </div>
+
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Tên tài khoản</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.FullName)
+                                </div>
+                            </div>
                             <hr>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Email</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.Email)
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Số điện thoại</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </div>
+                            </div>
                         }
 
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4>Số điện thoại</h4>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                @Html.DisplayFor(model => model.PhoneNumber)
-                            </div>
-                        </div>
+
                         <hr>
                     </div>
                 </div>

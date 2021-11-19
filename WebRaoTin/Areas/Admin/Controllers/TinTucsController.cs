@@ -134,7 +134,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
         public ActionResult Index(string searchString, int? page)
         {
-            int recordsPerPage = 5;
+            int recordsPerPage = 10;
 
             if (!page.HasValue)
             {
