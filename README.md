@@ -11,8 +11,6 @@ trang details:
 4 trang view Index_Loai[....]: ném file gif quảng cáo vào. -------> DONE
 
 Design trang "Danh sách PhieuXetUngTuyen" ở View PhieuXeXetUngTuyen / Index  + View PhieuXeXetUngTuyen / Details. -------> DONE
-
-
 -------------------------------------------------------------------------------------------------------
 chuẩn bị làm:
 - tương lại sẽ thiết kế lại form create tin tức.
@@ -21,8 +19,3 @@ chuẩn bị làm:
 --------------------------------------------------------------------------------------------------------
 
 12 chiều -> 22h:30' push up: duy linh. || 22h31 ->11h59: Huybaoash -> thời gian push code.
-
-
-
-
-
