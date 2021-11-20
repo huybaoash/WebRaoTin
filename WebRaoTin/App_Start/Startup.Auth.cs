@@ -58,11 +58,11 @@ namespace WebRaoTin
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "446589762035-mtdi7eee359qh6qsfacsuk3638cdbha4.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

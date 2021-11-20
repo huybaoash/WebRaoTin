@@ -79,6 +79,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // GET: Admin/Users/Details/5
         public ActionResult Details(string id)
         {
+            int demSLTT_dadang = 0;
+            foreach (var item in db.TinTucs.ToList())
+            {
+                if (item.CustomerID.Equals(id)) demSLTT_dadang++;
+            }
+            ViewBag.SLTT = demSLTT_dadang;
+
+
             ApplicationUser user = null;
             foreach (var item in db.Users.ToList())
             {

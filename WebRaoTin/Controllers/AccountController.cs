@@ -204,7 +204,7 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng"};
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động",DateJoin = DateTime.Now};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

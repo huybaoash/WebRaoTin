@@ -27,6 +27,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
             var binhLuans_Temp = db.BinhLuans.Include(b => b.Customer).Include(b => b.TinTuc).ToList();
             var binhLuans = binhLuans_Temp.Where(p => p.CustomerID.Equals(id)) ;
             
+            
+
             return View(binhLuans);
         }
 

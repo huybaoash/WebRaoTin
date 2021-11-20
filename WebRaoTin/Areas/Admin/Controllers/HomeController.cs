@@ -305,8 +305,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
                         
                         a.Add(tinTucsViewModel);
-                        
-                        continue;
+
+                        break;
                     }
                     
 
@@ -334,7 +334,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageViecLam = images[0] + ".jpg";
 
                         a.Add(tinTucsViewModel);
-                        continue;
+                        break;
                     }
                     
 
@@ -362,7 +362,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
 
                         a.Add(tinTucsViewModel);
-                        continue;
+                        break;
                     }
                     
 
@@ -390,7 +390,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
                         
                         a.Add(tinTucsViewModel);
-                        continue;
+                        break;
                     }
                     
 

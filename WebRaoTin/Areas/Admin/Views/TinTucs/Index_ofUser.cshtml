@@ -1,135 +1,112 @@
 ﻿
 @using PagedList;
 @using PagedList.Mvc;
-@model IPagedList<WebRaoTin.Models.TinTuc>
+@model IPagedList<WebRaoTin.ViewModel.TinTucsViewModel>
 @{
     ViewBag.Title = "Index_ofUser";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-@*
-    @model IEnumerable<WebRaoTin.Models.TinTuc>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contract)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
+
+<div id="main">
+    <div id="left">
+        <ul>
+
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+                <a href="@Url.Action("Details", "TinTucs",new { id= @Model[i].IdTinTucs })">
+                    <li id="item_li">
+
+                        @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
+                        {
+                            <img src="@Model[i].ImageDichVu" alt="" />
+
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiDichVu</span>
+                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationDichVu</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceDichVu.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
+                        {
+                            <img src="@Model[i].ImageSanPham" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiSanPham</span>
+                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+
+
+
+
+
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationSanPham</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceSanPham.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
+                        {
+                            <img src="@Model[i].ImageViecLam" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiViecLam</span>
+                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationViecLam</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].Salary.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
+                        {
+                            <img src="@Model[i].ImageBatDongSan" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiBatDongSan</span>
+                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationBatDongSan</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceBatDongSan.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+
+
+
+
+
+                    </li>
+                </a>
+            }
+        </ul>
+        @Html.PagedListPager(Model, page => Url.Action("Index_ofUser", new
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contract)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContractPhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>
-
-
-*@
+            page,
+            searchString = ViewBag.Keyword
+        }),
+        PagedListRenderOptions.PageNumbersOnly)
+    </div>
 
 
 
-@using (Html.BeginForm("Index_ofUser", "TinTucs", FormMethod.Get))
-{
-    <p>
-        Find by name: <input type="text" name="searchString" value="@ViewBag.Keyword" />
-        <input type="submit" value="Search" />
-    </p>
-}
-
-<table class="table">
-    <tr>
-        <th style="width:10%; text-align:left"> @Html.Label("ID")</th>
-        <th style="width:10%; text-align:left">@Html.Label("Mã người dùng")</th>
-        <th style="width:15%; text-align:left">@Html.Label("Tiêu đề")</th>
-        <th style="width:15%; text-align:left">@Html.Label("Ngày đăng")</th>
-        <th style="width:5%; text-align:left">@Html.Label("Ngày hết hạn")</th>
-        <th style="width:15%; text-align:left">@Html.Label("Thông tin liên lạc")</th>
-        <th style="width:15%; text-align:left">@Html.Label("Số điện thoại")</th>
-        <th style="width:15%; text-align:left">@Html.Label("Tình trạng")</th>
-
-    </tr>
-
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        <tr style="border:1px solid red">
-            <td>@Model[i].Id</td>
-            <td>@Model[i].Customer.Id</td>
-            <td>@Model[i].Title</td>
-            <td>@Model[i].PublishDay</td>
-            <td>@Model[i].EndDay</td>
-            <td>@Model[i].Contract</td>
-            <td>@Model[i].ContractPhoneNumber</td>
-            <td>@Model[i].Status</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = @Model[i].Id }) |
-                @Html.ActionLink("Details", "Details", new { id = @Model[i].Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = @Model[i].Id })
-            </td>
-        </tr>
-    }
-</table>
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new
-{
-page,
-searchString = ViewBag.Keyword
-}),
-PagedListRenderOptions.PageNumbersOnly)
+    <div id="right">
+        <img src="~/imagesGIF/bds.gif" alt="" style="height:470px;width:100% ; margin-bottom:1px" />
+        <img src="~/imagesGIF/dulich.gif" alt="" style="height:200px;width:100%" />
+    </div>
+</div>

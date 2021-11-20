@@ -34,6 +34,12 @@ namespace WebRaoTin.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateBorn { get; set; }
 
+        [Display(Name = "Ngày tham gia")]
+
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? DateJoin { get; set; }
+
         [Display(Name = "Trạng thái tài khoản")]
 
         public string Status { get; set; }

@@ -267,6 +267,10 @@
     <Compile Include="Migrations\202111191246065_Add_Status_Account.Designer.cs">
       <DependentUpon>202111191246065_Add_Status_Account.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111202053170_add date_join.cs" />
+    <Compile Include="Migrations\202111202053170_add date_join.Designer.cs">
+      <DependentUpon>202111202053170_add date_join.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BatDongSan.cs" />
@@ -523,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111191246065_Add_Status_Account.resx">
       <DependentUpon>202111191246065_Add_Status_Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111202053170_add date_join.resx">
+      <DependentUpon>202111202053170_add date_join.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
