@@ -1,5 +1,5 @@
 # WebRaoTin
-Ngày 20/11/2021 vào lúc 21h
+Ngày 20/11/2021 vào lúc 22h
 
 trang details:
  thiết kế lại nút nộp CV, cũng như thẻ a ("Nhận danh sách CV") -------> DONE
