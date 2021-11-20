@@ -5,63 +5,78 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Xem chi tiết hồ sơ</h2>
+<hr />
+<div style="
+        border-left:1px solid #e4e4e4;
+                ">
+    @* <h4>PhieuXetUngTuyen</h4>*@
 
-<div>
-    <h4>PhieuXetUngTuyen</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.FullName)
+            @*@Html.DisplayNameFor(model => model.Customer.FullName)*@
+            <p style="font-size:18px">Tên người gửi:</p>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.FullName)
+            <p style="font-size:18px">  @Html.DisplayFor(model => model.Customer.FullName) </p>
         </dd>
-
-        
+        <hr style="margin-left:10px" />
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @*    @Html.DisplayNameFor(model => model.PublishDay)*@
+            <p style="font-size:18px">Thời gian gửi lên:</p>
         </dt>
 
         <dd>
-            <button class="btn-check" id="showCV" onclick="showOnclick()">Hiện</button>
-            <button class="btn-check" id="hideCV" onclick="hideOnclick()" style="display:none;">Ẩn</button>
-
-            <div id="CV" style="display:none;">@Html.Raw(ViewBag.WordHtml)</div>
+            <p style="font-size:18px"> @Html.DisplayFor(model => model.PublishDay) </p>
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishDay)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PublishDay)
-        </dd>
-
-        <dt>
+        <hr style="margin-left:10px" />
+        @* <dt>
             @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Status)
+        </dd>*@
+
+
+        <dt>
+            @* @Html.DisplayNameFor(model => model.Description)*@
+            <p style="font-size:18px">Nội dung:</p>
+        </dt>
+
+        <dd>
+            <button class="btn btn-primary btn-xs" id="showCV" onclick="showOnclick()" style="font-size:18px">Hiện</button>
+            <button class="btn btn-primary btn-xs" id="hideCV" onclick="hideOnclick()" style="display:none;font-size:18px">Ẩn</button>
         </dd>
 
+        <div id="CV" style="display:none;border:1px solid #c0b5b5">
+
+            <div class="ND-CV">
+                @Html.Raw(ViewBag.WordHtml)
+            </div>
+
+
+        </div>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+
+
+
 
 <script>
-    
+
 
     function showOnclick() {
         $("#showCV").hide();
         $("#hideCV").show();
         $("#CV").show();
-        
+
     }
 
     function hideOnclick() {

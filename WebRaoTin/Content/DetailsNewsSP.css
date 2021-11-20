@@ -1,11 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    font-family: Arial;
-}
+
 .small-container1{
     max-width: 100%;
     border: 1px solid rgb(240, 239, 239);
@@ -71,10 +64,7 @@ body{
     display: table;
     clear: both;
     }
-.col-addr .infor p i{
-    color: orangered;
-    font-size: 18px;
-}
+
 .col-addr .infor p{
     font-size: 14px;
 }
@@ -94,4 +84,30 @@ body{
         height: 80px;
     }
 
+/* 
+    .col-addr .infor p i {
+    color: orangered;
+    font-size: 18px;
+}
 
+
+*/
+
+.col-addr .infor p .fa-user-circle {
+    font-size: 18px;
+    color:black;
+}
+
+.fa-phone-square-alt {
+    font-size: 18px;
+    color:blue;
+}
+
+.fa-envelope-square {
+    font-size: 18px;
+    color:#e36523;
+}
+.fa-map-marker-alt {
+    font-size: 18px;
+    color:red;
+}

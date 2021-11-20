@@ -1,17 +1,11 @@
-
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        
        
         #left{
             width: 650px;
-        //    background: rgb(255, 255, 255);
+     /*   //    background: rgb(255, 255, 255);*/
             float: left;
             min-height: 500px;
             margin-left: 100px;
-            background-color: #f8f8f8;
+            background-color: white;
         }
         #right{
             width: 200px;
@@ -21,12 +15,15 @@
           
             
         }
-        body{
+            /*
+              body{
             width: 100%;
             margin: 0px auto;
             font-family: Arial;
         }
      
+        */
+      
         li img{
             height:110px;
             width: 135px;
@@ -48,7 +45,7 @@
             border-radius:4px;
         }
 
-        div#left ul li{
+     /*   div#left ul li{
             //border: 1px solid rgb(71, 69, 69);
             //width: 100%;
             //clear: left;
@@ -56,7 +53,7 @@
             //margin-bottom: 5px;
             //height: 130px;
         }
-
+*/
 
 
         div#left ul li img{

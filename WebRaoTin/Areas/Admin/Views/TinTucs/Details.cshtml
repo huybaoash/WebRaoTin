@@ -16,8 +16,6 @@
 *@
 
  @* san phẩm *@
-<h2>Details</h2>
-
 @if (Model.LuaChon.Equals("1"))
 {
 
@@ -58,7 +56,7 @@
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
                             <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
-                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
                         </div>
 
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
@@ -71,30 +69,30 @@
                 </div>
 
 
-                <h4>Nôi Dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                    <p>
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                    <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionSanPham).Replace("\n", "<br />"))
                     </p>
                 </div>
                 <hr>
 
                 <div class="inf-more" style="margin-top: 10px; ">
-                    <h6>Thông tin san pham</h6>
+                    <h4  style="font-weight:bold">Thông tin sản phẩm</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Giá: @Model.PriceSanPham.ToString("#,##00.##")đ </p>
+                        <p style="font-size:16px">Giá: <strong style="color:orangered">@Model.PriceSanPham.ToString("#,##00.##") đ </strong> </p>
                     </div>
-                    <br>
-                    <h6>Thông tin liên lạc</h6>
+
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Liên hệ: @Model.Contract </p>
-                         
+                        <p style="font-size:16px">Liên hệ: @Model.Contract </p>
+
                     </div>
                 </div>
             </div>
 
         </div>
-        <hr>
+  
 
 
 
@@ -102,11 +100,11 @@
 
 
 
-    <p>
+   @* <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-
+*@
 
 }
 
@@ -154,7 +152,7 @@
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
                             <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
-                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
                         </div>
 
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
@@ -168,23 +166,23 @@
                 </div>
 
 
-                <h4>Nôi Dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                    <p>
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                    <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionDichVu).Replace("\n", "<br />"))
                     </p>
                 </div>
                 <hr>
 
                 <div class="inf-more" style="margin-top: 10px; ">
-                    <h6>Thông tin dịch vụ</h6>
+                    <h4 style="font-weight:bold">Thông tin dịch vụ</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Giá: @Model.PriceDichVu.ToString("#,##00.##")đ </p>
+                        <p style="font-size:16px">Giá:  <strong style="color:orangered">@Model.PriceDichVu.ToString("#,##00.##") đ </strong> </p>
                     </div>
-                    <br>
-                    <h6>Thông tin liên lạc</h6>
+
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Liên hệ: @Model.Contract </p>
+                        <p style="font-size:16px">Liên hệ: @Model.Contract </p>
                     </div>
                 </div>
             </div>
@@ -198,10 +196,10 @@
 
 
 
-    <p>
+   @* <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>
+    </p>*@
 }
 
 @*
@@ -252,7 +250,7 @@
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
                             <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
-                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
                         </div>
 
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
@@ -265,27 +263,27 @@
                 </div>
 
 
-                <h4>Nôi Dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                    <p>
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                    <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionBatDongSan).Replace("\n", "<br />"))
                     </p>
                 </div>
                 <hr>
 
                 <div class="inf-more" style="margin-top: 10px; ">
-                    <h6>Thông tin bất động sản</h6>
+                    <h4 style="font-weight:bold">Thông tin bất động sản</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Diện tích: @Model.Area m²</p>
-                        <p>Giá: @Model.PriceBatDongSan.ToString("#,##00.##")đ</p>
+                        <p style="font-size:16px">Diện tích: @Model.Area m²</p>
+                        <p style="font-size:16px">Giá: <strong style="color:orangered"> @Model.PriceBatDongSan.ToString("#,##00.##") đ </strong></p>
                     </div>
 
                 </div>
 
                 <div class="inf-more" style="margin-top: 10px; ">
-                    <h6>Thông tin liên lạc</h6>
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
                     <div style="padding-left: 10px; line-height: 0.8rem;">
-                        <p>Liên hệ: @Model.Contract</p>
+                        <p style="font-size:16px">Liên hệ: @Model.Contract</p>
 
                     </div>
 
@@ -297,10 +295,10 @@
     </div>
 
 
-    <p>
+    @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>
+    </p>*@
 }
 
 @*
@@ -338,14 +336,14 @@
                 <div class="col-2_">
                     <p>Mã Tin: @Model.IdTinTucs</p>
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
-                    
+
                     <h1>@Model.Title</h1>
 
                     <div class="row-inf">
                         <div class="col-addr">
                             <div class="infor" style="display:flex;">
                                 <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
-                                <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang</a>
+                                <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
                             </div>
 
                             <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
@@ -357,72 +355,83 @@
                         </div>
                     </div>
 
-                    <h6>Yêu cầu</h6>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                        <p>
+                    <h4 style="font-weight:bold">Yêu cầu</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                        <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Require).Replace("\n", "<br />"))
                         </p>
                     </div>
 
-                    <h6>Nội dung công việc</h6>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                        <p>
+                    <h4 style="font-weight:bold">Nội dung công việc</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                        <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />"))
                         </p>
                     </div>
 
-                    <h6 style="margin-top: 5px;">Quyền lợi</h6>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;">
-                        <p>
+                    <h4 style="font-weight:bold">Quyền lợi</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                        <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                         </p>
                     </div>
 
                     <hr>
-
+               
                     <div class="inf-more" style="margin-top: 10px; ">
-                        <h6>Thông tin việc làm</h6>
+                        <h4 style="font-weight:bold">Thông tin khác</h4>
                         <div style="padding-left: 10px; line-height: 0.8rem;">
-                            <p>Lương: @Model.Salary.ToString("#,##00.##")đ</p>
+                            <p style="font-size:16px">Lương: <strong style="color:orangered">@Model.Salary.ToString("#,##00.##") đ </strong></p>
                         </div>
-
-                    </div>
-
-                    <div class="inf-more" style="margin-top: 10px; ">
-                        <h6>Thông tin liên lạc</h6>
-                        <div style="padding-left: 10px; line-height: 0.8rem;">
-                            <p>Liên hệ: @Model.Contract</p>
-                        </div>
-
-
 
                     </div>
                     
+                    <div class="inf-more" style="margin-top: 10px;">
+                        <h4 style="font-weight:bold">Thông tin liên lạc</h4>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p style="font-size:16px">Liên hệ: @Model.Contract</p>
+                        </div>
+                    </div>
+                    <hr />
                     @if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
                     {
                         if (@ViewBag.kiemtra_hasSentCV == 1)
                         {
-                            <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Đã gửi CV</button>
-                            </a>
-                            
+                            <h4 style="font-weight:bold">Gửi hồ sơ</h4>
+                            <div style="padding-left: 10px; line-height: 0.8rem;">
+                                <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                    <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                </a>
+                            </div>
                         }
                         else
                         {
                             using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV"/>
-                                <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
-                                <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi CV</button>
+                               <h4 style="font-weight:bold">Gửi hồ sơ</h4>
+                               <div style="padding-left: 10px; line-height: 0.8rem;">
+                                   <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" />
+                                   <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
+                                   <p class="btn btn-primary btn-xs" style="margin-top:5px">Gửi CV</p>
+                               </div>
+
+
+                                
                             }
                         }
 
                     }
                     else
                     {
-                        <a href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Nhận danh sách CV </a>
+                        <h4 style="font-weight:bold">Nhận danh sách hồ sơ</h4>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <a style="font-size:16px" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Đi tới danh sách >> </a>
+                        </div>
+
+
                     }
+                    
                 </div>
 
             </div>
@@ -435,10 +444,10 @@
 
 
     </div>
-    <p>
+   @* <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>
+    </p>*@
 }
 
 @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))

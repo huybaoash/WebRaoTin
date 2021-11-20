@@ -18,6 +18,7 @@
 
     <link href="@Url.Content("~/Content/customDOAN.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/DetailsNewsSP.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Footer.css")" rel="stylesheet" type="text/css" />
 
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -80,14 +81,21 @@
             }
 
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
 
         /*---------------User Details---------------------------  */
 
+        /*
 
-           
         .bd {
             margin: 20px;
-        }
+        }*/
 
         .main {
             padding: 15px;
@@ -95,13 +103,13 @@
         }
 
             .main .topbar_ {
-               
+
                 overflow: hidden;
             }
 
                 .main .topbar_ a {
                     float: right;
-                 
+
                     text-align: center;
                     padding: 20px 26px;
                     text-decoration: none;
@@ -109,7 +117,7 @@
                 }
 
                     .main .topbar_ a:hover {
-                       
+
                     }
 
         .row .sidebar {
@@ -215,11 +223,11 @@
 
         @*==========================================*@
         body {
-            background-color: #f8f8f8;
-            margin:0;
-            padding:0;
+           @* // background-color: #f8f8f8;
+         //   margin: 0;
+         //   padding: 0;*@
+            font-family: Arial;
         }
-
         .menu {
             background-color: rgb(161, 14, 8);
             text-align: center;
@@ -249,7 +257,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap-reverse;
-        
+
 
         }
 
@@ -342,15 +350,14 @@
             color: inherit;
         }
 
-        footer {
+    @*    .footer {
             background-color: rgba(0, 0, 0, 0.2);
-            width:100%;
-           margin-top:55px;
+            margin-top:25%;
 
-        }
-        .container{
-            margin-bottom:150px;
-        }
+        }*@
+     @*   .container{
+         margin-bottom:150px;
+        }*@
         .heard-list .header_item h3 a {
             color: #ff6a00;
             font-weight:900;
@@ -362,8 +369,18 @@
         }
         /* create tin tuc*/
         #Create:hover{
-           
+
         }
+        @*css của nút ẩn hiện file trong hồ sơ CV*@
+        #CV{
+            border-radius:3px;
+        }
+        .ND-CV {
+            margin: 10px auto;
+            width: 80%;
+            @*border: 1px solid #e4e4e4;*@
+        }
+    
     </style>
 </head>
 <body>
@@ -381,7 +398,7 @@
         </ul>
         @Html.Partial("_LoginPartial")
     </div>
-  
+
     <div class="menu">
         <ul>
             <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
@@ -399,24 +416,66 @@
         @RenderBody()
     </div>
 
-
-    <footer style="height: 170px">
-        <div class="row">
-            <div class="col-sm-4" style="padding-left:50px;">
-                <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                <img src="~/Content/images/logo.png" style="width: 100px" />
+    @* <div class="footer" style="height: 170px">
+            <div class="row">
+                <div class="col-sm-4" style="padding-left:50px;">
+                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                    <img src="~/Content/images/logo.png" style="width: 100px" />
+                </div>
+                <div class="col-sm-4 text-center">
+                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                    <p>Tên đồ án:Web RAO TIN</p>
+                    <p>Nhóm: Yuong Boys</p>
+                </div>
+                <div class="col-sm-4 text-right" style="padding-right:50px;">
+                    <p>Phạm Trần Huy Bảo - 1811060047</p>
+                    <p>Vũ Duy Linh - 1811060430</p>
+                </div>
             </div>
-            <div class="col-sm-4 text-center">
-                <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                <p>Tên đồ án:Web RAO TIN</p>
-                <p>Nhóm: Yuong Boys</p>
-            </div>
-            <div class="col-sm-4 text-right" style="padding-right:50px;">
-                <p>Phạm Trần Huy Bảo - 1811060047</p>
-                <p>Vũ Duy Linh - 1811060430</p>
+        </div> *@
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">ASH Huy Bảo</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">Linh trai đẹp</a></li>
+                        <li><a href="#">item ####</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

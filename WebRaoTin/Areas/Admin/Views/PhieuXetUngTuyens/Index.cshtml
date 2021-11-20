@@ -5,11 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách các hồ sơ gửi lên</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+
 <table class="table">
     <tr>
         <th>
@@ -22,11 +23,11 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            CV
+            File
         </th>
         <th></th>
     </tr>
-
+    <b
 @foreach (var item in Model) {
 <tr>
     <td>
@@ -39,15 +40,15 @@
         @Html.DisplayFor(modelItem => item.Status)
     </td>
     <td>
-        <a href="@Url.Action("DownloadFile", "PhieuXetUngTuyens", new { fileName =item.Description,TinTucId = item.ViecLam.TinTucId })">
-            Tải về</a>
+        <a href="@Url.Action("DownloadFile", "PhieuXetUngTuyens", new { fileName =item.Description,TinTucId = item.ViecLam.TinTucId })"><i class="fas fa-file-download"></i> Tải về</a>
     </td>
         <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+      @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+        @Html.ActionLink("Xem trước", "Details", new { id = item.Id },new { @class = "btn btn-primary btn-xs" })
+   @*     @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
     </td>
 </tr>
 }
 
 </table>
+<a class="btn-warning"></a>

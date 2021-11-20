@@ -307,6 +307,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\customDOAN.css" />
     <Content Include="Content\DetailsNewsSP.css" />
+    <Content Include="Content\Footer.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
