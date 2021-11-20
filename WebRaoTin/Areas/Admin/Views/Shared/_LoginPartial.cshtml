@@ -7,11 +7,9 @@
 
     <ul class="nav navbar-nav navbar-right" style="margin-top: 10px">
         <li>
-            <a style="color:#2a2626 ;font-size:16px" class="far fa-user-circle" href="@Url.Action("Details", "Users",new { id=User.Identity.GetUserId() })"> @User.Identity.GetUserName()</a>
-
-            
+            <a style="color:#2a2626 ;font-size:16px" class="fas fa-user-circle" href="@Url.Action("Details", "Users",new { id=User.Identity.GetUserId() })"> @User.Identity.GetUserName()</a>     
         </li>
-        <li><a style="color:#2a2626" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+        <li><a style="color:#2a2626;font-weight:600;font-family:Arial" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
     </ul>
     }
 }
