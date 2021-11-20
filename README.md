@@ -1,11 +1,16 @@
 # WebRaoTin
 Ngày 20/11/2021 vào lúc 21h
+
 trang details:
  thiết kế lại nút nộp CV, cũng như thẻ a ("Nhận danh sách CV") -------> DONE
+ 
  hứa làm footer đẹp. -------> DONE
+ 
 
 4 trang view Index_Loai[....]: ném file gif quảng cáo vào. -------> DONE
+
 Design trang "Danh sách PhieuXetUngTuyen" ở View PhieuXeXetUngTuyen / Index  + View PhieuXeXetUngTuyen / Details. -------> DONE
+
 
 -------------------------------------------------------------------------------------------------------
 chuẩn bị làm:
