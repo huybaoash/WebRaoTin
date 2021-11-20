@@ -14,8 +14,7 @@ Design trang "Danh sách PhieuXetUngTuyen" ở View PhieuXeXetUngTuyen / Index  
 -------------------------------------------------------------------------------------------------------
 chuẩn bị làm:
 - tương lại sẽ thiết kế lại form create tin tức.
-- form input có thể disabled ví dụ code: 
- <input type="text" id="name" name="name" disabled>
+- form input có thể disabled ví dụ code:<input type="text" id="name" name="name" disabled>
 --------------------------------------------------------------------------------------------------------
 
 12 chiều -> 22h:30' push up: duy linh. || 22h31 ->11h59: Huybaoash -> thời gian push code.
