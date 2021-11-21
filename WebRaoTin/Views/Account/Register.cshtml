@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
     <div class="form-group">
         @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -26,7 +26,16 @@
         </div>
     </div>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+        <select class="target" id="Gender" name="Gender" aria-invalid="false">
+            <option value="Nam"> Nam</option>
+            <option value="Nữ"> Nữ</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+    </div>
+
+    
     <div class="form-group">
         @Html.LabelFor(m => m.HomeAdress, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -34,7 +43,7 @@
         </div>
     </div>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
     <div class="form-group">
         @Html.LabelFor(m => m.CMND, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -42,7 +51,7 @@
         </div>
     </div>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
     <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
