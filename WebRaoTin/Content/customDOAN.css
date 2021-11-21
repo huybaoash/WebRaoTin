@@ -147,3 +147,27 @@
 .fa-map-marker-alt{
     color:red;
 }
+
+/*--------------------*/
+.LS-DT {
+    width: 300px;
+    /* background: rgb(226, 216, 216);*/
+    float: left;
+    height: auto;
+    margin-left: 10px;
+    border: 1px solid #9d9c9c;
+    border-radius:3px;
+}
+.LS-item {
+    height: 40px;
+    border-bottom: 1px solid #9d9c9c;
+    /*  text-align:center;*/
+    padding-top: 10px;
+}
+.LS-item a{
+   font-size:16px;
+   margin:auto;
+   text-decoration:none;
+ /*  cursor:pointer;*/
+  padding-left:5px;
+}

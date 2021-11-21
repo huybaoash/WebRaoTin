@@ -16,14 +16,15 @@
             <div class="col-md-4 mt-1">
                 <div class="card text-center sidebar">
                     <div class="card-body ">
-                        <img src="~/images/ImageUser.png" alt="" class="img-circle" width="150">
+                        <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
-                            <h4 style="margin-bottom: 50px; text-align:center">@Html.DisplayFor(model => model.FullName)</h4>
-                            <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
-                            <a href="">Chỉnh sửa thông tin</a>
+                            <h4 style="margin-bottom: 20px; text-align:center;color:white;border-bottom:1px solid white">@Html.DisplayFor(model => model.FullName)</h4>
+                          
                             <a href="">Ngày gia nhập: @Model.DateJoin.Value.ToString("dd/MM/yyyy")</a>
-                            <a href="">Setting</a>
-                            <a href="">Signout</a>
+                            <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
+                            <div class="edit-tt"> <a href="">Chỉnh sửa thông tin</a></div>
+                            @*<a href="">Setting</a>
+                             <a href="">Signout</a>*@
                         </div>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Tên tài khoản</h4>
+                                    <h4 style="font-weight:bold">Tên tài khoản</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.FullName)
@@ -46,7 +47,7 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Số điện thoại</h4>
+                                    <h4 style="font-weight:bold">Số điện thoại</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.PhoneNumber)
@@ -55,7 +56,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Giới tính</h4>
+                                    <h4 style="font-weight:bold">Giới tính</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.Gender)
@@ -66,7 +67,7 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Ngày sinh</h4>
+                                    <h4 style="font-weight:bold">Ngày sinh</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.DateBorn)
@@ -75,7 +76,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Trạng thái</h4>
+                                    <h4 style="font-weight:bold">Trạng thái</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.Status)
@@ -84,7 +85,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Email</h4>
+                                    <h4 style="font-weight:bold">Email</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.Email)
@@ -95,7 +96,7 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Địa chỉ</h4>
+                                    <h4 style="font-weight:bold">Địa chỉ</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.HomeAdress)
@@ -107,7 +108,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Tên tài khoản</h4>
+                                    <h4 style="font-weight:bold">Tên tài khoản</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.FullName)
@@ -117,7 +118,7 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Email</h4>
+                                    <h4 style="font-weight:bold">Email</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.Email)
@@ -126,7 +127,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4>Số điện thoại</h4>
+                                    <h4 style="font-weight:bold">Số điện thoại</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.PhoneNumber)
@@ -143,7 +144,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <h4>Lịch sử bình luận</h4>
+                                <h4 style="font-weight:bold">Lịch sử bình luận</h4>
                             </div>
                             <div class="col-md-6 text-secondary">
                                 <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = Model.Id })"> Xem thêm</a> <br />
@@ -153,7 +154,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-4">
-                                <h4>Lịch sử đăng tin</h4>
+                                <h4 style="font-weight:bold">Lịch sử đăng tin</h4>
                             </div>
                             <div class="col-md-6 text-secondary">
                                 <a href="@Url.Action("Index_ofUser", "TinTucs", new { page = 1, searchString = "",id = Model.Id })"> Xem thêm</a>

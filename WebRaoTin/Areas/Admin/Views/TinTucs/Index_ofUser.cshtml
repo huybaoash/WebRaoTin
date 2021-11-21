@@ -9,8 +9,8 @@
 
 
 
-
-
+<h2>Lịch sử đăng tin</h2>
+<hr />
 <div id="main">
     <div id="left">
         <ul>
@@ -18,7 +18,11 @@
             @for (int i = 0; i < @Model.Count; i++)
             {
                 <a href="@Url.Action("Details", "TinTucs",new { id= @Model[i].IdTinTucs })">
-                    <li id="item_li">
+                    <li id="item_li" style="height:155px">
+
+                        <a href="" class="btn btn-danger btn-xs" style="margin-left:85%">Xóa</a>
+                        <a href="" class="btn btn-primary btn-xs">Sửa</a>
+
 
                         @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
                         {
@@ -27,14 +31,16 @@
                             <h3>@Model[i].Title</h3>
                             <div class="desc">
                                 <span>Danh mục: @Model[i].TenLoaiDichVu</span>
-                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
 
                                 <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationDichVu</span>
                                 <span class="gia">
                                     <i class="fas fa-tag"></i>
                                     @Model[i].PriceDichVu.ToString("#,##00.##")đ
                                 </span>
+
                             </div>
+
 
                         }
                         else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
@@ -43,7 +49,7 @@
                             <h3>@Model[i].Title</h3>
                             <div class="desc">
                                 <span>Danh mục: @Model[i].TenLoaiSanPham</span>
-                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
 
 
 
@@ -63,7 +69,7 @@
                             <h3>@Model[i].Title</h3>
                             <div class="desc">
                                 <span>Danh mục: @Model[i].TenLoaiViecLam</span>
-                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
 
                                 <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationViecLam</span>
                                 <span class="gia">
@@ -78,7 +84,7 @@
                             <h3>@Model[i].Title</h3>
                             <div class="desc">
                                 <span>Danh mục: @Model[i].TenLoaiBatDongSan</span>
-                                <span><i class="fas fa-clock"></i>@Model[i].LuaChon</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
                                 <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationBatDongSan</span>
                                 <span class="gia">
                                     <i class="fas fa-tag"></i>
@@ -105,8 +111,10 @@
 
 
 
-    <div id="right">
-        <img src="~/imagesGIF/bds.gif" alt="" style="height:470px;width:100% ; margin-bottom:1px" />
-        <img src="~/imagesGIF/dulich.gif" alt="" style="height:200px;width:100%" />
+    <div class="LS-DT">
+        <div class="LS-item" style="background-color:#808080; height:30px"></div>
+        <div class="LS-item"> <a  href="">Trở lại trang cá nhân >></a></div>
+        <div class="LS-item"> <a  href="">Lịch sử bình luận >></a></div>
+
     </div>
 </div>
