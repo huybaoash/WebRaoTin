@@ -363,13 +363,13 @@
     <Content Include="imagesGIF\xemayvs.gif" />
     <Content Include="images\BanTra.jpg" />
     <Content Include="images\Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg" />
-    <Content Include="images\ImageUser.png" />
     <Content Include="images\ky-nang-giao-tiep-co-ban-1.png" />
     <Content Include="images\nen.jpg" />
     <Content Include="images\quy-trinh-ban-hang-truc-tiep.jpg" />
     <Content Include="images\thutucmuabannha01.jpg" />
     <Content Include="images\tong-hop-cac-cach-cai-thien-ky-nang-noi-chuyen.png" />
     <Content Include="images\unnamed.gif" />
+    <Content Include="images\Userlogo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
