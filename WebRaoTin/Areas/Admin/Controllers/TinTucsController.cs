@@ -455,7 +455,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViewBag.Keyword = searchString;
 
             var tinTucs_Temp = db.TinTucs.Include(t => t.Customer).ToList();
-            
+            var user_current = db.Users.Find(id);
+            ViewBag.user_current = user_current;
+
 
             try
             {
@@ -768,39 +770,21 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/TinTucs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,PublishDay,EndDay,Contract,ContractPhoneNumber")] TinTuc tinTuc, 
-            ViecLam viecLam,
-            BatDongSan batDongSan,
-            [Bind(Include = "Id,Name,Price,Image,Description,TinTucId,LoaiDichVuId")] DichVu dichVu,
-            SanPham sanPham)
-        {
-            if (ModelState.IsValid)
-            {
-                tinTuc.CustomerID = User.Identity.GetUserId();
-                tinTuc.Status = "Đang công khai";
-                db.TinTucs.Add(tinTuc);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.CustomerID = new SelectList(db.Users, "Id", "Role", tinTuc.CustomerID);
-            return View(tinTuc);
-        }*/
+        
 
         
 
 
-            [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
         {
 
-            
+            if (tinTucsViewModel.EndDayTinTucs.Value.CompareTo(DateTime.Now) < 0)
+            {
+                ModelState.AddModelError("", "Ngày hết hạn tin tức phải ở tương lai !");
+                return View(tinTucsViewModel);
+            }
 
             // Lấy danh sách sản phẩm 
             List<SanPham> SanPhams = new List<SanPham>();
@@ -1161,25 +1145,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View(tinTucsViewModel);
         }
 
-        /* POST: Admin/TinTucs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,PublishDay,EndDay,Contract,ContractPhoneNumber,Status,CustomerID")] TinTuc tinTuc)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tinTuc).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerID = new SelectList(db.Users, "Id", "Role", tinTuc.CustomerID);
-            return View(tinTuc);
-        }
-       
-        */
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
@@ -1217,7 +1183,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 Title = tinTucsViewModel.Title,
                 CustomerID = User.Identity.GetUserId(),
-                Status = "Công khai",
+                Status = tinTucsViewModel.Status,
                 ContractPhoneNumber = tinTucsViewModel.ContractPhoneNumber,
                 Contract = tinTucsViewModel.Contract,
                 
@@ -1554,6 +1520,36 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 return View(tinTucsViewModel);
             };
             return View(tinTucsViewModel);
+        }
+
+
+
+        public ActionResult Edit_HideStatus( int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Ẩn";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
+            }
+
+            return RedirectToAction("Index_ofUser", "TinTucs", new {id = User.Identity.GetUserId() });
+        }
+
+        public ActionResult Edit_ShowStatus(int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Công khai";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
+            }
+
+            return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
         }
 
         // GET: Admin/TinTucs/Delete/5

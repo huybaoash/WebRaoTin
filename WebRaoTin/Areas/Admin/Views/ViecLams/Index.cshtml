@@ -32,6 +32,10 @@
 
             @foreach (var item in Model)
             {
+                if (item.TinTuc.Status.Equals("Ẩn"))
+                {
+                    continue;
+                }
                 <a href="@Url.Action("Details", "TinTucs",new { id= item.TinTucId })">
                     <li id="item_li">
 

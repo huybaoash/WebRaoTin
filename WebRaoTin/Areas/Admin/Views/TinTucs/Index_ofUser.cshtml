@@ -2,6 +2,8 @@
 @using PagedList;
 @using PagedList.Mvc;
 @model IPagedList<WebRaoTin.ViewModel.TinTucsViewModel>
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Index_ofUser";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -17,11 +19,23 @@
 
             @for (int i = 0; i < @Model.Count; i++)
             {
+                
                 <a href="@Url.Action("Details", "TinTucs",new { id= @Model[i].IdTinTucs })">
                     <li id="item_li" style="height:155px">
 
-                        <a href="" class="btn btn-danger btn-xs" style="margin-left:85%">Xóa</a>
-                        <a href="" class="btn btn-primary btn-xs">Sửa</a>
+                        @if (User.Identity.GetUserId().Equals(@Model[i].CustomerID))
+                        {
+                            if (@Model[i].Status.Equals("Ẩn"))
+                            {
+                                <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:85%">Đã xóa</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:85%">Xóa</a>
+                            }
+                            <a href="@Url.Action("Edit", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-primary btn-xs">Sửa</a>
+                        }
+
 
 
                         @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
@@ -113,8 +127,8 @@
 
     <div class="LS-DT">
         <div class="LS-item" style="background-color:#808080; height:30px"></div>
-        <div class="LS-item"> <a  href="">Trở lại trang cá nhân >></a></div>
-        <div class="LS-item"> <a  href="">Lịch sử bình luận >></a></div>
+        <div class="LS-item"> <a href="@Url.Action("Details", "Users",new { id=User.Identity.GetUserId() })">Trở lại trang cá nhân >></a></div>
+        <div class="LS-item"> <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = @ViewBag.user_current.Id })">Lịch sử bình luận >></a></div>
 
     </div>
 </div>

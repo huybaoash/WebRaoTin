@@ -197,6 +197,11 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<ViecLam> viecLams = new List<ViecLam>(); int dem = 0;
             foreach (var item in dsViecLam)
             {
+                if (item.TinTuc.Status.Equals("Ẩn"))
+                {
+                    continue;
+                }
+
                 if (dem == 4) break;
                 viecLams.Add(item);
                 dem++;
@@ -205,6 +210,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<TinTucsViewModel> a = new List<TinTucsViewModel>();
             foreach (var item in viecLams)
             {
+
                 TinTucsViewModel tinTucsViewModel;
                 if (item.Location.Length > 25)
                 {
@@ -234,6 +240,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<SanPham> sanPhams = new List<SanPham>(); int dem = 0;
             foreach (var item in dssanPhams)
             {
+                if (item.TinTuc.Status.Equals("Ẩn"))
+                {
+                    continue;
+                }
                 if (dem == 4) break;
                 sanPhams.Add(item);
                 dem++;
@@ -272,6 +282,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0; 
             foreach (var item in dsTinTuc)
             {
+                if (item.Status.Equals("Ẩn"))
+                {
+                    continue;
+                }
                 if (dem == 4) break;
                 tinTucs.Add(item);
                 dem++;

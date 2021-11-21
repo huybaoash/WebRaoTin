@@ -109,6 +109,10 @@
 
     @for (int i = 0; i < Model.Count; i++)
     {
+        if (@Model[i].Status.Equals("Ẩn"))
+        {
+            continue;
+        }
         <tr style="border:1px solid red">
             <td>@Model[i].Id</td>
             <td>@Model[i].Customer.Id</td>

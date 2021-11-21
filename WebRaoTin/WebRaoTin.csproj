@@ -399,6 +399,8 @@
     <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Details.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TinTucs\Edit_HideStatus.cshtml" />
+    <Content Include="Areas\Admin\Views\TinTucs\Edit_ShowStatus.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
