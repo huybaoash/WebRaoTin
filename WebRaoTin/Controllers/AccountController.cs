@@ -104,17 +104,23 @@ namespace WebRaoTin.Controllers
                     flag_login++;
                 };
             }
+
             if (flag_login == 0) {
                 ModelState.AddModelError("", "Không tồn tại địa chỉ Email này");
                 return View(model);
             }
 
-            /*
-            if (db.Users.Where(u => u.Email.Equals(model.Email)).Single() == null)
+            ApplicationUser user = new ApplicationUser();
+            foreach(var item in db.Users.ToList())
             {
-                
-                
-            }*/
+                if (item.Email.Equals(model.Email)) user = item;
+            }
+
+            if (user.Status.Equals("Đã khóa"))
+            {
+                ModelState.AddModelError("", "Tài khoản đã bị khóa");
+                return View(model);
+            }
 
 
             var nguoidung = db.Users.Where(u => u.Email.Equals(model.Email)).Single(); // where db is ApplicationDbContext instance
@@ -204,7 +210,14 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động",DateJoin = DateTime.Now};
+                var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
+                if (isEmailAlreadyExists)
+                {
+                    ModelState.AddModelError("Email", "User with this email already exists");
+                    return View(model);
+                }
+
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động",DateJoin = DateTime.Now,Gender = model.Gender};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

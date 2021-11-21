@@ -77,6 +77,9 @@ namespace WebRaoTin.Models
         [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
+        [Display(Name = "Giới tính")]
+
+        public string Gender { get; set; }
 
         [Display(Name = "Địa chỉ")]
 
