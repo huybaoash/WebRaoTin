@@ -32,11 +32,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
         private void GetRoleUser()
         {
+
             
-            var dsUser = db.Users.ToList();
-            ViewBag.dsUser = dsUser;
-            
-            
+
         }
         public TinTucsController()
         {
@@ -1552,6 +1550,34 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
         }
 
+
+        public ActionResult Edit_LockStatus(int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Đã khóa";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "TinTucs");
+            }
+
+            return RedirectToAction("Index", "TinTucs");
+        }
+
+        public ActionResult Edit_UnlockStatus(int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Công khai";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "TinTucs");
+            }
+
+            return RedirectToAction("Index", "TinTucs");
+        }
         // GET: Admin/TinTucs/Delete/5
         public ActionResult Delete(int? id)
         {

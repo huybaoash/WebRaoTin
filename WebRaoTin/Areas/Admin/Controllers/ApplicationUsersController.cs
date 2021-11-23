@@ -28,9 +28,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-            var dsUser = db.Users.ToList();
-            ViewBag.dsUser = dsUser;
-
+            
 
         }
         public UsersController()
@@ -145,6 +143,54 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(applicationUser);
+        }
+
+        public ActionResult LockUser(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                ApplicationUser applicationUser = db.Users.Find(id);
+                applicationUser.Status = "Đã khóa";
+                if (applicationUser == null)
+                {
+                    return HttpNotFound();
+                }
+                var existingEntity = db.Users.Find(applicationUser.Id);
+
+                db.Entry(existingEntity).CurrentValues.SetValues(applicationUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public ActionResult UnlockUser(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                ApplicationUser applicationUser = db.Users.Find(id);
+                applicationUser.Status = "Hoạt động";
+                if (applicationUser == null)
+                {
+                    return HttpNotFound();
+                }
+                var existingEntity = db.Users.Find(applicationUser.Id);
+
+                db.Entry(existingEntity).CurrentValues.SetValues(applicationUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         // POST: Admin/Users/Edit/5

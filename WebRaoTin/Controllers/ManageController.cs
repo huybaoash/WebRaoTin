@@ -15,7 +15,7 @@ namespace WebRaoTin.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -289,6 +289,12 @@ namespace WebRaoTin.Controllers
             {
                 return View("Error");
             }
+            user.EmailConfirmed = true;
+            var existingEntity = db.Users.Find(user.Id);
+
+            db.Entry(existingEntity).CurrentValues.SetValues(user);
+            db.SaveChanges();
+
             var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;

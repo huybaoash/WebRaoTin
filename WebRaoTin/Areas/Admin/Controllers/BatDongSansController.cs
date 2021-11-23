@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using WebRaoTin.Models;
 using WebRaoTin.ViewModel;
 using PagedList;
+using Microsoft.AspNet.Identity;
+
 namespace WebRaoTin.Areas.Admin.Controllers
 {
     public class BatDongSansController : Controller
@@ -27,8 +29,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-            var dsUser = db.Users.ToList();
-            ViewBag.dsUser = dsUser;
+
+            
         }
         public BatDongSansController()
         {

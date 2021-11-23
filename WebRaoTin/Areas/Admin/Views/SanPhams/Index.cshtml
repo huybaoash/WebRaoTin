@@ -37,7 +37,7 @@
 
             @foreach (var item in Model)
             {
-                if (item.TinTuc.Status.Equals("Ẩn"))
+                if (item.TinTuc.Status.Equals("Ẩn") || item.TinTuc.Status.Equals("Đã khóa"))
                 {
                     continue;
                 }

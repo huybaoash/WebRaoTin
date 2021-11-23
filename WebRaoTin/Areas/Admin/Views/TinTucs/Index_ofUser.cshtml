@@ -25,7 +25,11 @@
 
                         @if (User.Identity.GetUserId().Equals(@Model[i].CustomerID))
                         {
-                            if (@Model[i].Status.Equals("Ẩn"))
+                            if (@Model[i].Status.Equals("Đã khóa"))
+                            {
+                                <a class="btn btn-danger btn-xs" style="margin-left:85%">Đã khóa</a>
+                            }
+                            else if (@Model[i].Status.Equals("Ẩn"))
                             {
                                 <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:85%">Đã xóa</a>
                             }

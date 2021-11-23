@@ -7,83 +7,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index111</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div id="menu">
+    <ul class="menu-list">
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "TinTucs")">Tin tức</a>
+        </li>
 
-@*
-    @model IEnumerable<WebRaoTin.Models.TinTuc>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contract)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContractPhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiSanPhams")">Loại sản phẩm</a>
+        </li>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contract)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContractPhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiDichVus")">Loại dịch vụ</a>
+        </li>
 
-    </table>
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiViecLams")">Loại việc làm</a>
+        </li>
 
-
-*@
-
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiBatDongSans")">Loại bất động sản</a>
+        </li>
+    </ul>
+</div>
 
 
 @using (Html.BeginForm("Index", "TinTucs", FormMethod.Get))
@@ -109,10 +56,7 @@
 
     @for (int i = 0; i < Model.Count; i++)
     {
-        if (@Model[i].Status.Equals("Ẩn"))
-        {
-            continue;
-        }
+        
         <tr style="border:1px solid red">
             <td>@Model[i].Id</td>
             <td>@Model[i].Customer.Id</td>
@@ -122,11 +66,17 @@
             <td>@Model[i].Contract</td>
             <td>@Model[i].ContractPhoneNumber</td>
             <td>@Model[i].Status</td>
-             <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = @Model[i].Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = @Model[i].Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = @Model[i].Id })
-             </td>
+            <td>
+                @if (@Model[i].Status.Equals("Công khai") || @Model[i].Status.Equals("Ẩn"))
+                {
+                <a href="@Url.Action("Edit_LockStatus", "TinTucs",new { id= @Model[i].Id })" class="btn btn-danger btn-xs">Khóa</a>
+                }
+                else if (@Model[i].Status.Equals("Đã khóa"))
+                {
+                <a href="@Url.Action("Edit_UnlockStatus", "TinTucs",new { id= @Model[i].Id})" class="btn btn-danger btn-xs">Mở khóa</a>
+                }
+                
+            </td>
         </tr>
     }
 </table>

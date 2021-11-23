@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,8 +29,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-            var dsUser = db.Users.ToList();
-            ViewBag.dsUser = dsUser;
+            
         }
         public DichVusController()
         {

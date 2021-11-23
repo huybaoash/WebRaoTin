@@ -79,9 +79,14 @@
         @Html.DisplayFor(modelItem => item.Status)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        @if (item.Status.Equals("Hoạt động"))
+        {
+            @Html.ActionLink("Khóa", "LockUser", new { id = item.Id })
+        }
+        else
+        {
+            @Html.ActionLink("Mở", "UnlockUser", new { id = item.Id })
+        }
     </td>
 </tr>
 }

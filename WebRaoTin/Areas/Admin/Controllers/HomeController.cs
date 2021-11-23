@@ -32,8 +32,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-            var dsUser = db.Users.ToList();
-            ViewBag.dsUser = dsUser;
+           
 
 
         }
@@ -197,7 +196,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<ViecLam> viecLams = new List<ViecLam>(); int dem = 0;
             foreach (var item in dsViecLam)
             {
-                if (item.TinTuc.Status.Equals("Ẩn"))
+                if (item.TinTuc.Status.Equals("Ẩn") || item.TinTuc.Status.Equals("Đã khóa"))
                 {
                     continue;
                 }
@@ -240,7 +239,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<SanPham> sanPhams = new List<SanPham>(); int dem = 0;
             foreach (var item in dssanPhams)
             {
-                if (item.TinTuc.Status.Equals("Ẩn"))
+                if (item.TinTuc.Status.Equals("Ẩn") || item.TinTuc.Status.Equals("Đã khóa"))
                 {
                     continue;
                 }
@@ -282,7 +281,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0; 
             foreach (var item in dsTinTuc)
             {
-                if (item.Status.Equals("Ẩn"))
+                if (item.Status.Equals("Ẩn") || item.Status.Equals("Đã khóa"))
                 {
                     continue;
                 }
