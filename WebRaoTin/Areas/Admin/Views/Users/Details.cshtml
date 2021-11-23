@@ -10,7 +10,20 @@
 <div class="container">
     <div class="main">
         <div class="topbar_">
-            <a href="">Đổi mật khẩu</a>
+            <dd>
+                
+                @if (Model.PasswordHash != null)
+                {
+                    <a href="@Url.Action("ChangePassword", "Manage",new {area = ""})"> Đổi mật khẩu</a>
+                       
+                    
+                }
+                else
+                {
+                    @Html.ActionLink("Tạo mật khẩu", "SetPassword")
+                }
+                
+            </dd>
         </div>
         <div class="row">
             <div class="col-md-4 mt-1">
@@ -19,12 +32,19 @@
                         <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
                             <h4 style="margin-bottom: 20px; text-align:center;color:white;border-bottom:1px solid white">@Html.DisplayFor(model => model.FullName)</h4>
-                          
+
                             <a href="">Ngày gia nhập: @Model.DateJoin.Value.ToString("dd/MM/yyyy")</a>
                             <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
-                            <div class="edit-tt"> <a href="">Chỉnh sửa thông tin</a></div>
+                            <div class="edit-tt"> <a href="@Url.Action("Edit", "Users", new { id = @Model.Id })">Chỉnh sửa thông tin</a></div>
+
+                            @if (Model.EmailConfirmed)
+                            {<div class="edit-tt"><a href="">Đã xác thực tài khoản</a></div> }
+                            else
+                            {
+                                <div class="edit-tt"><a href="">Chưa xác thực tài khoản</a></div>
+                            }
                             @*<a href="">Setting</a>
-                             <a href="">Signout</a>*@
+        <a href="">Signout</a>*@
                         </div>
                     </div>
                 </div>
@@ -93,6 +113,15 @@
                             </div>
                             <hr>
 
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4 style="font-weight:bold">CMND</h4>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    @Html.DisplayFor(model => model.CMND)
+                                </div>
+                            </div>
+                            <hr>
 
                             <div class="row">
                                 <div class="col-md-3">

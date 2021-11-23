@@ -6,8 +6,33 @@ namespace WebRaoTin.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [Display(Name = "Tên tài khoản (*)")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Họ tên")]
+        public string FullName { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Giới tính")]
+
+        public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "Chứng minh nhân dân (*)")]
+
+        public string CMND { get; set; }
+
+
     }
 
     public class ExternalLoginListViewModel

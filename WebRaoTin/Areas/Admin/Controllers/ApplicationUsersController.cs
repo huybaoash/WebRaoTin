@@ -152,7 +152,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Role,FullName,HomeAdress,Gender,DateBorn,Status,CMND,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Include = "Id,Role,FullName,HomeAdress,Gender,DateBorn,Status,CMND,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,DateJoin")] ApplicationUser applicationUser)
         {
             //ApplicationUser applicationUser = db.Users.Find(id);
             
@@ -161,6 +161,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var existingEntity = db.Users.Find(applicationUser.Id);
+                
                 db.Entry(existingEntity).CurrentValues.SetValues(applicationUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");

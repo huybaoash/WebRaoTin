@@ -128,7 +128,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    dichVus = dichVus.Where(s => s.TinTuc.Title.Contains(searchString)).ToList();
+                    dichVus = dichVus.Where(s => s.TinTuc.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
             catch (Exception ex) { }

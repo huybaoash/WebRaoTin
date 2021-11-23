@@ -434,7 +434,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    tinTucs = tinTucs.Where(s => s.Title.Contains(searchString)).ToList();
+                    tinTucs = tinTucs.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
             catch (Exception ex) { }

@@ -27,6 +27,7 @@
     @Html.HiddenFor(model => model.PasswordHash)
     @Html.HiddenFor(model => model.Logins)
     @Html.HiddenFor(model => model.UserName)
+    @Html.HiddenFor(model => model.DateJoin)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -59,15 +60,65 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
-            {
-                                new SelectListItem() {Text = "Nam", Value="Nam"},
-                                new SelectListItem() {Text = "Nữ", Value="Nữ"}
+        @if (@Model.Gender == null)
+        {
 
-    }, new { @class = "form-control", @Value = Model.Gender })
-            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-        </div>
+            <div>
+                Nam <input id="Gender"
+                           name="Gender"
+                           type="radio"
+                           value="Nam" />
+            </div>
+
+            <div>
+                Nữ <input id="Gender"
+                          name="Gender"
+                          type="radio"
+                          value="Nữ" />
+            </div>
+        }
+        else
+        {
+            if (@Model.Gender.Equals("Nam"))
+            {
+
+                <div>
+                    Nam <input checked="checked"
+                               id="Gender"
+                               name="Gender"
+                               type="radio"
+                               value="Nam" />
+                </div>
+
+                <div>
+                    Nữ <input id="Gender"
+                              name="Gender"
+                              type="radio"
+                              value="Nữ" />
+                </div>
+
+
+            }
+            else
+            {
+                <div>
+                    Nam <input id="Gender"
+                               name="Gender"
+                               type="radio"
+                               value="Nam" />
+                </div>
+
+                <div>
+                    Nữ <input checked="checked"
+                              id="Gender"
+                              name="Gender"
+                              type="radio"
+                              value="Nữ" />
+                </div>
+            }
+        }
+        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+
     </div>
 
     <div class="form-group">
@@ -78,7 +129,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })

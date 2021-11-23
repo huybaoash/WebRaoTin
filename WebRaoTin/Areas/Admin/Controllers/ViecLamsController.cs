@@ -128,7 +128,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    viecLams = viecLams.Where(s => s.TinTuc.Title.Contains(searchString)).ToList();
+                    viecLams = viecLams.Where(s => s.TinTuc.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
             catch (Exception ex) { }

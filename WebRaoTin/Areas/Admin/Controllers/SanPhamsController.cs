@@ -127,7 +127,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    sanPhams = sanPhams.Where(s => s.TinTuc.Title.Contains(searchString)).ToList();
+                    sanPhams = sanPhams.Where(s => s.TinTuc.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
             catch (Exception ex) { }

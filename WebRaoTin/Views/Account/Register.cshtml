@@ -28,10 +28,21 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
-        <select class="target" id="Gender" name="Gender" aria-invalid="false">
-            <option value="Nam"> Nam</option>
-            <option value="Nữ"> Nữ</option>
-        </select>
+
+        <div>
+            Nam <input id="Gender"
+                       name="Gender"
+                       type="radio"
+                       value="Nam" />
+        </div>
+
+        <div>
+            Nữ <input id="Gender"
+                      name="Gender"
+                      type="radio"
+                      value="Nữ" />
+        </div>
+
         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
     </div>
 

@@ -217,17 +217,24 @@ namespace WebRaoTin.Controllers
                     return View(model);
                 }
 
+                var isUserNamelAlreadyExists = db.Users.Any(x => x.UserName == model.UserName);
+                if (isUserNamelAlreadyExists)
+                {
+                    ModelState.AddModelError("UserName", "User with this username already exists");
+                    return View(model);
+                }
+
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động",DateJoin = DateTime.Now,Gender = model.Gender};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -238,11 +245,15 @@ namespace WebRaoTin.Controllers
             return View(model);
         }
 
+       
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            
+
             if (userId == null || code == null)
             {
                 return View("Error");
@@ -251,6 +262,7 @@ namespace WebRaoTin.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
+        
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
@@ -268,7 +280,8 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                //var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -277,10 +290,10 @@ namespace WebRaoTin.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -422,7 +435,7 @@ namespace WebRaoTin.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Index", "Users");
             }
 
             if (ModelState.IsValid)
@@ -433,7 +446,7 @@ namespace WebRaoTin.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,FullName = model.FullName,PhoneNumber = model.PhoneNumber,Gender = model.Gender, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now,CMND = model.CMND, EmailConfirmed = true};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -445,6 +458,8 @@ namespace WebRaoTin.Controllers
                     }
                 }
                 AddErrors(result);
+
+
             }
 
             ViewBag.ReturnUrl = returnUrl;

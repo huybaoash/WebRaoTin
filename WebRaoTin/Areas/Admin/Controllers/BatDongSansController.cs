@@ -82,7 +82,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 if (!String.IsNullOrEmpty(searchString))
                 {
 
-                    batDongSans = batDongSans.Where(s => s.TinTuc.Title.Contains(searchString)).ToList();
+                    batDongSans = batDongSans.Where(s => s.TinTuc.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
             catch (Exception ex) { }

@@ -29,7 +29,6 @@ namespace WebRaoTin.Models
         public string Gender { get; set; }
 
         [Display(Name = "Ngày sinh")]
-
         [DataType(DataType.Date, ErrorMessage = "Date only")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateBorn { get; set; }
