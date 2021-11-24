@@ -3,60 +3,157 @@
 @{
     ViewBag.Title = "Log in";
 }
+<style>
+    label {
+        font-weight: normal;
+    }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality*@
-                <p>
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                </p>
-            }
-        </section>
+    .Nameform {
+        text-align: center;
+        margin: 40px 0px;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .containerLG {
+        width: 400px;
+        margin: auto;
+        border: 1px solid rgb(201, 199, 199);
+        padding: 0px 25px;
+        border-radius: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(250, 250, 250);
+    }
+
+    .button-LG {
+        width: 40%;
+        margin: 0px auto;
+        margin-top: 4px;
+        height: 40px;
+    }
+
+        .button-LG button {
+            width: 100%;
+            font-size: 18px;
+        }
+
+    .input-field input {
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .input-field label {
+        font-size: 25px;
+    }
+
+    .Remember-lg {
+        margin: 5px 0px;
+        font-size: 16px;
+    }
+
+        .Remember-lg a {
+            margin-right: 50px;
+            margin-left: 15px;
+        }
+
+        .Remember-lg input {
+            margin-left: 50px;
+        }
+
+    .auth {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+        .auth h4 {
+            color: rgb(139, 138, 138);
+        }
+
+    .links {
+        margin-bottom: 50px;
+        border: 1px solid lightgray;
+        text-align: center;
+        width: 60%;
+        margin: 15px auto;
+        border-radius: 4px;
+    }
+
+    .signup {
+        text-align: center;
+        margin: 30px 0px 40px 0px;
+        font-size: 16px;
+    }
+
+    .links a {
+        font-size: 20px;
+        text-decoration: none;
+        color: red;
+    }
+
+    .links:hover {
+        border: 1px solid red;
+    }
+    .input-field ul{
+        padding-left:0px;
+        list-style:none;
+    }
+</style>
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+   
+    <div class="containerLG">
+        <header class="Nameform">ĐĂNG NHẬP</header>
+        <form>
+            <div class="input-field">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger", style = "margin-left:0px" })
+                <label for="email">Tên đăng nhập</label>
+                <input class="form-control " type="text" name="email" placeholder="Email" id="Email">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-field">
+                <label for="pwd">Mật khẩu</label>
+                <input class="form-control" type="Password" name="Password" placeholder="Password" id="Password">
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="Remember-lg">
+                @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
+
+                <input type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe">
+                <label for="RememberMe" id="RememberMe">Ghi nhớ</label>
+            </div>
+
+
+            <div class="button-LG">
+                <div class="inner"></div>
+                <button class="btn btn-primary" type="submit">Đăng nhập</button>
+            </div>
+
+        </form>
+
+        <div class="auth">
+            <h4>Đăng nhập với</h4>
+        </div>
+
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    @*    <div class="links">
+            <a href=""> <i class="fab fa-facebook-square"></i> Facebook</a>
+        </div>
+
+        <div class="links">
+            <a href="">  <i class="fab fa-twitter"></i> Twitter</a>
+        </div>*@
+
+
+        <div class="signup">
+            Không phải thành viên? @Html.ActionLink("Đăng ký ngay", "Register")
+        </div>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

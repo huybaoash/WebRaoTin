@@ -31,7 +31,7 @@
                     <div class="card-body ">
                         <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
-                            <h4 style="margin-bottom: 20px; text-align:center;color:white;border-bottom:1px solid white">@Html.DisplayFor(model => model.FullName)</h4>
+                            <h4 style="margin-bottom: 20px; text-align:center;color:white;border-bottom:1px solid white">@Html.DisplayFor(model => model.UserName)</h4>
 
                             <a href="">Ngày gia nhập: @Model.DateJoin.Value.ToString("dd/MM/yyyy")</a>
                             <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
@@ -57,7 +57,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4 style="font-weight:bold">Tên tài khoản</h4>
+                                    <h4 style="font-weight:bold">Họ Tên</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.FullName)
@@ -137,7 +137,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4 style="font-weight:bold">Tên tài khoản</h4>
+                                    <h4 style="font-weight:bold">Họ Tên</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     @Html.DisplayFor(model => model.FullName)
@@ -165,7 +165,7 @@
                         }
 
 
-                        <hr>
+                       
                     </div>
                 </div>
                 <div class="card mb-3 content">

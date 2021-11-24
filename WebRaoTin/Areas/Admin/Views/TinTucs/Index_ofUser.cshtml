@@ -27,15 +27,15 @@
                         {
                             if (@Model[i].Status.Equals("Đã khóa"))
                             {
-                                <a class="btn btn-danger btn-xs" style="margin-left:85%">Đã khóa</a>
+                                <a class="btn btn-danger btn-xs" style="margin-left:80%">Đã khóa</a>
                             }
                             else if (@Model[i].Status.Equals("Ẩn"))
                             {
-                                <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:85%">Đã xóa</a>
+                                <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Khôi phục</a>
                             }
                             else
                             {
-                                <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:85%">Xóa</a>
+                                <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Ẩn</a>
                             }
                             <a href="@Url.Action("Edit", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-primary btn-xs">Sửa</a>
                         }

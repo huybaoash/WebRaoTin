@@ -2,13 +2,22 @@
 @{
     ViewBag.Title = "Register";
 }
+<style>
+    .check-Gender {
+        display: flex;
+        padding-left: 20px;
+    }
 
-<h2>@ViewBag.Title.</h2>
+        .check-Gender label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+</style>
+<h2>Tạo tài khoản.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -29,18 +38,17 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
 
-        <div>
-            Nam <input id="Gender"
-                       name="Gender"
-                       type="radio"
-                       value="Nam" />
-        </div>
-
-        <div>
-            Nữ <input id="Gender"
-                      name="Gender"
-                      type="radio"
-                      value="Nữ" />
+        <div class="check-Gender">
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nam" />
+            <label>Nam</label>
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nữ" />
+            <label>Nữ</label>
         </div>
 
         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })

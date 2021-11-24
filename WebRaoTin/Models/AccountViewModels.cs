@@ -10,25 +10,25 @@ namespace WebRaoTin.Models
         public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "Họ tên")]
+        [Display(Name = "Họ tên (*)")]
         public string FullName { get; set; }
 
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email (*)")]
         public string Email { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "Số điện thoại")]
+        [Display(Name = "Số điện thoại (*)")]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [Display(Name = "Giới tính")]
+        [Display(Name = "Giới tính (*)")]
 
         public string Gender { get; set; }
 
         [Required]
-        [Display(Name = "Chứng minh nhân dân (*)")]
+        [Display(Name = "CMND (*)")]
 
         public string CMND { get; set; }
 
@@ -75,10 +75,10 @@ namespace WebRaoTin.Models
     {
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Sai định dạng địa chỉ Email!")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống mật khẩu")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -116,7 +116,7 @@ namespace WebRaoTin.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        [Display(Name = "Chứng minh nhân dân (*)")]
+        [Display(Name = "CMND (*)")]
 
         public string CMND { get; set; }
 

@@ -2,18 +2,25 @@
 @{
     ViewBag.Title = "Register";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>Associate your @ViewBag.LoginProvider account.</h3>
+<style>
+    .check-Gender {
+        display: flex;
+        padding-left: 20px;
+    }
+    .check-Gender label{
+        margin-right:20px;
+        font-weight:normal;
+    }
+</style>
+<h3>Kết nối với tài khoản @ViewBag.LoginProvider.</h3>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-
-    <h4>Association Form</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
-        You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
+        Bạn đã kết nối thành công với <strong>@ViewBag.LoginProvider</strong>.
         Xin hãy điền thông tin vào những ô dưới đây rồi hãy ấn nút đăng ký
     </p>
 
@@ -34,21 +41,21 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+   
+        <div class="check-Gender">
 
-        <div>
-            Nam <input id="Gender"
-                       name="Gender"
-                       type="radio"
-                       value="Nam" />
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nam" />
+            <label>Nam</label>
+
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nữ" />
+            <label>Nữ</label>
         </div>
-
-        <div>
-            Nữ <input id="Gender"
-                      name="Gender"
-                      type="radio"
-                      value="Nữ" />
-        </div>
-
         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
     </div>
 

@@ -18,10 +18,10 @@ namespace WebRaoTin.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         public AccountController()
         {
-            
+
 
         }
 
@@ -84,7 +84,7 @@ namespace WebRaoTin.Controllers
                 return View(model);
             }
 
-            
+
 
             if (model.Email.EndsWith(".com") == false)
             {
@@ -101,13 +101,14 @@ namespace WebRaoTin.Controllers
                 };
             }
 
-            if (flag_login == 0) {
+            if (flag_login == 0)
+            {
                 ModelState.AddModelError("", "Không tồn tại địa chỉ Email này");
                 return View(model);
             }
 
             ApplicationUser user = new ApplicationUser();
-            foreach(var item in db.Users.ToList())
+            foreach (var item in db.Users.ToList())
             {
                 if (item.Email.Equals(model.Email)) user = item;
             }
@@ -125,7 +126,7 @@ namespace WebRaoTin.Controllers
             {
                 returnUrl = returnUrl + "/Admin";
             }
-            
+
 
             var result = await SignInManager.PasswordSignInAsync(nguoidung.UserName, model.Password, model.RememberMe, shouldLockout: false);
             // This doesn't count login failures towards account lockout
@@ -175,7 +176,7 @@ namespace WebRaoTin.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -220,11 +221,11 @@ namespace WebRaoTin.Controllers
                     return View(model);
                 }
 
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email ,CMND = model.CMND,HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động",DateJoin = DateTime.Now,Gender = model.Gender};
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CMND = model.CMND, HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now, Gender = model.Gender };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -241,14 +242,14 @@ namespace WebRaoTin.Controllers
             return View(model);
         }
 
-       
+
 
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            
+
 
             if (userId == null || code == null)
             {
@@ -258,7 +259,7 @@ namespace WebRaoTin.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        
+
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
@@ -286,10 +287,10 @@ namespace WebRaoTin.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -442,7 +443,7 @@ namespace WebRaoTin.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,FullName = model.FullName,PhoneNumber = model.PhoneNumber,Gender = model.Gender, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now,CMND = model.CMND, EmailConfirmed = true};
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Gender = model.Gender, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now, CMND = model.CMND, EmailConfirmed = true };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

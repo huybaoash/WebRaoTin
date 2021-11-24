@@ -9,7 +9,50 @@
 
 <h2>Create</h2>
 
+<style>
+    .formCreate {
+        width: 70%;
+        padding: 20px;
+        border-radius: 5px;
+    }
 
+    #displayImg img {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+        display: inline-block;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .formall {
+        display: flex;
+        padding: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .Noidungmau {
+        padding: 10px 10px;
+    }
+
+    .khungMau h4 {
+        background-color: rgb(204, 204, 204);
+        margin-top: 0;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .NewsEX {
+        height: 50%;
+        width: 30%;
+        margin-left: 2px;
+        border: 1px solid lightgrey;
+    }
+
+    .Noidungmau a {
+        text-decoration: none;
+    }
+</style>
 
 @using (Html.BeginForm("Create", "TinTucs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -96,17 +139,6 @@
     @* Sản phẩm *@
 
 <div class='response1' data-response="op1">
-    @*
-            <div class="form-group">
-            @Html.LabelFor(model => model.NameSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameSanPham, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameSanPham, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    *@
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.DescriptionSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -136,7 +168,7 @@
         </div>
     </div>
 
-   
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.LocationSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -155,22 +187,111 @@
             <div id="displayImg1"></div>
         </div>
     </div>
+    <hr />
+    <h2>SẢN PHẨM</h2>
+    <hr>
+    <div class="formall">
+        <div class="formCreate">
+            <div class="form-group">
+                <label for="TD">Tiêu đề</label>
+                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="sel1">Chọn loại sản phẩm:</label>
+                        <select class="form-control" id="sel1">
+                            <option>Đồ dùng điện tử</option>
+                            <option>máy tính ..</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Ngày hết hạn tin tức</label>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="TD">Người liên hệ</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Số điện thoại</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Nội dung</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="TD">Giá</label>
+                        <input class="form-control" type="number">
+                    </div>
+
+                    <div class="col-md-9">
+                        <label for="TD">Nơi bán</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
+                        <div id="displayImg">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div style="text-align: right">
+                    <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div class="NewsEX">
+            <div class="khungMau">
+                <h4>Tin đăng mẫu</h4>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Cho thuê Xe Inova mới mua 2015, Ford 16 chỗ 2016, giá rẻ </a></p>
+                    Cho thuê xe 7 chỗ, Innova 2015, Ford Everest 2013, Fortuner 2015, Ford 16 chỗ mới mua. Xe nội thất đẹp, máy lạnh tốt, dàn âm thanh cực hay, giao xe tận nơi, thủ tục nhanh gọn, giá cực rẻ.<br>
+                    - Giá từ: 500 đến 1 triệu/ ngày <br>
+                    - Cho thuê tự lái hoặc có tài xế <br>
+                </div>
+                <hr>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Cho thuê xe du lịch từ 7 đến 29 chỗ giá rẻ tại TPHCM </a></p>
+                    Công ty Du lich Hải Hà chuyên cho thuê xe du lịch có tài từ 7 đến 29 chỗ, giá rẻ tại TPHCM, phục vụ tham quan du lịch, cưới hỏi, thăm thân nhân, đưa đón sân bay. Xe máy lạnh đời mới, tài xế nhiệt tình vui vẻ, rành đường Việt Nam. Quý khách có nhu cầu xin liên hệ với chúng tôi.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
     
     @* Dịch Vụ *@
 
 <div class='response2' data-response="op2">
-    @*
-           <div class="form-group">
-            @Html.LabelFor(model => model.NameDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameDichVu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameDichVu, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    *@
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.DescriptionDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -216,23 +337,111 @@
             <div id="displayImg2"></div>
         </div>
     </div>
+    <hr />
+    <h2>DỊCH VỤ</h2>
+    <hr>
+    <div class="formall">
+        <div class="formCreate">
+            <div class="form-group">
+                <label for="TD">Tiêu đề</label>
+                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                      
+                            <label for="sel1">Chọn loại dịch vụ:</label>
+                            <select class="form-control" id="sel1">
+                                <option>Xây dựng nội thất phong thủy</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Ngày hết hạn tin tức</label>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="TD">Người liên hệ</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Số điện thoại</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Nội dung</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="TD">Giá</label>
+                        <input class="form-control" type="number">
+                    </div>
+
+                    <div class="col-md-9">
+                        <label for="TD">Địa điểm</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
+                        <div id="displayImg">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div style="text-align: right">
+                    <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div class="NewsEX">
+            <div class="khungMau">
+                <h4>Tin đăng mẫu</h4>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Phòng khám nha khoa thẩm mỹ, cấy ghép implant uy tín tại TPHCM </a></p>
+                    Nha khoa Nụ Cười là trung tâm nha khoa chuyên sâu về răng sứ thẩm mỹ, chỉnh nha, cấy ghép implant uy tín tại TPHCM, Được đăng ký thương hiệu độc quyền, tiêu chuẩn vệ sinh vô trùng đạt chuẩn ISO, ADA.
+                    Trong 10 năm liền, chúng tôi luôn được sự tin cậy và ủng hộ của quý khách hàng nhờ thái độ phục vụ chuyên nghiệp và chất lượng dịch vụ vượt trội.<br>
+                    - Hạ tầng phòng khám - thiết bị hiện đại <br>
+                    - Đội ngũ bác sĩ giỏi chuyên môn, giàu kinh nghiệm <br>
+                    - Dịch vụ nha khoa uy tín, chất lượng, có bảo hành <br>
+                    - Giá cả bình dân, đa dạng theo dịch vụ <br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
     @* Bất Động Sản *@
 
 <div class='response3' data-response="op3">
-    @*
-            <div class="form-group">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.DescriptionBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    *@
 
     <div class="form-group">
         @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -294,20 +503,124 @@
 
         </div>
     </div>
+    <hr />
+    <h2>BẤT ĐỘNG SẢN</h2>
+    <hr>
+    <div class="formall">
+        <div class="formCreate">
+            <div class="form-group">
+                <label for="TD">Tiêu đề</label>
+                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                      
+                            <label for="sel1">Chọn loại bất động sản:</label>
+                            <select class="form-control" id="sel1">
+                                <option>bán nhà</option>
+                                <option>cho thuê nhà ..</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                       
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Ngày hết hạn tin tức</label>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="TD">Người liên hệ</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Số điện thoại</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Nội dung</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="TD">diện tích</label>
+                        <input class="form-control" type="number" placeholder="vd:1300->1300m²">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="TD">Giá</label>
+                        <input class="form-control" type="number">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">địa điểm</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
+                        <div id="displayImg">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="Video-bds">
+                    <label for="">Chọn video</label>
+                    <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav" required title="Chọn đường dẫn Video" />
+                </div>
+            </div>
+
+            <hr>
+            <div class="form-group">
+                <div style="text-align: right">
+                    <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div class="NewsEX">
+            <div class="khungMau">
+                <h4>Tin đăng mẫu</h4>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Bán nhà mặt tiền đường số 5, khu dân cư Trung Sơn Bình Chánh </a></p>
+                    Bán nhà mặt tiền số 35 đường số 5, khu dân cư Trung Sơn, xã Bình Hưng, huyện Bình Chánh. Hướng chính tây, xinh xinh, kế gần trường Quốc Tế Bắc Mỹ, Singapore, ABC và Đại Học RMIT. Diện tích 5x20m, trệt, 2 lầu, sân thượng, phòng khách, bếp, 7 phòng riêng, 8 WC, tiện kinh doanh văn phòng, nhà nghỉ, căn hộ dịch vụ..., sổ hồng, giá bán 8,5 tỷ (tặng nội thất), thuê lại giá thỏa thuận nếu được.
+                </div>
+                <hr>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Bán gấp căn hộ dự án Nhà Ở Quân Khu 7, Quận 12, 78,88m2, 3PN </a></p>
+                    Bán căn hộ dự án Nhà Ở Quân Khu 7, phòng 806 lô A, 3 phòng ngủ, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà, vị trí đẹp, 78,88m2, 14,3tr/m2.<br>
+                    - Cơ hội hiếm có và duy nhất! <br>
+                    - Căn hộ vị trí cực đẹp, phong thủy tốt nhất. <br>
+                    - Phòng 806 lô A, 3 PN, 2 WC, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà. <br>
+                    - Địa chỉ: Dự án Nhà Ở Quân Khu 7, Quận 12, TP.HCM. <br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
     @* Việc Làm *@
 <div class='response4' data-response="op4">
-    @*
-            <div class="form-group">
-            @Html.LabelFor(model => model.NameViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NameViecLam, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NameViecLam, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    *@
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.DescriptioViecLamn, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -352,7 +665,7 @@
         </div>
     </div>
 
-   
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.LocationViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -365,8 +678,117 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple/>
+            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
             <div id="displayImg4"></div>
+        </div>
+    </div>
+    <hr />
+    <h2>VIỆC LÀM</h2>
+    <hr>
+    <div class="formall">
+        <div class="formCreate">
+            <div class="form-group">
+                <label for="TD">Tiêu đề</label>
+                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <label for="sel1">Chọn loại việc làm:</label>
+                        <select class="form-control" id="sel1">
+                            <option>Lập trình viên</option>
+                            <option>bán hàng</option>
+                            <option>bảo vệ</option>
+                            <option>4</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Ngày hết hạn tin tức</label>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="TD">Người liên hệ</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="TD">Số điện thoại</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Nội dung</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Yêu cầu</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="thông tin yêu cầu ..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Quyền lợi</label>
+                <textarea class="form-control" rows="10" id="comment" placeholder="thông tin về quyền lợi ..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="TD">Lương</label>
+                        <input class="form-control" type="number" placeholder="nhập mức lương tối thiểu, chỉ nhập số">
+                    </div>
+
+                    <div class="col-md-7">
+                        <label for="TD">Địa điểm</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
+                        <div id="displayImg">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div style="text-align: right">
+                    <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div class="NewsEX">
+            <div class="khungMau">
+                <h4>Tin đăng mẫu</h4>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a> Tuyển 4 nhân viên văn phòng và thị trường làm việc tại Hà Nội </a></p>
+                    Công ty Du lịch Đất Việt cần tuyển 4 nhân viên văn phòng và thị trường, nam hoặc nữ, 22 - 45 tuổi, tốt nghiệp THPT, nhanh nhẹn, giao tiếp tốt, có kỹ năng bán hàng qua điện thoại. Có thể đi công tác xa nhà từ 1 - 2 tháng, lương thưởng và thời gian làm việc theo thỏa thuận.
+                </div>
+                <hr>
+                <div class="Noidungmau">
+                    <p>Tiêu đề: <a>Tuyển 5 nhân viên kinh doanh thực phẩm, lương thử việc 6.5tr</a></p>
+                    Công ty Tiến Minh tuyển 5 nam/ nữ nhân viên kinh doanh ở TPHCM, ưu tiên có kinh nghiệm thực phẩm, trình độ trung cấp, lương thử việc 6,5 triệu (lương căn bản + phụ cấp + thưởng). Yêu cầu nộp hồ sơ đầy đủ, phỏng vấn trực tiếp.
+                </div>
+            </div>
         </div>
     </div>
 </div>

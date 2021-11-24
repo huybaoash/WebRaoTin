@@ -5,6 +5,17 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .check-Gender {
+        display: flex;
+        padding-left: 20px;
+    }
+        .check-Gender label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+</style>
+
 <h2>Edit</h2>
 
 @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -45,7 +56,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+            @* @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })*@
+            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -63,58 +75,56 @@
         @if (@Model.Gender == null)
         {
 
-            <div>
-                Nam <input id="Gender"
-                           name="Gender"
-                           type="radio"
-                           value="Nam" />
-            </div>
-
-            <div>
-                Nữ <input id="Gender"
-                          name="Gender"
-                          type="radio"
-                          value="Nữ" />
-            </div>
+        <div class="check-Gender">
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nam" />
+            <label>Nam</label>
+            <input id="Gender"
+                   name="Gender"
+                   type="radio"
+                   value="Nữ" />
+            <label>Nữ</label>
+        </div>  
         }
         else
         {
             if (@Model.Gender.Equals("Nam"))
             {
 
-                <div>
-                    Nam <input checked="checked"
-                               id="Gender"
-                               name="Gender"
-                               type="radio"
-                               value="Nam" />
-                </div>
+    <div class="check-Gender">
+        <input checked="checked"
+               id="Gender"
+               name="Gender"
+               type="radio"
+               value="Nam" />
+        <label>Nam</label>
 
-                <div>
-                    Nữ <input id="Gender"
-                              name="Gender"
-                              type="radio"
-                              value="Nữ" />
-                </div>
-
-
+        <input id="Gender"
+               name="Gender"
+               type="radio"
+               value="Nữ" />
+        <label>Nữ</label>
+    </div>
             }
             else
             {
-                <div>
-                    Nam <input id="Gender"
-                               name="Gender"
-                               type="radio"
-                               value="Nam" />
-                </div>
+            <div class="check-Gender">
+                    <input id="Gender"
+                           name="Gender"
+                           type="radio"
+                           value="Nam" /> 
+                    <label>Nam</label>
 
-                <div>
-                    Nữ <input checked="checked"
-                              id="Gender"
-                              name="Gender"
-                              type="radio"
-                              value="Nữ" />
-                </div>
+
+                    <input checked="checked"
+                           id="Gender"
+                           name="Gender"
+                           type="radio"
+                           value="Nữ" />
+                    <label>Nam</label>
+            </div>
             }
         }
         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
