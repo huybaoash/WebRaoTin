@@ -778,6 +778,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         public ActionResult Create(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
         {
 
+
             if (tinTucsViewModel.EndDayTinTucs.Value.CompareTo(DateTime.Now) < 0)
             {
                 ModelState.AddModelError("", "Ngày hết hạn tin tức phải ở tương lai !");
@@ -785,22 +786,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
 
             // Lấy danh sách sản phẩm 
-            List<SanPham> SanPhams = new List<SanPham>();
-
-
-            // Lấy danh sách việc làm 
-
-            List<ViecLam> ViecLams = new List<ViecLam>();
-
-            // Lấy danh sách tin tức
-            List<TinTuc> TinTucs = new List<TinTuc>();
-
-            // Lấy danh sách dịch vụ
-            List<DichVu> DichVus = new List<DichVu>();
-
-
-            // Lấy danh sách bất động sản 
-            List<BatDongSan> BatDongSans = new List<BatDongSan>();
+            
 
             List<TinTuc> listTinTuc = db.TinTucs.ToList();
 
@@ -819,7 +805,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 ContractPhoneNumber = tinTucsViewModel.ContractPhoneNumber,
                 Contract = tinTucsViewModel.Contract,
                 PublishDay = DateTime.Now,
-                EndDay = tinTucsViewModel.EndDayTinTucs.Value,
+                EndDay = tinTucsViewModel.EndDayTinTucs.Value
                 
                 
         };
@@ -1332,7 +1318,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     TinTucId = tinTucsViewModel.IdTinTucs,
                     TinTuc = tinTuc,
                     LoaiDichVu = loaiDichVu,
-                    Id = tinTucsViewModel.IdLoaiDichVu
+                    Id = tinTucsViewModel.IdDichVu
                 };
 
                 var existingEntity2 = db.DichVus.Find(tinTucsViewModel.IdDichVu);

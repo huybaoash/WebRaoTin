@@ -7,8 +7,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
 <style>
     .formCreate {
         width: 70%;
@@ -59,9 +57,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>TinTuc</h4>
-    <hr />
-
+    
     <div class="row rowbtn-create">
         <div  title="nhấn vào để đăng tin theo chủ đề bạn chọn" class="col img-dv" id = "boxDV" onclick="clickDV()">Dịch vụ</div>
         <div  title="nhấn vào để đăng tin theo chủ đề bạn chọn" class="col img-vl" id = "boxVL" onclick="clickVL()">Tìm việc</div>   
@@ -82,7 +78,7 @@
 
     @*Tin tức*@
 
-    <div class='response5' data-response="op5">
+    @*<div class='response5' data-response="op5">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -126,7 +122,7 @@
                 @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+    </div>*@
 
 
 
@@ -140,7 +136,7 @@
 
 <div class='response1' data-response="op1">
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.DescriptionSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.DescriptionSanPham, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
@@ -187,32 +183,43 @@
             <div id="displayImg1"></div>
         </div>
     </div>
-    <hr />
+    <hr />*@
+
     <h2>SẢN PHẨM</h2>
     <hr>
     <div class="formall">
         <div class="formCreate">
             <div class="form-group">
                 <label for="TD">Tiêu đề</label>
-                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="sel1">Chọn loại sản phẩm:</label>
-                        <select class="form-control" id="sel1">
-                            <option>Đồ dùng điện tử</option>
-                            <option>máy tính ..</option>
-                            <option>3</option>
-                            <option>4</option>
+                        <select class="form-control" id="IdLoaiSanPham" name="IdLoaiSanPham" aria-invalid="false">
+                            @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+                            {
+                                <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
+                            }
                         </select>
-
+                        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiSanPham" data-valmsg-replace="true"></span>
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Ngày hết hạn tin tức</label>
-                        <input class="form-control" type="date">
+                        @Html.TextBoxFor(model => model.EndDayTinTucs, new
+                       {
+
+                            @type = "date",
+                           @class = "form-control"
+                       })
+                        @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+
+
                     </div>
+
                 </div>
 
             </div>
@@ -221,31 +228,36 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="TD">Người liên hệ</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="Contract" name="Contract" value="" data-val="true" data-val-required="The Thông tin liên lạc field is required.">
+                        @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Số điện thoại</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" data-val="true" data-val-required="The Số điện thoại liên hệ field is required." id="ContractPhoneNumber" name="ContractPhoneNumber" value="">
+                        @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="comment">Nội dung</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                <textarea class="form-control" rows="10" id="DescriptionSanPham" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!" name="DescriptionSanPham"></textarea>
+                @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="TD">Giá</label>
-                        <input class="form-control" type="number">
+                        <input class="form-control" type="number" id="PriceSanPham" name="PriceSanPham">
+                        @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-9">
                         <label for="TD">Nơi bán</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="LocationSanPham" name="LocationSanPham">
+                        @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -254,10 +266,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
-                        <div id="displayImg">
-
-                        </div>
+                        <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" multiple />
+                        <div id="displayImg1"></div>
                     </div>
 
                 </div>
@@ -293,7 +303,7 @@
 
 <div class='response2' data-response="op2">
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.DescriptionDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.DescriptionDichVu, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
@@ -333,36 +343,44 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ImageDichVu, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="wrapper col-md-10">
-            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" accept="image/jpg" multiple />
+            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
             <div id="displayImg2"></div>
         </div>
     </div>
-    <hr />
+    <hr />*@
     <h2>DỊCH VỤ</h2>
     <hr>
     <div class="formall">
         <div class="formCreate">
             <div class="form-group">
                 <label for="TD">Tiêu đề</label>
-                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                      
-                            <label for="sel1">Chọn loại dịch vụ:</label>
-                            <select class="form-control" id="sel1">
-                                <option>Xây dựng nội thất phong thủy</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        
+
+                        <label for="sel1">Chọn loại dịch vụ:</label>
+                        <select class="form-control" id="IdLoaiDichVu" name="IdLoaiDichVu" aria-invalid="false">
+                            @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
+                            {
+                                <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
+                            }
+                        </select>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiDichVu" data-valmsg-replace="true"></span>
+
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Ngày hết hạn tin tức</label>
-                        <input class="form-control" type="date">
+                        @Html.TextBoxFor(model => model.EndDayTinTucs, new
+                       {
+
+                            @type = "date",
+                           @class = "form-control"
+                       })
+                        @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -372,31 +390,36 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="TD">Người liên hệ</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="Contract" name="Contract">
+                        @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Số điện thoại</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                        @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="comment">Nội dung</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                <textarea class="form-control" rows="10" id="DescriptionDichVu" name="DescriptionDichVu" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="TD">Giá</label>
-                        <input class="form-control" type="number">
+                        <input class="form-control" type="number" id="PriceDichVu" name="PriceDichVu">
+                        @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-9">
                         <label for="TD">Địa điểm</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="LocationDichVu" name="LocationDichVu">
+                        @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -405,8 +428,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
-                        <div id="displayImg">
+                        <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
+                        <div id="displayImg2">
 
                         </div>
                     </div>
@@ -443,7 +466,7 @@
 
 <div class='response3' data-response="op3">
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.DescriptionBatDongSan, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.DescriptionBatDongSan, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
@@ -503,32 +526,41 @@
 
         </div>
     </div>
-    <hr />
+    <hr />*@
     <h2>BẤT ĐỘNG SẢN</h2>
     <hr>
     <div class="formall">
         <div class="formCreate">
             <div class="form-group">
                 <label for="TD">Tiêu đề</label>
-                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                <input class="form-control" type="text" id="Title" name="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
+
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                      
-                            <label for="sel1">Chọn loại bất động sản:</label>
-                            <select class="form-control" id="sel1">
-                                <option>bán nhà</option>
-                                <option>cho thuê nhà ..</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                       
+
+                        <label for="sel1">Chọn loại bất động sản:</label>
+                        <select class="form-control" id="IdLoaiBatDongSan" name="IdLoaiBatDongSan" aria-invalid="false">
+                            @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
+                            {
+                                <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
+                            }
+                        </select>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiBatDongSan" data-valmsg-replace="true"></span>
+
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Ngày hết hạn tin tức</label>
-                        <input class="form-control" type="date">
+                        @Html.TextBoxFor(model => model.EndDayTinTucs, new
+                       {
+
+                            @type = "date",
+                           @class = "form-control"
+                       })
+                        @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -538,35 +570,41 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="TD">Người liên hệ</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="Contract" name="Contract">
+                        @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Số điện thoại</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                        @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="comment">Nội dung</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                <textarea class="form-control" rows="10" id="DescriptionBatDongSan" name="DescriptionBatDongSan" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="TD">diện tích</label>
-                        <input class="form-control" type="number" placeholder="vd:1300->1300m²">
+                        <input class="form-control" type="number" placeholder="vd:1300->1300m²" id="Area" name="Area">
+                        @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-3">
                         <label for="TD">Giá</label>
-                        <input class="form-control" type="number">
+                        <input class="form-control" type="number" id="PriceBatDongSan" name="PriceBatDongSan">
+                        @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">địa điểm</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="LocationBatDongSan" name="LocationBatDongSan">
+                        @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -574,11 +612,9 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
-                        <div id="displayImg">
-
-                        </div>
+                        <label>Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                        <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" multiple />
+                        <div id="displayImg3"></div>
                     </div>
                 </div>
             </div>
@@ -622,7 +658,7 @@
     @* Việc Làm *@
 <div class='response4' data-response="op4">
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.DescriptioViecLamn, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.DescriptioViecLamn, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
@@ -682,32 +718,40 @@
             <div id="displayImg4"></div>
         </div>
     </div>
-    <hr />
+    <hr />*@
     <h2>VIỆC LÀM</h2>
     <hr>
     <div class="formall">
         <div class="formCreate">
             <div class="form-group">
                 <label for="TD">Tiêu đề</label>
-                <input class="form-control" type="text" id="TD" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
 
                         <label for="sel1">Chọn loại việc làm:</label>
-                        <select class="form-control" id="sel1">
-                            <option>Lập trình viên</option>
-                            <option>bán hàng</option>
-                            <option>bảo vệ</option>
-                            <option>4</option>
+                        <select class="form-control" id="IdLoaiViecLam" name="IdLoaiViecLam" aria-invalid="false">
+                            @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
+                            {
+                                <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
+                            }
                         </select>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiViecLam" data-valmsg-replace="true"></span>
 
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Ngày hết hạn tin tức</label>
-                        <input class="form-control" type="date">
+                        @Html.TextBoxFor(model => model.EndDayTinTucs, new
+                       {
+
+                            @type = "date",
+                           @class = "form-control"
+                       })
+                        @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -717,41 +761,48 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="TD">Người liên hệ</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="Contract" name="Contract">
+                        @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-6">
                         <label for="TD">Số điện thoại</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                        @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="comment">Nội dung</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                <textarea class="form-control" rows="10" id="DescriptioViecLamn" name="DescriptioViecLamn" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 <label for="comment">Yêu cầu</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="thông tin yêu cầu ..."></textarea>
+                <textarea class="form-control" rows="10" id="Require" name="Require" placeholder="thông tin yêu cầu ..."></textarea>
+                @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 <label for="comment">Quyền lợi</label>
-                <textarea class="form-control" rows="10" id="comment" placeholder="thông tin về quyền lợi ..."></textarea>
+                <textarea class="form-control" rows="10" id="Benefit" name="Benefit" placeholder="thông tin về quyền lợi ..."></textarea>
+                @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-5">
                         <label for="TD">Lương</label>
-                        <input class="form-control" type="number" placeholder="nhập mức lương tối thiểu, chỉ nhập số">
+                        <input class="form-control" type="number" id="Salary" name="Salary" placeholder="nhập mức lương tối thiểu, chỉ nhập số">
+                        @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-md-7">
                         <label for="TD">Địa điểm</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="LocationViecLam" name="LocationViecLam">
+                        @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -760,8 +811,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                        <input type="file" value="" name="upload" id="upload" required title="Chọn đường dẫn hình ảnh" onchange="ImagesFileAsURL()" accept="image/jpg" multiple />
-                        <div id="displayImg">
+                        <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
+                        <div id="displayImg4">
 
                         </div>
                     </div>
@@ -825,40 +876,40 @@
             }
             else if ($('.target').val() == '1') {
                 $('.response1').show();
-                $('.response2').hide();
-                $('.response3').hide();
-                $('.response0').hide();
-                $('.response4').hide();
-                $('.response5').show();
+                $('.response2').remove();
+                $('.response3').remove();
+                $('.response0').remove();
+                $('.response4').remove();
+                $('.response5').remove();
                 $('.target').hide();
                 $('#Create').show();
             }
             else if ($('.target').val() == '2') {
-                $('.response1').hide();
+                $('.response1').remove();
                 $('.response2').show();
-                $('.response3').hide();
-                $('.response0').hide();
-                $('.response4').hide();
+                $('.response3').remove();
+                $('.response0').remove();
+                $('.response4').remove();
                 $('.response5').show();
                 $('.target').hide();
                 $('#Create').show();
             }
             else if ($('.target').val() == '3') {
-                $('.response1').hide();
-                $('.response2').hide();
+                $('.response1').remove();
+                $('.response2').remove();
                 $('.response3').show();
-                $('.response0').hide();
-                $('.response4').hide();
+                $('.response0').remove();
+                $('.response4').remove();
                 $('.response5').show();
                 $('.target').hide();
                 $('#Create').show();
             }
 
             else if ($('.target').val() == '4') {
-                $('.response1').hide();
-                $('.response2').hide();
-                $('.response3').hide();
-                $('.response0').hide();
+                $('.response1').remove();
+                $('.response2').remove();
+                $('.response3').remove();
+                $('.response0').remove();
                 $('.response4').show();
                 $('.response5').show();
                 $('.target').hide();
