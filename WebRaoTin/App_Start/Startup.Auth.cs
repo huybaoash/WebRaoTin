@@ -54,9 +54,9 @@ namespace WebRaoTin
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "421310846306215",
+               appSecret: "7bdc253d1f1901a5f041461dfffde6a8");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

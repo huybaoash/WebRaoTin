@@ -86,7 +86,7 @@ namespace WebRaoTin.Controllers
 
 
 
-            if (model.Email.EndsWith(".com") == false)
+            if (model.Email.EndsWith(".com") == false || model.Email.EndsWith(".com.vn") == false)
             {
 
                 ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! 1");
@@ -207,17 +207,21 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
                 if (isEmailAlreadyExists)
                 {
-                    ModelState.AddModelError("Email", "User with this email already exists");
+                    ModelState.AddModelError("Email", "Email này đã được sử dùng.");
                     return View(model);
                 }
 
+
+                
                 var isUserNamelAlreadyExists = db.Users.Any(x => x.UserName == model.UserName);
                 if (isUserNamelAlreadyExists)
                 {
-                    ModelState.AddModelError("UserName", "User with this username already exists");
+                    ModelState.AddModelError("UserName", "Tên tài khoản này đã được sử dụng.");
                     return View(model);
                 }
 
