@@ -7,86 +7,154 @@
         display: flex;
         padding-left: 20px;
     }
-    .check-Gender label{
-        margin-right:20px;
-        font-weight:normal;
+
+        .check-Gender label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+
+    .form-horizontal {
+        width: 50%;
+        margin: auto;
+        border:1px solid #dcdcdc;
+        border-radius:5px;
+        padding-left:30px;
+        padding-right:30px;
     }
 </style>
-<h3>Kết nối với tài khoản @ViewBag.LoginProvider.</h3>
+
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    <h3 style="font-family:Arial">Kết nối với tài khoản @ViewBag.LoginProvider.</h3>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p class="text-info">
+    <p class="text-info" style="font-size:16px;">
         Bạn đã kết nối thành công với <strong>@ViewBag.LoginProvider</strong>.
         Xin hãy điền thông tin vào những ô dưới đây rồi hãy ấn nút đăng ký
     </p>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @*    @Html.ValidationSummary("", new { @class = "text-danger" })*@
+
+  
+
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        @* @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
+            <label for="UserName">Tên tài khoản(*)</label>
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
 
+
     <div class="form-group">
-        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
+        @*   @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
+            <label for="FullName">Họ tên(*)</label>
             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
         </div>
+
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
-   
-        <div class="check-Gender">
+        @*  @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })*@
 
+        <div class="check-Gender">
+            <label style="font-weight:bold">Giới Tính:</label>
             <input id="Gender"
                    name="Gender"
                    type="radio"
                    value="Nam" />
             <label>Nam</label>
-
             <input id="Gender"
                    name="Gender"
                    type="radio"
                    value="Nữ" />
             <label>Nữ</label>
         </div>
+
         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-        </div>
-    </div>
+
+
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @*   @Html.LabelFor(m => m.CMND, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.CMND, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+            <label for="CMND">CMND(*)</label>
             @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @*   @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })*@
+        <div class="col-md-10">
+            <label for="PhoneNumber">Số điện thoại (*)</label>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Đăng ký" />
+        @*    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+        <div class="col-md-10">
+            <label for="Email">Email (*)</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-success" id="register" name="register">Đăng ký</button>
         </div>
     </div>
 }
+
+<script type="text/javascript">
+    $("#register").click(function () {
+        var a = '';
+        if ($('#PhoneNumber').val() == '') {
+            a = a + 'Số dt ko dc trống\n'
+
+        }
+
+        if ($('#FullName').val() == '') {
+            a = a + 'Tên ko dc trống\n'
+
+        }
+
+        if ($('#Email').val() == '') {
+            a = a + 'Tên ko dc trống\n'
+
+        }
+
+        if ($('#CMND').val() == '') {
+            a = a + 'Tên ko dc trống\n'
+
+        }
+
+        if ($('#UserName').val() == '') {
+            a = a + 'Tên ko dc trống\n'
+
+        }
+
+        if (a == '') alert('Đăng ký thành công !');
+        else alert('Bạn nhấp thiếu !');
+    });
+
+
+
+
+
+</script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

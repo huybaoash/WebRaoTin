@@ -2,13 +2,30 @@
 @using Microsoft.Owin.Security
 
 <style>
-    .links button{
-        height:100%;
-        width:100%;
+    .links button {
+        height: 100%;
+        width: 100%;
         font-size: 20px;
-        box-sizing:border-box;
-        padding:2px;
+        box-sizing: border-box;
+        padding: 2px;
+        font-weight:bolder;
     }
+    #Google{
+        color:red;
+    }
+    #Google:hover{
+        background-color:white;
+        color:red;
+        border:1px solid red;
+    }
+    #Facebook{
+        color:blue;
+    }
+        #Facebook:hover {
+            background-color: white;
+            color: blue;
+            border: 1px solid blue;
+        }
 </style>
 
 
@@ -32,14 +49,24 @@
 
             foreach (AuthenticationDescription p in loginProviders)
             {
-                <div class="links">
-                    <button class="btn btn-danger" type="submit" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"> <i class="fab fa-google-plus-square"></i> @p.AuthenticationType</button>
-                </div>
+                if (p.Caption.Equals("Facebook"))
+                {
+                    <div class="links">
+                        <button class="btn btn-default" type="submit" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"> <i class="fab fa-facebook-f"></i> @p.AuthenticationType</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="links">
+                        <button class="btn btn-default" type="submit" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"> <i class="fab fa-google-plus-square"></i> @p.AuthenticationType</button>
+                    </div>
+                }
+
             }
 
 
         }
 
-        
+
     }
 }

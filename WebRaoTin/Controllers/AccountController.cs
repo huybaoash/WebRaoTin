@@ -86,12 +86,22 @@ namespace WebRaoTin.Controllers
 
 
 
-            if (model.Email.EndsWith(".com") == false || model.Email.EndsWith(".com.vn") == false)
+            if (model.Email.EndsWith(".com") == false)
             {
+                
+                if (model.Email.EndsWith(".com.vn"))
+                {
 
-                ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! 1");
-                return View(model);
+                    ;
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! ");
+                    return View(model);
+                }
+                
             }
+            
             int flag_login = 0;
             foreach (var item in db.Users)
             {
@@ -142,7 +152,7 @@ namespace WebRaoTin.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Mật khẩu hoặc email không hợp lệ! 2");
+                    ModelState.AddModelError("", "Không đúng mật khẩu hoặc email.! ");
                     return View(model);
             }
         }
@@ -213,7 +223,7 @@ namespace WebRaoTin.Controllers
                 if (isEmailAlreadyExists)
                 {
                     ModelState.AddModelError("Email", "Email này đã được sử dùng.");
-                    return View(model);
+                    
                 }
 
 
@@ -222,9 +232,13 @@ namespace WebRaoTin.Controllers
                 if (isUserNamelAlreadyExists)
                 {
                     ModelState.AddModelError("UserName", "Tên tài khoản này đã được sử dụng.");
-                    return View(model);
+                    
                 }
 
+                if(ModelState.Count > 0)
+                {
+                    return View(model);
+                }
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CMND = model.CMND, HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now, Gender = model.Gender };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

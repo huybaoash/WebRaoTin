@@ -5,29 +5,29 @@ namespace WebRaoTin.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống,")]
         [Display(Name = "Tên tài khoản (*)")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Họ tên (*)")]
         public string FullName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Email (*)")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Phone]
         [Display(Name = "Số điện thoại (*)")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Giới tính (*)")]
 
         public string Gender { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "CMND (*)")]
 
         public string CMND { get; set; }
@@ -66,14 +66,14 @@ namespace WebRaoTin.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống Email")]
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Sai định dạng địa chỉ Email!")]
         public string Email { get; set; }
@@ -89,38 +89,41 @@ namespace WebRaoTin.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [EmailAddress]
         [Display(Name = "Email (*)")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Tên tài khoản (*)")]
         public string UserName { get; set; }
 
-        
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
+        [Required(ErrorMessage ="Phải chọn giới tính")]
         [Display(Name = "Giới tính")]
 
         public string Gender { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Địa chỉ")]
+
 
         public string HomeAdress { get; set; }
 
-
+        [Required(ErrorMessage = "Không được để trống.")]
         [Phone]
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "CMND (*)")]
 
         public string CMND { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password (*)")]
@@ -134,12 +137,12 @@ namespace WebRaoTin.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -155,7 +158,7 @@ namespace WebRaoTin.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Không được để trống.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

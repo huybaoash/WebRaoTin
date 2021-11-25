@@ -501,11 +501,6 @@
                 </div>
 
                 <hr>
-                <div class="form-group">
-                    <div style="text-align: right">
-                        <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
-                    </div>
-                </div>
             </div>
 
             <div class="NewsEX">
@@ -556,7 +551,7 @@
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." value="@Model.Title" name="@Model.Title">
+                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." value="@Model.Title" name="Title">
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -670,12 +665,7 @@
 
                     </div>
                 </div>
-                <hr>
-                <div class="form-group">
-                    <div style="text-align: right">
-                        <input type="submit" value="Thêm" id="Create" class="btn btn-success" />
-                    </div>
-                </div>
+                <hr>    
             </div>
 
             <div class="NewsEX">
@@ -697,16 +687,16 @@
 
     
         <div class="form-group">
-               <div style="text-align: right">
-                   <input type="submit" value="Lưu" id="Create" class="btn btn-success" />
+               <div style="text-align: left; padding-left:20px;" >
+                   <button type="submit" id="Create" class="btn btn-success">Lưu</button>
                </div>
         </div>
     
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -824,5 +814,7 @@
         });
     });
 
-
+    $("#Create").click(function () {
+        alert("Lưu thành công!");
+    });
 </script>

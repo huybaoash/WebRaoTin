@@ -12,7 +12,6 @@
     Nếu tin tức được chọn là 1 bất động sản. Thì LuaChon của nó = "3";
     Nếu tin tức được chọn là 1 việc làm. Thì LuaChon của nó = "4";
 
-
 *@
 
 @* san phẩm *@
@@ -97,7 +96,7 @@
                     <hr />
                 </div>
             </div>
-           
+
         </div>
 
         @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
@@ -308,9 +307,9 @@
                     <hr />
                 </div>
             </div>
-          
+
         </div>
-  
+
         @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
@@ -522,9 +521,9 @@
                     <hr />
                 </div>
             </div>
-           
+
         </div>
-      
+
         @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
@@ -757,7 +756,17 @@
                                 <div style="padding-left: 10px; line-height: 0.8rem;">
                                     <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" />
                                     <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
-                                    <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px">Gửi CV</button>
+                                    <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
+
+                                    <script>
+                                            $("#uploadCV").click(function () {
+                                                    alert("Gửi thành công!");
+                                                });
+
+                                               @* function myFunction() {
+                                                    alert("Hello! I am an alert box!");
+                                                }*@
+                                    </script>
                                 </div>
                                 <hr />
 
@@ -781,9 +790,9 @@
             </div>
 
 
-          
+
         </div>
-       
+
         @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
@@ -902,78 +911,78 @@
 }
 
 @*@using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    if (Request.IsAuthenticated)
     {
-        <div style="padding:10px">
-            <h4>Bình luận</h4>
-            <hr />
+        @Html.AntiForgeryToken()
+        if (Request.IsAuthenticated)
+        {
+            <div style="padding:10px">
+                <h4>Bình luận</h4>
+                <hr />
 
-            <ul>
+                <ul>
 
-                @foreach (var item in @ViewBag.dsBLcuaTT)
-                {
-
-                    <br />
-
-                    <b>@item.CustomerEmail</b>
-                    @item.PublishDay
-                    if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                    @foreach (var item in @ViewBag.dsBLcuaTT)
                     {
 
-                        <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
-                    };
-                    <br />
+                        <br />
 
-                    @item.Description
+                        <b>@item.CustomerEmail</b>
+                        @item.PublishDay
+                        if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                        {
 
-                }
+                            <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+                        };
+                        <br />
 
-            </ul>
-            <hr />
-            <div class="CMT">
-                <form class="form-inline" action="">
-                    <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
-                    <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                    <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+                        @item.Description
 
-                    <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
-                </form>
+                    }
+
+                </ul>
+                <hr />
+                <div class="CMT">
+                    <form class="form-inline" action="">
+                        <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                        <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+                        <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+
+                        <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                    </form>
+                </div>
+
+
             </div>
+        }
+        else
+        {
+            <div>
+                <h4>Bình luận</h4>
+                <hr />
+                <ul>
+
+                    @foreach (var item in @ViewBag.dsBLcuaTT)
+                    {
+
+                        <br />
+
+                        <b>@item.CustomerEmail      </b>
+                        @item.PublishDay
+
+                        <br />
+                        @item.Description
 
 
-        </div>
-    }
-    else
-    {
-        <div>
-            <h4>Bình luận</h4>
-            <hr />
-            <ul>
+                    }
 
-                @foreach (var item in @ViewBag.dsBLcuaTT)
-                {
+                </ul>
 
-                    <br />
+                Bạn phải đăng nhập mới có thế bình luận.
 
-                    <b>@item.CustomerEmail      </b>
-                    @item.PublishDay
+            </div>
+        }
 
-                    <br />
-                    @item.Description
-
-
-                }
-
-            </ul>
-
-            Bạn phải đăng nhập mới có thế bình luận.
-
-        </div>
-    }
-
-}*@
+    }*@
 
 
 

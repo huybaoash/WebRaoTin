@@ -13,6 +13,8 @@ namespace WebRaoTin.ViewModel
     {
 
         public int IdTinTucs { get; set; }
+        
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Tiêu đề")]
         public string Title { get; set; }
 
@@ -22,23 +24,23 @@ namespace WebRaoTin.ViewModel
         [DataType(DataType.Date, ErrorMessage = "Date only")]
         [DisplayFormat( ApplyFormatInEditMode = true)]
         public DateTime? PublishDayTinTucs { get; set; }
+
         [Required]
-        
         [Display(Name = "Ngày hết hạn tin tức")]
         [DataType(DataType.Date, ErrorMessage = "Date only")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
         public DateTime? EndDayTinTucs { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Thông tin liên lạc")]
         public string Contract { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+        [Required(ErrorMessage = "Không được để trống.")]
 
         [Display(Name = "Số điện thoại liên hệ")]
         public string ContractPhoneNumber { get; set; }
-
+        
         [Display(Name = "Trạng thái")]
         public string Status { get; set; }
 
@@ -58,24 +60,29 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên công việc")]
         public string NameViecLam { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung công việc")]
         public string DescriptioViecLamn { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Yêu cầu")]
         public string Require { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Quyền lợi")]
         public string Benefit { get; set; }
 
 
-
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Lương")]
         [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal Salary { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Địa điểm")]
         public string LocationViecLam { get; set; }
 
+        
         [Display(Name = "Hình ảnh")]
         public string ImageViecLam { get; set; }
 
@@ -90,27 +97,30 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên bất động sản")]
         public string NameBatDongSan { get; set; }
 
-    
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Giá")]
         [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceBatDongSan { get; set; }
 
         
-
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Diện tích")]
         public int Area { get; set; }
 
 
         [Required(AllowEmptyStrings = true)]
         [Display(Name = "Hình ảnh")]
+
         public string ImageBatDongSan { get; set; }
         [Required(AllowEmptyStrings = true)]
         [Display(Name = "Video")]
+        
         public string VideoBatDongSan { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung ")]
         public string DescriptionBatDongSan { get; set; }
-
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Địa điểm ")]
         public string LocationBatDongSan { get; set; }
 
@@ -126,7 +136,7 @@ namespace WebRaoTin.ViewModel
         public string NameDichVu { get; set; }
 
        
-        
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Giá")]
         [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceDichVu { get; set; }
@@ -135,10 +145,11 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Hình ảnh")]
         public string ImageDichVu { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung dịch vụ")]
         public string DescriptionDichVu { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Địa điểm")]
         public string LocationDichVu { get; set; }
 
@@ -152,6 +163,7 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Tên sản phẩm")]
         public string NameSanPham { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Giá")]
         [DisplayFormat(DataFormatString = "{0:0.##}")]
         public decimal PriceSanPham { get; set; }
@@ -160,9 +172,11 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Hình ảnh")]
         public string ImageSanPham { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung sản phẩm")]
         public string DescriptionSanPham { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nơi bán")]
         public string LocationSanPham { get; set; }
 
@@ -226,6 +240,7 @@ namespace WebRaoTin.ViewModel
             LocationSanPham = locationSanPham;
             LuaChon = luaChon;
         }
+
 
         public TinTucsViewModel(TinTuc tinTuc,SanPham sp)
         {

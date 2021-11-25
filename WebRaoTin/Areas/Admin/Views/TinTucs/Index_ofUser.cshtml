@@ -19,26 +19,9 @@
 
             @for (int i = 0; i < @Model.Count; i++)
             {
-                
+
                 <a href="@Url.Action("Details", "TinTucs",new { id= @Model[i].IdTinTucs })">
                     <li id="item_li" style="height:155px">
-
-                        @if (User.Identity.GetUserId().Equals(@Model[i].CustomerID))
-                        {
-                            if (@Model[i].Status.Equals("Đã khóa"))
-                            {
-                                <a class="btn btn-danger btn-xs" style="margin-left:80%">Đã khóa</a>
-                            }
-                            else if (@Model[i].Status.Equals("Ẩn"))
-                            {
-                                <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Khôi phục</a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Ẩn</a>
-                            }
-                            <a href="@Url.Action("Edit", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-primary btn-xs">Sửa</a>
-                        }
 
 
 
@@ -117,6 +100,26 @@
 
                     </li>
                 </a>
+
+                if (User.Identity.GetUserId().Equals(@Model[i].CustomerID))
+                {
+                    if (@Model[i].Status.Equals("Đã khóa"))
+                    {
+                        <a class="btn btn-danger btn-xs" style="margin-left:80%">Đã khóa</a>
+                    }
+                    else if (@Model[i].Status.Equals("Ẩn"))
+                    {
+                        <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Khôi phục</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Ẩn</a>
+                    }
+                    <a href="@Url.Action("Edit", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-primary btn-xs">Sửa</a>
+                    <hr />
+                }
+
+
             }
         </ul>
         @Html.PagedListPager(Model, page => Url.Action("Index_ofUser", new

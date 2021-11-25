@@ -16,11 +16,12 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên bất động sản")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Diện tích")]
         public int Area { get; set; }
 
 
-
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Giá")]
         [DisplayFormat(DataFormatString = "{0:#,##00.##}")]
         public decimal Price { get; set; }
@@ -31,9 +32,11 @@ namespace WebRaoTin.Models
         [Display(Name = "Video")]
         public string Video { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Nội dung ")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Địa điểm ")]
         public string Location { get; set; }
 

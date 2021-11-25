@@ -12,6 +12,8 @@ namespace WebRaoTin.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Tiêu đề")]
         public string Title { get; set; }
 
@@ -28,11 +30,11 @@ namespace WebRaoTin.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*/
         public DateTime EndDay { get; set; }
 
-
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Thông tin liên lạc")]
         public string Contract { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
+        [Required(ErrorMessage ="Không được để trống")]
         [Display(Name = "Số điện thoại liên hệ")]
         public string ContractPhoneNumber { get; set; }
 

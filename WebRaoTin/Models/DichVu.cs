@@ -15,7 +15,7 @@ namespace WebRaoTin.Models
 
         [Display(Name = "Tên dịch vụ")]
         public string Name { get; set; }
-
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Giá")]
         [DisplayFormat(DataFormatString = "{0:#,##00.##}")]
         public decimal Price { get; set; }
@@ -23,9 +23,12 @@ namespace WebRaoTin.Models
         [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
 
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Nội dung dịch vụ")]
         public string Description { get; set; }
 
+
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Địa điểm")]
         public string Location { get; set; }
 
