@@ -24,6 +24,7 @@ namespace WebRaoTin.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*/
         public DateTime PublishDay { get; set; }
 
+
         [Display(Name = "Ngày hết hạn")]
 
         /*[DataType(DataType.Date, ErrorMessage = "Date only")]

@@ -8,6 +8,9 @@
 }
 
 <style>
+    span{
+        color:red;
+    }
     .formCreate {
         width: 70%;
         padding: 20px;
@@ -191,7 +194,7 @@
               
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -209,12 +212,8 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.TextBoxFor(model => model.EndDayTinTucs, new
-                           {
-
-                                @type = "date",
-                               @class = "form-control"
-                           })
+                            
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
 
 
@@ -228,13 +227,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract" value="" data-val="true" data-val-required="The Thông tin liên lạc field is required.">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" data-val="true" data-val-required="The Số điện thoại liên hệ field is required." id="ContractPhoneNumber" name="ContractPhoneNumber" value="">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -242,7 +241,7 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionSanPham" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!" name="DescriptionSanPham"></textarea>
+                    @Html.TextAreaFor(m => m.DescriptionSanPham, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
                 </div>
 
@@ -250,13 +249,14 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceSanPham" name="PriceSanPham">
+                            <input class="form-control" data-val="true" data-val-number="The field Giá must be a number." data-val-required="Không được để trống." id="PriceSanPham" name="PriceSanPham" type="number" value="" aria-describedby="PriceSanPham-error" aria-invalid="true">
+                           
                             @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-9">
-                            <label for="TD">Nơi bán</label>
-                            <input class="form-control" type="text" id="LocationSanPham" name="LocationSanPham">
+                            <label for="LocationSanPham">Nơi bán</label>
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationSanPham" name="LocationSanPham" type="text" value="">
                             @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -275,7 +275,7 @@
                 <hr>
                 <div class="form-group">
                     <div style="text-align: right">
-                        <button type="submit" value="Thêm" id="Create" class="btn btn-success">Thêm</button>
+                        <button type="submit" value="Thêm" id="CreateSP" class="btn btn-success">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -354,7 +354,7 @@
             <div class="formCreate">
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -374,13 +374,11 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.TextBoxFor(model => model.EndDayTinTucs, new
-                           {
 
-                                @type = "date",
-                               @class = "form-control"
-                           })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+
+
                         </div>
                     </div>
 
@@ -390,13 +388,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -404,7 +402,7 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionDichVu" name="DescriptionDichVu" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                    @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
                 </div>
 
@@ -412,13 +410,14 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceDichVu" name="PriceDichVu">
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceDichVu" name="PriceDichVu" type="number" value="" aria-describedby="PriceDichVu-error" aria-invalid="true">
+
                             @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-9">
-                            <label for="TD">Địa điểm</label>
-                            <input class="form-control" type="text" id="LocationDichVu" name="LocationDichVu">
+                            <label for="LocationDichVu">Địa điểm</label>
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationDichVu" name="LocationDichVu" type="text" value="">
                             @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -439,7 +438,7 @@
                 <hr>
                 <div class="form-group">
                     <div style="text-align: right">
-                        <button type="submit" id="Create" class="btn btn-success"> Thêm </button>
+                        <button type="submit" value="Thêm" id="CreateDV" class="btn btn-success">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -533,7 +532,7 @@
             <div class="formCreate">
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" name="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
 
@@ -554,13 +553,11 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.TextBoxFor(model => model.EndDayTinTucs, new
-                           {
 
-                                @type = "date",
-                               @class = "form-control"
-                           })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+
+
                         </div>
                     </div>
 
@@ -570,13 +567,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -584,30 +581,35 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionBatDongSan" name="DescriptionBatDongSan" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                    @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">diện tích</label>
-                            <input class="form-control" type="number" placeholder="vd:1300->1300m²" id="Area" name="Area">
+                            <input class="form-control" placeholder="vd:1300->1300m²" data-val="true" data-val-required="Không được để trống." id="Area" name="Area" type="number" value="" aria-describedby="Area-error" aria-invalid="true">
                             @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceBatDongSan" name="PriceBatDongSan">
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceBatDongSan" name="PriceBatDongSan" type="number" value="" aria-describedby="PriceBatDongSan-error" aria-invalid="true">
+
                             @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
-                            <label for="TD">địa điểm</label>
-                            <input class="form-control" type="text" id="LocationBatDongSan" name="LocationBatDongSan">
+                            <label for="LocationBatDongSan">Địa điểm</label>
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationBatDongSan" name="LocationBatDongSan" type="text" value="">
                             @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
+
+               
+
 
                 <div class="form-group">
                     <div class="row">
@@ -629,7 +631,7 @@
                 <hr>
                 <div class="form-group">
                     <div style="text-align: right">
-                        <button type="submit"  id="Create" class="btn btn-success"> Thêm</button>
+                        <button type="submit" value="Thêm" id="CreateBDS" class="btn btn-success">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -725,7 +727,7 @@
             <div class="formCreate">
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu.">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -745,13 +747,11 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.TextBoxFor(model => model.EndDayTinTucs, new
-                           {
 
-                                @type = "date",
-                               @class = "form-control"
-                           })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+
+
                         </div>
                     </div>
 
@@ -761,13 +761,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -775,19 +775,21 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptioViecLamn" name="DescriptioViecLamn" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!"></textarea>
+                    @Html.TextAreaFor(m => m.DescriptioViecLamn, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
                 </div>
 
+
+
                 <div class="form-group">
                     <label for="comment">Yêu cầu</label>
-                    <textarea class="form-control" rows="10" id="Require" name="Require" placeholder="thông tin yêu cầu ..."></textarea>
+                    @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Quyền lợi</label>
-                    <textarea class="form-control" rows="10" id="Benefit" name="Benefit" placeholder="thông tin về quyền lợi ..."></textarea>
+                    @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin quyền lợi!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
                 </div>
 
@@ -795,13 +797,13 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label for="TD">Lương</label>
-                            <input class="form-control" type="number" id="Salary" name="Salary" placeholder="nhập mức lương tối thiểu, chỉ nhập số">
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="Salary" name="Salary" type="number" value="" aria-describedby="Salary-error" aria-invalid="true" placeholder="Nhập mức lương tối thiểu, chỉ nhập số">
                             @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-7">
                             <label for="TD">Địa điểm</label>
-                            <input class="form-control" type="text" id="LocationViecLam" name="LocationViecLam">
+                            <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationViecLam" name="LocationViecLam" type="text" value="">
                             @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -822,7 +824,7 @@
                 <hr>
                 <div class="form-group">
                     <div style="text-align: right">
-                        <button type="submit" id="Create" class="btn btn-success">Thêm</button>
+                        <button type="submit" value="Thêm" id="CreateVL" class="btn btn-success">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -844,12 +846,12 @@
         </div>
     </div>
 
-
+@*
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" id="Create" class="btn btn-default" style="display:none;" />
         </div>
-    </div>
+    </div>*@
 </div>
 }
 
@@ -1038,9 +1040,19 @@
 
 
 @*thông báo nút thêm alert*@
-    $("#Create").click(function () {
-        alert("Thêm thành công!");
+    $("#CreateSP").click(function () {
+        alert("Thêm tin sản phẩm thành công!");
     });
  
+    $("#CreateDV").click(function () {
+        alert("Thêm dịch vụ thành công!");
+    });
 
+    $("#CreateBDS").click(function () {
+        alert("Thêm tin bất động sản thành công!");
+    });
+
+    $("#CreateVL").click(function () {
+        alert("Thêm tin việc làm thành công!");
+    });
 </script>

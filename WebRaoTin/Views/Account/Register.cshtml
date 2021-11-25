@@ -33,7 +33,7 @@
     @Html.AntiForgeryToken()
     <h2>Tạo tài khoản.</h2>
     <hr />
-    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger", style = "margin-left:0px" })
     <div class="form-group">
         @* @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
@@ -183,9 +183,9 @@
         else alert('Bạn nhấp thiếu !');
     });
 
-   
 
-    
+
+
 
 </script>
 

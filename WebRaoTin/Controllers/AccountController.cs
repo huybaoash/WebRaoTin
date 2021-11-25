@@ -218,6 +218,20 @@ namespace WebRaoTin.Controllers
             if (ModelState.IsValid)
             {
 
+                if (model.Email.EndsWith(".com") == false)
+                {
+
+                    if (model.Email.EndsWith(".com.vn"))
+                    {
+
+                        ;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! ");
+                    }
+
+                }
 
                 var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
                 if (isEmailAlreadyExists)
@@ -232,13 +246,11 @@ namespace WebRaoTin.Controllers
                 if (isUserNamelAlreadyExists)
                 {
                     ModelState.AddModelError("UserName", "Tên tài khoản này đã được sử dụng.");
-                    
+                    return View(model);
+
                 }
 
-                if(ModelState.Count > 0)
-                {
-                    return View(model);
-                }
+                
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CMND = model.CMND, HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now, Gender = model.Gender };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

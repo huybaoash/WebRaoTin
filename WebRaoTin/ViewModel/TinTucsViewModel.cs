@@ -25,7 +25,7 @@ namespace WebRaoTin.ViewModel
         [DisplayFormat( ApplyFormatInEditMode = true)]
         public DateTime? PublishDayTinTucs { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Ngày hết hạn tin tức")]
         [DataType(DataType.Date, ErrorMessage = "Date only")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
