@@ -5,66 +5,54 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
+<h2>Danh sách tài khoản</h2>
+<style>
+    #incon{
+        font-size:20px;
+    }
+</style>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+           @* @Html.DisplayNameFor(model => model.UserName)*@
+            <label>Tên người dùng</label>
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeAdress)
-        </th>
+
+
         <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateBorn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CMND)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+          @*  @Html.DisplayNameFor(model => model.PhoneNumber)*@
+            <label>Số điện thoại</label>
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Role)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Role)
+        @Html.DisplayFor(modelItem => item.UserName)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.HomeAdress)
-    </td>
+
     <td>
         @Html.DisplayFor(modelItem => item.Gender)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateBorn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CMND)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Email)
@@ -73,21 +61,34 @@
         @Html.DisplayFor(modelItem => item.PhoneNumber)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.UserName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Status)
+        @if (item.Role.Equals("Người dùng"))
+        {
+            @Html.DisplayFor(modelItem => item.Role)
+            <a href="@Url.Action("Edit_UpRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-up" title="Nâng quyền" id="incon"></i></a>
+            
+        }
+        else
+        {
+            @Html.DisplayFor(modelItem => item.Role)
+            <a href="@Url.Action("Edit_DownRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-down" title="Giáng quyền" id="incon"></i></a>
+        }
     </td>
     <td>
         @if (item.Status.Equals("Hoạt động"))
         {
-            @Html.ActionLink("Khóa", "LockUser", new { id = item.Id })
+            @Html.DisplayFor(modelItem => item.Status)
+            <a href="@Url.Action("LockUser","Users",new { id = item.Id })"><i class="fas fa-lock" title="Khóa tài khoản" id="incon"></i></a>
+
         }
         else
         {
-            @Html.ActionLink("Mở", "UnlockUser", new { id = item.Id })
+            @Html.DisplayFor(modelItem => item.Status)
+            <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="incon"></i></a>
         }
+
+        
     </td>
+    
 </tr>
 }
 

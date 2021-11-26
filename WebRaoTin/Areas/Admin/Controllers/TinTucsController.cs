@@ -1564,6 +1564,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "TinTucs");
         }
+
+        
+
         // GET: Admin/TinTucs/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -135,12 +135,12 @@
         </div>
     </div>
 }
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  @*Phải thêm link này vào mới có thông báo đẹp đc sử dụng swal *@
 <script type="text/javascript">
     $("#register").click(function () {
         var a = '';
         if ($('#PhoneNumber').val() == '') {
-            a = a + 'Số dt ko dc trống\n'
+            a = a + 'Tên ko dc trống\n'
 
         }
 
@@ -179,8 +179,30 @@
 
         }
 
-        if (a == '') alert('Đăng ký thành công !');
-        else alert('Bạn nhấp thiếu !');
+        if (a == '') swal("Đăng ký thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        })
+        
+
+
+        // cầm cài này qua mấy cái button khóa tài khoản
+        @*swal({
+            title: "Bạn muốn khóa tài khoản này ?",
+            text: "Khi khóa tài khoản này, người dùng sẽ không thể đăng nhập được nữa !",
+            icon: "warning",
+            buttons:["Hủy" ,true],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Đã khóa tài khoản !", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Đã hủy lệnh khóa tài khoản !");
+                }
+            });*@
     });
 
 

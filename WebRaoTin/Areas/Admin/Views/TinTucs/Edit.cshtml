@@ -130,10 +130,9 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsSP" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
-
-
+                            <div id="datewarnSP"></div>
                         </div>
 
                     </div>
@@ -194,7 +193,7 @@
                     </div>
                 </div>
                 <hr>
-                
+
             </div>
 
             <div class="NewsEX">
@@ -280,8 +279,9 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsDV" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                            <div id="datewarnDV"></div>
                         </div>
                     </div>
 
@@ -341,7 +341,7 @@
                     </div>
                 </div>
                 <hr>
-                
+
             </div>
 
             <div class="NewsEX">
@@ -428,8 +428,9 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsBDS" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                            <div id="datewarnBDS"></div>
                         </div>
                     </div>
 
@@ -593,8 +594,9 @@
 
                         <div class="col-md-6">
                             <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsVL" } })
                             @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                            <div id="datewarnVL"></div>
                         </div>
                     </div>
 
@@ -665,7 +667,7 @@
 
                     </div>
                 </div>
-                <hr>    
+                <hr>
             </div>
 
             <div class="NewsEX">
@@ -685,18 +687,18 @@
         </div>
     }
 
-    
-        <div class="form-group">
-               <div style="text-align: left; padding-left:20px;" >
-                   <button type="submit" id="Create" class="btn btn-success">Lưu</button>
-               </div>
+
+    <div class="form-group">
+        <div style="text-align: left; padding-left:20px;">
+            <button type="submit" id="Create" class="btn btn-success">Lưu</button>
         </div>
-    
+    </div>
+
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -816,5 +818,109 @@
 
     $("#Create").click(function () {
         alert("Lưu thành công!");
+    });
+
+    function isFutureDate(idate) {
+        var today = new Date().getTime(),
+            idate = idate.split("/");
+
+        idate = new Date(idate[2], idate[1] - 1, idate[0]).getTime();
+        return (today - idate) < 0 ? true : false;
+    }
+
+    $("#EndDayTinTucsSP").change(function () {
+        resultDivSP = document.getElementById("datewarnSP");
+
+        var date = $('#EndDayTinTucsSP').val().split("-");
+        console.log(date, $('#EndDayTinTucsDV').val())
+        day = date[2];
+        month = date[1];
+        year = date[0];
+
+
+        if (isFutureDate(day + "/" + month + "/" + year)) {
+            resultDivSP.innerHTML = "Ngày hợp lệ";
+            resultDivSP.style.color = "green";
+
+        } else {
+
+            resultDivSP.innerHTML = "Ngày hết hạn phải ở tương lai";
+            resultDivSP.style.color = "red";
+        }
+
+
+
+    });
+
+    $("#EndDayTinTucsDV").change(function () {
+        resultDivSP = document.getElementById("datewarnDV");
+
+        var date = $('#EndDayTinTucsDV').val().split("-");
+        console.log(date, $('#EndDayTinTucsDV').val())
+        day = date[2];
+        month = date[1];
+        year = date[0];
+
+
+        if (isFutureDate(day + "/" + month + "/" + year)) {
+            resultDivSP.innerHTML = "Ngày hợp lệ";
+            resultDivSP.style.color = "green";
+
+        } else {
+
+            resultDivSP.innerHTML = "Ngày hết hạn phải ở tương lai";
+            resultDivSP.style.color = "red";
+        }
+
+
+
+    });
+
+    $("#EndDayTinTucsBDS").change(function () {
+        resultDivSP = document.getElementById("datewarnBDS");
+
+        var date = $('#EndDayTinTucsBDS').val().split("-");
+        console.log(date, $('#EndDayTinTucsBDS').val())
+        day = date[2];
+        month = date[1];
+        year = date[0];
+
+
+        if (isFutureDate(day + "/" + month + "/" + year)) {
+            resultDivSP.innerHTML = "Ngày hợp lệ";
+            resultDivSP.style.color = "green";
+
+        } else {
+
+            resultDivSP.innerHTML = "Ngày hết hạn phải ở tương lai";
+            resultDivSP.style.color = "red";
+        }
+
+
+
+    });
+
+    $("#EndDayTinTucsVL").change(function () {
+        resultDivSP = document.getElementById("datewarnVL");
+
+        var date = $('#EndDayTinTucsVL').val().split("-");
+        console.log(date, $('#EndDayTinTucsVL').val())
+        day = date[2];
+        month = date[1];
+        year = date[0];
+
+
+        if (isFutureDate(day + "/" + month + "/" + year)) {
+            resultDivSP.innerHTML = "Ngày hợp lệ";
+            resultDivSP.style.color = "green";
+
+        } else {
+
+            resultDivSP.innerHTML = "Ngày hết hạn phải ở tương lai";
+            resultDivSP.style.color = "red";
+        }
+
+
+
     });
 </script>

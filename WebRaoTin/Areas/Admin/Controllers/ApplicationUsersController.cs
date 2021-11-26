@@ -210,9 +210,38 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 
                 db.Entry(existingEntity).CurrentValues.SetValues(applicationUser);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Users",new { Id = applicationUser.Id });
             }
             return View(applicationUser);
+        }
+
+        public ActionResult Edit_UpRole(string id)
+        {
+            var user = db.Users.Find(id);
+            user.Role = "Quản trị viên";
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Users");
+            }
+
+            return RedirectToAction("Index", "Users");
+        }
+
+
+        public ActionResult Edit_DownRole(string id)
+        {
+            var user = db.Users.Find(id);
+            user.Role = "Người dùng";
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Users");
+            }
+
+            return RedirectToAction("Index", "Users");
         }
 
         // GET: Admin/Users/Delete/5

@@ -116,7 +116,7 @@
         </div>
     </div>
 }
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> @*Phải thêm link này vào mới có thông báo đẹp đc sử dụng swal *@
 <script type="text/javascript">
     $("#register").click(function () {
         var a = '';
@@ -145,8 +145,10 @@
 
         }
 
-        if (a == '') alert('Đăng ký thành công !');
-        else alert('Bạn nhấp thiếu !');
+        if (a == '') swal("Đăng ký thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        });
     });
 
 

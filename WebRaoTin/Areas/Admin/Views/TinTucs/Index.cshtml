@@ -36,15 +36,15 @@
 @using (Html.BeginForm("Index", "TinTucs", FormMethod.Get))
 {
     <p>
-        Find by name: <input type="text" name="searchString" value="@ViewBag.Keyword" />
-        <input type="submit" value="Search" />
+        Tìm bằng tên: <input type="text" name="searchString" value="@ViewBag.Keyword" />
+        <input type="submit" value="Tìm kiếm" />
     </p>
 }
 
 <table class="table">
     <tr>
         <th style="width:10%; text-align:left"> @Html.Label("ID")</th>
-        <th style="width:10%; text-align:left">@Html.Label("Mã người dùng")</th>
+        <th style="width:10%; text-align:left">@Html.Label("Tên người dùng")</th>
         <th style="width:15%; text-align:left">@Html.Label("Tiêu đề")</th>
         <th style="width:15%; text-align:left">@Html.Label("Ngày đăng")</th>
         <th style="width:5%; text-align:left">@Html.Label("Ngày hết hạn")</th>
@@ -59,7 +59,7 @@
 
         <tr style="border:1px solid red">
             <td>@Model[i].Id</td>
-            <td>@Model[i].Customer.Id</td>
+            <td>@Model[i].Customer.UserName</td>
             <td>@Model[i].Title</td>
             <td>@Model[i].PublishDay</td>
             <td>@Model[i].EndDay</td>

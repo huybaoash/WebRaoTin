@@ -758,15 +758,7 @@
                                     <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
                                     <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
 
-                                    <script>
-                                            $("#uploadCV").click(function () {
-                                                    alert("Gửi thành công!");
-                                                });
 
-                                               @* function myFunction() {
-                                                    alert("Hello! I am an alert box!");
-                                                }*@
-                                    </script>
                                 </div>
                                 <hr />
 
@@ -1009,6 +1001,14 @@
     }
 </script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  @*Phải thêm link này vào mới có thông báo đẹp đc sử dụng swal *@
+<script>
+    $("#uploadCV").click(function () {
+        swal("Gửi thành công", "", "success");
+    });
 
-
+    @* function myFunction() {
+    alert("Hello! I am an alert box!");
+    }*@
+</script>
 
