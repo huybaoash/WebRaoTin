@@ -16,6 +16,9 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên dịch vụ")]
         public string Name { get; set; }
 
+        [Display(Name = "Trạng thái")]
+        public string Status { get; set; }
+
         private ICollection<LoaiDichVu> LoaiDichVus { get; set; }
 
         

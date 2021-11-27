@@ -71,6 +71,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // GET: Admin/Users
         public ActionResult Index()
         {
+
             return View(db.Users.ToList());
         }
 
@@ -154,6 +155,11 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                if (User.Identity.GetUserId().Equals(id))
+                {
+                    return RedirectToAction("Index", "Users");
+                }
+
                 ApplicationUser applicationUser = db.Users.Find(id);
                 applicationUser.Status = "Đã khóa";
                 if (applicationUser == null)

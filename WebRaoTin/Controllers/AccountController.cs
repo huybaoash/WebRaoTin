@@ -217,7 +217,8 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                int demloi = 0;
+                bool EmailValid = true;
                 if (model.Email.EndsWith(".com") == false)
                 {
 
@@ -228,29 +229,43 @@ namespace WebRaoTin.Controllers
                     }
                     else
                     {
+                        demloi++;
                         ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! ");
                     }
 
                 }
 
-                var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
+                var isEmailAlreadyExists = db.Users.Any(x => x.Email.Equals(model.Email));
                 if (isEmailAlreadyExists)
                 {
+                    demloi++;
                     ModelState.AddModelError("Email", "Email này đã được sử dùng.");
-                    
+
                 }
 
 
-                
                 var isUserNamelAlreadyExists = db.Users.Any(x => x.UserName == model.UserName);
                 if (isUserNamelAlreadyExists)
                 {
+                    demloi++;
                     ModelState.AddModelError("UserName", "Tên tài khoản này đã được sử dụng.");
-                    return View(model);
+
 
                 }
 
-                
+                var isCMNDAlreadyExists = db.Users.Any(x => x.CMND == model.CMND);
+                if (isUserNamelAlreadyExists)
+                {
+                    demloi++;
+                    ModelState.AddModelError("CMND", "CMND này đã được sử dụng.");
+
+
+                }
+                if (demloi > 0)
+                {
+                    return View(model);
+                }
+
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CMND = model.CMND, HomeAdress = model.HomeAdress, FullName = model.FullName, PhoneNumber = model.PhoneNumber, Role = "Người dùng", Status = "Hoạt động", DateJoin = DateTime.Now, Gender = model.Gender };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -261,7 +276,7 @@ namespace WebRaoTin.Controllers
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Xác nhận tài khoản của bạn", "Xin hãy xác nhận tài khoản của bạn bằng cách nhấp vào <a href=\"" + callbackUrl + "\">đây.</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -307,6 +322,15 @@ namespace WebRaoTin.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
+                if (!isEmailAlreadyExists)
+                {
+                    ModelState.AddModelError("Email", "Email này không tồn tại.");
+                    return View(model);
+                }
+
+
                 //var user = await UserManager.FindByNameAsync(model.Email);
                 var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
@@ -354,10 +378,20 @@ namespace WebRaoTin.Controllers
             {
                 return View(model);
             }
+
+            var isEmailAlreadyExists = db.Users.Any(x => x.Email == model.Email);
+            if (!isEmailAlreadyExists)
+            {
+                ModelState.AddModelError("Email", "Email này không tồn tại.");
+                return View(model);
+            }
+
+
             var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
+                
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
@@ -462,11 +496,61 @@ namespace WebRaoTin.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Users");
+                return RedirectToAction("Index", "Home");
             }
 
             if (ModelState.IsValid)
             {
+                int demloi = 0;
+                bool EmailValid = true;
+                if (model.Email.EndsWith(".com") == false)
+                {
+
+                    if (model.Email.EndsWith(".com.vn"))
+                    {
+
+                        ;
+                    }
+                    else
+                    {
+                        demloi++;
+                        ModelState.AddModelError("", "Địa chỉ Email không hợp lệ! ");
+                    }
+
+                }
+
+                var isEmailAlreadyExists = db.Users.Any(x => x.Email.Equals(model.Email));
+                if (isEmailAlreadyExists)
+                {
+                    demloi++;
+                    ModelState.AddModelError("Email", "Email này đã được sử dùng.");
+
+                }
+
+
+                var isUserNamelAlreadyExists = db.Users.Any(x => x.UserName == model.UserName);
+                if (isUserNamelAlreadyExists)
+                {
+                    demloi++;
+                    ModelState.AddModelError("UserName", "Tên tài khoản này đã được sử dụng.");
+
+
+                }
+
+                var isCMNDAlreadyExists = db.Users.Any(x => x.CMND == model.CMND);
+                if (isUserNamelAlreadyExists)
+                {
+                    demloi++;
+                    ModelState.AddModelError("CMND", "CMND này đã được sử dụng.");
+
+
+                }
+                if (demloi >0)
+                {
+                    return View(model);
+                }
+
+
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)

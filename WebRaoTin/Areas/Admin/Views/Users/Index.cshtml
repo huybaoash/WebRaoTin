@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WebRaoTin.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Index";
@@ -49,7 +50,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @if (User.Identity.GetUserId().Equals(item.Id))
+                {
+                    <a href="@Url.Action("Details", "Users", new { id = item.Id })">@Html.DisplayFor(modelItem => item.UserName)</a><h> (Bạn)</h>
+                }
+                else
+                {
+                    <a href="@Url.Action("Details","Users",new { id = item.Id })">@Html.DisplayFor(modelItem => item.UserName)</a>
+                }
+
+                
             </td>
 
             <td>
@@ -78,13 +88,22 @@
                 @if (item.Status.Equals("Hoạt động"))
                 {
                     @Html.DisplayFor(modelItem => item.Status)
-                    <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking"><i class="fas fa-lock" title="Khóa tài khoản" id="incon"></i></a>
+                    if (User.Identity.GetUserId().Equals(item.Id))
+                    {
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorkingMe" ><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorkingMe"></i></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking" ><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorking"></i></a>
+                    }
+
+                    
 
                 }
                 else
                 {
                     @Html.DisplayFor(modelItem => item.Status)
-                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="incon"></i></a>
+                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned" ><i class="fas fa-unlock" title="Mở khóa tài khoản" id="StatusBanned"></i></a>
                 }
 
 
@@ -96,54 +115,35 @@
 </table>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+    
+
     $("#StatusWorking").click(function () {
 
-       
+        alert("Đã khóa tài khoản!");
 
-        swal({
-            title: "Bạn muốn khóa tài khoản này ?",
-            text: "Khi khóa tài khoản này, người dùng sẽ không thể đăng nhập được nữa !",
-            icon: "warning",
-            buttons: ["Hủy", true],
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Đã khóa tài khoản !", {
-                        icon: "success",
-                    });
-                    
-                    
-                } else {
-                    swal("Đã hủy lệnh khóa tài khoản !");
-                    
-                }
-            });
-        
-        
+        swal("", {
+            icon: "success",
+        });
+
+
+    });
+
+    $("#StatusWorkingMe").click(function () {
+
+        alert("Không thể khóa tài khoản của bản thân !");
+
+        swal("", {
+            icon: "success",
+        });
+
+
     });
 
     $("#StatusBanned").click(function () {
-        swal({
-            title: "Bạn muốn mở khóa tài khoản này ?",
-            text: "Khi mở khóa tài khoản này, người dùng sẽ có thể đăng nhập tài khoản !",
-            icon: "warning",
-            buttons: ["Hủy", true],
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    
-                    swal("Đã mở khóa tài khoản !", {
-                        icon: "success",
-                    });
-                    
-                } else {
-                    
-                    swal("Đã hủy lệnh mở khóa tài khoản !");
-                    
-                }
-            });
-       
+        alert("Đã mở khóa tài khoản!");
+        swal("", {
+            icon: "success",
+        });
+
     });
 </script>

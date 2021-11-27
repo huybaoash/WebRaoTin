@@ -16,6 +16,9 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên loại việc làm")]
         public string Name { get; set; }
 
+        [Display(Name = "Trạng thái")]
+        public string Status { get; set; }
+
         private ICollection<ViecLam> ViecLams { get; set; }
 
     }

@@ -16,7 +16,8 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên loại bất động sản")]
         public string Name { get; set; }
 
-        
+        [Display(Name = "Trạng thái")]
+        public string Status { get; set; }
 
         private ICollection<BatDongSan> BatDongSans { get; set; }
     }

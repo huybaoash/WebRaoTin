@@ -15,6 +15,9 @@ namespace WebRaoTin.Models
         [Display(Name = "Tên loại sản phẩm")]
         public string Name { get; set; }
 
+        [Display(Name = "Trạng thái")]
+        public string Status { get; set; }
+
         private ICollection<SanPham> SanPhams { get; set; }
 
         

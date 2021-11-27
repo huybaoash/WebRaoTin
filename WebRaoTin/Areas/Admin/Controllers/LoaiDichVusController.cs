@@ -46,7 +46,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] LoaiDichVu loaiDichVu)
+        public ActionResult Create([Bind(Include = "Id,Name,Status")] LoaiDichVu loaiDichVu)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] LoaiDichVu loaiDichVu)
+        public ActionResult Edit([Bind(Include = "Id,Name,Status")] LoaiDichVu loaiDichVu)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +87,36 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(loaiDichVu);
+        }
+
+        public ActionResult Hide(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiDichVu loaiDichVu = db.LoaiDichVus.Find(id);
+                loaiDichVu.Status = "Ẩn";
+
+                db.Entry(loaiDichVu).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Show(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiDichVu loaiDichVu = db.LoaiDichVus.Find(id);
+                loaiDichVu.Status = "Công khai";
+
+                db.Entry(loaiDichVu).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/LoaiDichVus/Delete/5

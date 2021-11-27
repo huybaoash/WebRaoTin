@@ -46,7 +46,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] LoaiSanPham loaiSanPham)
+        public ActionResult Create([Bind(Include = "Id,Name,Status")] LoaiSanPham loaiSanPham)
         {
             if (ModelState.IsValid)
             {
@@ -73,12 +73,42 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View(loaiSanPham);
         }
 
+        public ActionResult Hide(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiSanPham loaiSanPham = db.LoaiSanPhams.Find(id);
+                loaiSanPham.Status = "Ẩn";
+
+                db.Entry(loaiSanPham).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Show(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiSanPham loaiSanPham = db.LoaiSanPhams.Find(id);
+                loaiSanPham.Status = "Công khai";
+
+                db.Entry(loaiSanPham).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
         // POST: Admin/LoaiSanPhams/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] LoaiSanPham loaiSanPham)
+        public ActionResult Edit([Bind(Include = "Id,Name,Status")] LoaiSanPham loaiSanPham)
         {
             if (ModelState.IsValid)
             {

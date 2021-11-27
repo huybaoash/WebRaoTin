@@ -602,6 +602,8 @@
 }
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  @*Phải thêm link này vào mới có thông báo đẹp đc sử dụng swal *@
 <script>
+    
+
     $(function () {
         $('.target').change(function () {
             if ($('.target').val == '0') {
@@ -779,19 +781,223 @@
 
 @*thông báo nút thêm alert*@
     $("#CreateSP").click(function () {
-        swal("Thêm tin sản phẩm thành công!", "", "success");
+        var a = '';
+        if ($('#Title').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#EndDayTinTucsSP').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#PriceSanPham').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#LocationSanPham').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Contract').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#ContractPhoneNumber').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#DescriptionSanPham').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        var fileSelected = document.getElementById('image1').files;
+        if (fileSelected.length == 0) {
+            a = a + 'Tên ko dc trống\n';
+        }
+
+        
+
+        if (a == '') swal("Thêm tin sản phẩm thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        })
+
+        
+
     });
 
     $("#CreateDV").click(function () {
-        swal("Thêm tin dịch vụ thành công!", "", "success");
+
+
+        var a = '';
+        if ($('#Title').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#EndDayTinTucsDV').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#PriceDichVu').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#LocationDichVu').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Contract').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#ContractPhoneNumber').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#DescriptionDichVu').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        var fileSelected = document.getElementById('image2').files;
+        if (fileSelected.length == 0) {
+            a = a + 'Tên ko dc trống\n';
+        }
+
+
+
+        if (a == '') swal("Thêm tin sản phẩm thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        })
+
+
     });
 
     $("#CreateBDS").click(function () {
-        swal("Thêm tin Bất động sản thành công!", "", "success");
+        var a = '';
+        if ($('#Title').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#EndDayTinTucsBDS').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#PriceBatDongSan').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#LocationBatDongSan').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Contract').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#ContractPhoneNumber').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#DescriptionBatDongSan').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        var fileSelected = document.getElementById('image3').files;
+        if (fileSelected.length == 0) {
+            a = a + 'Tên ko dc trống\n';
+        }
+
+        var fileSelected = document.getElementById('video').files;
+        if (fileSelected.length == 0) {
+            a = a + 'Tên ko dc trống\n';
+        }
+
+        if (a == '') swal("Thêm tin sản phẩm thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        })
     });
 
     $("#CreateVL").click(function () {
-        swal("Thêm tin việc làm thành công!", "", "success");
+        var a = '';
+        if ($('#Title').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#EndDayTinTucsVL').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#LocationViecLam').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Contract').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#ContractPhoneNumber').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#DescriptioViecLamn').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Benefit').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Salary').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        if ($('#Require').val() == '') {
+            a = a + 'Tên ko dc trống\n';
+
+        };
+
+        var fileSelected = document.getElementById('image4').files;
+        if (fileSelected.length == 0) {
+            a = a + 'Tên ko dc trống\n';
+        }
+
+        
+
+        if (a == '') swal("Thêm tin sản phẩm thành công!", "", "success");
+        else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+            buttons: [null, true],
+        })
     });
 @*-----------------------------------------------------------------------------------------------*@
     function isFutureDate(idate) {

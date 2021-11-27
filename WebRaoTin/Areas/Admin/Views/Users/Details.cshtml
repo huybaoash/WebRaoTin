@@ -87,18 +87,21 @@
     <div class="main">
         <div class="topbar_">
             <dd>
-                
-                @if (Model.PasswordHash != null)
+                @if (Model.Id.Equals(User.Identity.GetUserId()))
                 {
-                    <a href="@Url.Action("ChangePassword", "Manage",new {area = ""})"> Đổi mật khẩu</a>
-                       
-                    
+                    if (Model.PasswordHash != null)
+                    {
+                        <a href="@Url.Action("ChangePassword", "Manage",new {area = ""})"> Đổi mật khẩu</a>
+
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Tạo mật khẩu", "SetPassword")
+                    }
                 }
-                else
-                {
-                    @Html.ActionLink("Tạo mật khẩu", "SetPassword")
-                }
-                
+
+
             </dd>
         </div>
         <div class="row">
@@ -108,19 +111,23 @@
                         <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
                             <h4>@Html.DisplayFor(model => model.UserName)</h4>
-                       
+
                             <a href="">Ngày gia nhập: @Model.DateJoin.Value.ToString("dd/MM/yyyy")</a>
                             <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
-                            <div class="edit-tt"> <a href="@Url.Action("Edit", "Users", new { id = @Model.Id })"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
-
-                            @if (Model.EmailConfirmed)
-                            {<div class="edit-tt"><a href=""><i class="fas fa-user-check" style="color:#145500"></i> Đã xác thực tài khoản</a></div> }
-                            else
+                            @if (Model.Id.Equals(User.Identity.GetUserId()))
                             {
-                                <div class="edit-tt"><a href=""><i class="fas fa-angle-right"></i> Chưa xác thực tài khoản</a></div>
+                                <div class="edit-tt"> <a href="@Url.Action("Edit", "Users", new { id = @Model.Id })"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
+
+                                if (Model.EmailConfirmed)
+                                {<div class="edit-tt"><a href=""><i class="fas fa-user-check" style="color:#145500"></i> Đã xác thực tài khoản</a></div> }
+                                else
+                                {
+                                    <div class="edit-tt"><a href=""><i class="fas fa-angle-right"></i> Chưa xác thực tài khoản</a></div>
+                                }
                             }
+
                             @*<a href="">Setting</a>
-                    <a href="">Signout</a>*@
+        <a href="">Signout</a>*@
                         </div>
                     </div>
                 </div>

@@ -282,6 +282,10 @@
     <Compile Include="Migrations\202111251959178_update db26_11_2021.Designer.cs">
       <DependentUpon>202111251959178_update db26_11_2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111271822168_Add_Status_LoaiDanhMuc.cs" />
+    <Compile Include="Migrations\202111271822168_Add_Status_LoaiDanhMuc.Designer.cs">
+      <DependentUpon>202111271822168_Add_Status_LoaiDanhMuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BatDongSan.cs" />
@@ -333,21 +337,6 @@
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiDichVus\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiDichVus\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiDichVus\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiDichVus\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiDichVus\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiSanPhams\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiSanPhams\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiSanPhams\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiSanPhams\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiSanPhams\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Details.cshtml" />
@@ -358,11 +347,6 @@
     <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
     <Content Include="Areas\Admin\Views\DichVus\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiViecLams\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiViecLams\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiViecLams\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiViecLams\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\LoaiViecLams\Index.cshtml" />
     <Content Include="imagesGIF\bds.gif" />
     <Content Include="imagesGIF\dmx.gif" />
     <Content Include="imagesGIF\dulich.gif" />
@@ -412,6 +396,26 @@
     <Content Include="Areas\Admin\Views\PhieuXetUngTuyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Edit_HideStatus.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Edit_ShowStatus.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiBatDongSans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiDichVus\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiDichVus\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiDichVus\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiDichVus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiDichVus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiViecLams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiViecLams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiViecLams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiViecLams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiViecLams\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -560,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111251959178_update db26_11_2021.resx">
       <DependentUpon>202111251959178_update db26_11_2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111271822168_Add_Status_LoaiDanhMuc.resx">
+      <DependentUpon>202111271822168_Add_Status_LoaiDanhMuc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

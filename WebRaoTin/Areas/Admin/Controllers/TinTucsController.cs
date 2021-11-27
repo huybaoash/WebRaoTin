@@ -45,10 +45,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViecLams = db.ViecLams.ToList();
             BinhLuans = db.BinhLuans.ToList();
 
-            LoaiSanPhams = db.LoaiSanPhams.ToList();
-            LoaiBatDongSans = db.LoaiBatDongSans.ToList();
-            LoaiDichVus = db.LoaiDichVus.ToList();
-            LoaiViecLams = db.LoaiViecLams.ToList();
+            LoaiSanPhams = db.LoaiSanPhams.Where(p=>p.Status.Equals("Công khai")).ToList();
+            LoaiBatDongSans = db.LoaiBatDongSans.Where(p => p.Status.Equals("Công khai")).ToList();
+            LoaiDichVus = db.LoaiDichVus.Where(p => p.Status.Equals("Công khai")).ToList();
+            LoaiViecLams = db.LoaiViecLams.Where(p => p.Status.Equals("Công khai")).ToList();
 
 
             ViewBag.SanPhams = SanPhams;
@@ -118,17 +118,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
 
-        // GET: Admin/TinTucs
-        /*
-        public ActionResult Index()
-        {
-            
-            var tinTucs = db.TinTucs.Include(t => t.Customer);
-            var sanpham = db.SanPhams.Include(t => t.TinTuc).Include(t => t.LoaiSanPham);
-
-            return View(tinTucs.ToList());
-        }
-        */
+   
 
         public void TinBDS_4Lastest()
         {
@@ -765,6 +755,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         {
             
             ViewBag.CustomerID = new SelectList(db.Users, "Id", "Role");
+            
             return View();
         }
 
@@ -1135,7 +1126,12 @@ namespace WebRaoTin.Areas.Admin.Controllers
         public ActionResult Edit(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
         {
 
-           
+            if (tinTucsViewModel.EndDayTinTucs.Value.CompareTo(DateTime.Now) < 0)
+            {
+                ModelState.AddModelError("", "Ngày hết hạn tin tức phải ở tương lai !");
+                return View(tinTucsViewModel);
+            }
+
             // Lấy danh sách sản phẩm 
             List<SanPham> SanPhams = new List<SanPham>();
 

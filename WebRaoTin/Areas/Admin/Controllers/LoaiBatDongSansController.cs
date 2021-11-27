@@ -46,7 +46,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] LoaiBatDongSan loaiBatDongSan)
+        public ActionResult Create([Bind(Include = "Id,Name,Status")] LoaiBatDongSan loaiBatDongSan)
         {
             if (ModelState.IsValid)
             {
@@ -73,12 +73,42 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View(loaiBatDongSan);
         }
 
+        public ActionResult Hide(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiBatDongSan loaiBatDongSan = db.LoaiBatDongSans.Find(id);
+                loaiBatDongSan.Status = "Ẩn";
+
+                db.Entry(loaiBatDongSan).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Show(int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                LoaiBatDongSan loaiBatDongSan = db.LoaiBatDongSans.Find(id);
+                loaiBatDongSan.Status = "Công khai";
+
+                db.Entry(loaiBatDongSan).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
         // POST: Admin/LoaiBatDongSans/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] LoaiBatDongSan loaiBatDongSan)
+        public ActionResult Edit([Bind(Include = "Id,Name,Status")] LoaiBatDongSan loaiBatDongSan)
         {
             if (ModelState.IsValid)
             {
