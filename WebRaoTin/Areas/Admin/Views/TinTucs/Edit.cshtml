@@ -165,7 +165,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceSanPham" name="PriceSanPham" value="@Model.PriceSanPham">
+                            <input class="form-control" type="number" id="PriceSanPham" name="PriceSanPham" value="@Model.PriceSanPham" min="0">
                             @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                         </div>
 
@@ -313,7 +313,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceDichVu" name="PriceDichVu" value="@Model.PriceDichVu">
+                            <input class="form-control" type="number" id="PriceDichVu" name="PriceDichVu" value="@Model.PriceDichVu" min="0">
                             @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                         </div>
 
@@ -461,13 +461,13 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">diện tích</label>
-                            <input class="form-control" type="number" placeholder="vd:1300->1300m²" id="Area" name="Area" value="@Model.Area">
+                            <input class="form-control" type="number" placeholder="vd:1300->1300m²" id="Area" name="Area" value="@Model.Area" min="0">
                             @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceBatDongSan" name="PriceBatDongSan" value="@Model.PriceBatDongSan">
+                            <input class="form-control" type="number" id="PriceBatDongSan" name="PriceBatDongSan" value="@Model.PriceBatDongSan" min="0">
                             @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                         </div>
 
@@ -640,7 +640,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label for="TD">Lương</label>
-                            <input class="form-control" type="number" id="Salary" name="Salary" placeholder="nhập mức lương tối thiểu, chỉ nhập số" value="@Model.Salary">
+                            <input class="form-control" type="number" id="Salary" name="Salary" placeholder="nhập mức lương tối thiểu, chỉ nhập số" value="@Model.Salary" min="0">
                             @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                         </div>
 
@@ -703,7 +703,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
     function Images1FileAsURL() {
@@ -816,9 +816,7 @@
         });
     });
 
-    $("#Create").click(function () {
-        alert("Lưu thành công!");
-    });
+    
 
     function isFutureDate(idate) {
         var today = new Date().getTime(),
@@ -900,6 +898,8 @@
 
     });
 
+    
+
     $("#EndDayTinTucsVL").change(function () {
         resultDivSP = document.getElementById("datewarnVL");
 
@@ -923,4 +923,69 @@
 
 
     });
+
+   
+    $("#Create").click(function () {
+
+
+
+
+
+        swal("Chỉnh sửa thành công!", "", "success"); // điều kiện thêm giúp tui nha
+        
+
+    });
+
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    switch (@Model.LuaChon)
+    {
+        case 1:
+            {
+                document.getElementById("EndDayTinTucsSP").setAttribute("min", today);
+                break;
+            }
+        case 2:
+            {
+                document.getElementById("EndDayTinTucsDV").setAttribute("min", today);
+                break;
+            }
+        case 3:
+            {
+                document.getElementById("EndDayTinTucsBDS").setAttribute("min", today);
+                break;
+            }
+        case 4:
+            {
+                document.getElementById("EndDayTinTucsVL").setAttribute("min", today);
+                break;
+            }
+
+        default:
+            {
+                document.getElementById("EndDayTinTucsVL").setAttribute("min", today);
+                document.getElementById("EndDayTinTucsBDS").setAttribute("min", today);
+                document.getElementById("EndDayTinTucsDV").setAttribute("min", today);
+                document.getElementById("EndDayTinTucsSP").setAttribute("min", today);
+                break;
+            }
+    };
+
+
+    
+   
+    
+
 </script>

@@ -7,17 +7,17 @@
 
 <h2>Danh sách tài khoản</h2>
 <style>
-    #incon{
-        font-size:20px;
+    #incon {
+        font-size: 20px;
     }
 </style>
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
-           @* @Html.DisplayNameFor(model => model.UserName)*@
+            @* @Html.DisplayNameFor(model => model.UserName)*@
             <label>Tên người dùng</label>
         </th>
 
@@ -31,7 +31,7 @@
         </th>
 
         <th>
-          @*  @Html.DisplayNameFor(model => model.PhoneNumber)*@
+            @*  @Html.DisplayNameFor(model => model.PhoneNumber)*@
             <label>Số điện thoại</label>
         </th>
 
@@ -45,51 +45,105 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.UserName)
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.Gender)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    <td>
-        @if (item.Role.Equals("Người dùng"))
-        {
-            @Html.DisplayFor(modelItem => item.Role)
-            <a href="@Url.Action("Edit_UpRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-up" title="Nâng quyền" id="incon"></i></a>
-            
-        }
-        else
-        {
-            @Html.DisplayFor(modelItem => item.Role)
-            <a href="@Url.Action("Edit_DownRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-down" title="Giáng quyền" id="incon"></i></a>
-        }
-    </td>
-    <td>
-        @if (item.Status.Equals("Hoạt động"))
-        {
-            @Html.DisplayFor(modelItem => item.Status)
-            <a href="@Url.Action("LockUser","Users",new { id = item.Id })"><i class="fas fa-lock" title="Khóa tài khoản" id="incon"></i></a>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @if (item.Role.Equals("Người dùng"))
+                {
+                    @Html.DisplayFor(modelItem => item.Role)
+                    <a href="@Url.Action("Edit_UpRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-up" title="Nâng quyền" id="incon"></i></a>
 
-        }
-        else
-        {
-            @Html.DisplayFor(modelItem => item.Status)
-            <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="incon"></i></a>
-        }
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Role)
+                    <a href="@Url.Action("Edit_DownRole","Users",new { id = item.Id })"><i class="fas fa-long-arrow-alt-down" title="Giáng quyền" id="incon"></i></a>
+                }
+            </td>
+            <td>
+                @if (item.Status.Equals("Hoạt động"))
+                {
+                    @Html.DisplayFor(modelItem => item.Status)
+                    <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking"><i class="fas fa-lock" title="Khóa tài khoản" id="incon"></i></a>
 
-        
-    </td>
-    
-</tr>
-}
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Status)
+                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="incon"></i></a>
+                }
+
+
+            </td>
+
+        </tr>
+    }
 
 </table>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $("#StatusWorking").click(function () {
+
+       
+
+        swal({
+            title: "Bạn muốn khóa tài khoản này ?",
+            text: "Khi khóa tài khoản này, người dùng sẽ không thể đăng nhập được nữa !",
+            icon: "warning",
+            buttons: ["Hủy", true],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Đã khóa tài khoản !", {
+                        icon: "success",
+                    });
+                    
+                    
+                } else {
+                    swal("Đã hủy lệnh khóa tài khoản !");
+                    
+                }
+            });
+        
+        
+    });
+
+    $("#StatusBanned").click(function () {
+        swal({
+            title: "Bạn muốn mở khóa tài khoản này ?",
+            text: "Khi mở khóa tài khoản này, người dùng sẽ có thể đăng nhập tài khoản !",
+            icon: "warning",
+            buttons: ["Hủy", true],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    
+                    swal("Đã mở khóa tài khoản !", {
+                        icon: "success",
+                    });
+                    
+                } else {
+                    
+                    swal("Đã hủy lệnh mở khóa tài khoản !");
+                    
+                }
+            });
+       
+    });
+</script>

@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-number="The field Giá must be a number." data-val-required="Không được để trống." id="PriceSanPham" name="PriceSanPham" type="number" value="" aria-describedby="PriceSanPham-error" aria-invalid="true">
+                                <input class="form-control" data-val="true" data-val-number="The field Giá must be a number." data-val-required="Không được để trống." id="PriceSanPham" name="PriceSanPham" type="number" value="" aria-describedby="PriceSanPham-error" aria-invalid="true" min="0">
 
                                 @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                             </div>
@@ -272,7 +272,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceDichVu" name="PriceDichVu" type="number" value="" aria-describedby="PriceDichVu-error" aria-invalid="true">
+                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceDichVu" name="PriceDichVu" type="number" value="" aria-describedby="PriceDichVu-error" aria-invalid="true" min="0">
 
                                 @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                             </div>
@@ -391,13 +391,13 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">diện tích</label>
-                                <input class="form-control" placeholder="vd:1300->1300m²" data-val="true" data-val-required="Không được để trống." id="Area" name="Area" type="number" value="" aria-describedby="Area-error" aria-invalid="true">
+                                <input class="form-control" placeholder="vd:1300->1300m²" data-val="true" data-val-required="Không được để trống." id="Area" name="Area" type="number" value="" aria-describedby="Area-error" aria-invalid="true" min="0">
                                 @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceBatDongSan" name="PriceBatDongSan" type="number" value="" aria-describedby="PriceBatDongSan-error" aria-invalid="true">
+                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceBatDongSan" name="PriceBatDongSan" type="number" value="" aria-describedby="PriceBatDongSan-error" aria-invalid="true" min="0">
 
                                 @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                             </div>
@@ -539,7 +539,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label for="TD">Lương</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="Salary" name="Salary" type="number" value="" aria-describedby="Salary-error" aria-invalid="true" placeholder="Nhập mức lương tối thiểu, chỉ nhập số">
+                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="Salary" name="Salary" type="number" value="" aria-describedby="Salary-error" aria-invalid="true" placeholder="Nhập mức lương tối thiểu, chỉ nhập số" min="0">
                                 @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                             </div>
 
@@ -779,8 +779,9 @@
 
 @*thông báo nút thêm alert*@
     $("#CreateSP").click(function () {
-        swal("Thêm tin sản phẩm thành công!", "", "success"); // điều kiện thêm giúp tui nha
+        swal("Thêm tin sản phẩm thành công!", "", "success");
     });
+
     $("#CreateDV").click(function () {
         swal("Thêm tin dịch vụ thành công!", "", "success");
     });
@@ -805,7 +806,7 @@
         resultDivSP = document.getElementById("datewarnSP");
 
         var date = $('#EndDayTinTucsSP').val().split("-");
-        console.log(date, $('#EndDayTinTucsDV').val())
+        console.log(date, $('#EndDayTinTucsSP').val())
         day = date[2];
         month = date[1];
         year = date[0];
@@ -896,5 +897,24 @@
 
 
     });
+
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("EndDayTinTucsVL").setAttribute("min", today);
+    document.getElementById("EndDayTinTucsBDS").setAttribute("min", today);
+    document.getElementById("EndDayTinTucsDV").setAttribute("min", today);
+    document.getElementById("EndDayTinTucsSP").setAttribute("min", today);
+
 
 </script>
