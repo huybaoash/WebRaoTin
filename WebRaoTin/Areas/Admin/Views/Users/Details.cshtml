@@ -6,7 +6,83 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .main {
+        padding: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
+        .main .topbar_ {
+            overflow: hidden;
+        }
+
+            .main .topbar_ a {
+                float: right;
+                text-align: center;
+                padding: 20px 26px;
+                text-decoration: none;
+                font-size: 26px;
+            }
+
+                .main .topbar_ a:hover {
+                }
+
+    .row .sidebar {
+    background-color: #d7d3d3;
+        border: 1px solid lightgray;
+        height: 480px;
+        border-radius: 5px;
+        margin-top: 5px;
+ 
+    }
+
+        .row .sidebar a {
+            @* margin-left: 10px;
+            *@ display: block;
+            color: inherit;
+            padding-bottom: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+    .edit-tt a:hover {
+        color: cornflowerblue;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+      @*  background-color: rgb(255, 255, 255);*@
+        border: 1px solid lightgrey;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        padding-left: 25px;
+        margin-top: 5px;
+    }
+
+    hr {
+        margin-right: 20px;
+    }
+
+    .text-secondary {
+        margin-top: 10px;
+    }
+
+    .card-body {
+        margin-top: 10px;
+    }
+    .mt-3 h4 {
+        margin-bottom: 20px;
+        text-align:center;
+       
+        border-bottom:1px solid white;
+    }
+</style>
 <div class="container">
     <div class="main">
         <div class="topbar_">
@@ -31,23 +107,47 @@
                     <div class="card-body ">
                         <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
-                            <h4 style="margin-bottom: 20px; text-align:center;color:white;border-bottom:1px solid white">@Html.DisplayFor(model => model.UserName)</h4>
-
+                            <h4>@Html.DisplayFor(model => model.UserName)</h4>
+                       
                             <a href="">Ngày gia nhập: @Model.DateJoin.Value.ToString("dd/MM/yyyy")</a>
                             <a href="">Số tin đã đăng: @ViewBag.SLTT</a>
-                            <div class="edit-tt"> <a href="@Url.Action("Edit", "Users", new { id = @Model.Id })">Chỉnh sửa thông tin</a></div>
+                            <div class="edit-tt"> <a href="@Url.Action("Edit", "Users", new { id = @Model.Id })"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
 
                             @if (Model.EmailConfirmed)
-                            {<div class="edit-tt"><a href="">Đã xác thực tài khoản</a></div> }
+                            {<div class="edit-tt"><a href=""><i class="fas fa-user-check" style="color:#145500"></i> Đã xác thực tài khoản</a></div> }
                             else
                             {
-                                <div class="edit-tt"><a href="">Chưa xác thực tài khoản</a></div>
+                                <div class="edit-tt"><a href=""><i class="fas fa-angle-right"></i> Chưa xác thực tài khoản</a></div>
                             }
                             @*<a href="">Setting</a>
-        <a href="">Signout</a>*@
+                    <a href="">Signout</a>*@
                         </div>
                     </div>
                 </div>
+                <div class="card mb-3 content">
+                    <h1 class="m-3">Thông tin khác</h1>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h4 style="font-weight:bold">Lịch sử bình luận</h4>
+                            </div>
+                            <div class="col-md-5 text-secondary">
+                                <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = Model.Id })"> Xem thêm</a> <br />
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h4 style="font-weight:bold">Lịch sử đăng tin</h4>
+                            </div>
+                            <div class="col-md-5 text-secondary">
+                                <a href="@Url.Action("Index_ofUser", "TinTucs", new { page = 1, searchString = "",id = Model.Id })"> Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-8 mt-1">
                 <div class="card mb-3 content">
@@ -168,7 +268,7 @@
                        
                     </div>
                 </div>
-                <div class="card mb-3 content">
+               @* <div class="card mb-3 content">
                     <h1 class="m-3">Thông tin khác</h1>
                     <div class="card-body">
                         <div class="row">
@@ -190,7 +290,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

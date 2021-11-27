@@ -129,79 +129,7 @@
             margin: 20px;
         }*/
 
-        .main {
-            padding: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-            .main .topbar_ {
-
-                overflow: hidden;
-            }
-
-                .main .topbar_ a {
-                    float: right;
-
-                    text-align: center;
-                    padding: 20px 26px;
-                    text-decoration: none;
-                    font-size: 26px;
-
-                }
-
-                    .main .topbar_ a:hover {
-
-                    }
-
-        .row .sidebar {
-           background-color: #333;
-            border:1px solid lightgray;
-            height: 870px;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-
-            .row .sidebar a {
-               @* margin-left: 10px;*@
-                display: block;
-                color: white;
-                padding-bottom: 10px;
-                font-size: 18px;
-                text-decoration: none;
-
-                text-align:center;
-            }
-
-                .edit-tt a:hover {
-                    color: cornflowerblue;
-                }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content {
-            background-color: rgb(255, 255, 255);
-            border: 1px solid lightgrey;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            padding-left: 25px;
-            margin-top: 5px;
-        }
-
-        hr {
-            margin-right: 20px;
-        }
-
-        .text-secondary {
-            margin-top: 10px;
-        }
-
-        .card-body {
-            margin-top: 10px;
-        }
+      
 
 
             /*-------------------------------------*/
@@ -423,103 +351,104 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <ul class="heard-list">
-            <li class="header_item" style="padding-right:100px;"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
-            <li class="header_item active-cyan-3 active-cyan-4 mb-4">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
-            </li>
-            <li class="header_item">
-                <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create">
-                    <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
-                </a>
-            </li>
-        </ul>
-        @Html.Partial("_LoginPartial")
+    <div class="container-fluid">
+        <div class="header">
+            <ul class="heard-list">
+                <li class="header_item" style="padding-right:100px;"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
+                <li class="header_item active-cyan-3 active-cyan-4 mb-4">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
+                </li>
+                <li class="header_item">
+                    <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create">
+                        <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
+                    </a>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
     </div>
+        <div class="menu">
+            <ul>
+                <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
+                <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
+                <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
+                <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+                <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
+                <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
 
-    <div class="menu">
-        <ul>
-            <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
-            <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
-            <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
-            <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
-            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-            <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
-
-        </ul>
-    </div>
-
+            </ul>
+        </div>
 
 
-    <div class="container body-content" style="background-color:white">
-        @RenderBody()
-    </div>
 
-    @* <div class="footer" style="height: 170px">
-            <div class="row">
-                <div class="col-sm-4" style="padding-left:50px;">
-                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                    <img src="~/Content/images/logo.png" style="width: 100px" />
-                </div>
-                <div class="col-sm-4 text-center">
-                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                    <p>Tên đồ án:Web RAO TIN</p>
-                    <p>Nhóm: Yuong Boys</p>
-                </div>
-                <div class="col-sm-4 text-right" style="padding-right:50px;">
-                    <p>Phạm Trần Huy Bảo - 1811060047</p>
-                    <p>Vũ Duy Linh - 1811060430</p>
-                </div>
-            </div>
-        </div> *@
-   
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="row-footer">
-                <div class="footer-col">
-                    <h4>Infor</h4>
-                    <ul>
-                        <li><a href="#">ASH Huy Bảo</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Infor</h4>
-                    <ul>
-                        <li><a href="#">Linh trai đẹp</a></li>
-                        <li><a href="#">item ####</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Infor</h4>
-                    <ul>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Infor</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <div class="container body-content" style="background-color:white">
+            @RenderBody()
+        </div>
+
+        @* <div class="footer" style="height: 170px">
+                <div class="row">
+                    <div class="col-sm-4" style="padding-left:50px;">
+                        <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                        <img src="~/Content/images/logo.png" style="width: 100px" />
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                        <p>Tên đồ án:Web RAO TIN</p>
+                        <p>Nhóm: Yuong Boys</p>
+                    </div>
+                    <div class="col-sm-4 text-right" style="padding-right:50px;">
+                        <p>Phạm Trần Huy Bảo - 1811060047</p>
+                        <p>Vũ Duy Linh - 1811060430</p>
                     </div>
                 </div>
+            </div> *@
 
+        <footer class="footer">
+            <div class="container-footer">
+                <div class="row-footer">
+                    <div class="footer-col">
+                        <h4>Infor</h4>
+                        <ul>
+                            <li><a href="#">ASH Huy Bảo</a></li>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Infor</h4>
+                        <ul>
+                            <li><a href="#">Linh trai đẹp</a></li>
+                            <li><a href="#">item ####</a></li>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Infor</h4>
+                        <ul>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                            <li><a href="#">item #</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Infor</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
