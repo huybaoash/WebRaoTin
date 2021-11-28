@@ -9,6 +9,8 @@
 <style>
     span {
         color: red;
+        padding:0;
+        float:none;
     }
 
     .formCreate {
@@ -251,6 +253,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -398,7 +401,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -563,6 +566,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
