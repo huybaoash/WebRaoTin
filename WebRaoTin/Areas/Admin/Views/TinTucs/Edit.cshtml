@@ -7,6 +7,10 @@
 
 <h2>Edit</h2>
 <style>
+    span {
+        color: red;
+    }
+
     .formCreate {
         width: 70%;
         padding: 20px;
@@ -96,9 +100,10 @@
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="@Model.Title">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -143,13 +148,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract" value="@Model.Contract" data-val="true" data-val-required="The Thông tin liên lạc field is required.">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" data-val="true" data-val-required="The Số điện thoại liên hệ field is required." id="ContractPhoneNumber" name="ContractPhoneNumber" value="@Model.ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -157,21 +162,22 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionSanPham" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!" name="DescriptionSanPham">@Model.DescriptionSanPham</textarea>
+                    @Html.TextAreaFor(m => m.DescriptionSanPham, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
                 </div>
-
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceSanPham" name="PriceSanPham" value="@Model.PriceSanPham" min="0">
+                            @Html.TextBoxFor(m => m.PriceSanPham, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-9">
                             <label for="TD">Nơi bán</label>
-                            <input class="form-control" type="text" id="LocationSanPham" name="LocationSanPham" value="@Model.LocationSanPham">
+                            @Html.TextBoxFor(m => m.LocationSanPham, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+
                             @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -242,7 +248,7 @@
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." name="Title" value="@Model.Title">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -291,13 +297,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract" value="@Model.Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber" value="@Model.ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -305,7 +311,7 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionDichVu" name="DescriptionDichVu" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!">@Model.DescriptionDichVu</textarea>
+                    @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
                 </div>
 
@@ -313,13 +319,14 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceDichVu" name="PriceDichVu" value="@Model.PriceDichVu" min="0">
+                            @Html.TextBoxFor(m => m.PriceDichVu, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-9">
                             <label for="TD">Địa điểm</label>
-                            <input class="form-control" type="text" id="LocationDichVu" name="LocationDichVu" value="@Model.LocationDichVu">
+                            @Html.TextBoxFor(m => m.LocationDichVu, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+
                             @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -388,7 +395,7 @@
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" name="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." value="@Model.Title">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
 
@@ -440,13 +447,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract" value="@Model.Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber" value="@Model.ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -454,26 +461,27 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptionBatDongSan" name="DescriptionBatDongSan" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!">@Model.DescriptionBatDongSan</textarea>
+                    @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">diện tích</label>
-                            <input class="form-control" type="number" placeholder="vd:1300->1300m²" id="Area" name="Area" value="@Model.Area" min="0">
+                            
+                            @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @placeholder = "vd:1300->1300m²", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-3">
                             <label for="TD">Giá</label>
-                            <input class="form-control" type="number" id="PriceBatDongSan" name="PriceBatDongSan" value="@Model.PriceBatDongSan" min="0">
+                            @Html.TextBoxFor(m => m.PriceBatDongSan, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">địa điểm</label>
-                            <input class="form-control" type="text" id="LocationBatDongSan" name="LocationBatDongSan" value="@Model.LocationBatDongSan">
+                            @Html.TextBoxFor(m => m.LocationBatDongSan, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
                             @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -552,7 +560,7 @@
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
-                    <input class="form-control" type="text" id="Title" placeholder="Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." value="@Model.Title" name="Title">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
@@ -606,13 +614,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="TD">Người liên hệ</label>
-                            <input class="form-control" type="text" id="Contract" name="Contract" value="@Model.Contract">
+                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
                             @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-6">
                             <label for="TD">Số điện thoại</label>
-                            <input class="form-control" type="text" id="ContractPhoneNumber" name="ContractPhoneNumber" value="@Model.ContractPhoneNumber">
+                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
                             @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -620,19 +628,19 @@
 
                 <div class="form-group">
                     <label for="comment">Nội dung</label>
-                    <textarea class="form-control" rows="10" id="DescriptioViecLamn" name="DescriptioViecLamn" placeholder="Yêu cầu người đăng tin, điền nội dung chính xác!">@Model.DescriptioViecLamn</textarea>
+                    @Html.TextAreaFor(m => m.DescriptioViecLamn, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Yêu cầu</label>
-                    <textarea class="form-control" rows="10" id="Require" name="Require" placeholder="thông tin yêu cầu ...">@Model.Require</textarea>
+                    @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Quyền lợi</label>
-                    <textarea class="form-control" rows="10" id="Benefit" name="Benefit" placeholder="thông tin về quyền lợi ...">@Model.Benefit</textarea>
+                    @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
                 </div>
 
@@ -640,13 +648,13 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label for="TD">Lương</label>
-                            <input class="form-control" type="number" id="Salary" name="Salary" placeholder="nhập mức lương tối thiểu, chỉ nhập số" value="@Model.Salary" min="0">
+                            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0",Type ="number" })
                             @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-7">
                             <label for="TD">Địa điểm</label>
-                            <input class="form-control" type="text" id="LocationViecLam" name="LocationViecLam" value="@Model.LocationViecLam">
+                            @Html.TextBoxFor(m => m.LocationViecLam, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
                             @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -816,7 +824,7 @@
         });
     });
 
-    
+
 
     function isFutureDate(idate) {
         var today = new Date().getTime(),
@@ -898,7 +906,7 @@
 
     });
 
-    
+
 
     $("#EndDayTinTucsVL").change(function () {
         resultDivSP = document.getElementById("datewarnVL");
@@ -924,15 +932,244 @@
 
     });
 
-   
+
     $("#Create").click(function () {
 
 
+        switch (@Model.LuaChon)
+        {
+            case 1:
+                {
+
+                    var a = '';
+                    if ($('#Title').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#EndDayTinTucsSP').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#PriceSanPham').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#LocationSanPham').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Contract').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#ContractPhoneNumber').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#DescriptionSanPham').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    var fileSelected = document.getElementById('image1').files;
+                    if (fileSelected.length == 0) {
+                        a = a + 'Tên ko dc trống\n';
+                    }
 
 
 
-        swal("Chỉnh sửa thành công!", "", "success"); // điều kiện thêm giúp tui nha
+                    if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
+                    else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+                        buttons: [null, true],
+                    })
+                    break;
+                }
+            case 2:
+                {
+                    var a = '';
+                    if ($('#Title').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#EndDayTinTucsDV').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#PriceDichVu').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#LocationDichVu').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Contract').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#ContractPhoneNumber').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#DescriptionDichVu').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    var fileSelected = document.getElementById('image2').files;
+                    if (fileSelected.length == 0) {
+                        a = a + 'Tên ko dc trống\n';
+                    }
+
+
+
+                    if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
+                    else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+                        buttons: [null, true],
+                    })
+                    break;
+                }
+            case 3:
+                {
+                    var a = '';
+                    if ($('#Title').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#EndDayTinTucsBDS').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#PriceBatDongSan').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#LocationBatDongSan').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Contract').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#ContractPhoneNumber').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#DescriptionBatDongSan').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    var fileSelected = document.getElementById('image3').files;
+                    if (fileSelected.length == 0) {
+                        a = a + 'Tên ko dc trống\n';
+                    }
+
+                    var fileSelected = document.getElementById('video').files;
+                    if (fileSelected.length == 0) {
+                        a = a + 'Tên ko dc trống\n';
+                    }
+
+                    if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
+                    else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+                        buttons: [null, true],
+                    })
+                    break;
+                }
+            case 4:
+                {
+                    var a = '';
+                    if ($('#Title').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#EndDayTinTucsVL').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#LocationViecLam').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Contract').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#ContractPhoneNumber').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#DescriptioViecLamn').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Benefit').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Salary').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    if ($('#Require').val() == '') {
+                        a = a + 'Tên ko dc trống\n';
+
+                    };
+
+                    var fileSelected = document.getElementById('image4').files;
+                    if (fileSelected.length == 0) {
+                        a = a + 'Tên ko dc trống\n';
+                    }
+
+
+
+                    if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
+                    else swal("Bạn nhập thiếu thông tin!", "", "warning", {
+                        buttons: [null, true],
+                    })
+                    break;
+                }
+
+            default:
+                {
+                    document.getElementById("EndDayTinTucsVL").setAttribute("min", today);
+                    document.getElementById("EndDayTinTucsBDS").setAttribute("min", today);
+                    document.getElementById("EndDayTinTucsDV").setAttribute("min", today);
+                    document.getElementById("EndDayTinTucsSP").setAttribute("min", today);
+                    break;
+                }
+        };
+
+
         
+
 
     });
 
@@ -984,8 +1221,8 @@
     };
 
 
-    
-   
-    
+
+
+
 
 </script>

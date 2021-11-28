@@ -155,14 +155,14 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-number="The field Giá must be a number." data-val-required="Không được để trống." id="PriceSanPham" name="PriceSanPham" type="number" value="" aria-describedby="PriceSanPham-error" aria-invalid="true" min="0">
-
+                                @Html.TextBoxFor(m => m.PriceSanPham, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
                                 @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-9">
-                                <label for="LocationSanPham">Nơi bán</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationSanPham" name="LocationSanPham" type="text" value="">
+                                <label for="TD">Nơi bán</label>
+                                @Html.TextBoxFor(m => m.LocationSanPham, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+
                                 @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -272,14 +272,14 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceDichVu" name="PriceDichVu" type="number" value="" aria-describedby="PriceDichVu-error" aria-invalid="true" min="0">
-
+                                @Html.TextBoxFor(m => m.PriceDichVu, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
                                 @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-9">
-                                <label for="LocationDichVu">Địa điểm</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationDichVu" name="LocationDichVu" type="text" value="">
+                                <label for="TD">Địa điểm</label>
+                                @Html.TextBoxFor(m => m.LocationDichVu, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+
                                 @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -391,20 +391,20 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="TD">diện tích</label>
-                                <input class="form-control" placeholder="vd:1300->1300m²" data-val="true" data-val-required="Không được để trống." id="Area" name="Area" type="number" value="" aria-describedby="Area-error" aria-invalid="true" min="0">
+                                @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @placeholder = "vd:1300->1300m²", @min = "0", Type = "number" })
                                 @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-3">
                                 <label for="TD">Giá</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="PriceBatDongSan" name="PriceBatDongSan" type="number" value="" aria-describedby="PriceBatDongSan-error" aria-invalid="true" min="0">
+                                @Html.TextBoxFor(m => m.PriceBatDongSan, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
 
                                 @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-6">
                                 <label for="LocationBatDongSan">Địa điểm</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationBatDongSan" name="LocationBatDongSan" type="text" value="">
+                                @Html.TextBoxFor(m => m.LocationBatDongSan, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
                                 @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -539,17 +539,18 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label for="TD">Lương</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="Salary" name="Salary" type="number" value="" aria-describedby="Salary-error" aria-invalid="true" placeholder="Nhập mức lương tối thiểu, chỉ nhập số" min="0">
+                                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0", Type = "number" })
                                 @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="col-md-7">
                                 <label for="TD">Địa điểm</label>
-                                <input class="form-control" data-val="true" data-val-required="Không được để trống." id="LocationViecLam" name="LocationViecLam" type="text" value="">
+                                @Html.TextBoxFor(m => m.LocationViecLam, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
                                 @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <div class="row">
