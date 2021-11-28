@@ -106,21 +106,21 @@
         <form>
             <div class="input-field">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger", style = "margin-left:0px" })
-                <label for="email">Tên đăng nhập</label>
-                <input class="form-control " type="text" name="email" placeholder="Email" id="Email">
+                <label for="Email">Tên đăng nhập</label>
+                
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
 
             <div class="input-field">
                 <label for="pwd">Mật khẩu</label>
-                <input class="form-control" type="Password" name="Password" placeholder="Password" id="Password">
+                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password",Type = "Password" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
 
             <div class="Remember-lg">
                 @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
-
-                <input type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe">
+                @Html.CheckBoxFor(m => m.RememberMe)
                 <label for="RememberMe" id="RememberMe">Ghi nhớ</label>
             </div>
 

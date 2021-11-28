@@ -251,6 +251,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -314,7 +315,7 @@
                     @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
                 </div>
-
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -398,7 +399,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -464,6 +465,7 @@
                     @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -535,7 +537,7 @@
 
     if (Model.LuaChon.Equals("4"))
     {
-       <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Việc làm</i>]</h2>
+        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Việc làm</i>]</h2>
         <hr>
         <div class="formall">
             <div class="formCreate">
@@ -563,6 +565,7 @@
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+                <hr />
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -637,7 +640,7 @@
                     @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
                 </div>
-
+                <hr />
                 <div class="form-group">
                     <label for="comment">Quyền lợi</label>
                     @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
