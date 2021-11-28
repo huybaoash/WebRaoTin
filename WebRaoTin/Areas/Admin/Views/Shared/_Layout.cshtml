@@ -440,88 +440,110 @@
             @Html.Partial("_LoginPartial")
         </div>
     </div>
-        <div class="menu">
-            <ul>
-                <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
-                <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
-                <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
-                <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-                <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
-                <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
+    <!--<div class="container-fluid">-->
+    <!-- <h1>Hello World!</h1>
+    <p>Resize the browser window to see the effect.</p>
+    <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p> -->
+    <!--<div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4" style="margin-top:5px"><img src="~/images/logo22.png" alt="" style="height:100px; width:100%" /></div>
 
-            </ul>
-        </div>
+            <div class="col-sm-7">
 
+                <div style="margin-top:30px;text-align:center;padding-left:40%">
+                    <button class="btn-DT btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button>
+                    @*  @Html.Partial("_LoginPartial")*@
 
-
-        <div class="container body-content" style="background-color:white">
-            @RenderBody()
-        </div>
-
-        @* <div class="footer" style="height: 170px">
-                <div class="row">
-                    <div class="col-sm-4" style="padding-left:50px;">
-                        <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                        <img src="~/Content/images/logo.png" style="width: 100px" />
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                        <p>Tên đồ án:Web RAO TIN</p>
-                        <p>Nhóm: Yuong Boys</p>
-                    </div>
-                    <div class="col-sm-4 text-right" style="padding-right:50px;">
-                        <p>Phạm Trần Huy Bảo - 1811060047</p>
-                        <p>Vũ Duy Linh - 1811060430</p>
-                    </div>
                 </div>
-            </div> *@
 
-        <footer class="footer">
-            <div class="container-footer">
-                <div class="row-footer">
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">ASH Huy Bảo</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">Linh trai đẹp</a></li>
-                            <li><a href="#">item ####</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+            </div>
 
+        </div>
+
+    </div>-->
+
+    <div class="menu">
+        <ul>
+            <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
+            <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
+            <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
+            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+            <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
+            <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
+
+        </ul>
+    </div>
+
+
+
+    <div class="container body-content" style="background-color:white">
+        @RenderBody()
+    </div>
+
+    @* <div class="footer" style="height: 170px">
+            <div class="row">
+                <div class="col-sm-4" style="padding-left:50px;">
+                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
+                    <img src="~/Content/images/logo.png" style="width: 100px" />
+                </div>
+                <div class="col-sm-4 text-center">
+                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
+                    <p>Tên đồ án:Web RAO TIN</p>
+                    <p>Nhóm: Yuong Boys</p>
+                </div>
+                <div class="col-sm-4 text-right" style="padding-right:50px;">
+                    <p>Phạm Trần Huy Bảo - 1811060047</p>
+                    <p>Vũ Duy Linh - 1811060430</p>
                 </div>
             </div>
-        </footer>
+        </div> *@
+
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">ASH Huy Bảo</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">Linh trai đẹp</a></li>
+                        <li><a href="#">item ####</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
 
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
