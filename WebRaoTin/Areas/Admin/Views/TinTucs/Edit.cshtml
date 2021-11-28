@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+@*<h2>Edit</h2>*@
 <style>
     span {
         color: red;
@@ -74,7 +74,7 @@
 
     if (Model.LuaChon.Equals("1"))
     {
-        <h2>SẢN PHẨM</h2>
+        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Sản phẩm</i>]</h2>
         <hr>
         <div class="formall">
             <div class="formCreate">
@@ -223,7 +223,7 @@
 
     if (Model.LuaChon.Equals("2"))
     {
-        <h2>DỊCH VỤ</h2>
+        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Dịch vụ</i>]</h2>
         <hr>
         <div class="formall">
             <div class="formCreate">
@@ -370,7 +370,7 @@
 
     if (Model.LuaChon.Equals("3"))
     {
-        <h2>BẤT ĐỘNG SẢN</h2>
+        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Bất động sản</i>]</h2>
         <hr>
         <div class="formall">
             <div class="formCreate">
@@ -468,7 +468,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="TD">diện tích</label>
-                            
+
                             @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @placeholder = "vd:1300->1300m²", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
                         </div>
@@ -535,7 +535,7 @@
 
     if (Model.LuaChon.Equals("4"))
     {
-        <h2>VIỆC LÀM</h2>
+       <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Việc làm</i>]</h2>
         <hr>
         <div class="formall">
             <div class="formCreate">
@@ -648,7 +648,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label for="TD">Lương</label>
-                            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0",Type ="number" })
+                            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0", Type = "number" })
                             @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
                         </div>
 
@@ -1168,7 +1168,7 @@
         };
 
 
-        
+
 
 
     });
