@@ -738,9 +738,13 @@
                     <hr />
                     @if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
                     {
-                        if (@ViewBag.kiemtra_hasSentCV == 1)
+                        if (@ViewBag.NgayHetHan.Equals("Đã hết hạn"))
                         {
-                            <h4 style="font-weight:bold">Gửi hồ sơ</h4>
+                            <h4 style="font-weight:bold">Hết hạn nộp hồ sơ</h4>
+                        }
+                        else if (@ViewBag.kiemtra_hasSentCV == 1)
+                        {
+                            <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                             <div style="padding-left: 10px; line-height: 0.8rem;">
                                 <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
                                     <p class="btn btn-success btn-xs">Đã gửi CV</p>
@@ -752,7 +756,7 @@
                             using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <h4 style="font-weight:bold">Gửi hồ sơ</h4>
+                                <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                                 <div style="padding-left: 10px; line-height: 0.8rem;">
                                     <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" />
                                     <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
@@ -769,7 +773,7 @@
                     }
                     else
                     {
-                        <h4 style="font-weight:bold">Nhận danh sách hồ sơ</h4>
+                        <h4 style="font-weight:bold">Nhận danh sách hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                         <div style="padding-left: 10px; line-height: 0.8rem;">
                             <a style="font-size:16px" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Đi tới danh sách >> </a>
                         </div>
@@ -896,86 +900,8 @@
 
 
     </div>
-    @* <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>*@
+    
 }
-
-@*@using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        if (Request.IsAuthenticated)
-        {
-            <div style="padding:10px">
-                <h4>Bình luận</h4>
-                <hr />
-
-                <ul>
-
-                    @foreach (var item in @ViewBag.dsBLcuaTT)
-                    {
-
-                        <br />
-
-                        <b>@item.CustomerEmail</b>
-                        @item.PublishDay
-                        if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
-                        {
-
-                            <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
-                        };
-                        <br />
-
-                        @item.Description
-
-                    }
-
-                </ul>
-                <hr />
-                <div class="CMT">
-                    <form class="form-inline" action="">
-                        <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
-                        <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                        <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
-
-                        <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
-                    </form>
-                </div>
-
-
-            </div>
-        }
-        else
-        {
-            <div>
-                <h4>Bình luận</h4>
-                <hr />
-                <ul>
-
-                    @foreach (var item in @ViewBag.dsBLcuaTT)
-                    {
-
-                        <br />
-
-                        <b>@item.CustomerEmail      </b>
-                        @item.PublishDay
-
-                        <br />
-                        @item.Description
-
-
-                    }
-
-                </ul>
-
-                Bạn phải đăng nhập mới có thế bình luận.
-
-            </div>
-        }
-
-    }*@
-
 
 
 

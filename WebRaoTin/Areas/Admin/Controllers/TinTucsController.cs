@@ -117,8 +117,52 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
         }
 
+        public string ngaygiohethanTT(DateTime hanchot)
+        {
+            const int SECOND = 1;
+            const int MINUTE = 60 * SECOND;
+            const int HOUR = 60 * MINUTE;
+            const int DAY = 24 * HOUR;
+            const int MONTH = 30 * DAY;
 
-   
+            var ts = new TimeSpan(hanchot.Ticks - DateTime.Now.Ticks);
+            double delta = ts.TotalSeconds;
+
+            if (delta < 0) return "Đã hết hạn";
+
+            if (delta < 1 * MINUTE)
+                return ts.Seconds == 1 ? "Còn 1 giây nữa" : "Còn " + ts.Seconds + "giây nữa";
+
+            if (delta < 2 * MINUTE)
+                return "Còn 1 phút nữa";
+
+            if (delta < 45 * MINUTE)
+                return "Còn " + ts.Minutes + " phút nữa";
+
+            if (delta < 90 * MINUTE)
+                return "Còn 1 giờ nữa";
+
+            if (delta < 24 * HOUR)
+                return "Còn " + ts.Hours + " phút nữa";
+
+            if (delta < 48 * HOUR)
+                return "Còn 1 ngày nữa";
+
+            if (delta < 30 * DAY)
+                return "Còn " + ts.Days + " ngày nữa";
+
+            if (delta < 12 * MONTH)
+            {
+                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+                return months <= 1 ? "Còn 1 tháng nữa" : "Còn "+ months + " tháng nữa";
+            }
+            else
+            {
+                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+                return years <= 1 ? "Còn 1 năm nữa" : "Còn " + years + " năm nữa";
+            }
+        }
+
 
         public void TinBDS_4Lastest()
         {
@@ -733,6 +777,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 if (item.TinTucId.Equals(id))
                 {
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
+                    string NgayHetHan = "";
+                    NgayHetHan = ngaygiohethanTT(tinTucsViewModel.EndDayTinTucs.Value);
+                    ViewBag.NgayHetHan = NgayHetHan;
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None).ToList();
                     for (int i = 0; i < images.Count-1; i++)
