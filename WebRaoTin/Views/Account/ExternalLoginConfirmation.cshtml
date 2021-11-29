@@ -16,10 +16,22 @@
     .form-horizontal {
         width: 50%;
         margin: auto;
-        border:1px solid #dcdcdc;
-        border-radius:5px;
-        padding-left:30px;
-        padding-right:30px;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
     }
 </style>
 
@@ -34,15 +46,15 @@
         Xin hãy điền thông tin vào những ô dưới đây rồi hãy ấn nút đăng ký
     </p>
 
-      @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-  
+
 
     <div class="form-group">
         @* @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
             <label for="UserName">Tên tài khoản(*)</label>
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @maxlength = "20" })
             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -85,7 +97,7 @@
         @*   @Html.LabelFor(m => m.CMND, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
             <label for="CMND">CMND(*)</label>
-            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control", Type = "number", @placeholder = "CMND mới có 12 số...", @max = "999999999" })
             @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -95,7 +107,7 @@
         @*   @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
             <label for="PhoneNumber">Số điện thoại (*)</label>
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", Type = "number", @placeholder = "SDT có 10 số...", @max = "999999999" })
             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
