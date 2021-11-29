@@ -11,6 +11,7 @@ using WebRaoTin.Models;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class BinhLuansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

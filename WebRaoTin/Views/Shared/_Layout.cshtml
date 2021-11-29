@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<!-- Layout User -->
+<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,17 +14,258 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Custom script -->
+
+    <link href="@Url.Content("~/Content/customDOAN.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/DetailsNewsSP.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Footer.css")" rel="stylesheet" type="text/css" />
+
+
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '{your-app-id}',
+                cookie: true,
+                xfbml: true,
+                version: '{api-version}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+    </script>
 
     <style>
-
-
-        body {
-            background-color: white;
-           
+        @* Ngày 7/11 - Huybaoash*@
+        .response1, .response2, .response3, .response0, .response4, .response5 {
+            display: none;
         }
 
+
+        @*Ngày 15/11 Huybaoash*@
+
+        #carouselExampleControls {
+            width: 30%;
+            margin: auto;
+        }
+
+        #LuaChon {
+            display:none;
+        }
+
+        #displayImg1{
+            margin-top: 30px;
+        }
+        #displayImg1 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg2 {
+            margin-top: 30px;
+        }
+        #displayImg2 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg3 {
+            margin-top: 30px;
+        }
+
+        #displayImg3 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+        #displayImg4 {
+            margin-top: 30px;
+        }
+
+        #displayImg4 img {
+                height: 50px;
+                width: 50px;
+                margin-right: 15px;
+                display: inline-block;
+            }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        /*---------------User Details---------------------------  */
+
+        /*
+
+        .bd {
+            margin: 20px;
+        }*/
+        .main {
+            padding: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+            .main .topbar_ {
+                overflow: hidden;
+            }
+
+                .main .topbar_ a {
+                    float: right;
+                    text-align: center;
+                    padding: 20px 26px;
+                    text-decoration: none;
+                    font-size: 26px;
+                }
+
+                    .main .topbar_ a:hover {
+                    }
+
+        .row .sidebar {
+            background-color: #d7d3d3;
+            border: 1px solid lightgray;
+            height: 480px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+            .row .sidebar a {
+                @* margin-left: 10px;
+                *@ display: block;
+                color: inherit;
+                padding-bottom: 10px;
+                font-size: 18px;
+                text-decoration: none;
+                text-align: center;
+            }
+
+        .edit-tt a:hover {
+            color: cornflowerblue;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            @* background-color: rgb(255, 255, 255);
+            *@ border: 1px solid lightgrey;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+
+        hr {
+            margin-right: 20px;
+        }
+
+        .text-secondary {
+            margin-top: 10px;
+        }
+
+        .card-body {
+            margin-top: 10px;
+        }
+
+        .mt-3 h4 {
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+
+
+
+            /*-------------------------------------*/
+            .col {
+                background-color: rgb(247, 129, 51);
+                border: 1px solid none;
+                margin: 0px 20px;
+                height: 200px;
+                font-size: 20px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: opacity 0.6s ease;
+                color: black;
+                border-radius: 5px;
+                box-shadow: 10px;
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+                width: 100%;
+                background-size: 250px 200px;
+                background-repeat: no-repeat;
+            }
+        .img-dv {
+            background-image: url("/images/Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg");
+        }
+        .img-vl {
+            background-image: url("/images/tong-hop-cac-cach-cai-thien-ky-nang-noi-chuyen.png");
+        }
+        .img-bds {
+            background-image: url("/images/thutucmuabannha01.jpg");
+        }
+        .img-sp {
+            background-image: url("/images/quy-trinh-ban-hang-truc-tiep.jpg");
+        }
+        .rowbtn-create {
+
+            text-align: center;
+            display: flex;
+        }
+
+        .col:hover {
+            background-color: rgb(248, 155, 94);
+            opacity: 0.8;
+        }
+
+        /*-------------------------------------*/
+
+
+        a {
+            text-decoration: none
+        }
+
+        .small-container {
+            display: none;
+        }
+
+        @*==========================================*@
+        body {
+           @* // background-color: #f8f8f8;
+         //   margin: 0;
+         //   padding: 0;*@
+            font-family: Arial;
+        }
         .menu {
             background-color: rgb(161, 14, 8);
             text-align: center;
@@ -46,23 +289,25 @@
                         color: rgb(202, 209, 209);
                     }
 
-       @* .header {
+        .header {
             background-color: white;
             min-height: 80px;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap-reverse;
-           
-        }*@
 
-      
 
-       @* .header_item {
+        }
+
+
+
+        .header_item {
             list-style: none;
-           
+            margin-left: 20px;
+            margin-right: 50px;
             display: inline-block;
-        }*@
-        
+        }
+
 
         .btn-DT {
             text-decoration: none;
@@ -74,14 +319,10 @@
             border-radius: 5px;
             cursor: pointer;
             transition: opacity 0.2s ease;
-            font-weight:bold;
-            margin-top:6px;
-          
         }
 
         .btn--warn {
-            @*  background-color: rgb(161, 14, 8);*@
-            background-color:#ea4d04;
+            background-color: rgb(161, 14, 8);
         }
 
         .btn-DT:hover {
@@ -98,74 +339,143 @@
 
         .header_item h3 {
             cursor: pointer;
-          
-            
         }
 
-        #RowTT{
-            background-color: #e6dddd;
-        }
-        .row h3{
+
+        .row h3 {
             text-align: left;
             margin-left: 10px;
-            border-bottom: 1px solid #454444;
+            border-bottom: 1px solid lightgray;
+            width: 98%;
+        }
+        #RowTT {
+            margin: auto;
         }
 
         .boxDiv {
             background-color: none;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 10px 5px 10px 5px;
+            padding: 5px 5px 0px 5px;
             color: black;
             margin-bottom: 5px;
-            text-align:center;
-          
+            text-align: left;
+            border-radius: 4px;
+            height:360px;
         }
-        .boxDiv img{
-            width:250px;
-            height:200px;
+
+            .boxDiv img {
+                height: 200px;
+            }
+
+        .btn_more {
+            margin-bottom: 20px;
+            padding-left: 93.5%;
+            margin-top: 2px;
+            border-bottom: 1px solid #de1c1c;
         }
-        .btn_more{
-            border-top: 1px solid rgb(202, 209, 209);
-            background-color: transparent;
-            text-align:center;
-            margin-bottom:20px;
+        .row h3 {
+            text-align: left;
         }
-        .btn_more h5{
-            margin-top:0;
-        }
-        .row h3{
-            text-align:left;
-        }
+
         .card-body label {
-            height: 80px;
-            background-color: palegoldenrod;
+            margin-bottom: 15px;
         }
-        .card .form-group p{
-                color: #ff6a00;
+
+        .card .form-group .Coins-index {
+            color: #ff6a00;
         }
+
         #loginLink, #registerLink {
             color: inherit;
         }
-        footer {
+
+    @*    .footer {
             background-color: rgba(0, 0, 0, 0.2);
-            width: 100%;
-            margin-top: 55px;
+            margin-top:25%;
+
+        }*@
+     @*   .container{
+         margin-bottom:150px;
+        }*@
+        .heard-list .header_item h3 a {
+            color: #ff6a00;
+            font-weight:900;
+            text-decoration:none;
         }
-        .container {
-            margin-bottom: 170px;
+        .col-lg-3{
+            padding-left:4px;
+            padding-right:4px;
         }
-       
+        /* create tin tuc*/
+        #Create:hover{
+
+        }
+        @*css của nút ẩn hiện file trong hồ sơ CV*@
+        #CV{
+            border-radius:3px;
+        }
+        .ND-CV {
+            margin: 10px auto;
+            width: 80%;
+            @*border: 1px solid #e4e4e4;*@
+        }
+
+        @*css drop-down menu*@
+@*--------------------------------------Banner------------------------*@
+        .main-container {
+            top: 0;
+            left: 0;
+            width: 1500px;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            margin: 0 auto;
+            justify-content: center;
+            align-content: flex-start;
+            margin-bottom: 20px;
+
+        }
+
+        .right-container {
+            position: fixed;
+            right: 5px;
+            bottom: 0;
+            min-width: 90px;
+            background-color: purple;
+            height: 650px;
+            margin-left: 10px;
+        }
+
+        .left-container {
+            position: fixed;
+            left: 5px;
+            bottom: 0;
+            min-width: 90px;
+            background-color: blue;
+            height: 650px;
+            margin-right: 10px;
+        }
+
+        .content-container {
+            top: 0;
+            background: rgb(250, 250, 250);
+            width: 1150px;
+            height: auto;
+            max-width: 80%;
+        }
+
+
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <!-- <h1>Hello World!</h1>
-    <p>Resize the browser window to see the effect.</p>
-    <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p> -->
+        <p>Resize the browser window to see the effect.</p>
+        <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p> -->
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-4" style="margin-top:5px">
-                <a href="#">
+                <a href="@Url.Action("Index","Home")">
                     <img src="~/images/logo22.png" alt="" style="height:100px; width:100%; padding:15px" />
                 </a>
             </div>
@@ -173,7 +483,9 @@
             <div class="col-sm-7">
 
                 <div style="margin-top:30px;text-align:center;padding-left:40%">
-                    <button class="btn-DT btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button>
+                    <a style="color:white;text-decoration:none" href="@Url.Action("Create","TinTucs")">
+                        <button class="btn-DT btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button>
+                    </a>
                     @Html.Partial("_LoginPartial")
 
                 </div>
@@ -181,40 +493,83 @@
             </div>
 
         </div>
-      
+
     </div>
 
-    
+
     <div class="menu">
         <ul>
-            <li><a><i class="fas fa-toolbox"></i> Tìm việc</a></li>
-            <li><a><i class="fas fa-car-side"></i> bất động sản</a></li>
-            <li><a><i class="fas fa-hotel"></i> ô tô</a></li>
-            <li><a><i class="fas fa-motorcycle"></i> xe máy</a></li>
-            <li><a><i class="fas fa-microchip"></i> đồ điện tử</a></li>
-            <li><a><i class="fas fa-dice-d20"></i> dịch vụ</a></li>
+            <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
+            <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
+            <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
+            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
         </ul>
     </div>
 
 
-    <div class="container body-content">
-        @RenderBody()
+    @*--------------------------------------------------------------------------------------------------*@
+    <div class="main-container">
+        <div class="left-container">
+            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:650px">
+        </div>
 
+        <div class="content-container">
+            <div class="container body-content" style="background-color:white;width:100%">
+                @RenderBody()
+            </div>
+        </div>
+
+        <div class="right-container">
+            @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:650px">
+
+        </div>
+        <div>
+
+        </div>
     </div>
-    <footer style="height: 170px">
-        <div class="row">
-            <div class="col-sm-4" style="padding-left:50px;">
-                <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                <img src="~/Content/images/logo.png" style="width: 100px" />
-            </div>
-            <div class="col-sm-4 text-center">
-                <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                <p>Tên đồ án:Web RAO TIN</p>
-                <p>Nhóm: Yuong Boys</p>
-            </div>
-            <div class="col-sm-4 text-right" style="padding-right:50px;">
-                <p>Phạm Trần Huy Bảo - 1811060047</p>
-                <p>Vũ Duy Linh - 1811060430</p>
+
+    @*---------------------------------------------------------------------------------------------------------------------------------*@
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">ASH Huy Bảo</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">Linh trai đẹp</a></li>
+                        <li><a href="#">item ####</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </footer>

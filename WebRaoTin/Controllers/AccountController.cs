@@ -18,6 +18,7 @@ namespace WebRaoTin.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationRoleManager _roleManager;
 
         public AccountController()
         {
@@ -32,10 +33,11 @@ namespace WebRaoTin.Controllers
             ViewBag.dsUser = dsUser;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -47,6 +49,18 @@ namespace WebRaoTin.Controllers
             private set
             {
                 _signInManager = value;
+            }
+        }
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
             }
         }
 
@@ -68,6 +82,10 @@ namespace WebRaoTin.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index","Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -270,13 +288,17 @@ namespace WebRaoTin.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    result = await UserManager.AddToRoleAsync(user.Id, user.Role);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Xác nhận tài khoản của bạn", "Xin hãy xác nhận tài khoản của bạn bằng cách nhấp vào <a href=\"" + callbackUrl + "\">đây.</a>");
+
+                    
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -561,6 +583,7 @@ namespace WebRaoTin.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    result = await UserManager.AddToRoleAsync(user.Id, "2");
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

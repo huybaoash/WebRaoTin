@@ -5,12 +5,18 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebRaoTin.Models;
+using Microsoft.AspNet.Identity.Owin;
+using WebRaoTin.Controllers;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -220,34 +226,111 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             return View(applicationUser);
         }
-
+        
         public ActionResult Edit_UpRole(string id)
         {
             var user = db.Users.Find(id);
             user.Role = "Quản trị viên";
+
             if (ModelState.IsValid)
             {
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            string ketnoi = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var sqlconnectstring = @"" + ketnoi;
+
+            var connection = new SqlConnection(sqlconnectstring);
+            connection.Open();
+
+
+            // Tạo đối tượng SqlCommand
+            var command = new SqlCommand();
+            command.Connection = connection;
+
+            // Câu truy vấn gồm: chèn dữ liệu vào và lấy định danh(Primary key) mới chèn vào
+            string queryString = @"UPDATE [WebRaoTin].[dbo].[AspNetUserRoles] SET RoleId = 1 WHERE UserId = @UserId AND RoleId = 2 ";
+
+            command.CommandText = queryString;
+            command.Parameters.AddWithValue("@UserId", id);
+
+
+            var rows_affected = command.ExecuteNonQuery();
+
+
+            connection.Close();
+            return RedirectToAction("Index", "Users");
+            /*user.Roles.FirstOrDefault((p) =>
+            {
+                return p.UserId.Equals(id) && p.RoleId == "1";
+            }).RoleId = "2";
+            if (ModelState.IsValid)
+            {
+
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Users");
+
             }
 
-            return RedirectToAction("Index", "Users");
+
+            return RedirectToAction("Index", "Users");*/
         }
 
-
+        
         public ActionResult Edit_DownRole(string id)
         {
             var user = db.Users.Find(id);
             user.Role = "Người dùng";
             if (ModelState.IsValid)
             {
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            string ketnoi = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var sqlconnectstring = @"" + ketnoi;
+            
+            var connection = new SqlConnection(sqlconnectstring);
+            connection.Open();
+
+
+            // Tạo đối tượng SqlCommand
+            var command = new SqlCommand();
+            command.Connection = connection;
+
+            // Câu truy vấn gồm: chèn dữ liệu vào và lấy định danh(Primary key) mới chèn vào
+            string queryString = @"UPDATE [WebRaoTin].[dbo].[AspNetUserRoles] SET RoleId = 2 WHERE UserId = @UserId AND RoleId = 1 ";
+
+            command.CommandText = queryString;
+            command.Parameters.AddWithValue("@UserId", id);
+            
+
+            var rows_affected = command.ExecuteNonQuery();
+            
+
+            connection.Close();
+            return RedirectToAction("Index", "Users");
+            // This whole block is in a transaction scope so I just check recordability.
+
+            /*user.Roles.FirstOrDefault((p) =>
+            {
+                return p.UserId.Equals(id) && p.RoleId == "2";
+            }).RoleId = "1";
+            if (ModelState.IsValid)
+            {
+
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Users");
+
             }
 
-            return RedirectToAction("Index", "Users");
+
+            */
         }
 
         // GET: Admin/Users/Delete/5

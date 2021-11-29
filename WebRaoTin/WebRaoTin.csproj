@@ -201,8 +201,17 @@
     <Compile Include="Areas\Admin\Controllers\TinTucsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViecLamsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
+    <Compile Include="Controllers\BatDongSansController.cs" />
+    <Compile Include="Controllers\BinhLuansController.cs" />
+    <Compile Include="Controllers\DichVusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhieuXetUngTuyensController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\TinTucsController.cs" />
+    <Compile Include="Controllers\ViecLamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -286,8 +295,13 @@
     <Compile Include="Migrations\202111271822168_Add_Status_LoaiDanhMuc.Designer.cs">
       <DependentUpon>202111271822168_Add_Status_LoaiDanhMuc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111291522237_Role asp.net mvc.cs" />
+    <Compile Include="Migrations\202111291522237_Role asp.net mvc.Designer.cs">
+      <DependentUpon>202111291522237_Role asp.net mvc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\BatDongSan.cs" />
     <Compile Include="Models\BinhLuan.cs" />
     <Compile Include="Models\DichVu.cs" />
@@ -298,6 +312,7 @@
     <Compile Include="Models\LoaiViecLam.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PhieuXetUngTuyen.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\TinTuc.cs" />
     <Compile Include="Models\ViecLam.cs" />
@@ -333,8 +348,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\About.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Create.cshtml" />
@@ -419,6 +432,8 @@
     <Content Include="Areas\Admin\Views\LoaiViecLams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiViecLams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiViecLams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit_UpRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit_DownRole.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -443,8 +458,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -478,6 +491,28 @@
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\SendConfirmEmail.cshtml" />
+    <Content Include="Views\BatDongSans\Index.cshtml" />
+    <Content Include="Views\BinhLuans\Index.cshtml" />
+    <Content Include="Views\DichVus\Index.cshtml" />
+    <Content Include="Views\PhieuXetUngTuyens\Details.cshtml" />
+    <Content Include="Views\PhieuXetUngTuyens\Index.cshtml" />
+    <Content Include="Views\SanPhams\Index.cshtml" />
+    <Content Include="Views\ViecLams\Index.cshtml" />
+    <Content Include="Views\TinTucs\Create.cshtml" />
+    <Content Include="Views\TinTucs\Details.cshtml" />
+    <Content Include="Views\TinTucs\Edit.cshtml" />
+    <Content Include="Views\BatDongSans\Index_LoaiBDS.cshtml" />
+    <Content Include="Views\BinhLuans\CMT_ofUser.cshtml" />
+    <Content Include="Views\BinhLuans\XoaBL.cshtml" />
+    <Content Include="Views\DichVus\Index_LoaiDV.cshtml" />
+    <Content Include="Views\PhieuXetUngTuyens\Create.cshtml" />
+    <Content Include="Views\SanPhams\Index_LoaiSP.cshtml" />
+    <Content Include="Views\TinTucs\Edit_HideStatus.cshtml" />
+    <Content Include="Views\TinTucs\Edit_ShowStatus.cshtml" />
+    <Content Include="Views\TinTucs\Index_ofUser.cshtml" />
+    <Content Include="Views\ViecLams\Index_LoaiVL.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -570,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111271822168_Add_Status_LoaiDanhMuc.resx">
       <DependentUpon>202111271822168_Add_Status_LoaiDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111291522237_Role asp.net mvc.resx">
+      <DependentUpon>202111291522237_Role asp.net mvc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

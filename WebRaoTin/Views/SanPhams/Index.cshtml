@@ -1,0 +1,89 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebRaoTin.Models.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="menu">
+    <ul class="menu-list">
+        @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+        {
+            <li class="menu-item">
+                <a href="@Url.Action("Index_LoaiSP", "SanPhams",new { searchString = @ViewBag.LoaiSanPhams[i].Name })">
+                    @ViewBag.LoaiSanPhams[i].Name
+                </a>
+            </li>
+        }
+
+    </ul>
+
+</div>
+
+@using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+{
+    <div id="Search_TT" style="margin-bottom:5px;margin-left:100px;">
+        <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Nhập thông tin tìm kiếm ..." style="border-radius:5px;padding-left:10px;border: 0.7px solid #808080;width:56%;" />
+        <input class="search_item" type="submit" value="Tìm" />
+    </div>
+}
+
+<div id="main">
+    <div id="left">
+        <ul>
+
+            @foreach (var item in Model)
+            {
+                if (item.TinTuc.Status.Equals("Ẩn") || item.TinTuc.Status.Equals("Đã khóa"))
+                {
+                    continue;
+                }
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.TinTucId })">
+                    <li id="item_li">
+                        @foreach (var item2 in @ViewBag.ngaygio)
+                        {
+                            if (item2.IdTinTucs.Equals(item.TinTucId))
+                            {
+                                <img src=" @item2.ImageSanPham" alt="">
+                            }
+                        }
+
+                        <h3>@Html.DisplayFor(modelItem => item.TinTuc.Title)</h3>
+                        <div class="desc">
+                            <span>Danh mục: @Html.DisplayFor(modelItem => item.LoaiSanPham.Name)</span>
+
+                            @foreach (var item2 in @ViewBag.ngaygio)
+                            {
+                                if (item2.IdTinTucs.Equals(item.TinTucId))
+                                {
+                                    <span><i class="fas fa-clock"></i> @item2.LuaChon</span>
+                                }
+                            }
+
+                            <span><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(modelItem => item.Location)</span>
+                            <span class="gia">
+                                <i class="fas fa-tag"></i>
+                                @Html.DisplayFor(modelItem => item.Price) đ
+                            </span>
+                        </div>
+
+                    </li>
+                </a>
+            }
+        </ul>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+        {
+            page,
+            searchString = ViewBag.Keyword
+        }),
+        PagedListRenderOptions.PageNumbersOnly)
+
+    </div>
+    <div id="right">
+        <img src="~/imagesGIF/xeDapdien.gif" alt="" style="height:470px;width:100% ; margin-bottom:1px" />
+        <img src="~/imagesGIF/xemayvs.gif" alt="" style="height:200px;width:100%" />
+    </div>
+</div>

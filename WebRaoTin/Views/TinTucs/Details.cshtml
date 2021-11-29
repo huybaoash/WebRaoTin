@@ -1,0 +1,964 @@
+﻿@model WebRaoTin.ViewModel.TinTucsViewModel
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    Nếu tin tức được chọn là 1 sản phẩm. Thì LuaChon của nó = "1";
+    Nếu tin tức được chọn là 1 dịch vụ. Thì LuaChon của nó = "2";
+    Nếu tin tức được chọn là 1 bất động sản. Thì LuaChon của nó = "3";
+    Nếu tin tức được chọn là 1 việc làm. Thì LuaChon của nó = "4";
+
+*@
+
+@* san phẩm *@
+@if (Model.LuaChon.Equals("1"))
+{
+
+    <div class="small-container1 single-product">
+        <div class="row_Detail">
+            <div class="TheLoai">
+                Thể loại >
+
+                <a href="@Url.Action("Index", "SanPhams")">Sản phẩm</a> >
+                <a href="@Url.Action("Index_LoaiSP", "SanPhams",new { searchString = @Model.TenLoaiSanPham })">@Model.TenLoaiSanPham </a>
+
+            </div>
+
+            <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
+
+
+
+
+                <div class="img">
+                    <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
+
+                </div>
+                <div class="small-img-row">
+                    @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                    {
+                        <div class="small-img-col">
+                            <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+
+
+            <hr style=" margin: 0px 10px; background-color: black;">
+
+            <div class="col-2_">
+                <p>Mã Tin: @Model.IdTinTucs</p>
+                <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                <h1>@Model.Title</h1>
+
+                <div class="row-inf">
+                    <div class="col-addr">
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
+                        </div>
+
+                        <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                    </div>
+
+                    <div class="col-addr">
+                        <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                        <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationSanPham</p></div>
+                    </div>
+                </div>
+
+
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
+                    <p style="font-size:16px">
+                        @Html.Raw(Html.Encode(Model.DescriptionSanPham).Replace("\n", "<br />"))
+                    </p>
+                </div>
+                <hr>
+
+                <div class="inf-more" style="margin-top: 10px; ">
+                    <h4 style="font-weight:bold">Thông tin sản phẩm</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Giá: <strong style="color:orangered">@Model.PriceSanPham.ToString("#,##00.##") đ </strong> </p>
+                    </div>
+
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Liên hệ: @Model.Contract </p>
+
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            if (Request.IsAuthenticated)
+            {
+                <div style="padding:10px">
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail</b>
+                            @item.PublishDay
+                            if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                            {
+
+                                <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+                            };
+                            <br />
+
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+                        }
+
+                    </ul>
+                    <hr />
+                    <div class="CMT">
+                        <form class="form-inline" action="">
+                            <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
+
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                    
+                    <ul>
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail      </b>
+                            @item.PublishDay
+
+                            <br />
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+
+                        }
+
+                    </ul>
+
+                    <h4>Bạn phải đăng nhập mới có thế bình luận.</h4>
+
+                </div>
+            }
+
+        }
+
+
+
+
+        <div class="row" id="RowTT">
+            <h3>TIN SẢN PHẨM MỚI NHẤT</h3>
+            @foreach (var item in @ViewBag.TinSP_4Lastest)
+            {
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.IdTinTucs })">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="boxDiv">
+                            <div class="warp-layout_item">
+                                <p>SẢN PHẨM</p>
+                                <div class="card" style="">
+
+                                    <img src="@item.ImageSanPham" alt="" />
+
+                                    <div class="card-body">
+                                        <label class="card-text">@item.Title</label>
+
+                                    </div>
+
+                                    <div class="form-group" style="display:inline-flex;">
+                                        <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham.ToString("#,##00.##")đ</p>
+                                        <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+
+        </div>
+        <div class="btn_more" style="border-bottom:none; padding-left: 93%;"> <a href="@Url.Action("Index", "SanPhams")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
+
+    </div>
+
+
+
+    @* <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    *@
+
+}
+
+@*
+    Dịch vụ
+*@
+
+@if (Model.LuaChon.Equals("2"))
+{
+
+    <div class="small-container1 single-product">
+        <div class="row_Detail">
+            <div class="TheLoai">
+                Thể loại >
+
+                <a href="@Url.Action("Index", "DichVus")">Dịch vụ</a> >
+                <a href="@Url.Action("Index_LoaiDV", "DichVus",new { searchString = @Model.TenLoaiDichVu })">@Model.TenLoaiDichVu </a>
+
+            </div>
+
+            <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
+
+
+
+
+                <div class="img">
+                    <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
+
+                </div>
+                <div class="small-img-rowDV">
+                    @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                    {
+                        <div class="small-img-colDV">
+                            <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+
+
+            <hr style=" margin: 0px 10px; background-color: black;">
+
+            <div class="col-2_">
+                <p>Mã Tin: @Model.IdTinTucs</p>
+                <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                <h1>@Model.Title</h1>
+
+                <div class="row-inf">
+                    <div class="col-addr">
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
+                        </div>
+
+                        <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                    </div>
+
+
+                    <div class="col-addr">
+                        <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                        <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationDichVu</p></div>
+                    </div>
+                </div>
+
+
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
+                    <p style="font-size:16px">
+                        @Html.Raw(Html.Encode(Model.DescriptionDichVu).Replace("\n", "<br />"))
+                    </p>
+                </div>
+                <hr>
+
+                <div class="inf-more" style="margin-top: 10px; ">
+                    <h4 style="font-weight:bold">Thông tin dịch vụ</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Giá:  <strong style="color:orangered">@Model.PriceDichVu.ToString("#,##00.##") đ </strong> </p>
+                    </div>
+
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Liên hệ: @Model.Contract </p>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            if (Request.IsAuthenticated)
+            {
+                <div style="padding:10px">
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail</b>
+                            @item.PublishDay
+                            if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                            {
+
+                                <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+                            };
+                            <br />
+
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+                        }
+
+                    </ul>
+                    <hr />
+                    <div class="CMT">
+                        <form class="form-inline" action="">
+                            <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
+
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                    
+                    <ul>
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail      </b>
+                            @item.PublishDay
+
+                            <br />
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+
+                        }
+
+                    </ul>
+
+                    <h4>Bạn phải đăng nhập mới có thế bình luận.</h4>
+
+                </div>
+            }
+
+        }
+
+        <div class="row" id="RowTT">
+            <h3>TIN DỊCH VỤ MỚI NHẤT</h3>
+            @foreach (var item in @ViewBag.TinDV_4Lastest)
+            {
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.IdTinTucs })">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="boxDiv">
+                            <div class="warp-layout_item">
+                                <p>DỊCH VỤ</p>
+                                <div class="card" style="">
+
+                                    <img src="@item.ImageDichVu" alt="" />
+
+                                    <div class="card-body">
+                                        <label class="card-text">@item.Title</label>
+
+                                    </div>
+
+                                    <div class="form-group" style="display:inline-flex;">
+                                        <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu.ToString("#,##00.##")đ</p>
+                                        <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="btn_more" style="border-bottom:none; padding-left: 93%;"> <a href="@Url.Action("Index", "DichVus")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
+
+
+
+
+    </div>
+
+
+
+    @* <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.IdTinTucs }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+}
+
+@*
+    Bất động sản
+*@
+
+@if (Model.LuaChon.Equals("3"))
+{
+    <div class="small-container1 single-product">
+
+        <div class="row_Detail">
+            <div class="TheLoai">
+                Thể loại >
+
+                <a href="@Url.Action("Index", "BatDongSans")">Bất động sản</a> >
+                <a href="@Url.Action("Index_LoaiBDS", "BatDongSans",new { searchString = @Model.TenLoaiBatDongSan })">@Model.TenLoaiBatDongSan </a>
+
+            </div>
+
+            <div class="Khung-img" style="width: 65%;background-color:  #f5ebeb; margin: 0px auto;">
+
+                <div class="img">
+                    <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
+
+                </div>
+                <div class="small-img-row">
+                    @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                    {
+                        <div class="small-img-col">
+                            <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                        </div>
+
+                    }
+
+                </div>
+
+
+            </div>
+
+            <div class="vid" style="width: 65%; margin: 5px auto;">
+                <p style="margin-bottom: 0px; font-weight: 600;">Video</p>
+                <video src="@Model.VideoBatDongSan" name="video" width="100%" type="video/mp4" controls> </video>
+            </div>
+
+            <hr style=" margin: 0px 10px; background-color: black;">
+
+            <div class="col-2_">
+                <p>Mã Tin: @Model.IdTinTucs</p>
+                <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+                <h1>@Model.Title</h1>
+
+                <!-- row infor-->
+                <div class="row-inf">
+                    <div class="col-addr">
+                        <div class="infor" style="display:flex;">
+                            <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                            <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
+                        </div>
+
+                        <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                    </div>
+
+                    <div class="col-addr">
+                        <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                        <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationBatDongSan</p></div>
+                    </div>
+                </div>
+
+
+                <h4 style="font-weight:bold">Nội dung</h4>
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
+                    <p style="font-size:16px">
+                        @Html.Raw(Html.Encode(Model.DescriptionBatDongSan).Replace("\n", "<br />"))
+                    </p>
+                </div>
+                <hr>
+
+                <div class="inf-more" style="margin-top: 10px; ">
+                    <h4 style="font-weight:bold">Thông tin bất động sản</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Diện tích: @Model.Area m²</p>
+                        <p style="font-size:16px">Giá: <strong style="color:orangered"> @Model.PriceBatDongSan.ToString("#,##00.##") đ </strong></p>
+                    </div>
+
+                </div>
+
+                <div class="inf-more" style="margin-top: 10px; ">
+                    <h4 style="font-weight:bold">Thông tin liên lạc</h4>
+                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                        <p style="font-size:16px">Liên hệ: @Model.Contract</p>
+
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            if (Request.IsAuthenticated)
+            {
+                <div style="padding:10px">
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail</b>
+                            @item.PublishDay
+                            if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                            {
+
+                                <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+                            };
+                            <br />
+
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+                        }
+
+                    </ul>
+                    <div class="CMT">
+                        <form class="form-inline" action="">
+                            <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
+
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                        </form>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                    
+                    <ul>
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail      </b>
+                            @item.PublishDay
+
+                            <br />
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+
+                        }
+
+                    </ul>
+
+                    <h4>Bạn phải đăng nhập mới có thế bình luận.</h4>
+
+                </div>
+            }
+
+        }
+
+        <div class="row" id="RowTT">
+            <h3>TIN BẤT ĐỘNG SẢN MỚI NHẤT</h3>
+            @foreach (var item in @ViewBag.TinBDS_4Lastest)
+            {
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.IdTinTucs })">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="boxDiv">
+                            <div class="warp-layout_item">
+                                <p>BẤT ĐỘNG SẢN</p>
+                                <div class="card" style="">
+
+                                    <img src="@item.ImageBatDongSan" alt="" />
+
+                                    <div class="card-body">
+                                        <label class="card-text">@item.Title</label>
+
+                                    </div>
+
+                                    <div class="form-group" style="display:inline-flex;">
+                                        <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan.ToString("#,##00.##")đ</p>
+                                        <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+
+        </div>
+        <div class="btn_more" style="border-bottom:none; padding-left: 93%;"> <a href="@Url.Action("Index", "BatDongSans")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
+
+
+    </div>
+
+
+
+}
+
+@*
+    Việc làm
+*@
+
+@if (Model.LuaChon.Equals("4"))
+{
+    <div class="small-container1 single-product">
+        <div class="row_Detail">
+            <div class="row_Detail">
+                <div class="TheLoai">
+                    Thể loại >
+
+                    <a href="@Url.Action("Index", "ViecLams")">Việc Làm</a> >
+                    <a href="@Url.Action("Index_LoaiVL", "ViecLams",new { searchString = @Model.TenLoaiViecLam })">@Model.TenLoaiViecLam </a>
+
+                </div>
+
+                <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
+
+                    <div class="img">
+                        <img src="@ViewBag.HinhAnh[0]" width="100%" height="500px" id="ProductImg">
+
+                    </div>
+                    <div class="small-img-row">
+                        @for (int i = 0; i < @ViewBag.HinhAnh.Count; i++)
+                        {
+                            <div class="small-img-col">
+                                <img src="@ViewBag.HinhAnh[i]" class="small-img">
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+
+
+                <hr style=" margin: 0px 10px; background-color: black;">
+
+                <div class="col-2_">
+                    <p>Mã Tin: @Model.IdTinTucs</p>
+                    <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+
+                    <h1>@Model.Title</h1>
+
+                    <div class="row-inf">
+                        <div class="col-addr">
+                            <div class="infor" style="display:flex;">
+                                <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> @Model.CustomerName </p>
+                                <a href="@Url.Action("Details","Users", new {id = @Model.CustomerID })">Xem trang >></a>
+                            </div>
+
+                            <div class="infor"><p><i class="fas fa-phone-square-alt"></i> @Model.ContractPhoneNumber</p></div>
+                        </div>
+
+                        <div class="col-addr">
+                            <div class="infor"> <p><i class="fas fa-envelope-square"></i> @Model.CustomerEmail </p> </div>
+                            <div class="infor"><p> <i class="fas fa-map-marker-alt"></i> @Model.LocationViecLam.</p></div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight:bold">Yêu cầu</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
+                        <p style="font-size:16px">
+                            @Html.Raw(Html.Encode(Model.Require).Replace("\n", "<br />"))
+                        </p>
+                    </div>
+
+                    <h4 style="font-weight:bold">Nội dung công việc</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                        <p style="font-size:16px">
+                            @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />"))
+                        </p>
+                    </div>
+
+                    <h4 style="font-weight:bold">Quyền lợi</h4>
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                        <p style="font-size:16px">
+                            @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <div class="inf-more" style="margin-top: 10px; ">
+                        <h4 style="font-weight:bold">Thông tin khác</h4>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p style="font-size:16px">Lương: <strong style="color:orangered">@Model.Salary.ToString("#,##00.##") đ </strong></p>
+                        </div>
+
+                    </div>
+
+                    <div class="inf-more" style="margin-top: 10px;">
+                        <h4 style="font-weight:bold">Thông tin liên lạc</h4>
+                        <div style="padding-left: 10px; line-height: 0.8rem;">
+                            <p style="font-size:16px">Liên hệ: @Model.Contract</p>
+                        </div>
+                    </div>
+                    <hr />
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
+                        {
+                            if (@ViewBag.NgayHetHan.Equals("Đã hết hạn"))
+                            {
+                                <h4 style="font-weight:bold">Hết hạn nộp hồ sơ</h4>
+                            }
+                            else if (@ViewBag.kiemtra_hasSentCV == 1)
+                            {
+                                <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                                <div style="padding-left: 10px; line-height: 0.8rem;">
+                                    <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                        <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                                        <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" accept=".doc" />
+                                        <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
+                                        <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
+
+
+                                    </div>
+                                    <hr />
+
+
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            <h4 style="font-weight:bold">Nhận danh sách hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                            <div style="padding-left: 10px; line-height: 0.8rem;">
+                                <a style="font-size:16px" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Đi tới danh sách >> </a>
+                            </div>
+                            <hr />
+
+                        }
+                    }
+                    else
+                    {
+                        <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                        <h4>Bạn phải đăng nhập để mở khóa chức năng này</h4>
+                    }
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        @using (Html.BeginForm("Create", "BinhLuans", new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            if (Request.IsAuthenticated)
+            {
+                <div style="padding:10px">
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail</b>
+                            @item.PublishDay
+                            if (@ViewBag.currentUser.Id.Equals(item.CustomerID))
+                            {
+
+                                <a href="@Url.Action("XoaBL", "BinhLuans", new { id = item.Id })">Xóa</a>
+                            };
+                            <br />
+
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+                        }
+
+                    </ul>
+                    <hr />
+                    <div class="CMT">
+                        <form class="form-inline" action="">
+                            <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
+                            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
+
+                            <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                    
+                    <ul>
+
+                        @foreach (var item in @ViewBag.dsBLcuaTT)
+                        {
+
+                            <br />
+
+                            <b>@item.CustomerEmail      </b>
+                            @item.PublishDay
+
+                            <br />
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+
+
+                        }
+
+                    </ul>
+                    
+                    <h4>Bạn phải đăng nhập mới có thế bình luận.</h4>
+
+                </div>
+            }
+
+        }
+
+        <div class="row" id="RowTT">
+            <h3>TIN VIỆC LÀM MỚI NHẤT</h3>
+            @foreach (var item in @ViewBag.TinVL_4Lastest)
+            {
+                <a href="@Url.Action("Details", "TinTucs",new { id= item.IdTinTucs })">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="boxDiv">
+                            <div class="warp-layout_item">
+                                <p>VIỆC LÀM</p>
+                                <div class="card" style="">
+
+                                    <img src="@item.ImageViecLam" alt="" />
+
+                                    <div class="card-body">
+                                        <label class="card-text">@item.Title</label>
+                                    </div>
+
+                                    <div class="form-group" style="display:inline-flex;">
+                                        <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary.ToString("#,##00.##")đ</p>
+                                        <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+
+        </div>
+        <div class="btn_more" style="border-bottom:none; padding-left: 93%;"> <a href="@Url.Action("Index", "ViecLams")"><button class="btn btn-default btn-sm">Xem thêm</button></a></div>
+
+
+
+
+
+    </div>
+
+}
+
+
+
+<script type='text/javascript'>
+    window.onload = function () {
+        document.getElementById("TinTucId").style.display = 'none';
+    }
+
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallIng = document.getElementsByClassName("small-img");
+
+    SmallIng[0].onclick = function () {
+        ProductImg.src = SmallIng[0].src;
+    }
+    SmallIng[1].onclick = function () {
+        ProductImg.src = SmallIng[1].src;
+    }
+    SmallIng[2].onclick = function () {
+        ProductImg.src = SmallIng[2].src;
+    }
+    SmallIng[3].onclick = function () {
+        ProductImg.src = SmallIng[3].src;
+    }
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  @*Phải thêm link này vào mới có thông báo đẹp đc sử dụng swal *@
+<script>
+    $("#uploadCV").click(function () {
+        swal("Gửi thành công", "", "success");
+    });
+
+    @* function myFunction() {
+    alert("Hello! I am an alert box!");
+    }*@
+</script>
+

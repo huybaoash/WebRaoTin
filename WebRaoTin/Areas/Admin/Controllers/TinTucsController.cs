@@ -15,7 +15,7 @@ using PagedList;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Quản trị viên")]
     public class TinTucsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

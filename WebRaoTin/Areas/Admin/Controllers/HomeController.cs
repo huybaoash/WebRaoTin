@@ -12,9 +12,11 @@ using Microsoft.AspNet.Identity;
 using WebRaoTin.Models;
 using WebRaoTin.ViewModel;
 using PagedList;
+using System.Web.Security;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

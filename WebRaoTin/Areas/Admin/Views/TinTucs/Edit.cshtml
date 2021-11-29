@@ -81,31 +81,40 @@
         <div class="formall">
             <div class="formCreate">
 
-                <div class="form-group">
-                    <label for="Status">Trạng thái:</label>
+                @if (Model.Status.Equals("Đã khóa"))
+                {
+                    @Html.HiddenFor(model => model.Status)
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="Status">Trạng thái:</label>
 
-                    <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                        @if (Model.Status.Equals("Công khai"))
-                        {
-                            <option value="Công khai"> Công khai</option>
-                            <option value="Ẩn"> Ẩn</option>
-                        }
-                        else
-                        {
-                            <option value="Ẩn"> Ẩn</option>
-                            <option value="Công khai"> Công khai</option>
-                        }
-                    </select>
+                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                            @if (Model.Status.Equals("Công khai"))
+                            {
+                                <option value="Công khai"> Công khai</option>
+                                <option value="Ẩn"> Ẩn</option>
+                            }
+                            else
+                            {
+                                <option value="Ẩn"> Ẩn</option>
+                                <option value="Công khai"> Công khai</option>
+                            }
+                        </select>
 
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
+
+
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -167,7 +176,7 @@
                     @Html.TextAreaFor(m => m.DescriptionSanPham, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -189,7 +198,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" onchange="Images1FileAsURL()" multiple />
+                            <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images1FileAsURL()" multiple />
                             <div id="displayImg1">
                                 @foreach (var item in @ViewBag.HinhAnh)
                                 {
@@ -229,31 +238,40 @@
         <hr>
         <div class="formall">
             <div class="formCreate">
-                <div class="form-group">
-                    <label for="Status">Trạng thái:</label>
+                @if (Model.Status.Equals("Đã khóa"))
+                {
+                    @Html.HiddenFor(model => model.Status)
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="Status">Trạng thái:</label>
 
-                    <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                        @if (Model.Status.Equals("Công khai"))
-                        {
-                            <option value="Công khai"> Công khai</option>
-                            <option value="Ẩn"> Ẩn</option>
-                        }
-                        else
-                        {
-                            <option value="Ẩn"> Ẩn</option>
-                            <option value="Công khai"> Công khai</option>
-                        }
-                    </select>
+                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                            @if (Model.Status.Equals("Công khai"))
+                            {
+                                <option value="Công khai"> Công khai</option>
+                                <option value="Ẩn"> Ẩn</option>
+                            }
+                            else
+                            {
+                                <option value="Ẩn"> Ẩn</option>
+                                <option value="Công khai"> Công khai</option>
+                            }
+                        </select>
 
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
+
+
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -317,7 +335,7 @@
                     @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -339,7 +357,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" onchange="Images2FileAsURL()" multiple />
+                            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images2FileAsURL()" multiple />
                             <div id="displayImg2">
                                 @foreach (var item in @ViewBag.HinhAnh)
                                 {
@@ -377,31 +395,40 @@
         <hr>
         <div class="formall">
             <div class="formCreate">
-                <div class="form-group">
-                    <label for="Status">Trạng thái:</label>
+                @if (Model.Status.Equals("Đã khóa"))
+                {
+                    @Html.HiddenFor(model => model.Status)
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="Status">Trạng thái:</label>
 
-                    <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                        @if (Model.Status.Equals("Công khai"))
-                        {
-                            <option value="Công khai"> Công khai</option>
-                            <option value="Ẩn"> Ẩn</option>
-                        }
-                        else
-                        {
-                            <option value="Ẩn"> Ẩn</option>
-                            <option value="Công khai"> Công khai</option>
-                        }
-                    </select>
+                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                            @if (Model.Status.Equals("Công khai"))
+                            {
+                                <option value="Công khai"> Công khai</option>
+                                <option value="Ẩn"> Ẩn</option>
+                            }
+                            else
+                            {
+                                <option value="Ẩn"> Ẩn</option>
+                                <option value="Công khai"> Công khai</option>
+                            }
+                        </select>
 
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
+
+
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -467,7 +494,7 @@
                     @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -495,7 +522,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" onchange="Images3FileAsURL()" multiple />
+                            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images3FileAsURL()" multiple />
                             <div id="displayImg3">
                                 @foreach (var item in @ViewBag.HinhAnh)
                                 {
@@ -543,31 +570,40 @@
         <hr>
         <div class="formall">
             <div class="formCreate">
-                <div class="form-group">
-                    <label for="Status">Trạng thái:</label>
+                @if (Model.Status.Equals("Đã khóa"))
+                {
+                    @Html.HiddenFor(model => model.Status)
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="Status">Trạng thái:</label>
 
-                    <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                        @if (Model.Status.Equals("Công khai"))
-                        {
-                            <option value="Công khai"> Công khai</option>
-                            <option value="Ẩn"> Ẩn</option>
-                        }
-                        else
-                        {
-                            <option value="Ẩn"> Ẩn</option>
-                            <option value="Công khai"> Công khai</option>
-                        }
-                    </select>
+                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                            @if (Model.Status.Equals("Công khai"))
+                            {
+                                <option value="Công khai"> Công khai</option>
+                                <option value="Ẩn"> Ẩn</option>
+                            }
+                            else
+                            {
+                                <option value="Ẩn"> Ẩn</option>
+                                <option value="Công khai"> Công khai</option>
+                            }
+                        </select>
 
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
+
+
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
 
                 <div class="form-group">
                     <label for="TD">Tiêu đề</label>
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -642,7 +678,7 @@
                     @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
                     @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group">
                     <label for="comment">Quyền lợi</label>
                     @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
@@ -669,7 +705,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" onchange="Images4FileAsURL()" multiple />
+                            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
                             <div id="displayImg4">
                                 @foreach (var item in @ViewBag.HinhAnh)
                                 {

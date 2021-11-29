@@ -10,6 +10,7 @@ using WebRaoTin.Models;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class LoaiDichVusController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

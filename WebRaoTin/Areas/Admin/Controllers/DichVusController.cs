@@ -13,6 +13,7 @@ using WebRaoTin.ViewModel;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class DichVusController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

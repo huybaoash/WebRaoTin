@@ -1,0 +1,141 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebRaoTin.ViewModel.TinTucsViewModel>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Lịch sử đăng tin</h2>
+<hr />
+<div id="main">
+    <div id="left">
+        <ul>
+
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+
+                <a href="@Url.Action("Details", "TinTucs",new { id= @Model[i].IdTinTucs })">
+                    <li id="item_li" style="height:155px">
+
+
+
+                        @if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("DỊCH VỤ"))
+                        {
+                            <img src="@Model[i].ImageDichVu" alt="" />
+
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiDichVu</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationDichVu</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceDichVu.ToString("#,##00.##")đ
+                                </span>
+
+                            </div>
+
+
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("SẢN PHẨM"))
+                        {
+                            <img src="@Model[i].ImageSanPham" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiSanPham</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
+
+
+
+
+
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationSanPham</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceSanPham.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("VIỆC LÀM"))
+                        {
+                            <img src="@Model[i].ImageViecLam" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiViecLam</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
+
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationViecLam</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].Salary.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+                        else if (@ViewBag.TinTuc_TenDM_4Lastest[i].Equals("BÂT ĐỘNG SẢN"))
+                        {
+                            <img src="@Model[i].ImageBatDongSan" alt="" />
+                            <h3>@Model[i].Title</h3>
+                            <div class="desc">
+                                <span>Danh mục: @Model[i].TenLoaiBatDongSan</span>
+                                <span><i class="fas fa-clock"></i> @Model[i].LuaChon</span>
+                                <span><i class="fas fa-map-marker-alt"></i> @Model[i].LocationBatDongSan</span>
+                                <span class="gia">
+                                    <i class="fas fa-tag"></i>
+                                    @Model[i].PriceBatDongSan.ToString("#,##00.##")đ
+                                </span>
+                            </div>
+                        }
+
+
+
+
+
+                    </li>
+                </a>
+
+                if (User.Identity.GetUserId().Equals(@Model[i].CustomerID))
+                {
+                    if (@Model[i].Status.Equals("Đã khóa"))
+                    {
+                        <a class="btn btn-danger btn-xs" style="margin-left:80%">Đã khóa</a>
+                    }
+                    else if (@Model[i].Status.Equals("Ẩn"))
+                    {
+                        <a href="@Url.Action("Edit_ShowStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Khôi phục</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Edit_HideStatus", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-danger btn-xs" style="margin-left:80%">Ẩn</a>
+                    }
+                    <a href="@Url.Action("Edit", "TinTucs",new { id= @Model[i].IdTinTucs })" class="btn btn-primary btn-xs">Sửa</a>
+                    <hr />
+                }
+
+
+            }
+        </ul>
+        @Html.PagedListPager(Model, page => Url.Action("Index_ofUser", new
+        {
+            page,
+            searchString = ViewBag.Keyword
+        }),
+        PagedListRenderOptions.PageNumbersOnly)
+    </div>
+
+
+
+    <div class="LS-DT">
+        <div class="LS-item" style="background-color:#808080; height:30px"></div>
+        <div class="LS-item"> <a href="@Url.Action("Details", "Users",new { id=User.Identity.GetUserId() })">Trở lại trang cá nhân >></a></div>
+        <div class="LS-item"> <a href="@Url.Action("CMT_ofUser", "BinhLuans", new { id = @ViewBag.user_current.Id })">Lịch sử bình luận >></a></div>
+
+    </div>
+</div>

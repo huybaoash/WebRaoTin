@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Quản trị viên")]
     public class BatDongSansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
