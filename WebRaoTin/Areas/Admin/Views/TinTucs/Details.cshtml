@@ -75,7 +75,7 @@
 
 
                 <h4 style="font-weight:bold">Nội dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
                     <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionSanPham).Replace("\n", "<br />"))
                     </p>
@@ -105,10 +105,11 @@
             if (Request.IsAuthenticated)
             {
                 <div style="padding:10px">
-                    <h4>Bình luận</h4>
-                    <hr />
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
 
-                    <ul>
+                      <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -136,7 +137,7 @@
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
                             <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
-                            <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
                     </div>
 
@@ -287,7 +288,7 @@
 
 
                 <h4 style="font-weight:bold">Nội dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
                     <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionDichVu).Replace("\n", "<br />"))
                     </p>
@@ -316,10 +317,12 @@
             if (Request.IsAuthenticated)
             {
                 <div style="padding:10px">
-                    <h4>Bình luận</h4>
-                    <hr />
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                
 
-                    <ul>
+                      <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -347,7 +350,7 @@
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
                             <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
-                            <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
                     </div>
 
@@ -496,7 +499,7 @@
 
 
                 <h4 style="font-weight:bold">Nội dung</h4>
-                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
                     <p style="font-size:16px">
                         @Html.Raw(Html.Encode(Model.DescriptionBatDongSan).Replace("\n", "<br />"))
                     </p>
@@ -530,10 +533,13 @@
             if (Request.IsAuthenticated)
             {
                 <div style="padding:10px">
-                    <h4>Bình luận</h4>
-                    <hr />
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                
+                  
 
-                    <ul>
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -554,17 +560,15 @@
                         }
 
                     </ul>
-                    <hr />
                     <div class="CMT">
                         <form class="form-inline" action="">
                             <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
                             <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
-                            <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
                     </div>
-
 
                 </div>
             }
@@ -699,7 +703,7 @@
                     </div>
 
                     <h4 style="font-weight:bold">Yêu cầu</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918)">
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Require).Replace("\n", "<br />"))
                         </p>
@@ -795,10 +799,13 @@
             if (Request.IsAuthenticated)
             {
                 <div style="padding:10px">
-                    <h4>Bình luận</h4>
-                    <hr />
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+                
+                  
 
-                    <ul>
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
