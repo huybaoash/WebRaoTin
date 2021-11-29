@@ -124,7 +124,7 @@
                             };
                             <br />
 
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
                         }
 
@@ -134,7 +134,7 @@
                         <form class="form-inline" action="">
                             <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                            <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
                             <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
@@ -159,7 +159,7 @@
                             @item.PublishDay
 
                             <br />
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
 
                         }
@@ -335,7 +335,7 @@
                             };
                             <br />
 
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
                         }
 
@@ -345,7 +345,7 @@
                         <form class="form-inline" action="">
                             <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                            <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
                             <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
@@ -370,7 +370,7 @@
                             @item.PublishDay
 
                             <br />
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
 
                         }
@@ -549,7 +549,7 @@
                             };
                             <br />
 
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
                         }
 
@@ -559,7 +559,7 @@
                         <form class="form-inline" action="">
                             <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                            <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
                             <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
@@ -584,7 +584,7 @@
                             @item.PublishDay
 
                             <br />
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
 
                         }
@@ -814,7 +814,7 @@
                             };
                             <br />
 
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
                         }
 
@@ -824,7 +824,7 @@
                         <form class="form-inline" action="">
                             <label for="cmt" style="margin-right: 5px;">@ViewBag.currentUser.Email</label>
                             <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;" value="@Model.IdTinTucs">
-                            <input class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value="">
+                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" type="text" value=""></textarea>
 
                             <button class="btn btn-default" style="margin-top:5px;margin-left:95.5%">Gửi</button>
                         </form>
@@ -849,7 +849,7 @@
                             @item.PublishDay
 
                             <br />
-                            @item.Description
+                            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
 
 
                         }
