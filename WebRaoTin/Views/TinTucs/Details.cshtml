@@ -55,12 +55,16 @@
             <div class="col-2_">
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
-                
+
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
+
 
                 <div class="row-inf">
                     <div class="col-addr">
@@ -277,11 +281,14 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
-                
+
                 <div class="row-inf">
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
@@ -496,9 +503,12 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
                 <!-- row infor-->
                 <div class="row-inf">
@@ -709,9 +719,12 @@
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
 
                     <h1>@Model.Title</h1>
-                    @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                        if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                        {
+                            <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                        }
                     }
                     <div class="row-inf">
                         <div class="col-addr">
@@ -737,14 +750,14 @@
                     </div>
 
                     <h4 style="font-weight:bold">Nội dung công việc</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />"))
                         </p>
                     </div>
 
                     <h4 style="font-weight:bold">Quyền lợi</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                         </p>
@@ -782,7 +795,9 @@
                                     <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
                                         <p class="btn btn-success btn-xs">Đã gửi CV</p>
                                     </a>
+                                    <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                 </div>
+
                             }
                             else
                             {

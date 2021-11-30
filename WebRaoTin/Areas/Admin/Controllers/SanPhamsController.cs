@@ -131,7 +131,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     sanPhams = sanPhams.Where(s => s.TinTuc.Title.ToLower().Contains(searchString.ToLower())).ToList();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {  }
             sanPhams.OrderByDescending(v => v.Id);
             var finalList = sanPhams.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
 

@@ -1,4 +1,5 @@
 ﻿@model WebRaoTin.ViewModel.TinTucsViewModel
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Edit";
@@ -9,8 +10,8 @@
 <style>
     span {
         color: red;
-        padding:0;
-        float:none;
+        padding: 0;
+        float: none;
     }
 
     .formCreate {
@@ -57,693 +58,709 @@
     }
 </style>
 
-
-@using (Html.BeginForm("Edit", "TinTucs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@if (User.Identity.IsAuthenticated)
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.LuaChon)
-    @Html.HiddenFor(model => model.PublishDayTinTucs)
-    @Html.HiddenFor(model => model.IdTinTucs)
-    @Html.HiddenFor(model => model.IdViecLam)
-    @Html.HiddenFor(model => model.IdSanPham)
-    @Html.HiddenFor(model => model.IdDichVu)
-    @Html.HiddenFor(model => model.IdBatDongSan)
-    @Html.HiddenFor(model => model.NameBatDongSan)
-    @Html.HiddenFor(model => model.NameDichVu)
-    @Html.HiddenFor(model => model.NameSanPham)
-    @Html.HiddenFor(model => model.NameViecLam)
-
-    if (Model.LuaChon.Equals("1"))
+    if (User.Identity.GetUserId().Equals(Model.CustomerID))
     {
-        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Sản phẩm</i>]</h2>
-        <hr>
-        <div class="formall">
-            <div class="formCreate">
+        using (Html.BeginForm("Edit", "TinTucs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.LuaChon)
+            @Html.HiddenFor(model => model.PublishDayTinTucs)
+            @Html.HiddenFor(model => model.IdTinTucs)
+            @Html.HiddenFor(model => model.IdViecLam)
+            @Html.HiddenFor(model => model.IdSanPham)
+            @Html.HiddenFor(model => model.IdDichVu)
+            @Html.HiddenFor(model => model.IdBatDongSan)
+            @Html.HiddenFor(model => model.NameBatDongSan)
+            @Html.HiddenFor(model => model.NameDichVu)
+            @Html.HiddenFor(model => model.NameSanPham)
+            @Html.HiddenFor(model => model.NameViecLam)
 
-                @if (Model.Status.Equals("Đã khóa"))
-                {
-                    @Html.HiddenFor(model => model.Status)
-                }
-                else
-                {
-                    <div class="form-group">
-                        <label for="Status">Trạng thái:</label>
+            if (Model.LuaChon.Equals("1"))
+            {
+                <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Sản phẩm</i>]</h2>
+                <hr>
+                <div class="formall">
+                    <div class="formCreate">
 
-                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                            @if (Model.Status.Equals("Công khai"))
-                            {
-                                <option value="Công khai"> Công khai</option>
-                                <option value="Ẩn"> Ẩn</option>
-                            }
-                            else
-                            {
-                                <option value="Ẩn"> Ẩn</option>
-                                <option value="Công khai"> Công khai</option>
-                            }
-                        </select>
+                        @if (Model.Status.Equals("Đã khóa"))
+                        {
+                            @Html.HiddenFor(model => model.Status)
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="Status">Trạng thái:</label>
 
-
-
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label for="TD">Tiêu đề</label>
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="sel1">Chọn loại sản phẩm:</label>
-                            <select class="form-control valid" id="IdLoaiSanPham" name="IdLoaiSanPham" aria-invalid="false">
-                                @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
-                                {
-                                    if (Model.IdLoaiSanPham.Equals(@ViewBag.LoaiSanPhams[i].Id))
+                                <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                                    @if (Model.Status.Equals("Công khai"))
                                     {
-                                        <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
-                                    }
-
-                                }
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
-                                {
-                                    if (Model.IdLoaiSanPham.Equals(@ViewBag.LoaiSanPhams[i].Id))
-                                    {
-                                        continue;
+                                        <option value="Công khai"> Công khai</option>
+                                        <option value="Ẩn"> Ẩn</option>
                                     }
                                     else
                                     {
-                                        <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
+                                        <option value="Ẩn"> Ẩn</option>
+                                        <option value="Công khai"> Công khai</option>
                                     }
-                                }
-                            </select>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiSanPham" data-valmsg-replace="true"></span>
+                                </select>
+
+
+
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        }
+
+
+                        <div class="form-group">
+                            <label for="TD">Tiêu đề</label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsSP" } })
-                            @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
-                            <div id="datewarnSP"></div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="sel1">Chọn loại sản phẩm:</label>
+                                    <select class="form-control valid" id="IdLoaiSanPham" name="IdLoaiSanPham" aria-invalid="false">
+                                        @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+                                        {
+                                            if (Model.IdLoaiSanPham.Equals(@ViewBag.LoaiSanPhams[i].Id))
+                                            {
+                                                <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
+                                            }
+
+                                        }
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiSanPhams; i++)
+                                        {
+                                            if (Model.IdLoaiSanPham.Equals(@ViewBag.LoaiSanPhams[i].Id))
+                                            {
+                                                continue;
+                                            }
+                                            else
+                                            {
+                                                <option value=@ViewBag.LoaiSanPhams[i].Id> @ViewBag.LoaiSanPhams[i].Name</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiSanPham" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Ngày hết hạn tin tức</label>
+                                    @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsSP" } })
+                                    @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                                    <div id="datewarnSP"></div>
+                                </div>
+
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="TD">Người liên hệ</label>
+                                    @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
+                                    @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
+                                </div>
 
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="TD">Người liên hệ</label>
-                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
-                            @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="TD">Số điện thoại</label>
-                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
-                            @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Nội dung</label>
-                    @Html.TextAreaFor(m => m.DescriptionSanPham, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="TD">Giá</label>
-                            @Html.TextBoxFor(m => m.PriceSanPham, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
-                            @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-9">
-                            <label for="TD">Nơi bán</label>
-                            @Html.TextBoxFor(m => m.LocationSanPham, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
-
-                            @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images1FileAsURL()" multiple />
-                            <div id="displayImg1">
-                                @foreach (var item in @ViewBag.HinhAnh)
-                                {
-                                    <img src=@item id="@item">
-                                }
+                                <div class="col-md-6">
+                                    <label for="TD">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
+                                    @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <hr>
-
-            </div>
-
-            <div class="NewsEX">
-                <div class="khungMau">
-                    <h4>Tin đăng mẫu</h4>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Cho thuê Xe Inova mới mua 2015, Ford 16 chỗ 2016, giá rẻ </a></p>
-                        Cho thuê xe 7 chỗ, Innova 2015, Ford Everest 2013, Fortuner 2015, Ford 16 chỗ mới mua. Xe nội thất đẹp, máy lạnh tốt, dàn âm thanh cực hay, giao xe tận nơi, thủ tục nhanh gọn, giá cực rẻ.<br>
-                        - Giá từ: 500 đến 1 triệu/ ngày <br>
-                        - Cho thuê tự lái hoặc có tài xế <br>
-                    </div>
-                    <hr>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Cho thuê xe du lịch từ 7 đến 29 chỗ giá rẻ tại TPHCM </a></p>
-                        Công ty Du lich Hải Hà chuyên cho thuê xe du lịch có tài từ 7 đến 29 chỗ, giá rẻ tại TPHCM, phục vụ tham quan du lịch, cưới hỏi, thăm thân nhân, đưa đón sân bay. Xe máy lạnh đời mới, tài xế nhiệt tình vui vẻ, rành đường Việt Nam. Quý khách có nhu cầu xin liên hệ với chúng tôi.
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-    if (Model.LuaChon.Equals("2"))
-    {
-        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Dịch vụ</i>]</h2>
-        <hr>
-        <div class="formall">
-            <div class="formCreate">
-                @if (Model.Status.Equals("Đã khóa"))
-                {
-                    @Html.HiddenFor(model => model.Status)
-                }
-                else
-                {
-                    <div class="form-group">
-                        <label for="Status">Trạng thái:</label>
-
-                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                            @if (Model.Status.Equals("Công khai"))
-                            {
-                                <option value="Công khai"> Công khai</option>
-                                <option value="Ẩn"> Ẩn</option>
-                            }
-                            else
-                            {
-                                <option value="Ẩn"> Ẩn</option>
-                                <option value="Công khai"> Công khai</option>
-                            }
-                        </select>
-
-
-
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label for="TD">Tiêu đề</label>
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <label for="sel1">Chọn loại dịch vụ:</label>
-                            <select class="form-control valid" id="IdLoaiDichVu" name="IdLoaiDichVu" aria-invalid="false">
-                                @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
-                                {
-                                    if (Model.IdLoaiDichVu.Equals(@ViewBag.LoaiDichVus[i].Id))
-                                    {
-                                        <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
-                                    }
-
-                                }
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
-                                {
-                                    if (Model.IdLoaiDichVu.Equals(@ViewBag.LoaiDichVus[i].Id))
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
-                                    }
-                                }
-
-                            </select>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiDichVu" data-valmsg-replace="true"></span>
-
+                        <div class="form-group">
+                            <label for="comment">Nội dung</label>
+                            @Html.TextAreaFor(m => m.DescriptionSanPham, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.DescriptionSanPham, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsDV" } })
-                            @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
-                            <div id="datewarnDV"></div>
-                        </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="TD">Giá</label>
+                                    @Html.TextBoxFor(m => m.PriceSanPham, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
+                                    @Html.ValidationMessageFor(model => model.PriceSanPham, "", new { @class = "text-danger" })
+                                </div>
 
-                </div>
+                                <div class="col-md-9">
+                                    <label for="TD">Nơi bán</label>
+                                    @Html.TextBoxFor(m => m.LocationSanPham, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="TD">Người liên hệ</label>
-                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
-                            @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="TD">Số điện thoại</label>
-                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
-                            @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Nội dung</label>
-                    @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="TD">Giá</label>
-                            @Html.TextBoxFor(m => m.PriceDichVu, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
-                            @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-9">
-                            <label for="TD">Địa điểm</label>
-                            @Html.TextBoxFor(m => m.LocationDichVu, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
-
-                            @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images2FileAsURL()" multiple />
-                            <div id="displayImg2">
-                                @foreach (var item in @ViewBag.HinhAnh)
-                                {
-                                    <img src=@item id="@item">
-                                }
+                                    @Html.ValidationMessageFor(model => model.LocationSanPham, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <hr>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                                    <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images1FileAsURL()" multiple />
+                                    <div id="displayImg1">
+                                        @foreach (var item in @ViewBag.HinhAnh)
+                                        {
+                                            <img src=@item id="@item">
+                                        }
+                                    </div>
+                                </div>
 
-            </div>
-
-            <div class="NewsEX">
-                <div class="khungMau">
-                    <h4>Tin đăng mẫu</h4>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Phòng khám nha khoa thẩm mỹ, cấy ghép implant uy tín tại TPHCM </a></p>
-                        Nha khoa Nụ Cười là trung tâm nha khoa chuyên sâu về răng sứ thẩm mỹ, chỉnh nha, cấy ghép implant uy tín tại TPHCM, Được đăng ký thương hiệu độc quyền, tiêu chuẩn vệ sinh vô trùng đạt chuẩn ISO, ADA.
-                        Trong 10 năm liền, chúng tôi luôn được sự tin cậy và ủng hộ của quý khách hàng nhờ thái độ phục vụ chuyên nghiệp và chất lượng dịch vụ vượt trội.<br>
-                        - Hạ tầng phòng khám - thiết bị hiện đại <br>
-                        - Đội ngũ bác sĩ giỏi chuyên môn, giàu kinh nghiệm <br>
-                        - Dịch vụ nha khoa uy tín, chất lượng, có bảo hành <br>
-                        - Giá cả bình dân, đa dạng theo dịch vụ <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-    if (Model.LuaChon.Equals("3"))
-    {
-        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Bất động sản</i>]</h2>
-        <hr>
-        <div class="formall">
-            <div class="formCreate">
-                @if (Model.Status.Equals("Đã khóa"))
-                {
-                    @Html.HiddenFor(model => model.Status)
-                }
-                else
-                {
-                    <div class="form-group">
-                        <label for="Status">Trạng thái:</label>
-
-                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                            @if (Model.Status.Equals("Công khai"))
-                            {
-                                <option value="Công khai"> Công khai</option>
-                                <option value="Ẩn"> Ẩn</option>
-                            }
-                            else
-                            {
-                                <option value="Ẩn"> Ẩn</option>
-                                <option value="Công khai"> Công khai</option>
-                            }
-                        </select>
-
-
-
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label for="TD">Tiêu đề</label>
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <label for="sel1">Chọn loại bất động sản:</label>
-                            <select class="form-control valid" id="IdLoaiBatDongSan" name="IdLoaiBatDongSan" aria-invalid="false">
-
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
-                                {
-                                    if (Model.IdLoaiBatDongSan.Equals(@ViewBag.LoaiBatDongSans[i].Id))
-                                    {
-                                        <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
-                                    }
-
-                                }
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
-                                {
-                                    if (Model.IdLoaiBatDongSan.Equals(@ViewBag.LoaiBatDongSans[i].Id))
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
-                                    }
-                                }
-
-                            </select>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiBatDongSan" data-valmsg-replace="true"></span>
-
+                            </div>
                         </div>
+                        <hr>
 
-                        <div class="col-md-6">
-                            <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsBDS" } })
-                            @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
-                            <div id="datewarnBDS"></div>
-                        </div>
                     </div>
 
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="TD">Người liên hệ</label>
-                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
-                            @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="TD">Số điện thoại</label>
-                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
-                            @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Nội dung</label>
-                    @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="TD">diện tích</label>
-
-                            @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @placeholder = "vd:1300->1300m²", @min = "0", Type = "number" })
-                            @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="TD">Giá</label>
-                            @Html.TextBoxFor(m => m.PriceBatDongSan, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
-                            @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="TD">địa điểm</label>
-                            @Html.TextBoxFor(m => m.LocationBatDongSan, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
-                            @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images3FileAsURL()" multiple />
-                            <div id="displayImg3">
-                                @foreach (var item in @ViewBag.HinhAnh)
-                                {
-                                    <img src=@item id="@item">
-                                }
+                    <div class="NewsEX">
+                        <div class="khungMau">
+                            <h4>Tin đăng mẫu</h4>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Cho thuê Xe Inova mới mua 2015, Ford 16 chỗ 2016, giá rẻ </a></p>
+                                Cho thuê xe 7 chỗ, Innova 2015, Ford Everest 2013, Fortuner 2015, Ford 16 chỗ mới mua. Xe nội thất đẹp, máy lạnh tốt, dàn âm thanh cực hay, giao xe tận nơi, thủ tục nhanh gọn, giá cực rẻ.<br>
+                                - Giá từ: 500 đến 1 triệu/ ngày <br>
+                                - Cho thuê tự lái hoặc có tài xế <br>
+                            </div>
+                            <hr>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Cho thuê xe du lịch từ 7 đến 29 chỗ giá rẻ tại TPHCM </a></p>
+                                Công ty Du lich Hải Hà chuyên cho thuê xe du lịch có tài từ 7 đến 29 chỗ, giá rẻ tại TPHCM, phục vụ tham quan du lịch, cưới hỏi, thăm thân nhân, đưa đón sân bay. Xe máy lạnh đời mới, tài xế nhiệt tình vui vẻ, rành đường Việt Nam. Quý khách có nhu cầu xin liên hệ với chúng tôi.
                             </div>
                         </div>
                     </div>
                 </div>
+            }
 
-                <div class="form-group">
-                    <div class="Video-bds">
-                        <label for="">Chọn video</label>
-                        <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav" required title="Chọn đường dẫn Video" />
-                    </div>
-                </div>
-
+            if (Model.LuaChon.Equals("2"))
+            {
+                <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Dịch vụ</i>]</h2>
                 <hr>
-            </div>
+                <div class="formall">
+                    <div class="formCreate">
+                        @if (Model.Status.Equals("Đã khóa"))
+                        {
+                            @Html.HiddenFor(model => model.Status)
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="Status">Trạng thái:</label>
 
-            <div class="NewsEX">
-                <div class="khungMau">
-                    <h4>Tin đăng mẫu</h4>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Bán nhà mặt tiền đường số 5, khu dân cư Trung Sơn Bình Chánh </a></p>
-                        Bán nhà mặt tiền số 35 đường số 5, khu dân cư Trung Sơn, xã Bình Hưng, huyện Bình Chánh. Hướng chính tây, xinh xinh, kế gần trường Quốc Tế Bắc Mỹ, Singapore, ABC và Đại Học RMIT. Diện tích 5x20m, trệt, 2 lầu, sân thượng, phòng khách, bếp, 7 phòng riêng, 8 WC, tiện kinh doanh văn phòng, nhà nghỉ, căn hộ dịch vụ..., sổ hồng, giá bán 8,5 tỷ (tặng nội thất), thuê lại giá thỏa thuận nếu được.
-                    </div>
-                    <hr>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Bán gấp căn hộ dự án Nhà Ở Quân Khu 7, Quận 12, 78,88m2, 3PN </a></p>
-                        Bán căn hộ dự án Nhà Ở Quân Khu 7, phòng 806 lô A, 3 phòng ngủ, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà, vị trí đẹp, 78,88m2, 14,3tr/m2.<br>
-                        - Cơ hội hiếm có và duy nhất! <br>
-                        - Căn hộ vị trí cực đẹp, phong thủy tốt nhất. <br>
-                        - Phòng 806 lô A, 3 PN, 2 WC, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà. <br>
-                        - Địa chỉ: Dự án Nhà Ở Quân Khu 7, Quận 12, TP.HCM. <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-    if (Model.LuaChon.Equals("4"))
-    {
-        <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Việc làm</i>]</h2>
-        <hr>
-        <div class="formall">
-            <div class="formCreate">
-                @if (Model.Status.Equals("Đã khóa"))
-                {
-                    @Html.HiddenFor(model => model.Status)
-                }
-                else
-                {
-                    <div class="form-group">
-                        <label for="Status">Trạng thái:</label>
-
-                        <select class="form-control" id="Status" name="Status" aria-invalid="false">
-                            @if (Model.Status.Equals("Công khai"))
-                            {
-                                <option value="Công khai"> Công khai</option>
-                                <option value="Ẩn"> Ẩn</option>
-                            }
-                            else
-                            {
-                                <option value="Ẩn"> Ẩn</option>
-                                <option value="Công khai"> Công khai</option>
-                            }
-                        </select>
-
-
-
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label for="TD">Tiêu đề</label>
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <label for="sel1">Chọn loại việc làm:</label>
-                            <select class="form-control valid" id="IdLoaiViecLam" name="IdLoaiViecLam" aria-invalid="false">
-
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
-                                {
-                                    if (Model.IdLoaiViecLam.Equals(@ViewBag.LoaiViecLams[i].Id))
+                                <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                                    @if (Model.Status.Equals("Công khai"))
                                     {
-                                        <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
-                                        break;
-                                    }
-
-                                }
-
-                                @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
-                                {
-                                    if (Model.IdLoaiViecLam.Equals(@ViewBag.LoaiViecLams[i].Id))
-                                    {
-
+                                        <option value="Công khai"> Công khai</option>
+                                        <option value="Ẩn"> Ẩn</option>
                                     }
                                     else
                                     {
-                                        <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
+                                        <option value="Ẩn"> Ẩn</option>
+                                        <option value="Công khai"> Công khai</option>
                                     }
-                                }
+                                </select>
 
 
 
-                            </select>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiViecLam" data-valmsg-replace="true"></span>
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <label for="TD">Tiêu đề</label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <label for="sel1">Chọn loại dịch vụ:</label>
+                                    <select class="form-control valid" id="IdLoaiDichVu" name="IdLoaiDichVu" aria-invalid="false">
+                                        @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
+                                        {
+                                            if (Model.IdLoaiDichVu.Equals(@ViewBag.LoaiDichVus[i].Id))
+                                            {
+                                                <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
+                                            }
+
+                                        }
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiDichVus; i++)
+                                        {
+                                            if (Model.IdLoaiDichVu.Equals(@ViewBag.LoaiDichVus[i].Id))
+                                            {
+                                                continue;
+                                            }
+                                            else
+                                            {
+                                                <option value=@ViewBag.LoaiDichVus[i].Id> @ViewBag.LoaiDichVus[i].Name</option>
+                                            }
+                                        }
+
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiDichVu" data-valmsg-replace="true"></span>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Ngày hết hạn tin tức</label>
+                                    @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsDV" } })
+                                    @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                                    <div id="datewarnDV"></div>
+                                </div>
+                            </div>
 
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="TD">Ngày hết hạn tin tức</label>
-                            @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsVL" } })
-                            @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
-                            <div id="datewarnVL"></div>
-                        </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="TD">Người liên hệ</label>
+                                    @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
+                                    @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
+                                </div>
 
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="TD">Người liên hệ</label>
-                            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
-                            @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="TD">Số điện thoại</label>
-                            @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
-                            @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Nội dung</label>
-                    @Html.TextAreaFor(m => m.DescriptioViecLamn, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Yêu cầu</label>
-                    @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <label for="comment">Quyền lợi</label>
-                    @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
-                    @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="TD">Lương</label>
-                            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0", Type = "number" })
-                            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-md-7">
-                            <label for="TD">Địa điểm</label>
-                            @Html.TextBoxFor(m => m.LocationViecLam, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
-                            @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                            <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
-                            <div id="displayImg4">
-                                @foreach (var item in @ViewBag.HinhAnh)
-                                {
-                                    <img src=@item id="@item">
-                                }
+                                <div class="col-md-6">
+                                    <label for="TD">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
+                                    @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="comment">Nội dung</label>
+                            @Html.TextAreaFor(m => m.DescriptionDichVu, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.DescriptionDichVu, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="TD">Giá</label>
+                                    @Html.TextBoxFor(m => m.PriceDichVu, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
+                                    @Html.ValidationMessageFor(model => model.PriceDichVu, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-9">
+                                    <label for="TD">Địa điểm</label>
+                                    @Html.TextBoxFor(m => m.LocationDichVu, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+
+                                    @Html.ValidationMessageFor(model => model.LocationDichVu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                                    <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images2FileAsURL()" multiple />
+                                    <div id="displayImg2">
+                                        @foreach (var item in @ViewBag.HinhAnh)
+                                        {
+                                            <img src=@item id="@item">
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                    </div>
+
+                    <div class="NewsEX">
+                        <div class="khungMau">
+                            <h4>Tin đăng mẫu</h4>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Phòng khám nha khoa thẩm mỹ, cấy ghép implant uy tín tại TPHCM </a></p>
+                                Nha khoa Nụ Cười là trung tâm nha khoa chuyên sâu về răng sứ thẩm mỹ, chỉnh nha, cấy ghép implant uy tín tại TPHCM, Được đăng ký thương hiệu độc quyền, tiêu chuẩn vệ sinh vô trùng đạt chuẩn ISO, ADA.
+                                Trong 10 năm liền, chúng tôi luôn được sự tin cậy và ủng hộ của quý khách hàng nhờ thái độ phục vụ chuyên nghiệp và chất lượng dịch vụ vượt trội.<br>
+                                - Hạ tầng phòng khám - thiết bị hiện đại <br>
+                                - Đội ngũ bác sĩ giỏi chuyên môn, giàu kinh nghiệm <br>
+                                - Dịch vụ nha khoa uy tín, chất lượng, có bảo hành <br>
+                                - Giá cả bình dân, đa dạng theo dịch vụ <br>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            }
+
+            if (Model.LuaChon.Equals("3"))
+            {
+                <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Bất động sản</i>]</h2>
                 <hr>
-            </div>
+                <div class="formall">
+                    <div class="formCreate">
+                        @if (Model.Status.Equals("Đã khóa"))
+                        {
+                            @Html.HiddenFor(model => model.Status)
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="Status">Trạng thái:</label>
 
-            <div class="NewsEX">
-                <div class="khungMau">
-                    <h4>Tin đăng mẫu</h4>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a> Tuyển 4 nhân viên văn phòng và thị trường làm việc tại Hà Nội </a></p>
-                        Công ty Du lịch Đất Việt cần tuyển 4 nhân viên văn phòng và thị trường, nam hoặc nữ, 22 - 45 tuổi, tốt nghiệp THPT, nhanh nhẹn, giao tiếp tốt, có kỹ năng bán hàng qua điện thoại. Có thể đi công tác xa nhà từ 1 - 2 tháng, lương thưởng và thời gian làm việc theo thỏa thuận.
+                                <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                                    @if (Model.Status.Equals("Công khai"))
+                                    {
+                                        <option value="Công khai"> Công khai</option>
+                                        <option value="Ẩn"> Ẩn</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Ẩn"> Ẩn</option>
+                                        <option value="Công khai"> Công khai</option>
+                                    }
+                                </select>
+
+
+
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <label for="TD">Tiêu đề</label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <label for="sel1">Chọn loại bất động sản:</label>
+                                    <select class="form-control valid" id="IdLoaiBatDongSan" name="IdLoaiBatDongSan" aria-invalid="false">
+
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
+                                        {
+                                            if (Model.IdLoaiBatDongSan.Equals(@ViewBag.LoaiBatDongSans[i].Id))
+                                            {
+                                                <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
+                                            }
+
+                                        }
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiBatDongSans; i++)
+                                        {
+                                            if (Model.IdLoaiBatDongSan.Equals(@ViewBag.LoaiBatDongSans[i].Id))
+                                            {
+                                                continue;
+                                            }
+                                            else
+                                            {
+                                                <option value=@ViewBag.LoaiBatDongSans[i].Id> @ViewBag.LoaiBatDongSans[i].Name</option>
+                                            }
+                                        }
+
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiBatDongSan" data-valmsg-replace="true"></span>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Ngày hết hạn tin tức</label>
+                                    @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsBDS" } })
+                                    @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                                    <div id="datewarnBDS"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="TD">Người liên hệ</label>
+                                    @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
+                                    @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
+                                    @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">Nội dung</label>
+                            @Html.TextAreaFor(m => m.DescriptionBatDongSan, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.DescriptionBatDongSan, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="TD">diện tích</label>
+
+                                    @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @placeholder = "vd:1300->1300m²", @min = "0", Type = "number" })
+                                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="TD">Giá</label>
+                                    @Html.TextBoxFor(m => m.PriceBatDongSan, new { @class = "form-control", @placeholder = "Nhập giá", @min = "0", Type = "number" })
+                                    @Html.ValidationMessageFor(model => model.PriceBatDongSan, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">địa điểm</label>
+                                    @Html.TextBoxFor(m => m.LocationBatDongSan, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+                                    @Html.ValidationMessageFor(model => model.LocationBatDongSan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                                    <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images3FileAsURL()" multiple />
+                                    <div id="displayImg3">
+                                        @foreach (var item in @ViewBag.HinhAnh)
+                                        {
+                                            <img src=@item id="@item">
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="Video-bds">
+                                <label for="">Chọn video</label>
+                                <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav" required title="Chọn đường dẫn Video" />
+                            </div>
+                        </div>
+
+                        <hr>
                     </div>
-                    <hr>
-                    <div class="Noidungmau">
-                        <p>Tiêu đề: <a>Tuyển 5 nhân viên kinh doanh thực phẩm, lương thử việc 6.5tr</a></p>
-                        Công ty Tiến Minh tuyển 5 nam/ nữ nhân viên kinh doanh ở TPHCM, ưu tiên có kinh nghiệm thực phẩm, trình độ trung cấp, lương thử việc 6,5 triệu (lương căn bản + phụ cấp + thưởng). Yêu cầu nộp hồ sơ đầy đủ, phỏng vấn trực tiếp.
+
+                    <div class="NewsEX">
+                        <div class="khungMau">
+                            <h4>Tin đăng mẫu</h4>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Bán nhà mặt tiền đường số 5, khu dân cư Trung Sơn Bình Chánh </a></p>
+                                Bán nhà mặt tiền số 35 đường số 5, khu dân cư Trung Sơn, xã Bình Hưng, huyện Bình Chánh. Hướng chính tây, xinh xinh, kế gần trường Quốc Tế Bắc Mỹ, Singapore, ABC và Đại Học RMIT. Diện tích 5x20m, trệt, 2 lầu, sân thượng, phòng khách, bếp, 7 phòng riêng, 8 WC, tiện kinh doanh văn phòng, nhà nghỉ, căn hộ dịch vụ..., sổ hồng, giá bán 8,5 tỷ (tặng nội thất), thuê lại giá thỏa thuận nếu được.
+                            </div>
+                            <hr>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Bán gấp căn hộ dự án Nhà Ở Quân Khu 7, Quận 12, 78,88m2, 3PN </a></p>
+                                Bán căn hộ dự án Nhà Ở Quân Khu 7, phòng 806 lô A, 3 phòng ngủ, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà, vị trí đẹp, 78,88m2, 14,3tr/m2.<br>
+                                - Cơ hội hiếm có và duy nhất! <br>
+                                - Căn hộ vị trí cực đẹp, phong thủy tốt nhất. <br>
+                                - Phòng 806 lô A, 3 PN, 2 WC, 1 balcon, 1 sân phơi, quý 3/2016 giao nhà. <br>
+                                - Địa chỉ: Dự án Nhà Ở Quân Khu 7, Quận 12, TP.HCM. <br>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            }
+
+            if (Model.LuaChon.Equals("4"))
+            {
+                <h2>Chỉnh sửa bài đăng [<i style="color:#0094ff">Việc làm</i>]</h2>
+                <hr>
+                <div class="formall">
+                    <div class="formCreate">
+                        @if (Model.Status.Equals("Đã khóa"))
+                        {
+                            @Html.HiddenFor(model => model.Status)
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="Status">Trạng thái:</label>
+
+                                <select class="form-control" id="Status" name="Status" aria-invalid="false">
+                                    @if (Model.Status.Equals("Công khai"))
+                                    {
+                                        <option value="Công khai"> Công khai</option>
+                                        <option value="Ẩn"> Ẩn</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Ẩn"> Ẩn</option>
+                                        <option value="Công khai"> Công khai</option>
+                                    }
+                                </select>
+
+
+
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <label for="TD">Tiêu đề</label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Tóm tắt ngắn gọn nội dung, tiêu đề tiếng việt có dấu." })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <label for="sel1">Chọn loại việc làm:</label>
+                                    <select class="form-control valid" id="IdLoaiViecLam" name="IdLoaiViecLam" aria-invalid="false">
+
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
+                                        {
+                                            if (Model.IdLoaiViecLam.Equals(@ViewBag.LoaiViecLams[i].Id))
+                                            {
+                                                <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
+                                                break;
+                                            }
+
+                                        }
+
+                                        @for (int i = 0; i < @ViewBag.SLLoaiViecLams; i++)
+                                        {
+                                            if (Model.IdLoaiViecLam.Equals(@ViewBag.LoaiViecLams[i].Id))
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                <option value=@ViewBag.LoaiViecLams[i].Id> @ViewBag.LoaiViecLams[i].Name</option>
+                                            }
+                                        }
+
+
+
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="IdLoaiViecLam" data-valmsg-replace="true"></span>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Ngày hết hạn tin tức</label>
+                                    @Html.EditorFor(model => model.EndDayTinTucs, new { htmlAttributes = new { @class = "form-control", @id = "EndDayTinTucsVL" } })
+                                    @Html.ValidationMessageFor(model => model.EndDayTinTucs, "", new { @class = "text-danger" })
+                                    <div id="datewarnVL"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="TD">Người liên hệ</label>
+                                    @Html.TextBoxFor(m => m.Contract, new { @class = "form-control", @placeholder = "Nhập tên người liên lạc hoặc một tổ chức" })
+                                    @Html.ValidationMessageFor(model => model.Contract, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="TD">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.ContractPhoneNumber, new { @class = "form-control", @placeholder = "Vd: 0933567531" })
+                                    @Html.ValidationMessageFor(model => model.ContractPhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">Nội dung</label>
+                            @Html.TextAreaFor(m => m.DescriptioViecLamn, new { @class = "form-control", @placeholder = "Yêu cầu người đăng tin, điền nội dung chính xác!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.DescriptioViecLamn, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">Yêu cầu</label>
+                            @Html.TextAreaFor(m => m.Require, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.Require, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">Quyền lợi</label>
+                            @Html.TextAreaFor(m => m.Benefit, new { @class = "form-control", @placeholder = "Thông tin yêu cầu!", @rows = "10" })
+                            @Html.ValidationMessageFor(model => model.Benefit, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="TD">Lương</label>
+                                    @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", @placeholder = "Nhập mức lương tối thiểu, chỉ nhập số", @min = "0", Type = "number" })
+                                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-7">
+                                    <label for="TD">Địa điểm</label>
+                                    @Html.TextBoxFor(m => m.LocationViecLam, new { @class = "form-control", @placeholder = "778E Nguyễn Kiệm P4 Quận Phú Nhuận TpHCM" })
+                                    @Html.ValidationMessageFor(model => model.LocationViecLam, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
+                                    <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
+                                    <div id="displayImg4">
+                                        @foreach (var item in @ViewBag.HinhAnh)
+                                        {
+                                            <img src=@item id="@item">
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="NewsEX">
+                        <div class="khungMau">
+                            <h4>Tin đăng mẫu</h4>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a> Tuyển 4 nhân viên văn phòng và thị trường làm việc tại Hà Nội </a></p>
+                                Công ty Du lịch Đất Việt cần tuyển 4 nhân viên văn phòng và thị trường, nam hoặc nữ, 22 - 45 tuổi, tốt nghiệp THPT, nhanh nhẹn, giao tiếp tốt, có kỹ năng bán hàng qua điện thoại. Có thể đi công tác xa nhà từ 1 - 2 tháng, lương thưởng và thời gian làm việc theo thỏa thuận.
+                            </div>
+                            <hr>
+                            <div class="Noidungmau">
+                                <p>Tiêu đề: <a>Tuyển 5 nhân viên kinh doanh thực phẩm, lương thử việc 6.5tr</a></p>
+                                Công ty Tiến Minh tuyển 5 nam/ nữ nhân viên kinh doanh ở TPHCM, ưu tiên có kinh nghiệm thực phẩm, trình độ trung cấp, lương thử việc 6,5 triệu (lương căn bản + phụ cấp + thưởng). Yêu cầu nộp hồ sơ đầy đủ, phỏng vấn trực tiếp.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <div class="form-group">
+                <div style="text-align: left; padding-left:20px;">
+                    <button type="submit" id="Create" class="btn btn-success">Lưu</button>
+                </div>
             </div>
-        </div>
+
+        }
     }
-
-
-    <div class="form-group">
-        <div style="text-align: left; padding-left:20px;">
-            <button type="submit" id="Create" class="btn btn-success">Lưu</button>
-        </div>
-    </div>
+    else
+    {
+        <h1>TRANG NÀY KHÔNG TỒN TẠI</h1>
+    }
 
 }
+else
+{
+    <h1>TRANG NÀY KHÔNG TỒN TẠI</h1>
+}
+
 
 @*<div>
         @Html.ActionLink("Back to List", "Index")

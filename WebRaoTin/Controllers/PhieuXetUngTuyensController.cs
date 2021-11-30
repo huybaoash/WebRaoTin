@@ -120,7 +120,11 @@ namespace WebRaoTin.Controllers
         // GET: Admin/PhieuXetUngTuyens
         public ActionResult Index(int? TinTucId)
         {
+            TinTuc tinTuc = db.TinTucs.Find(TinTucId);
+            string NguoiDangID = tinTuc.CustomerID;
+            ViewBag.NguoiDangID = NguoiDangID;
             var phieuXetUngTuyens = db.PhieuXetUngTuyens.Include(p => p.Customer).Include(p => p.ViecLam);
+
             return View(phieuXetUngTuyens.Where(t => t.ViecLam.TinTucId == TinTucId).ToList());
         }
 
@@ -142,39 +146,9 @@ namespace WebRaoTin.Controllers
                             break;
                         }
                     }
-                    // đọc cái này chả hiểu cmj cả
-                    object documentFormat = 8;
-                    string randomName = DateTime.Now.Ticks.ToString();
-                    object htmlFilePath = Server.MapPath("~/Content/TinTuc/TinTucID" + MaTinTuc.ToString() + "/CV/") + item.Description + ".htm";
-                    string directoryPath = Server.MapPath("~/Content/TinTuc/TinTucID" + MaTinTuc.ToString() + "/CV/") + item.Description + "_files";
+                    
                     object fileSavePath = Server.MapPath("~/Content/TinTuc/TinTucID" + MaTinTuc.ToString() + "/CV/") + item.Description;
-
-
-                    _Application applicationclass = new Application();
-
-
-                    applicationclass.Documents.Open(ref fileSavePath);
-                    applicationclass.Visible = false;
-                    Document document = applicationclass.ActiveDocument;
-
-                    //Save the word document as HTML file.
-                    document.SaveAs(ref htmlFilePath, ref documentFormat);
-
-                    //Close the word document.
-                    document.Close();
-
-                    //Read the saved Html File.
-                    string wordHTML = System.IO.File.ReadAllText(htmlFilePath.ToString());
-
-                    //Loop and replace the Image Path.
-                    foreach (Match match in Regex.Matches(wordHTML, "<v:imagedata.+?src=[\"'](.+?)[\"'].*?>", RegexOptions.IgnoreCase))
-                    {
-                        wordHTML = Regex.Replace(wordHTML, match.Groups[1].Value, "~/Content/TinTuc/TinTucID" + MaTinTuc.ToString() + "/CV/" + match.Groups[1].Value);
-                    }
-
-
-
-                    ViewBag.WordHtml = wordHTML;
+                    ViewBag.fileSavePath = fileSavePath;
                     break;
                 }
             }
@@ -189,7 +163,45 @@ namespace WebRaoTin.Controllers
             {
                 return HttpNotFound();
             }
+
+            TinTuc tinTuc = db.TinTucs.Find(MaTinTuc);
+            phieuXetUngTuyen.ViecLam.TinTuc = tinTuc;
+            string NguoiDangID = tinTuc.CustomerID;
+            ViewBag.NguoiDangID = NguoiDangID;
             return View(phieuXetUngTuyen);
+        }
+
+        public ActionResult Details_Now(string userID, int? tintucID)
+        {
+            ViewBag.UserID_NguoiGuiCV = userID;
+            int idPhieuXetUngTuyen = 0;
+
+            
+
+            foreach (var item in db.PhieuXetUngTuyens.ToList())
+            {
+                if (item.CustomerID.Equals(userID) && item.ViecLam.TinTucId == tintucID)
+                {
+
+                    idPhieuXetUngTuyen = item.Id;
+                    object fileSavePath = Server.MapPath("~/Content/TinTuc/TinTucID" + tintucID + "/CV/") + item.Description;
+                    ViewBag.fileSavePath = fileSavePath;
+                    break;
+                }
+            }
+
+
+            if (userID == null || tintucID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PhieuXetUngTuyen phieuXetUngTuyen = db.PhieuXetUngTuyens.Find(idPhieuXetUngTuyen);
+            if (phieuXetUngTuyen == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details", "PhieuXetUngTuyens", new { id = phieuXetUngTuyen.Id });
+            
         }
 
         // GET: Admin/PhieuXetUngTuyens/Create

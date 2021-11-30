@@ -427,6 +427,20 @@ namespace WebRaoTin.Controllers
             return View();
         }
 
+        public ActionResult GioiThieu()
+        {
+
+            return View();
+        }
+
+        public ActionResult PhanHoi()
+        {
+
+            return View();
+        }
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

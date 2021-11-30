@@ -6,6 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+
 @*
     Nếu tin tức được chọn là 1 sản phẩm. Thì LuaChon của nó = "1";
     Nếu tin tức được chọn là 1 dịch vụ. Thì LuaChon của nó = "2";
@@ -55,7 +56,12 @@
             <div class="col-2_">
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
+
                 <h1>@Model.Title</h1>
+                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                {
+                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                }
 
                 <div class="row-inf">
                     <div class="col-addr">
@@ -109,7 +115,7 @@
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
 
-                      <ul style="border:1px solid lightgray;padding-left:10px">
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -147,9 +153,11 @@
             else
             {
                 <div>
-                    <h4>Bình luận</h4>
-                    <hr />
-                    <ul>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -167,7 +175,9 @@
 
                     </ul>
 
-                    Bạn phải đăng nhập mới có thế bình luận.
+                    <i style="color:blue;font-size:14px;padding-left:10px">
+                        [Bạn phải đăng nhập mới có thế bình luận.]
+                    </i>
 
                 </div>
             }
@@ -268,6 +278,10 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
+                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                {
+                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                }
 
                 <div class="row-inf">
                     <div class="col-addr">
@@ -320,9 +334,9 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                
 
-                      <ul style="border:1px solid lightgray;padding-left:10px">
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -360,9 +374,11 @@
             else
             {
                 <div>
-                    <h4>Bình luận</h4>
-                    <hr />
-                    <ul>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -380,7 +396,9 @@
 
                     </ul>
 
-                    Bạn phải đăng nhập mới có thế bình luận.
+                    <i style="color:blue;font-size:14px;padding-left:10px">
+                        [Bạn phải đăng nhập mới có thế bình luận.]
+                    </i>
 
                 </div>
             }
@@ -479,7 +497,10 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
-
+                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                {
+                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                }
                 <!-- row infor-->
                 <div class="row-inf">
                     <div class="col-addr">
@@ -536,8 +557,8 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                
-                  
+
+
 
                     <ul style="border:1px solid lightgray;padding-left:10px">
 
@@ -575,9 +596,11 @@
             else
             {
                 <div>
-                    <h4>Bình luận</h4>
-                    <hr />
-                    <ul>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -595,7 +618,9 @@
 
                     </ul>
 
-                    Bạn phải đăng nhập mới có thế bình luận.
+                    <i style="color:blue;font-size:14px;padding-left:10px">
+                        [Bạn phải đăng nhập mới có thế bình luận.]
+                    </i>
 
                 </div>
             }
@@ -685,7 +710,10 @@
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
 
                     <h1>@Model.Title</h1>
-
+                    @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                     <div class="row-inf">
                         <div class="col-addr">
                             <div class="infor" style="display:flex;">
@@ -710,14 +738,14 @@
                     </div>
 
                     <h4 style="font-weight:bold">Nội dung công việc</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />"))
                         </p>
                     </div>
 
                     <h4 style="font-weight:bold">Quyền lợi</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" ">
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                         </p>
@@ -740,50 +768,59 @@
                         </div>
                     </div>
                     <hr />
-                    @if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        if (@ViewBag.NgayHetHan.Equals("Đã hết hạn"))
+                        if (!Model.CustomerID.Equals(User.Identity.GetUserId()))
                         {
-                            <h4 style="font-weight:bold">Hết hạn nộp hồ sơ</h4>
-                        }
-                        else if (@ViewBag.kiemtra_hasSentCV == 1)
-                        {
-                            <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
-                            <div style="padding-left: 10px; line-height: 0.8rem;">
-                                <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                    <p class="btn btn-success btn-xs">Đã gửi CV</p>
-                                </a>
-                            </div>
+                            if (@ViewBag.NgayHetHan.Equals("Đã hết hạn"))
+                            {
+                                <h4 style="font-weight:bold">Hết hạn nộp hồ sơ</h4>
+                            }
+                            else if (@ViewBag.kiemtra_hasSentCV == 1)
+                            {
+                                <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                                <div style="padding-left: 10px; line-height: 0.8rem;">
+                                    <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                        <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                                    <div style="padding-left: 10px; line-height: 0.8rem;">
+                                        <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" accept=".doc,.docx" />
+                                        <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
+                                        <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
+
+
+                                    </div>
+                                    <hr />
+
+
+                                }
+                            }
+
                         }
                         else
                         {
-                            using (Html.BeginForm("Create", "PhieuXetUngTuyens", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
-                                <div style="padding-left: 10px; line-height: 0.8rem;">
-                                    <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" accept=".doc,.docx" />
-                                    <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
-                                    <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
+                            <h4 style="font-weight:bold">Nhận danh sách hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                            <div style="padding-left: 10px; line-height: 0.8rem;">
+                                <a style="font-size:16px" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Đi tới danh sách >> </a>
+                            </div>
+                            <hr />
 
-
-                                </div>
-                                <hr />
-
-
-                            }
                         }
-
                     }
                     else
                     {
-                        <h4 style="font-weight:bold">Nhận danh sách hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
-                        <div style="padding-left: 10px; line-height: 0.8rem;">
-                            <a style="font-size:16px" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })"> Đi tới danh sách >> </a>
-                        </div>
-                        <hr />
-
+                        <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
+                        <h4>Bạn phải đăng nhập để mở khóa chức năng này</h4>
                     }
+
 
                 </div>
 
@@ -802,8 +839,8 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                
-                  
+
+
 
                     <ul style="border:1px solid lightgray;padding-left:10px">
 
@@ -843,9 +880,11 @@
             else
             {
                 <div>
-                    <h4>Bình luận</h4>
-                    <hr />
-                    <ul>
+                    <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
+                        <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
+                    </div>
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -863,7 +902,9 @@
 
                     </ul>
 
-                    Bạn phải đăng nhập mới có thế bình luận.
+                    <i style="color:blue;font-size:14px;padding-left:10px">
+                        [Bạn phải đăng nhập mới có thế bình luận.]
+                    </i>
 
                 </div>
             }
@@ -907,7 +948,7 @@
 
 
     </div>
-    
+
 }
 
 

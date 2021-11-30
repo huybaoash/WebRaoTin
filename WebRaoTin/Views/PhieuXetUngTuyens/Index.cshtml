@@ -1,25 +1,22 @@
 ﻿@model IEnumerable<WebRaoTin.Models.PhieuXetUngTuyen>
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<h2>Danh sách các hồ sơ gửi lên</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ViecLam.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Customer.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PublishDay)
@@ -27,32 +24,39 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+        <th>
+            File
+        </th>
         <th></th>
     </tr>
+    @foreach (var item in Model)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            if (User.Identity.GetUserId().Equals(@ViewBag.NguoiDangID))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DownloadFile", "PhieuXetUngTuyens", new { fileName =item.Description,TinTucId = item.ViecLam.TinTucId })"><i class="fas fa-file-download"></i> Tải về</a>
+                    </td>
+                    <td>
+                        @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                        @Html.ActionLink("Xem trước", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                        @*     @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
+            }
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ViecLam.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    }
 
 </table>

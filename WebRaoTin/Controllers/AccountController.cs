@@ -236,7 +236,6 @@ namespace WebRaoTin.Controllers
             if (ModelState.IsValid)
             {
                 int demloi = 0;
-                bool EmailValid = true;
                 if (model.Email.EndsWith(".com") == false)
                 {
 

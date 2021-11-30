@@ -1,3 +1,5 @@
+using GleamTech.DocumentUltimate;
+using GleamTech.DocumentUltimate.AspNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace WebRaoTin
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //DocumentUltimateConfiguration.Current.LicenseKey = "QQJDJLJP34...";
+            //DocumentUltimateWebConfiguration.Current.CacheLocation = "~/App_Data/DocumentCache";
         }
     }
 }

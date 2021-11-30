@@ -33,7 +33,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-            
+
 
         }
         public TinTucsController()
@@ -45,7 +45,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViecLams = db.ViecLams.ToList();
             BinhLuans = db.BinhLuans.ToList();
 
-            LoaiSanPhams = db.LoaiSanPhams.Where(p=>p.Status.Equals("Công khai")).ToList();
+            LoaiSanPhams = db.LoaiSanPhams.Where(p => p.Status.Equals("Công khai")).ToList();
             LoaiBatDongSans = db.LoaiBatDongSans.Where(p => p.Status.Equals("Công khai")).ToList();
             LoaiDichVus = db.LoaiDichVus.Where(p => p.Status.Equals("Công khai")).ToList();
             LoaiViecLams = db.LoaiViecLams.Where(p => p.Status.Equals("Công khai")).ToList();
@@ -154,7 +154,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             if (delta < 12 * MONTH)
             {
                 int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "Còn 1 tháng nữa" : "Còn "+ months + " tháng nữa";
+                return months <= 1 ? "Còn 1 tháng nữa" : "Còn " + months + " tháng nữa";
             }
             else
             {
@@ -449,34 +449,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViewBag.TinTuc_TenDM_4Lastest = tenDanhMucs;
         }
 
-        public ActionResult Index(string searchString, int? page)
-        {
-            int recordsPerPage = 10;
-
-            if (!page.HasValue)
-            {
-                page = 1; // set initial page value
-            }
-            ViewBag.Keyword = searchString;
-
-            var tinTucs = db.TinTucs.Include(t => t.Customer).ToList();
-            var sanpham = db.SanPhams.Include(t => t.TinTuc).Include(t => t.LoaiSanPham).ToList();
-
-            try
-            {
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    tinTucs = tinTucs.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
-                }
-            }
-            catch (Exception ex) { }
-            tinTucs.OrderByDescending(v => v.Id);
-
-            var finalList = tinTucs.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
-            return View(finalList);
-        }
-
-        public ActionResult Index_ofUser(string searchString, int? page,string id)
+        [Authorize]
+        public ActionResult Index_ofUser(string searchString, int? page, string id)
         {
             int recordsPerPage = 500;
 
@@ -499,10 +473,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
             }
             catch (Exception ex) { }
-            
+
             var tinTucs = tinTucs_Temp.OrderByDescending(v => v.Id).Where(p => p.CustomerID.Equals(id));
 
-            
+
 
 
             List<TinTucsViewModel> dsTinTuc = new List<TinTucsViewModel>();
@@ -536,7 +510,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                         dsTinTuc.Add(tinTucsViewModel);
 
-                        break; 
+                        break;
                     }
 
 
@@ -565,7 +539,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageViecLam = images[0] + ".jpg";
 
                         dsTinTuc.Add(tinTucsViewModel);
-                        break; 
+                        break;
                     }
 
 
@@ -595,7 +569,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
 
                         dsTinTuc.Add(tinTucsViewModel);
-                        break; 
+                        break;
                     }
 
 
@@ -624,7 +598,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
 
                         dsTinTuc.Add(tinTucsViewModel);
-                        break; 
+                        break;
                     }
 
 
@@ -635,7 +609,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViewBag.TinTuc_TenDM_4Lastest = tenDanhMucs;
 
             var finalDSTT = dsTinTuc.ToPagedList(page.Value, recordsPerPage);
-            
+
             return View(finalDSTT);
         }
 
@@ -654,19 +628,19 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             int kiemtra_hasSentCV = 0;
             PhieuXetUngTuyen phieuXetUngTuyen = new PhieuXetUngTuyen();
-            foreach(var item in db.PhieuXetUngTuyens.ToList())
+            foreach (var item in db.PhieuXetUngTuyens.ToList())
             {
                 if (item.CustomerID.Equals(User.Identity.GetUserId()) && item.ViecLam.TinTucId == id)
                 {
                     kiemtra_hasSentCV = 1;
                     phieuXetUngTuyen = item;
                 }
-                
+
             }
             ViewBag.phieuXetUngTuyen = phieuXetUngTuyen;
             ViewBag.kiemtra_hasSentCV = kiemtra_hasSentCV;
 
-            
+
 
             List<BinhLuanViewModel> dsBLcuaTT = new List<BinhLuanViewModel>();
             foreach (var item in BinhLuans)
@@ -678,7 +652,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                     BinhLuanViewModel bl = new BinhLuanViewModel()
                     {
-                        
+
                         CustomerID = item.CustomerID,
                         Description = item.Description,
                         PublishDay = item.PublishDay,
@@ -696,7 +670,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     if (item.CustomerID.Equals(nguoidung.Id))
                     {
                         item.CustomerEmail = nguoidung.Email;
-                    } 
+                    }
                 }
             }
 
@@ -712,15 +686,15 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            
-            foreach(var item in SanPhams)
+
+            foreach (var item in SanPhams)
             {
                 if (item.TinTucId.Equals(id))
                 {
-                    tinTucsViewModel = new TinTucsViewModel(tinTuc,item);
+                    tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -741,7 +715,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -757,10 +731,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 if (item.TinTucId.Equals(id))
                 {
-                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
+                    tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -782,7 +756,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     ViewBag.NgayHetHan = NgayHetHan;
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -798,17 +772,18 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
         // GET: Admin/TinTucs/Create
+        [Authorize]
         public ActionResult Create()
         {
-            
+
             ViewBag.CustomerID = new SelectList(db.Users, "Id", "Role");
-            
+
             return View();
         }
 
-        
 
-        
+
+
 
 
         [HttpPost]
@@ -824,7 +799,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
 
             // Lấy danh sách sản phẩm 
-            
+
 
             List<TinTuc> listTinTuc = db.TinTucs.ToList();
 
@@ -832,11 +807,12 @@ namespace WebRaoTin.Areas.Admin.Controllers
             // Nếu đếm danh sách = 1 thì tin tiếp theo chắc chắn ID phải = 2. (Cái này làm đề phòng db.TinTucs.Last ko dùng dc)
             // Nhận ID ở cuối danh sách để đưa giá trị cho những table khác
             if (listTinTuc.Count == 0) tinTucsViewModel.IdTinTucs = 1;
-            else if (listTinTuc.Count <2 ) tinTucsViewModel.IdTinTucs = 2;
+            else if (listTinTuc.Count < 2) tinTucsViewModel.IdTinTucs = 2;
             else tinTucsViewModel.IdTinTucs = listTinTuc.Last().Id + 1;
 
 
-            TinTuc tinTuc = new TinTuc() { 
+            TinTuc tinTuc = new TinTuc()
+            {
                 Title = tinTucsViewModel.Title,
                 CustomerID = User.Identity.GetUserId(),
                 Status = "Công khai",
@@ -844,23 +820,23 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 Contract = tinTucsViewModel.Contract,
                 PublishDay = DateTime.Now,
                 EndDay = tinTucsViewModel.EndDayTinTucs.Value
-                
-                
-        };
+
+
+            };
 
             List<ApplicationUser> users = db.Users.ToList();
-            foreach(var item in users)
+            foreach (var item in users)
             {
                 if (item.Id.Equals(tinTuc.CustomerID)) tinTuc.Customer = item;
             }
 
-            
+
 
 
             if (tinTuc.PublishDay == null) tinTuc.PublishDay = DateTime.Now;
 
-           
-            db.TinTucs.Add(tinTuc);db.SaveChanges();
+
+            db.TinTucs.Add(tinTuc); db.SaveChanges();
 
             int demSP = 0;
             int demDV = 0;
@@ -885,7 +861,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                 }
                 // Lưu folder chứa hình sản phẩm
-                
+
 
                 LoaiSanPham loaiSanPham = new LoaiSanPham();
                 foreach (var item in LoaiSanPhams)
@@ -897,12 +873,13 @@ namespace WebRaoTin.Areas.Admin.Controllers
                      tinTucsViewModel.NameViecLam == null)
                 {
                     tinTucsViewModel.NameBatDongSan = "";
-                        tinTucsViewModel.NameDichVu= "";
-                        tinTucsViewModel.NameSanPham= "";
-                        tinTucsViewModel.NameViecLam = "";
+                    tinTucsViewModel.NameDichVu = "";
+                    tinTucsViewModel.NameSanPham = "";
+                    tinTucsViewModel.NameViecLam = "";
                 }
 
-                SanPham sanPham = new SanPham(){
+                SanPham sanPham = new SanPham()
+                {
                     Name = tinTucsViewModel.NameSanPham,
                     LoaiSanPhamId = tinTucsViewModel.IdLoaiSanPham,
                     Location = tinTucsViewModel.LocationSanPham,
@@ -914,7 +891,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     LoaiSanPham = loaiSanPham
                 };
 
-                db.SanPhams.Add(sanPham);db.SaveChanges();
+                db.SanPhams.Add(sanPham); db.SaveChanges();
                 return View(tinTucsViewModel);
             };
 
@@ -935,7 +912,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         demDV++;
                     }
                 }
-                
+
 
                 LoaiDichVu loaiDichVu = new LoaiDichVu();
                 foreach (var item in LoaiDichVus)
@@ -955,7 +932,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     TinTucId = tinTucsViewModel.IdTinTucs,
                     TinTuc = tinTuc,
                     LoaiDichVu = loaiDichVu
-                   
+
                 };
 
                 db.DichVus.Add(dichVu); db.SaveChanges();
@@ -963,7 +940,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
             };
 
 
-            if (tinTucsViewModel.LuaChon.Equals("3")) {
+            if (tinTucsViewModel.LuaChon.Equals("3"))
+            {
 
                 // Lưu folder chứa video bất động sản
                 if (video?.ContentLength > 0)
@@ -991,10 +969,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         demBDS++;
                     }
                 }
-                
+
 
                 LoaiBatDongSan loaiBatDongSan = new LoaiBatDongSan();
-                foreach(var item in LoaiBatDongSans)
+                foreach (var item in LoaiBatDongSans)
                 {
                     if (tinTucsViewModel.IdLoaiBatDongSan.Equals(item.Id)) loaiBatDongSan = item;
                 }
@@ -1012,8 +990,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     TinTucId = tinTucsViewModel.IdTinTucs,
                     TinTuc = tinTuc,
                     LoaiBatDongSan = loaiBatDongSan
-                    
-                    
+
+
 
                 };
                 db.BatDongSans.Add(batDongSan); db.SaveChanges();
@@ -1034,10 +1012,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         image.SaveAs(path);
                         demVL++;
                     }
-                    
+
                 }
-                    // Lưu folder chứa hình việc làm
-                
+                // Lưu folder chứa hình việc làm
+
 
                 LoaiViecLam loaiViecLam = new LoaiViecLam();
                 foreach (var item in LoaiViecLams)
@@ -1049,7 +1027,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                 ViecLam viecLam = new ViecLam()
                 {
-                    
+
                     Name = tinTucsViewModel.NameViecLam,
                     Require = tinTucsViewModel.Require,
                     Location = tinTucsViewModel.LocationViecLam,
@@ -1061,9 +1039,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     LoaiViecLam = loaiViecLam,
                     TinTuc = tinTuc,
                     LoaiViecLamId = tinTucsViewModel.IdLoaiViecLam
-                    
-                    
-                    
+
+
+
                 };
 
                 db.ViecLams.Add(viecLam); db.SaveChanges();
@@ -1093,16 +1071,16 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    
 
-                    for (int i = 0; i < images.Count-1; i++)
+
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
                     images = images.Where(p => p.EndsWith(".jpg")).ToList();
                     ViewBag.HinhAnh = images;
 
-                    
+
                     tinTucsViewModel.LuaChon = "1";
                     return View(tinTucsViewModel);
                 }
@@ -1115,14 +1093,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    
-                    for (int i = 0; i < images.Count-1; i++)
+
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
                     images = images.Where(p => p.EndsWith(".jpg")).ToList();
                     ViewBag.HinhAnh = images;
-                    
+
                     tinTucsViewModel.LuaChon = "2";
                     return View(tinTucsViewModel);
                 }
@@ -1135,7 +1113,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -1153,7 +1131,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     tinTucsViewModel = new TinTucsViewModel(tinTuc, item);
                     string[] chuoiSplit = new string[] { ".jpg" };
                     List<string> images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None).ToList();
-                    for (int i = 0; i < images.Count-1; i++)
+                    for (int i = 0; i < images.Count - 1; i++)
                     {
                         images[i] = images[i] + ".jpg";
                     }
@@ -1167,7 +1145,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             return View(tinTucsViewModel);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TinTucsViewModel tinTucsViewModel, HttpPostedFileBase[] image1, HttpPostedFileBase[] image2, HttpPostedFileBase[] image3, HttpPostedFileBase[] image4, HttpPostedFileBase video, FormCollection formCollection)
@@ -1202,8 +1180,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
             // Nếu đếm danh sách = 0 thì tin đầu tiên chắc chắn ID phải = 1.
             // Nếu đếm danh sách = 1 thì tin tiếp theo chắc chắn ID phải = 2. (Cái này làm đề phòng db.TinTucs.Last ko dùng dc)
             // Nhận ID ở cuối danh sách để đưa giá trị cho những table khác
-            
-            
+
+
 
 
             TinTuc tinTuc = new TinTuc()
@@ -1213,11 +1191,11 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 Status = tinTucsViewModel.Status,
                 ContractPhoneNumber = tinTucsViewModel.ContractPhoneNumber,
                 Contract = tinTucsViewModel.Contract,
-                
+
                 EndDay = tinTucsViewModel.EndDayTinTucs.Value,
                 Id = tinTucsViewModel.IdTinTucs,
                 PublishDay = tinTucsViewModel.PublishDayTinTucs.Value,
-                 
+
 
             };
 
@@ -1228,7 +1206,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
 
 
-          
+
 
             var existingEntity = db.TinTucs.Find(tinTucsViewModel.IdTinTucs);
             db.Entry(existingEntity).CurrentValues.SetValues(tinTuc);
@@ -1243,7 +1221,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             if (tinTucsViewModel.LuaChon.Equals("1"))
             {
-                if (image1.Length == 0 )
+                if (image1.Length == 0)
                 {
                     foreach (var item in SanPhams)
                     {
@@ -1252,7 +1230,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                             tinTucsViewModel.ImageSanPham = item.Image;
                         }
                     }
-                    
+
                 }
 
                 // Lưu folder chứa hình sản phẩm
@@ -1293,8 +1271,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     TinTuc = tinTuc,
                     LoaiSanPham = loaiSanPham,
                     Id = tinTucsViewModel.IdSanPham
-                   
-                    
+
+
                 };
 
                 var existingEntity1 = db.SanPhams.Find(tinTucsViewModel.IdSanPham);
@@ -1310,7 +1288,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
 
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
 
             if (tinTucsViewModel.LuaChon.Equals("2"))
@@ -1376,7 +1354,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
 
 
@@ -1454,7 +1432,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     TinTuc = tinTuc,
                     LoaiBatDongSan = loaiBatDongSan,
                     Id = tinTucsViewModel.IdBatDongSan
-                    
+
 
                 };
                 var existingEntity3 = db.BatDongSans.Find(tinTucsViewModel.IdBatDongSan);
@@ -1469,7 +1447,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
 
             if (tinTucsViewModel.LuaChon.Equals("4"))
@@ -1523,10 +1501,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
                     Salary = tinTucsViewModel.Salary,
                     Benefit = tinTucsViewModel.Benefit,
                     TinTucId = tinTucsViewModel.IdTinTucs,
-                    
+
                     Id = tinTucsViewModel.IdViecLam
-                    
-                 
+
+
 
 
 
@@ -1544,14 +1522,14 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
-            return View(tinTucsViewModel);
+            return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
         }
 
 
 
-        public ActionResult Edit_HideStatus( int? id)
+        public ActionResult Edit_HideStatus(int? id)
         {
             var tinTuc = db.TinTucs.Find(id);
             tinTuc.Status = "Ẩn";
@@ -1562,7 +1540,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
             }
 
-            return RedirectToAction("Index_ofUser", "TinTucs", new {id = User.Identity.GetUserId() });
+            return RedirectToAction("Index_ofUser", "TinTucs", new { id = User.Identity.GetUserId() });
         }
 
         public ActionResult Edit_ShowStatus(int? id)
@@ -1580,61 +1558,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Edit_LockStatus(int? id)
-        {
-            var tinTuc = db.TinTucs.Find(id);
-            tinTuc.Status = "Đã khóa";
-            if (ModelState.IsValid)
-            {
-                db.Entry(tinTuc).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", "TinTucs");
-            }
 
-            return RedirectToAction("Index", "TinTucs");
-        }
-
-        public ActionResult Edit_UnlockStatus(int? id)
-        {
-            var tinTuc = db.TinTucs.Find(id);
-            tinTuc.Status = "Công khai";
-            if (ModelState.IsValid)
-            {
-                db.Entry(tinTuc).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", "TinTucs");
-            }
-
-            return RedirectToAction("Index", "TinTucs");
-        }
-
-        
-
-        // GET: Admin/TinTucs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TinTuc tinTuc = db.TinTucs.Find(id);
-            if (tinTuc == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tinTuc);
-        }
-
-        // POST: Admin/TinTucs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TinTuc tinTuc = db.TinTucs.Find(id);
-            db.TinTucs.Remove(tinTuc);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
