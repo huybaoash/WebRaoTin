@@ -94,6 +94,13 @@
         padding-left:0px;
         list-style:none;
     }
+   
+       span {
+        color: red;
+        padding:0;
+        float:none;
+    }
+    
 </style>
 
 
@@ -111,7 +118,6 @@
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
-
             <div class="input-field">
                 <label for="pwd">Mật khẩu</label>
                 @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password",Type = "Password" })

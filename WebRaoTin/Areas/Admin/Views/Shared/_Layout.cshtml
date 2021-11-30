@@ -442,7 +442,7 @@
             bottom: 0;
             min-width: 90px;
             background-color: purple;
-            height: 650px;
+            height: 600px;
             margin-left: 10px;
         }
 
@@ -452,7 +452,7 @@
             bottom: 0;
             min-width: 90px;
             background-color: blue;
-            height: 650px;
+            height: 600px;
             margin-right: 10px;
         }
 
@@ -471,9 +471,9 @@
     <div class="container-fluid">
         <div class="header">
             <ul class="heard-list">
-                <li class="header_item" style="padding-right:100px;"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
-                <li class="header_item active-cyan-3 active-cyan-4 mb-4">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">
+                <li class="header_item" style="padding-right:100px;padding-left:200px"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
+                <li class="header_item active-cyan-3 active-cyan-4 mb-4" style="width:250px">
+                 @*   <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">*@
                 </li>
                 <li class="header_item">
                     <a style="color:white;text-decoration:none" href="/Admin/TinTucs/Create">
@@ -523,8 +523,11 @@
             <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-            <li><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
-            <li><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
+            <li>|</li>
+            <li>|</li>
+            <li style="font-weight:bold"><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
+
+            <li style="font-weight:bold"><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
 
         </ul>
     </div>
@@ -532,7 +535,7 @@
     @*--------------------------------------------------------------------------------------------------*@
     <div class="main-container">
         <div class="left-container">
-            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:650px">
+            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:600px">
         </div>
 
         <div class="content-container">
@@ -543,7 +546,7 @@
 
         <div class="right-container">
             @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:650px">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:600px">
 
         </div>
         <div>

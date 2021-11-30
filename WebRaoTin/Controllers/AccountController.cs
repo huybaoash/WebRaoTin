@@ -299,8 +299,8 @@ namespace WebRaoTin.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Xác nhận tài khoản của bạn", "Xin hãy xác nhận tài khoản của bạn bằng cách nhấp vào <a href=\"" + callbackUrl + "\">đây.</a>");
 
                     
-
-                    return RedirectToAction("Index", "Home");
+                    
+                    return RedirectToAction("Details", "Users",new { id = user.Id });
                 }
                 AddErrors(result);
             }
@@ -583,12 +583,12 @@ namespace WebRaoTin.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddToRoleAsync(user.Id, "2");
+                    result = await UserManager.AddToRoleAsync(user.Id, user.Role);
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Details", "Users", new { id = user.Id });
                     }
                 }
                 AddErrors(result);

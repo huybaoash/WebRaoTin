@@ -47,8 +47,9 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Status")] LoaiDichVu loaiDichVu)
+        public ActionResult Create([Bind(Include = "Id,Name")] LoaiDichVu loaiDichVu)
         {
+            loaiDichVu.Status = "Công khai";
             if (ModelState.IsValid)
             {
                 db.LoaiDichVus.Add(loaiDichVu);

@@ -1288,7 +1288,7 @@ namespace WebRaoTin.Controllers
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
 
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details","TinTucs",new { id = tinTucsViewModel.IdTinTucs });
             };
 
             if (tinTucsViewModel.LuaChon.Equals("2"))
@@ -1354,7 +1354,7 @@ namespace WebRaoTin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
 
 
@@ -1447,7 +1447,7 @@ namespace WebRaoTin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
 
             if (tinTucsViewModel.LuaChon.Equals("4"))
@@ -1522,9 +1522,9 @@ namespace WebRaoTin.Controllers
                 }
                 images = images.Where(p => p.EndsWith(".jpg")).ToList();
                 ViewBag.HinhAnh = images;
-                return View(tinTucsViewModel);
+                return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
             };
-            return View(tinTucsViewModel);
+            return RedirectToAction("Details", "TinTucs", new { id = tinTucsViewModel.IdTinTucs });
         }
 
 

@@ -142,7 +142,7 @@ namespace WebRaoTin.Controllers
                             break;
                         }
                     }
-
+                    // đọc cái này chả hiểu cmj cả
                     object documentFormat = 8;
                     string randomName = DateTime.Now.Ticks.ToString();
                     object htmlFilePath = Server.MapPath("~/Content/TinTuc/TinTucID" + MaTinTuc.ToString() + "/CV/") + item.Description + ".htm";

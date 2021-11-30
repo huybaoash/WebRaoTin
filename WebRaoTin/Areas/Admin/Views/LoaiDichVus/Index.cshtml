@@ -29,9 +29,10 @@
     </ul>
 </div>
 
-<p>
-    @Html.ActionLink("Thêm loại dịch vụ", "Create")
-</p>
+<div style="margin:10px 0px;font-size:18px">
+    <i class="fas fa-plus" style="color:blue"></i>  @Html.ActionLink("Thêm loại dịch vụ", "Create")
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -43,28 +44,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" }) |
 
-            @if (item.Status.Equals("Công khai"))
-            {
-                @Html.ActionLink("Ẩn", "Hide", new { id = item.Id })
-            }
-            else
-            {
-                @Html.ActionLink("Công khai", "Show", new { id = item.Id })
-            }
-        </td>
-    </tr>
-}
+                @if (item.Status.Equals("Công khai"))
+                {
+                    @Html.ActionLink("Ẩn", "Hide", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                }
+                else
+                {
+                    @Html.ActionLink("Công khai", "Show", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                }
+            </td>
+        </tr>
+    }
 
 </table>

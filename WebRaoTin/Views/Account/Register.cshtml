@@ -37,6 +37,11 @@
     input[type=number] {
         -moz-appearance: textfield;
     }
+    span {
+        color: red;
+        padding: 0;
+        float: none;
+    }
 </style>
 
 
@@ -101,7 +106,7 @@
         @*   @Html.LabelFor(m => m.CMND, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
             <label for="CMND">CMND(*)</label>
-            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control", Type = "number", @placeholder = "CMND mới có 12 số...", @max = "999999999" })
+            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control", Type = "number", @placeholder = "CMND mới có 12 số...", @max = "999999999999" })
             @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
         </div>
     </div>

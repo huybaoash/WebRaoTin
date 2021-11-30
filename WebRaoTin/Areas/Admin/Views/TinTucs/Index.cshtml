@@ -6,7 +6,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    table {
+         border-collapse: inherit; 
+    }
+</style>
 
 <div id="menu">
     <ul class="menu-list">
@@ -35,9 +39,10 @@
 
 @using (Html.BeginForm("Index", "TinTucs", FormMethod.Get))
 {
-    <p>
-        Tìm bằng tên: <input type="text" name="searchString" value="@ViewBag.Keyword" />
-        <input type="submit" value="Tìm kiếm" />
+    <p style="margin-top:10px;display:inline-flex">
+     
+        <input type="text" name="searchString" value="@ViewBag.Keyword" class="form-control" style="width:500px;margin-right:5px"  placeholder="Tìm kiếm theo tên"/>
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
     </p>
 }
 
