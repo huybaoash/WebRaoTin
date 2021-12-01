@@ -3,6 +3,83 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <div class="row" id="RowTT">
+    <h3>TIN TỨC NỔI NHẤT</h3>
+    @for (int i = 0; i < @ViewBag.TinTuc_4NoiBat.Count; i++)
+    {
+        <a href="@Url.Action("Details", "TinTucs",new { id= @ViewBag.TinTuc_4NoiBat[i].IdTinTucs })">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>@ViewBag.TinTuc_TenDM_4NoiBat[i]</p>
+
+                        <div class="card" style="">
+
+                            @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageDichVu" alt="" style="position:relative" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageSanPham" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageViecLam" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px;  height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageBatDongSan" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+
+
+
+
+                            <div class="card-body">
+                                <label class="card-text">@ViewBag.TinTuc_4NoiBat[i].Title</label>
+                            </div>
+
+                            <div class="form-group" style="display:inline-flex;">
+                                @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                                {
+
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceDichVu.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceSanPham.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].Salary.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceBatDongSan.ToString("#,##00.##")đ</p>
+                                }
+
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4NoiBat[i].LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @ViewBag.TinTuc_4NoiBat[i].LuotXem</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+
+</div>
+<div class="btn_more"></div>
+
+
+<div class="row" id="RowTT">
     <h3>TIN TỨC MỚI NHẤT</h3>
     @for (int i = 0; i < @ViewBag.TinTuc_4Lastest.Count; i++)
     {
@@ -62,6 +139,7 @@
                                 }
 
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4Lastest[i].LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @ViewBag.TinTuc_4Lastest[i].LuotXem</p>
                             </div>
                         </div>
 
@@ -102,6 +180,7 @@
                             <div class="form-group" style="display:inline-flex;">
                                 <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham.ToString("#,##00.##")đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                             </div>
 
                         </div>
@@ -139,6 +218,7 @@
                             <div class="form-group" style="display:inline-flex;">
                                 <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu.ToString("#,##00.##")đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                             </div>
                         </div>
                     </div>
@@ -174,6 +254,7 @@
                             <div class="form-group" style="display:inline-flex;">
                                 <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan.ToString("#,##00.##")đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                             </div>
                         </div>
                     </div>
@@ -209,6 +290,7 @@
                             <div class="form-group" style="display:inline-flex;">
                                 <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary.ToString("#,##00.##")đ</p>
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                             </div>
                         </div>
                     </div>

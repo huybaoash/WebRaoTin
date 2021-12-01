@@ -34,7 +34,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         private void GetRoleUser()
         {
 
-           
+
 
 
         }
@@ -184,7 +184,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 string[] chuoiSplit = new string[] { ".jpg" };
                 string[] images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None);
                 tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
-                
+
                 a.Add(tinTucsViewModel);
 
             }
@@ -236,7 +236,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
         public void TinSP_4Lastest()
         {
-            
+
             var dssanPhams = db.SanPhams.Include(b => b.LoaiSanPham).Include(b => b.TinTuc).ToList().OrderByDescending(v => v.Id);
             List<SanPham> sanPhams = new List<SanPham>(); int dem = 0;
             foreach (var item in dssanPhams)
@@ -267,12 +267,12 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 string[] chuoiSplit = new string[] { ".jpg" };
                 string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
                 tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
-                
+
                 a.Add(tinTucsViewModel);
 
             }
 
-            
+
 
             ViewBag.TinSP_4Lastest = a;
         }
@@ -280,7 +280,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         public void TinTuc_4Lastest()
         {
             var dsTinTuc = db.TinTucs.ToList().OrderByDescending(v => v.Id);
-            List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0; 
+            List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0;
             foreach (var item in dsTinTuc)
             {
                 if (item.Status.Equals("Ẩn") || item.Status.Equals("Đã khóa"))
@@ -296,7 +296,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             foreach (var tintuc in tinTucs)
             {
-                
+
 
                 foreach (var item2 in SanPhams)
                 {
@@ -318,12 +318,12 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         string[] chuoiSplit = new string[] { ".jpg" };
                         string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
                         tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
-                        
+
                         a.Add(tinTucsViewModel);
 
                         break;
                     }
-                    
+
 
                 }
 
@@ -351,7 +351,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         a.Add(tinTucsViewModel);
                         break;
                     }
-                    
+
 
                 }
 
@@ -379,7 +379,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         a.Add(tinTucsViewModel);
                         break;
                     }
-                    
+
 
                 }
 
@@ -403,11 +403,11 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         string[] chuoiSplit = new string[] { ".jpg" };
                         string[] images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None);
                         tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
-                        
+
                         a.Add(tinTucsViewModel);
                         break;
                     }
-                    
+
 
                 }
 
@@ -417,7 +417,142 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViewBag.TinTuc_4Lastest = a;
             ViewBag.TinTuc_TenDM_4Lastest = tenDanhMucs;
         }
+        public void TinTuc_4NoiBat()
+        {
+            var dsTinTuc = db.TinTucs.ToList().OrderByDescending(v => v.LuotXem);
+            List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0;
+            foreach (var item in dsTinTuc)
+            {
+                if (dem == 4) break;
+                tinTucs.Add(item);
+                dem++;
+            }
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            List<string> tenDanhMucs = new List<string>();
 
+            foreach (var tintuc in tinTucs)
+            {
+
+
+                foreach (var item2 in SanPhams)
+                {
+                    if (item2.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "SẢN PHẨM";
+                        tenDanhMucs.Add(tenDM);
+                        if (item2.Location.Length > 25)
+                        {
+                            String str1 = item2.Location;
+                            item2.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item3 in ViecLams)
+                {
+                    if (item3.TinTucId == tintuc.Id)
+                    {
+                        string tenDM = "VIỆC LÀM";
+                        tenDanhMucs.Add(tenDM);
+                        TinTucsViewModel tinTucsViewModel;
+                        if (item3.Location.Length > 25)
+                        {
+                            String str1 = item3.Location;
+                            item3.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageViecLam = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item4 in DichVus)
+                {
+                    if (item4.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "DỊCH VỤ";
+                        tenDanhMucs.Add(tenDM);
+                        if (item4.Location.Length > 25)
+                        {
+                            String str1 = item4.Location;
+                            item4.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item5 in BatDongSans)
+                {
+                    if (item5.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "BÂT ĐỘNG SẢN";
+                        tenDanhMucs.Add(tenDM);
+                        if (item5.Location.Length > 25)
+                        {
+                            String str1 = item5.Location;
+                            item5.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+            }
+
+
+            ViewBag.TinTuc_4NoiBat = a;
+            ViewBag.TinTuc_TenDM_4NoiBat = tenDanhMucs;
+        }
         public ActionResult Index()
         {
             TinBDS_4Lastest();
@@ -425,9 +560,23 @@ namespace WebRaoTin.Areas.Admin.Controllers
             TinVL_4Lastest();
             TinSP_4Lastest();
             TinTuc_4Lastest();
+            TinTuc_4NoiBat();
+            return View();
+        }
+
+        public ActionResult GioiThieu()
+        {
 
             return View();
         }
+
+        public ActionResult PhanHoi()
+        {
+
+            return View();
+        }
+
+
 
         public ActionResult About()
         {

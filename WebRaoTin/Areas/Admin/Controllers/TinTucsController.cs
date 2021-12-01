@@ -449,6 +449,144 @@ namespace WebRaoTin.Areas.Admin.Controllers
             ViewBag.TinTuc_TenDM_4Lastest = tenDanhMucs;
         }
 
+        public void TinTuc_4NoiBat()
+        {
+            var dsTinTuc = db.TinTucs.ToList().OrderByDescending(v => v.LuotXem);
+            List<TinTuc> tinTucs = new List<TinTuc>(); int dem = 0;
+            foreach (var item in dsTinTuc)
+            {
+                if (dem == 4) break;
+                tinTucs.Add(item);
+                dem++;
+            }
+            List<TinTucsViewModel> a = new List<TinTucsViewModel>();
+            List<string> tenDanhMucs = new List<string>();
+
+            foreach (var tintuc in tinTucs)
+            {
+
+
+                foreach (var item2 in SanPhams)
+                {
+                    if (item2.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "SẢN PHẨM";
+                        tenDanhMucs.Add(tenDM);
+                        if (item2.Location.Length > 25)
+                        {
+                            String str1 = item2.Location;
+                            item2.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageSanPham = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item3 in ViecLams)
+                {
+                    if (item3.TinTucId == tintuc.Id)
+                    {
+                        string tenDM = "VIỆC LÀM";
+                        tenDanhMucs.Add(tenDM);
+                        TinTucsViewModel tinTucsViewModel;
+                        if (item3.Location.Length > 25)
+                        {
+                            String str1 = item3.Location;
+                            item3.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageViecLam = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item4 in DichVus)
+                {
+                    if (item4.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "DỊCH VỤ";
+                        tenDanhMucs.Add(tenDM);
+                        if (item4.Location.Length > 25)
+                        {
+                            String str1 = item4.Location;
+                            item4.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageDichVu = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+                foreach (var item5 in BatDongSans)
+                {
+                    if (item5.TinTucId == tintuc.Id)
+                    {
+                        TinTucsViewModel tinTucsViewModel;
+                        string tenDM = "BÂT ĐỘNG SẢN";
+                        tenDanhMucs.Add(tenDM);
+                        if (item5.Location.Length > 25)
+                        {
+                            String str1 = item5.Location;
+                            item5.Location = str1.Substring(0, 25) + "...";
+
+                        }
+
+                        tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
+                        tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
+
+                        string[] chuoiSplit = new string[] { ".jpg" };
+                        string[] images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None);
+                        tinTucsViewModel.ImageBatDongSan = images[0] + ".jpg";
+
+                        a.Add(tinTucsViewModel);
+                        break;
+                    }
+
+
+                }
+
+            }
+
+
+            ViewBag.TinTuc_4NoiBat = a;
+            ViewBag.TinTuc_TenDM_4NoiBat = tenDanhMucs;
+        }
+
+
         [Authorize]
         public ActionResult Index_ofUser(string searchString, int? page, string id)
         {
@@ -616,6 +754,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // GET: Admin/TinTucs/Details/5
         public ActionResult Details(int? id)
         {
+            TinTuc_4NoiBat();
             ApplicationUser user = null;
             foreach (var item in db.Users.ToList())
             {
@@ -682,6 +821,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TinTuc tinTuc = db.TinTucs.Find(id);
+            tinTuc.LuotXem++;
+            db.Entry(tinTuc).State = EntityState.Modified;
+            db.SaveChanges();
+
             if (tinTuc == null)
             {
                 return HttpNotFound();
@@ -819,8 +962,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 ContractPhoneNumber = tinTucsViewModel.ContractPhoneNumber,
                 Contract = tinTucsViewModel.Contract,
                 PublishDay = DateTime.Now,
-                EndDay = tinTucsViewModel.EndDayTinTucs.Value
-
+                EndDay = tinTucsViewModel.EndDayTinTucs.Value,
+                LuotXem = 0
 
             };
 
@@ -1195,7 +1338,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 EndDay = tinTucsViewModel.EndDayTinTucs.Value,
                 Id = tinTucsViewModel.IdTinTucs,
                 PublishDay = tinTucsViewModel.PublishDayTinTucs.Value,
-
+                LuotXem = tinTucsViewModel.LuotXem
 
             };
 

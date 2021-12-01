@@ -42,6 +42,9 @@ namespace WebRaoTin.Models
         [Display(Name = "Trạng thái")]
         public string Status { get; set; }
 
+        [Display(Name = "Lượt xem")]
+        public int LuotXem { get; set; }
+
 
         [Display(Name = "Người đăng")]
         public string CustomerID { get; set; }

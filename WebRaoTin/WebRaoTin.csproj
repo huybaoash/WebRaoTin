@@ -305,6 +305,10 @@
     <Compile Include="Migrations\202111291522237_Role asp.net mvc.Designer.cs">
       <DependentUpon>202111291522237_Role asp.net mvc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112010509338_Add_LuotXem.cs" />
+    <Compile Include="Migrations\202112010509338_Add_LuotXem.Designer.cs">
+      <DependentUpon>202112010509338_Add_LuotXem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
@@ -617,6 +621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111291522237_Role asp.net mvc.resx">
       <DependentUpon>202111291522237_Role asp.net mvc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112010509338_Add_LuotXem.resx">
+      <DependentUpon>202112010509338_Add_LuotXem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

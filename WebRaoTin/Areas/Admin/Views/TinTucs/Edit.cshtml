@@ -57,7 +57,6 @@
         text-decoration: none;
     }
 </style>
-
 @if (User.Identity.IsAuthenticated)
 {
     if (User.Identity.GetUserId().Equals(Model.CustomerID))
@@ -77,6 +76,7 @@
             @Html.HiddenFor(model => model.NameDichVu)
             @Html.HiddenFor(model => model.NameSanPham)
             @Html.HiddenFor(model => model.NameViecLam)
+            @Html.HiddenFor(model => model.LuotXem)
 
             if (Model.LuaChon.Equals("1"))
             {

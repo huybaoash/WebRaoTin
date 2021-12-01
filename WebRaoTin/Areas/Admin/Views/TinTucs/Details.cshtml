@@ -16,6 +16,8 @@
 *@
 
 @* san phẩm *@
+
+<div>Lượt xem: @Model.LuotXem</div>
 @if (Model.LuaChon.Equals("1"))
 {
 
@@ -58,10 +60,14 @@
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
 
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
+
 
                 <div class="row-inf">
                     <div class="col-addr">
@@ -208,6 +214,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
 
                                 </div>
@@ -278,9 +285,12 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
 
                 <div class="row-inf">
@@ -426,6 +436,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -497,9 +508,12 @@
                 <p>Mã Tin: @Model.IdTinTucs</p>
                 <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
                 <h1>@Model.Title</h1>
-                @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    {
+                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                    }
                 }
                 <!-- row infor-->
                 <div class="row-inf">
@@ -648,6 +662,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -710,9 +725,12 @@
                     <p class="Update">Ngày đăng: @Model.PublishDayTinTucs</p>
 
                     <h1>@Model.Title</h1>
-                    @if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                        if (User.Identity.GetUserId().Equals(@Model.CustomerID))
+                        {
+                            <a href="@Url.Action("Edit","TinTucs",new { id = @Model.IdTinTucs })"> TRỞ LẠI EDIT</a>
+                        }
                     }
                     <div class="row-inf">
                         <div class="col-addr">
@@ -745,7 +763,7 @@
                     </div>
 
                     <h4 style="font-weight:bold">Quyền lợi</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                         </p>
@@ -783,7 +801,9 @@
                                     <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
                                         <p class="btn btn-success btn-xs">Đã gửi CV</p>
                                     </a>
+                                    <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                 </div>
+
                             }
                             else
                             {
@@ -931,6 +951,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -950,6 +971,82 @@
     </div>
 
 }
+<div class="row" id="RowTT">
+    <h3>TIN TỨC PHỔ BIẾN</h3>
+    @for (int i = 0; i < @ViewBag.TinTuc_4NoiBat.Count; i++)
+    {
+        <a href="@Url.Action("Details", "TinTucs",new { id= @ViewBag.TinTuc_4NoiBat[i].IdTinTucs })">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>@ViewBag.TinTuc_TenDM_4NoiBat[i]</p>
+
+                        <div class="card" style="">
+
+                            @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageDichVu" alt="" style="position:relative" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageSanPham" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageViecLam" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px;  height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageBatDongSan" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+
+
+
+
+                            <div class="card-body">
+                                <label class="card-text">@ViewBag.TinTuc_4NoiBat[i].Title</label>
+                            </div>
+
+                            <div class="form-group" style="display:inline-flex;">
+                                @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                                {
+
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceDichVu.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceSanPham.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].Salary.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceBatDongSan.ToString("#,##00.##")đ</p>
+                                }
+
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4NoiBat[i].LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @ViewBag.TinTuc_4NoiBat[i].LuotXem</p>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+
+</div>
+<div class="btn_more"></div>
 
 
 

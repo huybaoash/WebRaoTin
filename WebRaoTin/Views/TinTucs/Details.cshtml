@@ -15,6 +15,8 @@
 *@
 
 @* san phẩm *@
+
+<div>Lượt xem: @Model.LuotXem</div>
 @if (Model.LuaChon.Equals("1"))
 {
 
@@ -159,7 +161,7 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                    
+
                     <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
@@ -211,6 +213,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceSanPham.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
 
                                 </div>
@@ -250,7 +253,7 @@
 
                 <a href="@Url.Action("Index", "DichVus")">Dịch vụ</a> >
                 <a href="@Url.Action("Index_LoaiDV", "DichVus",new { searchString = @Model.TenLoaiDichVu })">@Model.TenLoaiDichVu </a>
-                
+
             </div>
 
             <div class="Khung-img" style="width: 55%;background-color:  #f5ebeb; margin: 5px auto;">
@@ -383,8 +386,8 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                    
-                     <ul style="border:1px solid lightgray;padding-left:10px">
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -432,6 +435,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceDichVu.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -608,8 +612,8 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                    
-                      <ul style="border:1px solid lightgray;padding-left:10px">
+
+                    <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
                         {
@@ -657,6 +661,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.PriceBatDongSan.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -750,14 +755,14 @@
                     </div>
 
                     <h4 style="font-weight:bold">Nội dung công việc</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.DescriptioViecLamn).Replace("\n", "<br />"))
                         </p>
                     </div>
 
                     <h4 style="font-weight:bold">Quyền lợi</h4>
-                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray" >
+                    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray">
                         <p style="font-size:16px">
                             @Html.Raw(Html.Encode(Model.Benefit).Replace("\n", "<br />"))
                         </p>
@@ -897,7 +902,7 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
-                    
+
                     <ul style="border:1px solid lightgray;padding-left:10px">
 
                         @foreach (var item in @ViewBag.dsBLcuaTT)
@@ -915,7 +920,7 @@
                         }
 
                     </ul>
-                    
+
                     <i style="color:blue;font-size:14px;padding-left:10px">
                         [Bạn phải đăng nhập mới có thế bình luận.]
                     </i>
@@ -945,6 +950,7 @@
                                     <div class="form-group" style="display:inline-flex;">
                                         <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @item.Salary.ToString("#,##00.##")đ</p>
                                         <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @item.LuaChon</p>
+                                        <p><i class="fa fa-eye"></i> @item.LuotXem</p>
                                     </div>
                                 </div>
                             </div>
@@ -964,6 +970,82 @@
     </div>
 
 }
+<div class="row" id="RowTT">
+    <h3>TIN TỨC PHỔ BIẾN</h3>
+    @for (int i = 0; i < @ViewBag.TinTuc_4NoiBat.Count; i++)
+    {
+        <a href="@Url.Action("Details", "TinTucs",new { id= @ViewBag.TinTuc_4NoiBat[i].IdTinTucs })">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="boxDiv">
+                    <div class="warp-layout_item">
+                        <p>@ViewBag.TinTuc_TenDM_4NoiBat[i]</p>
+
+                        <div class="card" style="">
+
+                            @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageDichVu" alt="" style="position:relative" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageSanPham" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageViecLam" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px;  height:40px; width:40px">
+                            }
+                            else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                            {
+                                <img src="@ViewBag.TinTuc_4NoiBat[i].ImageBatDongSan" alt="" />
+                                <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
+                            }
+
+
+
+
+                            <div class="card-body">
+                                <label class="card-text">@ViewBag.TinTuc_4NoiBat[i].Title</label>
+                            </div>
+
+                            <div class="form-group" style="display:inline-flex;">
+                                @if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("DỊCH VỤ"))
+                                {
+
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceDichVu.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("SẢN PHẨM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceSanPham.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("VIỆC LÀM"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].Salary.ToString("#,##00.##")đ</p>
+                                }
+                                else if (@ViewBag.TinTuc_TenDM_4NoiBat[i].Equals("BÂT ĐỘNG SẢN"))
+                                {
+                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> @ViewBag.TinTuc_4NoiBat[i].PriceBatDongSan.ToString("#,##00.##")đ</p>
+                                }
+
+                                <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4NoiBat[i].LuaChon</p>
+                                <p><i class="fa fa-eye"></i> @ViewBag.TinTuc_4NoiBat[i].LuotXem</p>
+                                
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+
+</div>
+<div class="btn_more"></div>
 
 
 

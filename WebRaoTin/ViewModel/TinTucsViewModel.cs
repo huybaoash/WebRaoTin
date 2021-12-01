@@ -44,6 +44,8 @@ namespace WebRaoTin.ViewModel
         [Display(Name = "Trạng thái")]
         public string Status { get; set; }
 
+        [Display(Name = "Lượt xem")]
+        public int LuotXem { get; set; }
 
         [Display(Name = "Người đăng")]
         public string CustomerID { get; set; }
@@ -190,7 +192,7 @@ namespace WebRaoTin.ViewModel
 
         }
 
-        public TinTucsViewModel(int idTinTucs, string title, DateTime publishDayTinTucs, DateTime endDayTinTucs, string contract, string contractPhoneNumber, string status, string customerID, string customerName,string customerEmail, int idLoaiVietLam, int idViecLam, string tenLoaiViecLam, string nameViecLam, string descriptioViecLamn, string require, string benefit, decimal salary, string locationViecLam, string imageViecLam, int idBatDongSan, int idLoaiBatDongSan, string tenLoaiBatDongSan, string nameBatDongSan, decimal priceBatDongSan, int area, string imageBatDongSan, string videoBatDongSan, string descriptionBatDongSan, string locationBatDongSan, int idDichVu, int idLoaiDichVu, string tenLoaiDichVu, string nameDichVu, decimal priceDichVu, string imageDichVu, string descriptionDichVu, string locationDichVu, int idSanPham, int idLoaiSanPham, string tenLoaiSanPham, string nameSanPham, decimal priceSanPham, string imageSanPham, string descriptionSanPham, string locationSanPham, string luaChon)
+        public TinTucsViewModel(int idTinTucs, string title, DateTime publishDayTinTucs, DateTime endDayTinTucs, string contract, string contractPhoneNumber, string status,int luotxem, string customerID, string customerName,string customerEmail, int idLoaiVietLam, int idViecLam, string tenLoaiViecLam, string nameViecLam, string descriptioViecLamn, string require, string benefit, decimal salary, string locationViecLam, string imageViecLam, int idBatDongSan, int idLoaiBatDongSan, string tenLoaiBatDongSan, string nameBatDongSan, decimal priceBatDongSan, int area, string imageBatDongSan, string videoBatDongSan, string descriptionBatDongSan, string locationBatDongSan, int idDichVu, int idLoaiDichVu, string tenLoaiDichVu, string nameDichVu, decimal priceDichVu, string imageDichVu, string descriptionDichVu, string locationDichVu, int idSanPham, int idLoaiSanPham, string tenLoaiSanPham, string nameSanPham, decimal priceSanPham, string imageSanPham, string descriptionSanPham, string locationSanPham, string luaChon)
         {
             IdTinTucs = idTinTucs;
             Title = title;
@@ -199,6 +201,7 @@ namespace WebRaoTin.ViewModel
             Contract = contract;
             ContractPhoneNumber = contractPhoneNumber;
             Status = status;
+            LuotXem = luotxem;
             CustomerID = customerID;
             CustomerName = customerName;
             CustomerEmail = customerEmail;
@@ -249,7 +252,7 @@ namespace WebRaoTin.ViewModel
             this.Contract = tinTuc.Contract;
             this.ContractPhoneNumber = tinTuc.ContractPhoneNumber;
             this.CustomerID = tinTuc.CustomerID;
-            
+            this.LuotXem = tinTuc.LuotXem;
             foreach(var item in db.Users)
             {
                 if (item.Id.Equals(tinTuc.CustomerID)) 
@@ -285,7 +288,7 @@ namespace WebRaoTin.ViewModel
             this.Contract = tinTuc.Contract;
             this.ContractPhoneNumber = tinTuc.ContractPhoneNumber;
             this.CustomerID = tinTuc.CustomerID;
-
+            this.LuotXem = tinTuc.LuotXem;
             foreach (var item in db.Users)
             {
                 if (item.Id.Equals(tinTuc.CustomerID))
@@ -324,7 +327,7 @@ namespace WebRaoTin.ViewModel
             this.Contract = tinTuc.Contract;
             this.ContractPhoneNumber = tinTuc.ContractPhoneNumber;
             this.CustomerID = tinTuc.CustomerID;
-
+            this.LuotXem = tinTuc.LuotXem;
             foreach (var item in db.Users)
             {
                 if (item.Id.Equals(tinTuc.CustomerID))
@@ -365,7 +368,7 @@ namespace WebRaoTin.ViewModel
             this.Contract = tinTuc.Contract;
             this.ContractPhoneNumber = tinTuc.ContractPhoneNumber;
             this.CustomerID = tinTuc.CustomerID;
-
+            this.LuotXem = tinTuc.LuotXem;
             foreach (var item in db.Users)
             {
                 if (item.Id.Equals(tinTuc.CustomerID))
