@@ -43,14 +43,15 @@
     padding: 6px;
 }
 
-.Update {
+/*.Update {
     margin-left: 75%;
-}
+}*/
 
 .TheLoai{
     text-align: left;
     color: rgb(41, 41, 41);
     background-color: rgb(212, 208, 208);
+    font-size:18px;
   
 }
 .col-addr{
