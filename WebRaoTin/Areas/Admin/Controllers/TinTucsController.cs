@@ -36,6 +36,33 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
 
         }
+
+        public ActionResult Index(string searchString, int? page)
+        {
+            int recordsPerPage = 10;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+
+            var tinTucs = db.TinTucs.Include(t => t.Customer).ToList();
+            var sanpham = db.SanPhams.Include(t => t.TinTuc).Include(t => t.LoaiSanPham).ToList();
+
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    tinTucs = tinTucs.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
+                }
+            }
+            catch (Exception ex) { }
+            tinTucs.OrderByDescending(v => v.Id);
+
+            var finalList = tinTucs.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+            return View(finalList);
+        }
         public TinTucsController()
         {
             GetRoleUser();
@@ -1701,7 +1728,33 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
 
+        public ActionResult Edit_LockStatus(int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Đã khóa";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "TinTucs");
+            }
 
+            return RedirectToAction("Index", "TinTucs");
+        }
+
+        public ActionResult Edit_UnlockStatus(int? id)
+        {
+            var tinTuc = db.TinTucs.Find(id);
+            tinTuc.Status = "Công khai";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tinTuc).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "TinTucs");
+            }
+
+            return RedirectToAction("Index", "TinTucs");
+        }
 
         protected override void Dispose(bool disposing)
         {
