@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .menu-list{
+        font-size:18px;
+    }
+</style>
 <div id="menu">
     <ul class="menu-list">
         <li class="menu-item">
@@ -43,28 +47,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" }) |
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" }) |
 
-            @if (item.Status.Equals("Công khai"))
-            {
-                @Html.ActionLink("Ẩn", "Hide", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
-            }
-            else
-            {
-                @Html.ActionLink("Công khai", "Show", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
-            }
-        </td>
-    </tr>
-}
+                @if (item.Status.Equals("Công khai"))
+                {
+                    @Html.ActionLink("Ẩn", "Hide", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                }
+                else
+                {
+                    @Html.ActionLink("Công khai", "Show", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                }
+            </td>
+        </tr>
+    }
 
 </table>

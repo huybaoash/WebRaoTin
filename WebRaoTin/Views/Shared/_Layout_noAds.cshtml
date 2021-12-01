@@ -326,10 +326,11 @@
             border-radius: 5px;
             cursor: pointer;
             transition: opacity 0.2s ease;
+            box-shadow: 2px 3px 3px gray;
         }
 
         .btn--warn {
-            background-color: rgb(161, 14, 8);
+            background-color: #d62500;
         }
 
         .btn-DT:hover {
@@ -511,10 +512,19 @@
 
     <div class="menu">
         <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
             <li style="font-weight:bold"><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
             <li style="font-weight:bold"><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li style="font-weight:bold"><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+            <li></li>
+            <li></li>
+            <li></li>
             <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
             <li><a>@Html.ActionLink(" Góp ý - Phản hồi", "PhanHoi", "Home")</a></li>
         </ul>
