@@ -1446,11 +1446,21 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 var existingEntity1 = db.SanPhams.Find(tinTucsViewModel.IdSanPham);
+                if (String.IsNullOrEmpty(sanPham.Image))
+                {
+                    foreach (var item in db.SanPhams.ToList())
+                    {
+                        if (item.Id == sanPham.Id)
+                        {
+                            sanPham.Image = item.Image; break;
+                        }
+                    }
+                }
                 db.Entry(existingEntity1).CurrentValues.SetValues(sanPham);
                 db.SaveChanges();
 
                 string[] chuoiSplit = new string[] { ".jpg" };
-                List<string> images = tinTucsViewModel.ImageSanPham.Split(chuoiSplit, StringSplitOptions.None).ToList();
+                List<string> images = sanPham.Image.Split(chuoiSplit, StringSplitOptions.None).ToList();
                 for (int i = 0; i < images.Count - 1; i++)
                 {
                     images[i] = images[i] + ".jpg";
@@ -1513,11 +1523,22 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 var existingEntity2 = db.DichVus.Find(tinTucsViewModel.IdDichVu);
+
+                if (String.IsNullOrEmpty(dichVu.Image))
+                {
+                    foreach (var item in db.DichVus.ToList())
+                    {
+                        if (item.Id == dichVu.Id)
+                        {
+                            dichVu.Image = item.Image; break;
+                        }
+                    }
+                }
                 db.Entry(existingEntity2).CurrentValues.SetValues(dichVu);
                 db.SaveChanges();
 
                 string[] chuoiSplit = new string[] { ".jpg" };
-                List<string> images = tinTucsViewModel.ImageDichVu.Split(chuoiSplit, StringSplitOptions.None).ToList();
+                List<string> images = dichVu.Image.Split(chuoiSplit, StringSplitOptions.None).ToList();
                 for (int i = 0; i < images.Count - 1; i++)
                 {
                     images[i] = images[i] + ".jpg";
@@ -1606,11 +1627,32 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                 };
                 var existingEntity3 = db.BatDongSans.Find(tinTucsViewModel.IdBatDongSan);
+                if (String.IsNullOrEmpty(batDongSan.Image))
+                {
+                    foreach (var item in db.SanPhams.ToList())
+                    {
+                        if (item.Id == batDongSan.Id)
+                        {
+                            batDongSan.Image = item.Image; break;
+                        }
+                    }
+                }
+
+                if (String.IsNullOrEmpty(batDongSan.Video))
+                {
+                    foreach (var item in db.BatDongSans.ToList())
+                    {
+                        if (item.Id == batDongSan.Id)
+                        {
+                            batDongSan.Video = item.Video; break;
+                        }
+                    }
+                }
                 db.Entry(existingEntity3).CurrentValues.SetValues(batDongSan);
                 db.SaveChanges();
 
                 string[] chuoiSplit = new string[] { ".jpg" };
-                List<string> images = tinTucsViewModel.ImageBatDongSan.Split(chuoiSplit, StringSplitOptions.None).ToList();
+                List<string> images = batDongSan.Image.Split(chuoiSplit, StringSplitOptions.None).ToList();
                 for (int i = 0; i < images.Count - 1; i++)
                 {
                     images[i] = images[i] + ".jpg";
@@ -1681,11 +1723,21 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 var existingEntity4 = db.ViecLams.Find(tinTucsViewModel.IdViecLam);
+                if (String.IsNullOrEmpty(viecLam.Image))
+                {
+                    foreach (var item in db.ViecLams.ToList())
+                    {
+                        if (item.Id == viecLam.Id)
+                        {
+                            viecLam.Image = item.Image; break;
+                        }
+                    }
+                }
                 db.Entry(existingEntity4).CurrentValues.SetValues(viecLam);
                 db.SaveChanges();
 
                 string[] chuoiSplit = new string[] { ".jpg" };
-                List<string> images = tinTucsViewModel.ImageViecLam.Split(chuoiSplit, StringSplitOptions.None).ToList();
+                List<string> images = viecLam.Image.Split(chuoiSplit, StringSplitOptions.None).ToList();
                 for (int i = 0; i < images.Count - 1; i++)
                 {
                     images[i] = images[i] + ".jpg";

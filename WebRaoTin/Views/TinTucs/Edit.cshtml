@@ -201,7 +201,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                                    <input type="file" value="image1" name="image1" id="image1" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images1FileAsURL()" multiple />
+                                    <input type="file" value="image1" name="image1" id="image1"  accept=".jpg" onchange="Images1FileAsURL()" multiple />
                                     <div id="displayImg1">
                                         @foreach (var item in @ViewBag.HinhAnh)
                                         {
@@ -360,7 +360,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                                    <input type="file" value="" name="image2" id="image2" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images2FileAsURL()" multiple />
+                                    <input type="file" value="" name="image2" id="image2"  accept=".jpg" onchange="Images2FileAsURL()" multiple />
                                     <div id="displayImg2">
                                         @foreach (var item in @ViewBag.HinhAnh)
                                         {
@@ -525,7 +525,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                                    <input type="file" value="" name="image3" id="image3" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images3FileAsURL()" multiple />
+                                    <input type="file" value="" name="image3" id="image3"  accept=".jpg" onchange="Images3FileAsURL()" multiple />
                                     <div id="displayImg3">
                                         @foreach (var item in @ViewBag.HinhAnh)
                                         {
@@ -539,7 +539,7 @@
                         <div class="form-group">
                             <div class="Video-bds">
                                 <label for="">Chọn video</label>
-                                <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav" required title="Chọn đường dẫn Video" />
+                                <input type="file" value="" name="video" id="video" accept="Video/mp4,Video/wav"/>
                             </div>
                         </div>
 
@@ -708,7 +708,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                                    <input type="file" value="@Model.ImageSanPham" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
+                                    <input type="file" value="@Model.ImageSanPham" name="image4" id="image4"  accept=".jpg" onchange="Images4FileAsURL()" multiple />
                                     <div id="displayImg4">
                                         @foreach (var item in @ViewBag.HinhAnh)
                                         {
@@ -1033,12 +1033,6 @@ else
 
                     };
 
-                    var fileSelected = document.getElementById('image1').files;
-                    if (fileSelected.length == 0) {
-                        a = a + 'Tên ko dc trống\n';
-                    }
-
-
 
                     if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
                     else swal("Bạn nhập thiếu thông tin!", "", "warning", {
@@ -1084,10 +1078,6 @@ else
 
                     };
 
-                    var fileSelected = document.getElementById('image2').files;
-                    if (fileSelected.length == 0) {
-                        a = a + 'Tên ko dc trống\n';
-                    }
 
 
 
@@ -1135,15 +1125,6 @@ else
 
                     };
 
-                    var fileSelected = document.getElementById('image3').files;
-                    if (fileSelected.length == 0) {
-                        a = a + 'Tên ko dc trống\n';
-                    }
-
-                    var fileSelected = document.getElementById('video').files;
-                    if (fileSelected.length == 0) {
-                        a = a + 'Tên ko dc trống\n';
-                    }
 
                     if (a == '') swal("Chỉnh sửa tin sản phẩm thành công!", "", "success");
                     else swal("Bạn nhập thiếu thông tin!", "", "warning", {
@@ -1198,11 +1179,6 @@ else
                         a = a + 'Tên ko dc trống\n';
 
                     };
-
-                    var fileSelected = document.getElementById('image4').files;
-                    if (fileSelected.length == 0) {
-                        a = a + 'Tên ko dc trống\n';
-                    }
 
 
 
