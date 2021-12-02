@@ -708,7 +708,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="image4">Chọn hình <i style="color: rgb(122, 120, 120);font-weight: normal;">[tối đa 4 ảnh]</i></label>
-                                    <input type="file" value="" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
+                                    <input type="file" value="@Model.ImageSanPham" name="image4" id="image4" required title="Chọn đường dẫn hình ảnh" accept=".jpg" onchange="Images4FileAsURL()" multiple />
                                     <div id="displayImg4">
                                         @foreach (var item in @ViewBag.HinhAnh)
                                         {
@@ -716,7 +716,7 @@
                                         }
                                     </div>
                                 </div>
-
+                                 
                             </div>
                         </div>
                         <hr>
