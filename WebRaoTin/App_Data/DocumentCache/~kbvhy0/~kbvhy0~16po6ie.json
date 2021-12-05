@@ -1,0 +1,33 @@
+{
+  "CacheSourceKey": "kbvhy0",
+  "CachePdfKey": "kbvhy0/kbvhy0-17epdkd.pdf",
+  "CacheXpzKey": "kbvhy0/kbvhy0-16po6ie.xpz",
+  "CacheInfoKey": "kbvhy0/kbvhy0-16po6ie.json",
+  "CacheCopyKey": null,
+  "Document": "CV - Toan Nguyen.doc",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "C:\\Users\\84948\\Desktop\\WebRaoTin\\WebRaoTin\\Content\\TinTuc\\TinTucID19\\CV",
+  "DocumentFileName": "CV - Toan Nguyen.doc",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Doc",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "kbvhy0",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}
