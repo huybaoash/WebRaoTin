@@ -58,6 +58,14 @@
     </script>
 
     <style>
+        .inputSearch {
+            outline: none;
+            padding: 9px;
+            border-radius: 5px !important;
+            padding-left: 10px;
+            border: 0.7px solid #808080;
+            width: 56%;
+        }
         @* Ngày 7/11 - Huybaoash*@
         .response1, .response2, .response3, .response0, .response4, .response5 {
             display: none;
@@ -276,15 +284,22 @@
             *@ font-family: Arial;
         }
         .menu {
+            max-height: 60px;
             background-color: rgb(161, 14, 8);
-           @* text-align: center;*@
-            margin: 2px 0px 5px 0px;
+            @* text-align: center;
+            *@ margin: 2px 0px 5px 0px;
+            display: flex;
+            justify-content: space-around;
         }
 
+            .menu ul {
+                margin-bottom: 10px;
+                display: flex;
+            }
+
             .menu li {
-                display: inline;
-                padding: 30px 30px;
-                line-height: 40px;
+                padding: 20px 15px;
+                list-style-type: none;
             }
 
                 .menu li a {
@@ -294,9 +309,9 @@
                     cursor: pointer;
                 }
 
-                    .menu li a:hover {
-                        color: rgb(202, 209, 209);
-                    }
+                .menu li:hover a {
+                    color: rgb(202, 209, 209);
+                }
 
         .header {
             background-color: white;
@@ -436,7 +451,8 @@
             *@
         }
 
-        @*css drop-down menu*@ @*--------------------------------------Banner------------------------*@ .main-container {
+        @*css drop-down menu*@ @*--------------------------------------Banner------------------------*@
+        .main-container {
             top: 0;
             left: 0;
             width: 1500px;
@@ -513,24 +529,16 @@
 
     <div class="menu">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+           
             <li style="font-weight:bold"><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
             <li style="font-weight:bold"><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li style="font-weight:bold"><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-            
-            <li></li>
-            <li></li>
-            <li></li>
+        </ul>
+        <ul>
             <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
             <li><a>@Html.ActionLink(" Góp ý - Phản hồi", "PhanHoi", "Home")</a></li>
         </ul>
-
     </div>
 
 
@@ -573,7 +581,7 @@
                     <h4>Infor</h4>
                     <ul>
                         <li><a href="#">item #</a></li>
-                        <li><a href="#">item ####</a></li>
+                        <li><a href="#">item #</a></li>
                         <li><a href="#">item #</a></li>
                         <li><a href="#">item #</a></li>
                     </ul>

@@ -275,15 +275,22 @@
             *@ font-family: Arial;
         }
         .menu {
+            max-height: 60px;
             background-color: rgb(161, 14, 8);
-           @* text-align: center;*@
-            margin: 2px 0px 5px 0px;
+            @* text-align: center;
+            *@ margin: 2px 0px 5px 0px;
+            display: flex;
+            justify-content: space-around;
         }
 
+            .menu ul {
+                margin-bottom: 10px;
+                display: flex;
+            }
+
             .menu li {
-                display: inline;
-                padding: 30px 30px;
-                line-height: 40px;
+                padding: 20px 15px;
+                list-style-type: none;
             }
 
                 .menu li a {
@@ -293,9 +300,9 @@
                     cursor: pointer;
                 }
 
-                    .menu li a:hover {
-                        color: rgb(202, 209, 209);
-                    }
+                .menu li:hover a {
+                    color: rgb(202, 209, 209);
+                }
 
         .header {
             background-color: white;
@@ -512,32 +519,25 @@
 
     <div class="menu">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+
             <li style="font-weight:bold"><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
             <li style="font-weight:bold"><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li style="font-weight:bold"><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-
-            <li></li>
-            <li></li>
-            <li></li>
+        </ul>
+        <ul>
             <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
             <li><a>@Html.ActionLink(" Góp ý - Phản hồi", "PhanHoi", "Home")</a></li>
         </ul>
-
     </div>
+
 
 
     @*--------------------------------------------------------------------------------------------------*@
     <div class="main-container">
         @*<div class="left-container">
-            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:500px">
-        </div>*@
+                <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:500px">
+            </div>*@
 
         <div class="content-container">
             <div class="container body-content" style="background-color:white;width:100%">
@@ -546,8 +546,8 @@
         </div>
 
         <!--<div class="right-container">-->
-            @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
-            <!--<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:500px">
+        @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
+        <!--<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:500px">
 
         </div>-->
     </div>

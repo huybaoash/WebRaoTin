@@ -2,6 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+    .card-text{
+        font-weight:inherit;
+ 
+    }
+    .card-text:hover{
+        cursor:pointer;
+    }
+</style>
 <div class="row" id="RowTT">
     <h3>TIN TỨC NỔI NHẤT</h3>
     @for (int i = 0; i < @ViewBag.TinTuc_4NoiBat.Count; i++)

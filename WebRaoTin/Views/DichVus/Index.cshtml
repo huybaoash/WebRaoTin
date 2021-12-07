@@ -24,9 +24,9 @@
 
 @using (Html.BeginForm("Index", "DichVus", FormMethod.Get))
 {
-    <div id="Search_TT" style="margin-bottom:5px;margin-left:100px;margin-top:5px">
-        <input type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Nhập thông tin tìm kiếm ..." style="border-radius:2px;padding-left:10px;border: 0.7px solid #808080;width:56%;" />
-        <input class="search_item" type="submit" value="Tìm" />
+   <div id="Search_TT" style="margin-bottom:5px;margin-left:100px;margin-top:5px">
+        <input class="inputSearch" type="text" name="searchString" value="@ViewBag.Keyword" placeholder="Nhập thông tin tìm kiếm ..." />
+        <button class="search_item" type="submit"><i class="fas fa-search"></i> </button>
     </div>
 }
 

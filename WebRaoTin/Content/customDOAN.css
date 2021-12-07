@@ -127,18 +127,20 @@
     }
 
 
-    .search_item {
-        height: 24px;
-        width: 60px;
-        background-color: #585252;
-        color: white;
-        border-radius: 5px;
-        border: none;
-        font-weight: 600;
-    }
-.search_item:hover{
-    background-color:#9d9c9c;
+.search_item {
+    height: 24px;
+    width: 60px;
+    background-color: #2e6da4;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    height: 40px;
 }
+        .search_item:hover {
+            background-color: #878fe6;
+          
+        }
 .fa-clock{
     color:#0888b4;
 }
