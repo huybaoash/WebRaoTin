@@ -1629,7 +1629,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 var existingEntity3 = db.BatDongSans.Find(tinTucsViewModel.IdBatDongSan);
                 if (String.IsNullOrEmpty(batDongSan.Image))
                 {
-                    foreach (var item in db.SanPhams.ToList())
+                    foreach (var item in db.BatDongSans.ToList())
                     {
                         if (item.Id == batDongSan.Id)
                         {
