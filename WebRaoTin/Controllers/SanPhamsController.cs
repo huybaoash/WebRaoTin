@@ -79,7 +79,7 @@ namespace WebRaoTin.Controllers
             double delta = Math.Abs(ts.TotalSeconds);
 
             if (delta < 1 * MINUTE)
-                return ts.Seconds == 1 ? "1 giây trước" : ts.Seconds + "giây trước";
+                return ts.Seconds == 1 ? "1 giây trước" : ts.Seconds + " giây trước";
 
             if (delta < 2 * MINUTE)
                 return "1 phút trước";
