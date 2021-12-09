@@ -97,6 +97,11 @@ namespace WebRaoTin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -147,13 +152,11 @@ namespace WebRaoTin.Controllers
                 return View(model);
             }
 
+            
 
             var nguoidung = db.Users.Where(u => u.Email.Equals(model.Email)).Single(); // where db is ApplicationDbContext instance
 
-            if (nguoidung.Role.Equals("Quản trị viên"))
-            {
-                returnUrl = returnUrl + "/Admin";
-            }
+            
 
 
             var result = await SignInManager.PasswordSignInAsync(nguoidung.UserName, model.Password, model.RememberMe, shouldLockout: false);
@@ -223,6 +226,10 @@ namespace WebRaoTin.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -233,6 +240,11 @@ namespace WebRaoTin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 int demloi = 0;
@@ -341,6 +353,11 @@ namespace WebRaoTin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid)
             {
 
@@ -483,6 +500,11 @@ namespace WebRaoTin.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebRaoTin.Models
 {
@@ -18,14 +19,17 @@ namespace WebRaoTin.Models
 
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Nội dung công việc")]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Yêu cầu")]
+        [AllowHtml]
         public string Require { get; set; }
 
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Quyền lợi")]
+        [AllowHtml]
         public string Benefit { get; set; }
 
         [Required(ErrorMessage = "Không được để trống")]

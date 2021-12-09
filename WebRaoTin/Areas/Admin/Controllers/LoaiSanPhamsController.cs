@@ -122,31 +122,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiSanPhams/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LoaiSanPham loaiSanPham = db.LoaiSanPhams.Find(id);
-            if (loaiSanPham == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loaiSanPham);
-        }
-
-        // POST: Admin/LoaiSanPhams/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            LoaiSanPham loaiSanPham = db.LoaiSanPhams.Find(id);
-            db.LoaiSanPhams.Remove(loaiSanPham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

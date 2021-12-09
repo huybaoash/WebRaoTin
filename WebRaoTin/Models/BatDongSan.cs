@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebRaoTin.Models
 {
@@ -34,6 +35,7 @@ namespace WebRaoTin.Models
 
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Nội dung ")]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Không được để trống")]

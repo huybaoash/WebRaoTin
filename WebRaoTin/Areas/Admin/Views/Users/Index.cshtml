@@ -1,8 +1,10 @@
-﻿@model IEnumerable<WebRaoTin.Models.ApplicationUser>
-@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebRaoTin.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách người dùng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,9 +13,11 @@
     #incon {
         font-size: 20px;
     }
-    tr th{
+
+    tr th {
         background-color: #a0d1f6;
     }
+
     tr:hover {
         background-color: #eeeeee;
     }
@@ -22,6 +26,16 @@
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <p style="margin-top:10px;display:inline-flex">
+
+        <input type="text" name="searchString" value="@ViewBag.Keyword" class="form-control" style="width:500px;margin-right:5px" placeholder="Tìm kiếm theo tên người dùng" />
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -31,11 +45,11 @@
 
 
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            <label>Giới tính</label>
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            <label>Email</label>
         </th>
 
         <th>
@@ -44,10 +58,10 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            <label>Chức vụ</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            <label>Trạng thái</label>
         </th>
 
         <th></th>
@@ -66,7 +80,7 @@
                     <a href="@Url.Action("Details","Users",new { id = item.Id })">@Html.DisplayFor(modelItem => item.UserName)</a>
                 }
 
-                
+
             </td>
 
             <td>
@@ -97,20 +111,20 @@
                     @Html.DisplayFor(modelItem => item.Status)
                     if (User.Identity.GetUserId().Equals(item.Id))
                     {
-                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorkingMe" ><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorkingMe"></i></a>
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorkingMe"><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorkingMe"></i></a>
                     }
                     else
                     {
-                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking" ><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorking"></i></a>
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking"><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorking"></i></a>
                     }
 
-                    
+
 
                 }
                 else
                 {
                     @Html.DisplayFor(modelItem => item.Status)
-                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned" ><i class="fas fa-unlock" title="Mở khóa tài khoản" id="StatusBanned"></i></a>
+                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="StatusBanned"></i></a>
                 }
 
 
@@ -120,9 +134,17 @@
     }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+page,
+searchString = ViewBag.Keyword
+}),
+PagedListRenderOptions.PageNumbersOnly)
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    
+
 
     $("#StatusWorking").click(function () {
 

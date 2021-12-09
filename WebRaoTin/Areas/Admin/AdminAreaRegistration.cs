@@ -322,7 +322,7 @@ namespace WebRaoTin.Areas.Admin
 
             context.MapRoute(
                 name: "Đăng tin tức Admin",
-                url: "dang-tin-admin",
+                url: "dang-tin-tuc-admin",
                 defaults: new { controller = "TinTucs", action = "Create", id = UrlParameter.Optional },
                 new[] { "WebRaoTin.Areas.Admin.Controllers"
                 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebRaoTin.Models
 {
@@ -17,6 +18,7 @@ namespace WebRaoTin.Models
         public DateTime PublishDay { get; set; }
 
         [Display(Name = "Nội dung bình luận")]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Display(Name = "Người đăng")]

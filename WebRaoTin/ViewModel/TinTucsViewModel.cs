@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using WebRaoTin.Models;
 
 namespace WebRaoTin.ViewModel
@@ -64,14 +65,17 @@ namespace WebRaoTin.ViewModel
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung công việc")]
+        [AllowHtml]
         public string DescriptioViecLamn { get; set; }
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Yêu cầu")]
+        [AllowHtml]
         public string Require { get; set; }
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Quyền lợi")]
+        [AllowHtml]
         public string Benefit { get; set; }
 
 
@@ -121,6 +125,7 @@ namespace WebRaoTin.ViewModel
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung ")]
+        [AllowHtml]
         public string DescriptionBatDongSan { get; set; }
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Địa điểm ")]
@@ -149,6 +154,7 @@ namespace WebRaoTin.ViewModel
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung dịch vụ")]
+        [AllowHtml]
         public string DescriptionDichVu { get; set; }
 
         [Required(ErrorMessage = "Không được để trống.")]
@@ -176,6 +182,7 @@ namespace WebRaoTin.ViewModel
 
         [Required(ErrorMessage = "Không được để trống.")]
         [Display(Name = "Nội dung sản phẩm")]
+        [AllowHtml]
         public string DescriptionSanPham { get; set; }
 
         [Required(ErrorMessage = "Không được để trống.")]

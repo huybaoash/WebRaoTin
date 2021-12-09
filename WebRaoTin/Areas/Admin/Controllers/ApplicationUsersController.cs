@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using WebRaoTin.Controllers;
 using System.Configuration;
 using System.Data.SqlClient;
+using PagedList;
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
@@ -75,10 +76,33 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users
-        public ActionResult Index()
-        {
+        
 
-            return View(db.Users.ToList());
+        public ActionResult Index(string searchString, int? page)
+        {
+            int recordsPerPage = 10;
+
+            if (!page.HasValue)
+            {
+                page = 1; // set initial page value
+            }
+            ViewBag.Keyword = searchString;
+
+            var users = db.Users.ToList();
+            
+
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    users = users.Where(s => s.UserName.ToLower().Contains(searchString.ToLower())).ToList();
+                }
+            }
+            catch (Exception ex) { }
+            users.OrderByDescending(v => v.Id);
+
+            var finalList = users.OrderByDescending(v => v.Id).ToPagedList(page.Value, recordsPerPage);
+            return View(finalList);
         }
 
         // GET: Admin/Users/Details/5

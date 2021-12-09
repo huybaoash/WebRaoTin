@@ -122,31 +122,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiBatDongSans/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LoaiBatDongSan loaiBatDongSan = db.LoaiBatDongSans.Find(id);
-            if (loaiBatDongSan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loaiBatDongSan);
-        }
-
-        // POST: Admin/LoaiBatDongSans/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            LoaiBatDongSan loaiBatDongSan = db.LoaiBatDongSans.Find(id);
-            db.LoaiBatDongSans.Remove(loaiBatDongSan);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
