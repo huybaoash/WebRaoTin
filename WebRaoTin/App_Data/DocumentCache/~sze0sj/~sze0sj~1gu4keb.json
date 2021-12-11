@@ -1,0 +1,33 @@
+{
+  "CacheSourceKey": "sze0sj",
+  "CachePdfKey": "sze0sj/sze0sj-4z1dcu.pdf",
+  "CacheXpzKey": "sze0sj/sze0sj-1gu4keb.xpz",
+  "CacheInfoKey": "sze0sj/sze0sj-1gu4keb.json",
+  "CacheCopyKey": null,
+  "Document": "CV-mau1.docx",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "D:\\WebRaoTin\\WebRaoTin\\Content\\TinTuc\\TinTucID19\\CV",
+  "DocumentFileName": "CV-mau1.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "sze0sj",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}

@@ -38,7 +38,7 @@
         <th>
             Tác vụ
         </th>
-        <th>
+        <th style="text-align:center">
             Xét duyệt
         </th>
 
@@ -70,16 +70,16 @@
                     <td style="text-align:center">
                         @if (item.Status.Equals("Đã duyệt"))
                         {
-                            <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check" style="margin-right:40px"></i></a>
+                            <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check" style="color:green"></i></a>
                         }
                         else if (item.Status.Equals("Đã từ chối"))
                         {
-                            <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times" style="margin-right:40px"></i></a>
+                            <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times" style="color:red"></i></a>
                         }
                         else
                         {
-                            <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check" style="margin-right:40px"></i></a>
-                            <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times"></i></a>
+                            <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check"></i></a>
+                            <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times" style="margin-left:30px"></i></a>
                         }
 
 
