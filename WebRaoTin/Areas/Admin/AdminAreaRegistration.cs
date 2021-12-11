@@ -82,7 +82,22 @@ namespace WebRaoTin.Areas.Admin
                 }
             );
 
-            
+            context.MapRoute(
+                name: "Chi tiet CV Admin",
+                url: "{id}-chi-tiet-cv-admin",
+                defaults: new { controller = "PhieuXetUngTuyens", action = "Details", id = UrlParameter.Optional },
+                new[] { "WebRaoTin.Areas.Admin.Controllers"
+                }
+            );
+
+            context.MapRoute(
+                name: "Danh sach CV Admin",
+                url: "{TinTucId}-danh-sach-cv-admin",
+                defaults: new { controller = "PhieuXetUngTuyens", action = "Index", TinTucId = UrlParameter.Optional },
+                new[] { "WebRaoTin.Areas.Admin.Controllers"
+                }
+            );
+
 
             context.MapRoute(
                 name: "TinTuc Edit Admin",

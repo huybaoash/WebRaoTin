@@ -34,7 +34,13 @@
         <th>
             File
         </th>
-        <th></th>
+        <th>
+            Tác vụ
+        </th>
+        <th>
+            Xét duyệt
+        </th>
+        
     </tr>
     @foreach (var item in Model)
     {
@@ -59,6 +65,23 @@
                         @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                         @Html.ActionLink("Xem trước", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
                         @*     @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                    <td style="text-align:center">
+                        @if (item.Status.Equals("Đã duyệt"))
+                        {
+                            <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check" style="margin-right:40px"></i></a>
+                        }
+                        else if (item.Status.Equals("Đã từ chối"))
+                        {
+                            <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times" style="margin-right:40px"></i></a>
+                        }
+                            else 
+                            {
+                                 <a href="@Url.Action("AcceptedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-check" style="margin-right:40px"></i></a>
+                                 <a href="@Url.Action("DeniedCV", "PhieuXetUngTuyens", new { id = item.Id })"><i class="fa fa-times"></i></a>
+                            }
+                       
+
                     </td>
                 </tr>
             }

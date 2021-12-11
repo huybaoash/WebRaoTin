@@ -157,6 +157,24 @@ namespace WebRaoTin
                 new[] { "WebRaoTin.Controllers"
                 }
             );
+
+
+            routes.MapRoute(
+                name: "Chi tiet CV",
+                url: "{id}-chi-tiet-cv",
+                defaults: new { controller = "PhieuXetUngTuyens", action = "Details", id = UrlParameter.Optional },
+                new[] { "WebRaoTin.Controllers"
+                }
+            );
+
+            routes.MapRoute(
+                name: "Danh sach CV",
+                url: "{TinTucId}-danh-sach-cv",
+                defaults: new { controller = "PhieuXetUngTuyens", action = "Index", TinTucId = UrlParameter.Optional },
+                new[] { "WebRaoTin.Controllers"
+                }
+            );
+
             routes.MapRoute(
                 name: "Lich su dang tin",
                 url: "{id}-lich-su-dang-tin",

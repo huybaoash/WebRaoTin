@@ -264,6 +264,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
         // GET: Admin/PhieuXetUngTuyens/Edit/5
 
 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -292,6 +293,58 @@ namespace WebRaoTin.Areas.Admin.Controllers
             db.PhieuXetUngTuyens.Remove(phieuXetUngTuyen);
             db.SaveChanges();
             return RedirectToAction("Details", "TinTucs", new { id = MaTT });
+        }
+
+        public ActionResult AcceptedCV(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PhieuXetUngTuyen phieuXetUngTuyen = db.PhieuXetUngTuyens.Find(id);
+            phieuXetUngTuyen.Status = "Đã duyệt";
+
+            if (ModelState.IsValid)
+            {
+                
+                if (phieuXetUngTuyen == null)
+                {
+                    return HttpNotFound();
+                }
+                var existingEntity = db.PhieuXetUngTuyens.Find(phieuXetUngTuyen.Id);
+
+                db.Entry(existingEntity).CurrentValues.SetValues(phieuXetUngTuyen);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
+            }
+            return RedirectToAction("Index","PhieuXetUngTuyens", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
+        }
+
+        public ActionResult DeniedCV(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PhieuXetUngTuyen phieuXetUngTuyen = db.PhieuXetUngTuyens.Find(id);
+            phieuXetUngTuyen.Status = "Đã từ chối";
+
+            if (ModelState.IsValid)
+            {
+               
+                if (phieuXetUngTuyen == null)
+                {
+                    return HttpNotFound();
+                }
+                var existingEntity = db.PhieuXetUngTuyens.Find(phieuXetUngTuyen.Id);
+
+                db.Entry(existingEntity).CurrentValues.SetValues(phieuXetUngTuyen);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
+            }
+            return RedirectToAction("Index", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
         }
     }
 }

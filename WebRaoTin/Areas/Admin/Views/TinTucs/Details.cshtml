@@ -830,10 +830,28 @@
                             {
                                 <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                                 <div style="padding-left: 10px; line-height: 0.8rem;">
-                                    <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                        <p class="btn btn-success btn-xs">Đã gửi CV</p>
-                                    </a>
-                                    <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    @if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã gửi"))
+                                    {
+                                        <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                            <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                        </a>
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
+                                    else if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã duyệt"))
+                                    {
+
+                                        <p class="btn btn-success btn-xs">Nhà tuyển dụng đã duyệt CV của bạn. Xin hãy chờ liên lạc.</p>
+
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
+                                    else if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã từ chối"))
+                                    {
+
+                                        <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                            <p class="btn btn-success btn-xs">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
+                                        </a>
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
                                 </div>
 
                             }

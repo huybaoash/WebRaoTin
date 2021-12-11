@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @*
     Nếu tin tức được chọn là 1 sản phẩm. Thì LuaChon của nó = "1";
     Nếu tin tức được chọn là 1 dịch vụ. Thì LuaChon của nó = "2";
@@ -15,6 +16,7 @@
 *@
 
 @* san phẩm *@
+
 
 @if (Model.LuaChon.Equals("1"))
 {
@@ -54,7 +56,6 @@
             <hr style=" margin: 0px 10px; background-color: black;">
 
             <div class="col-2_">
-
                 <div class="row-inf">
                     <div class="col-addr">
                         <p>Mã Tin: @Model.IdTinTucs</p>
@@ -73,12 +74,7 @@
                     </div>
                 </div>
 
-
-
                 <h1>@Model.Title</h1>
-               
-
-
                 <div class="row-inf">
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
@@ -292,8 +288,6 @@
             <hr style=" margin: 0px 10px; background-color: black;">
 
             <div class="col-2_">
-
-
                 <div class="row-inf">
                     <div class="col-addr">
                         <p>Mã Tin: @Model.IdTinTucs</p>
@@ -525,7 +519,6 @@
             <hr style=" margin: 0px 10px; background-color: black;">
 
             <div class="col-2_">
-
                 <div class="row-inf">
                     <div class="col-addr">
                         <p>Mã Tin: @Model.IdTinTucs</p>
@@ -545,8 +538,6 @@
                 </div>
 
                 <h1>@Model.Title</h1>
-
-
                 <!-- row infor-->
                 <div class="row-inf">
                     <div class="col-addr">
@@ -753,7 +744,6 @@
                 <hr style=" margin: 0px 10px; background-color: black;">
 
                 <div class="col-2_">
-                 
                     <div class="row-inf">
                         <div class="col-addr">
                             <p>Mã Tin: @Model.IdTinTucs</p>
@@ -771,7 +761,6 @@
                             }
                         </div>
                     </div>
-
 
 
                     <h1>@Model.Title</h1>
@@ -841,10 +830,28 @@
                             {
                                 <h4 style="font-weight:bold">Gửi hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                                 <div style="padding-left: 10px; line-height: 0.8rem;">
-                                    <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                        <p class="btn btn-success btn-xs">Đã gửi CV</p>
-                                    </a>
-                                    <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    @if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã gửi"))
+                                    {
+                                        <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                            <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                        </a>
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
+                                    else if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã duyệt"))
+                                    {
+
+                                        <p class="btn btn-success btn-xs">Nhà tuyển dụng đã duyệt CV của bạn. Xin hãy chờ liên lạc.</p>
+
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
+                                    else if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã từ chối"))
+                                    {
+
+                                        <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
+                                            <p class="btn btn-success btn-xs">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
+                                        </a>
+                                        <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
+                                    }
                                 </div>
 
                             }
@@ -872,7 +879,7 @@
                         {
                             <h4 style="font-weight:bold">Nhận danh sách hồ sơ # Hạn chót : @ViewBag.NgayHetHan</h4>
                             <div style="padding-left: 10px; line-height: 0.8rem;">
-                                <a style="font-size:16px;font-weight:bold" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs })" class="btn btn-success"> Đi tới danh sách >> </a>
+                                <a style="font-size:16px;font-weight:bold" href="@Url.Action("Index","PhieuXetUngTuyens",new { TinTucId = @Model.IdTinTucs})" class="btn btn-success"> Đi tới danh sách >> </a>
                             </div>
                             <hr />
 
@@ -1075,7 +1082,7 @@
 
                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> @ViewBag.TinTuc_4NoiBat[i].LuaChon</p>
                                 <p><i class="fa fa-eye"></i> @ViewBag.TinTuc_4NoiBat[i].LuotXem</p>
-                                
+
                             </div>
                         </div>
 
@@ -1125,4 +1132,3 @@
     alert("Hello! I am an alert box!");
     }*@
 </script>
-

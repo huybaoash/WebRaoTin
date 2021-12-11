@@ -1,0 +1,33 @@
+{
+  "CacheSourceKey": "pf7pqn",
+  "CachePdfKey": "pf7pqn/pf7pqn-4z1dcu.pdf",
+  "CacheXpzKey": "pf7pqn/pf7pqn-11txua1.xpz",
+  "CacheInfoKey": "pf7pqn/pf7pqn-11txua1.json",
+  "CacheCopyKey": null,
+  "Document": "CV-nvKinhDoanh.docx",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "C:\\Users\\GIGABYTE\\source\\repos\\WebRaoTin\\WebRaoTin\\Content\\TinTuc\\TinTucID24\\CV",
+  "DocumentFileName": "CV-nvKinhDoanh.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "pf7pqn",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}
