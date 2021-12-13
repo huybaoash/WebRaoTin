@@ -534,6 +534,13 @@
             <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
             <li style="font-weight:bold"><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
             <li style="font-weight:bold"><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Quản trị viên"))
+                {
+                    <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink("Giao diện người dùng", "Index", "Home", new { area = "" }, new { })</a></li>
+                }
+            }
         </ul>
     </div>
 
