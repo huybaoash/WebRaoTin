@@ -500,7 +500,7 @@
         <!-- <h1>Hello World!</h1>
         <p>Resize the browser window to see the effect.</p>
         <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p> -->
-        <div class="row">
+        <div class="row" style="background-color:#f8eae2">
             <div class="col-sm-1"></div>
             <div class="col-sm-4" style="margin-top:12px;padding-left:200px">
                 <a href="@Url.Action("Index","Home")">
@@ -532,18 +532,19 @@
             <li style="font-weight:bold"><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li style="font-weight:bold"><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+          
+        </ul>
+        <ul>
+            <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
+            <li><a>@Html.ActionLink(" Góp ý - Phản hồi", "PhanHoi", "Home")</a></li>
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Quản trị viên"))
                 {
-                    <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink("Quản trị viên", "Index", "Home",  new { area = "Admin" }, new { })</a></li>
+                    <li><a>@Html.ActionLink("Tới trang quản trị viên", "Index", "Home", new { area = "Admin" }, new { })</a></li>
                 }
             }
         </ul>
-            <ul>
-                <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
-                <li><a>@Html.ActionLink(" Góp ý - Phản hồi", "PhanHoi", "Home")</a></li>
-            </ul>
         </div>
 
 

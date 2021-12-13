@@ -274,16 +274,24 @@
          //   padding: 0;*@
             font-family: Arial;
         }
-        .menu {
+         .menu {
+            max-height: 60px;
             background-color: rgb(161, 14, 8);
-            text-align: center;
-            margin: 2px 0px 5px 0px;
+            @* text-align: center;
+            *@ margin: 2px 0px 5px 0px;
+            display: flex;
+            justify-content: space-around;
         }
 
+            .menu ul {
+                margin-bottom: 10px;
+                display: flex;
+               
+            }
+
             .menu li {
-                display: inline;
-                padding: 30px 30px;
-                line-height: 40px;
+                padding: 20px 15px;
+                list-style-type: none;
             }
 
                 .menu li a {
@@ -293,10 +301,9 @@
                     cursor: pointer;
                 }
 
-                    .menu li a:hover {
-                        color: rgb(202, 209, 209);
-                    }
-
+                .menu li:hover a {
+                    color: rgb(202, 209, 209);
+                }
         .header {
             background-color: white;
             min-height: 80px;
@@ -476,8 +483,8 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="header">
+   
+        <div class="header" style="background-color:#f8eae2;width:100%">
             <ul class="heard-list">
                 <li class="header_item" style="padding-right:100px;padding-left:200px"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
                 <li class="header_item active-cyan-3 active-cyan-4 mb-4" style="width:250px">
@@ -491,7 +498,7 @@
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
-    </div>
+   
 
     @*Code của  header mới tui khóa nó ở đây*@
 
@@ -531,14 +538,16 @@
             <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
             <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
-            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
+            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>      
+        </ul>
+        <ul>
             <li style="font-weight:bold"><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
             <li style="font-weight:bold"><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Quản trị viên"))
                 {
-                    <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink("Giao diện người dùng", "Index", "Home", new { area = "" }, new { })</a></li>
+                    <li style="font-weight:bold"><a>@Html.ActionLink("Giao diện người dùng", "Index", "Home", new { area = "" }, new { })</a></li>
                 }
             }
         </ul>
