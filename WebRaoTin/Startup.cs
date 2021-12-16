@@ -9,6 +9,8 @@ namespace WebRaoTin
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            //thêm dong code này nhé các bạn
+            app.MapSignalR();
         }
     }
 }

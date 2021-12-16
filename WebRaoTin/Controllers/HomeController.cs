@@ -574,6 +574,30 @@ namespace WebRaoTin.Controllers
             return View();
         }
 
+        
+        public ActionResult Chat()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.ListUser = db.Users.ToList();
+                foreach (var user in db.Users.ToList())
+                {
+                    if (User.Identity.GetUserId().Equals(user.Id))
+                    {
+                        ViewBag.CurrentUser = user;
+                        
+                        break;
+                        
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
+            return View();
+        }
+
 
 
         public ActionResult About()

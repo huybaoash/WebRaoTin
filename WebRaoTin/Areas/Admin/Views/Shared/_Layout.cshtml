@@ -1,4 +1,5 @@
 ﻿<!-- Layout Admin -->
+@using Microsoft.AspNet.Identity
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+    @using Microsoft.AspNet.Identity
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -286,7 +287,7 @@
             .menu ul {
                 margin-bottom: 10px;
                 display: flex;
-               
+
             }
 
             .menu li {
@@ -480,25 +481,27 @@
             height: auto;
             max-width: 80%;
         }
+
+
     </style>
 </head>
 <body>
-   
-        <div class="header" style="background-color:#f8eae2;width:100%">
-            <ul class="heard-list">
-                <li class="header_item" style="padding-right:100px;padding-left:200px"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
-                <li class="header_item active-cyan-3 active-cyan-4 mb-4" style="width:250px">
-                 @*   <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">*@
-                </li>
-                <li class="header_item">
-                    <a style="color:white;text-decoration:none" href="@Url.Action("Create","TinTucs")">
-                        <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
-                    </a>
-                </li>
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div>
-   
+
+    <div class="header" style="background-color:#f8eae2;width:100%">
+        <ul class="heard-list">
+            <li class="header_item" style="padding-right:100px;padding-left:200px"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
+            <li class="header_item active-cyan-3 active-cyan-4 mb-4" style="width:250px">
+                @*   <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">*@
+            </li>
+            <li class="header_item">
+                <a style="color:white;text-decoration:none" href="@Url.Action("Create","TinTucs")">
+                    <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
+                </a>
+            </li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+
 
     @*Code của  header mới tui khóa nó ở đây*@
 
@@ -538,7 +541,7 @@
             <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
             <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
-            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>      
+            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
         </ul>
         <ul>
             <li style="font-weight:bold"><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
@@ -552,6 +555,14 @@
             }
         </ul>
     </div>
+
+    @*-------------------------------------------------------------------------------------------------------------------------------*@
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        @Html.Partial("Chat")
+        <script src="~/Scripts/Chat.js"></script>
+    }
 
     @*--------------------------------------------------------------------------------------------------*@
     <div class="main-container">
@@ -640,6 +651,9 @@
 
 
     @Scripts.Render("~/bundles/jquery")
+    @* Thêm 2 dòng script bên duouis này *@
+    <script src="~/Scripts/jquery.signalR-2.4.2.js"></script>
+    <script src="~/signalr/hubs"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

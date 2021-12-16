@@ -493,6 +493,8 @@
             height: auto;
             max-width: 80%;
         }
+
+        
     </style>
 </head>
 <body>
@@ -532,7 +534,7 @@
             <li style="font-weight:bold"><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
             <li style="font-weight:bold"><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
             <li style="font-weight:bold"><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-          
+
         </ul>
         <ul>
             <li><a>@Html.ActionLink(" Giới thiệu", "GioiThieu", "Home")</a></li>
@@ -545,78 +547,88 @@
                 }
             }
         </ul>
+    </div>
+
+    @*-------------------------------------------------------------------------------------------------------------------------------*@
+    @if (User.Identity.IsAuthenticated)
+    {
+        
+        @Html.Partial("Chat")
+        <script src="~/Scripts/Chat.js"></script>
+    }
+     
+    @*--------------------------------------------------------------------------------------------------*@
+    <div class="main-container">
+        <div class="left-container">
+            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:500px">
         </div>
 
-
-        @*--------------------------------------------------------------------------------------------------*@
-        <div class="main-container">
-            <div class="left-container">
-                <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:500px">
-            </div>
-
-            <div class="content-container">
-                <div class="container body-content" style="background-color:white;width:100%">
-                    @RenderBody()
-                </div>
-            </div>
-
-            <div class="right-container">
-                @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:500px">
-
-            </div>
-            <div>
-
+        <div class="content-container">
+            <div class="container body-content" style="background-color:white;width:100%">
+                @RenderBody()
             </div>
         </div>
 
-        @*---------------------------------------------------------------------------------------------------------------------------------*@
-        <footer class="footer">
-            <div class="container-footer">
-                <div class="row-footer">
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <ul>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                            <li><a href="#">item #</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Infor</h4>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+        <div class="right-container">
+            @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:500px">
 
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+    @*---------------------------------------------------------------------------------------------------------------------------------*@
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
                 </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <ul>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                        <li><a href="#">item #</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Infor</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
             </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    @Scripts.Render("~/bundles/jquery")
+    @* Thêm 2 dòng script bên duouis này *@
+    <script src="~/Scripts/jquery.signalR-2.4.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    @RenderSection("scripts", required: false)
+</body>
 </html>

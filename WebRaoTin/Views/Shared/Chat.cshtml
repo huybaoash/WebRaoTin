@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNet.Identity
+
+<style>
+    /*Chat Box*/
+    {
+        box-sizing: border-box;
+    }
+    /* Nút Để Mở Chatbox */
+    .nut-mo-chatbox {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        width: 280px;
+    }
+    /* Ẩn chatbox mặc định */
+    .Chatbox {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+    }
+    /* Thêm style cho form */
+    #containermsg {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+    }
+        /* thiết lập style textarea */
+        #containermsg textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+            resize: none;
+            min-height: 200px;
+        }
+            /*thiết lập style cho textarea khi được focus */
+            #containermsg textarea:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+        /* Thiết lập style cho nút trong form*/
+        #containermsg .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        /* Thiết lập màu nền cho nút đóng chatbox */
+        #containermsg .nut-dong-chatbox {
+            background-color: red;
+        }
+        /* Thêm hiệu ứng hover cho nút*/
+        #containermsg .btn:hover, .nut-mo-chatbox:hover {
+            opacity: 1;
+        }
+
+</style>
+
+<button class="nut-mo-chatbox" onclick="moForm()">Chat</button>
+<div class="Chatbox" id="myForm">
+    <form action="" class="form-container" id="containermsg">
+        <div id="contentMsg">
+        </div>
+        <h1>Chatbox</h1>
+        <label for="msg"><b>Lời Nhắn</b></label>
+        <input type="hidden" id="hName" style="display:none" value="@User.Identity.Name" />
+        <input type="text" id="txtName" placeholder="Nhập tên" style="display:none" value="@User.Identity.Name" />
+        <textarea placeholder="Bạn hãy nhập lời nhắn.." name="txtMessage" id="txtMessage" required></textarea>
+        <button class="btn btn-success" id="btnSend">Gửi</button>
+        <button type="button" class="btn nut-dong-chatbox" onclick="dongForm()">Đóng</button>
+    </form>
+</div>
+
+@section scripts
+{
+    <script>
+        // sau khi login thành công sẽ gọi cái này
+
+        $(function () {
+
+
+            var chatHub = $.connection.chat;
+            loadClient(chatHub);
+            //khởi chạy connect hub
+            $.connection.hub.start().done(function () {
+
+
+                $('#btnSend').click(function () {
+                    var msg = $('#txtMessage').val();
+                    var name = $('#hName').val();
+                    chatHub.server.message(name, msg);
+                    $('#txtMessage').val('').focus();
+                });
+            });
+
+        });
+
+        // load các ham bên phía client
+        function loadClient(chatHub) {
+
+            chatHub.client.message = function (name, msg) {
+                $('#contentMsg').append("<li><strong>" + name + "</strong>: " + msg + "</li>");
+            }
+            chatHub.client.connect = function (name) {
+                $('#hName').val(name);
+            }
+        }
+
+        function moForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+        /*Hàm Đóng Form*/
+        function dongForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+}
+
