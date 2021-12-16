@@ -848,7 +848,7 @@
                                     {
 
                                         <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                            <p class="btn btn-success btn-xs">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
+                                            <p class="btn btn-warning btn-xs">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
                                         </a>
                                         <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                     }

@@ -8,7 +8,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Danh sách tài khoản</h2>
+<h2>    Danh sách tài khoản</h2>
 <style>
     #incon {
         font-size: 20px;
@@ -111,11 +111,11 @@
                     @Html.DisplayFor(modelItem => item.Status)
                     if (User.Identity.GetUserId().Equals(item.Id))
                     {
-                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorkingMe"><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorkingMe"></i></a>
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorkingMe"><i class="fas  fa-unlock" title="Khóa tài khoản" id="StatusWorkingMe"></i></a>
                     }
                     else
                     {
-                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking"><i class="fas fa-lock" title="Khóa tài khoản" id="StatusWorking"></i></a>
+                        <a href="@Url.Action("LockUser","Users",new { id = item.Id })" id="StatusWorking"><i class="fas fa-unlock" title="Khóa tài khoản" id="StatusWorking"></i></a>
                     }
 
 
@@ -124,7 +124,7 @@
                 else
                 {
                     @Html.DisplayFor(modelItem => item.Status)
-                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned"><i class="fas fa-unlock" title="Mở khóa tài khoản" id="StatusBanned"></i></a>
+                    <a href="@Url.Action("UnlockUser","Users",new { id = item.Id })" id="StatusBanned"><i class="fas fa-lock" title="Mở khóa tài khoản" id="StatusBanned"></i></a>
                 }
 
 
