@@ -62,14 +62,14 @@
 <table class="table">
     <tr>
         <th style="width:10%; text-align:left"> @Html.Label("ID")</th>
-        <th style="width:10%; text-align:left">@Html.Label("Tên người dùng")</th>
+        <th style="width:10%; text-align:left">@Html.Label("Tên người đăng")</th>
         <th style="width:15%; text-align:left">@Html.Label("Tiêu đề")</th>
         <th style="width:15%; text-align:left">@Html.Label("Ngày đăng")</th>
         <th style="width:5%; text-align:left">@Html.Label("Ngày hết hạn")</th>
         <th style="width:15%; text-align:left">@Html.Label("Thông tin liên lạc")</th>
         <th style="width:15%; text-align:left">@Html.Label("Số điện thoại")</th>
         <th style="width:15%; text-align:left">@Html.Label("Tình trạng")</th>
-
+        <th style="width:15%; text-align:left">@Html.Label("Tác vụ")</th>
     </tr>
 
     @for (int i = 0; i < Model.Count; i++)
@@ -77,8 +77,8 @@
 
         <tr style="border:1px solid red">
             <td>@Model[i].Id</td>
-            <td>@Model[i].Customer.UserName</td>
-            <td>@Model[i].Title</td>
+            <td><a href="@Url.Action("Details","Users",new { id = @Model[i].Customer.Id })">@Model[i].Customer.UserName</a></td>
+            <td><a href="@Url.Action("Details","TinTucs",new { id = @Model[i].Id })">@Model[i].Title</a></td>
             <td>@Model[i].PublishDay</td>
             <td>@Model[i].EndDay</td>
             <td>@Model[i].Contract</td>
