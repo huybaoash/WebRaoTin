@@ -362,7 +362,7 @@
         .row h3 {
             text-align: left;
             margin-left: 10px;
-            border-bottom: 1px solid lightgray;
+           @* border-bottom: 1px solid lightgray;*@
             width: 98%;
         }
         #RowTT {
@@ -384,12 +384,15 @@
             .boxDiv img {
                 height: 200px;
             }
-
+            .boxDiv:hover {
+                margin-top: -10px;
+                transition: all 0.4s ease;
+            }
         .btn_more {
             margin-bottom: 20px;
             padding-left: 93.5%;
             margin-top: 2px;
-            border-bottom: 1px solid #de1c1c;
+          @*  border-bottom: 1px solid #de1c1c;*@
         }
         .row h3 {
             text-align: left;
@@ -457,7 +460,7 @@
         .right-container {
             position: fixed;
             right: 5px;
-            bottom: 0;
+           @* bottom: 0;*@
             min-width: 90px;
             background-color: purple;
             height: 500px;
@@ -467,7 +470,7 @@
         .left-container {
             position: fixed;
             left: 5px;
-            bottom: 0;
+          @*  bottom: 0;*@
             min-width: 90px;
             background-color: blue;
             height: 500px;
