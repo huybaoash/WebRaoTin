@@ -26,7 +26,11 @@
 
     <title>@ViewBag.Title - Web Rao Tin</title>
 
+    <link rel="icon" href="https://www.logopik.com/wp-content/uploads/edd/2018/10/Letter-R-Logo-Vector.png"
+          type="image/x-icon">
     <script>
+
+
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '{your-app-id}',
@@ -443,47 +447,7 @@
 
         @*css drop-down menu*@
 @*--------------------------------------Banner------------------------*@
-        .main-container {
-            top: 0;
-            left: 0;
-            width: 1500px;
-            height: 100%;
-            padding: 0;
-            display: flex;
-            margin: 0 auto;
-            justify-content: center;
-            align-content: flex-start;
-            margin-bottom: 20px;
 
-        }
-
-        .right-container {
-            position: fixed;
-            right: 5px;
-           @* bottom: 0;*@
-            min-width: 90px;
-            background-color: purple;
-            height: 500px;
-            margin-left: 10px;
-        }
-
-        .left-container {
-            position: fixed;
-            left: 5px;
-          @*  bottom: 0;*@
-            min-width: 90px;
-            background-color: blue;
-            height: 500px;
-            margin-right: 10px;
-        }
-
-        .content-container {
-            top: 0;
-            background: rgb(250, 250, 250);
-            width: 1150px;
-            height: auto;
-            max-width: 80%;
-        }
 
 
     </style>
@@ -568,25 +532,8 @@
     }
 
     @*--------------------------------------------------------------------------------------------------*@
-    <div class="main-container">
-        <div class="left-container">
-            <img src="https://i.imgur.com/ctnl7ZI.gif" style="width:150px;height:500px">
-        </div>
-
-        <div class="content-container">
-            <div class="container body-content" style="background-color:white;width:100%">
-                @RenderBody()
-            </div>
-        </div>
-
-        <div class="right-container">
-            @*   <img src="https://tpc.googlesyndication.com/sadbundle/319809629253536257/bg2_1.jpg" style="width:150px;height:650px">*@
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e30acc55740535.599191049fd0c.gif" style="width:150px;height:500px">
-
-        </div>
-        <div>
-
-        </div>
+    <div class="container body-content" style="background-color:white">
+        @RenderBody()
     </div>
 
     @*---------------------------------------------------------------------------------------------------------------------------------*@
@@ -612,34 +559,34 @@
         <div class="container-footer">
             <div class="row-footer">
                 <div class="footer-col">
-                    <h4>Infor</h4>
+                    <h4>RAOTIN</h4>
                     <ul>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
+                        <li><a href="#">Quy chế hoạt động</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Mua hàng an toàn</a></li>
+                        <li><a href="#">Liên hệ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Infor</h4>
+                    <h4>Hỗ trợ mua bán</h4>
                     <ul>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item ####</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
+                        <li><a href="#">Báo giá quảng cáo</a></li>
+                        <li><a href="#">Hỗ trợ đăng tin</a></li>
+                        <li><a href="#">Địa điểm đăng tin</a></li>
+                        <li><a href="#">Tin tức</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Infor</h4>
+                    <h4>Thông tin mua bán</h4>
                     <ul>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
-                        <li><a href="#">item #</a></li>
+                        <li><a href="#">Báo mua&bán TPHCM</a></li>
+                        <li><a href="#">Báo mua&bán Hà Nội</a></li>
+                        <li><a href="#">Cẩm nang mua bán</a></li>
+                        <li><a href="#">Môi giới bất động sản</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Infor</h4>
+                    <h4>Liên Kết</h4>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
