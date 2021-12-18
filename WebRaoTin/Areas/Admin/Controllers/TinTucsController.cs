@@ -208,12 +208,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             foreach (var item in batDongSans)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+                
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -245,12 +240,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             foreach (var item in dichVus)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+                
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -281,12 +271,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             foreach (var item in viecLams)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+               
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -318,12 +303,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             foreach (var item in sanPhams)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+          
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -365,12 +345,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "SẢN PHẨM";
                         tenDanhMucs.Add(tenDM);
-                        if (item2.Location.Length > 25)
-                        {
-                            String str1 = item2.Location;
-                            item2.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                       
 
                         tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
@@ -394,12 +369,8 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         string tenDM = "VIỆC LÀM";
                         tenDanhMucs.Add(tenDM);
                         TinTucsViewModel tinTucsViewModel;
-                        if (item3.Location.Length > 25)
-                        {
-                            String str1 = item3.Location;
-                            item3.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                   
+                       
 
                         tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
@@ -422,12 +393,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "DỊCH VỤ";
                         tenDanhMucs.Add(tenDM);
-                        if (item4.Location.Length > 25)
-                        {
-                            String str1 = item4.Location;
-                            item4.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                 
 
                         tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
@@ -450,12 +416,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "BÂT ĐỘNG SẢN";
                         tenDanhMucs.Add(tenDM);
-                        if (item5.Location.Length > 25)
-                        {
-                            String str1 = item5.Location;
-                            item5.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                  
 
                         tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
@@ -502,12 +463,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "SẢN PHẨM";
                         tenDanhMucs.Add(tenDM);
-                        if (item2.Location.Length > 25)
-                        {
-                            String str1 = item2.Location;
-                            item2.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                      
 
                         tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
@@ -531,12 +487,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         string tenDM = "VIỆC LÀM";
                         tenDanhMucs.Add(tenDM);
                         TinTucsViewModel tinTucsViewModel;
-                        if (item3.Location.Length > 25)
-                        {
-                            String str1 = item3.Location;
-                            item3.Location = str1.Substring(0, 25) + "...";
-
-                        }
+              
 
                         tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
@@ -559,12 +510,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "DỊCH VỤ";
                         tenDanhMucs.Add(tenDM);
-                        if (item4.Location.Length > 25)
-                        {
-                            String str1 = item4.Location;
-                            item4.Location = str1.Substring(0, 25) + "...";
-
-                        }
+              
 
                         tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
@@ -587,12 +533,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "BÂT ĐỘNG SẢN";
                         tenDanhMucs.Add(tenDM);
-                        if (item5.Location.Length > 25)
-                        {
-                            String str1 = item5.Location;
-                            item5.Location = str1.Substring(0, 25) + "...";
-
-                        }
+           
 
                         tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
@@ -849,6 +790,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             TinTuc tinTuc = db.TinTucs.Find(id);
             tinTuc.LuotXem++;
             db.Entry(tinTuc).State = EntityState.Modified;
@@ -1064,7 +1006,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 db.SanPhams.Add(sanPham); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
 
             if (tinTucsViewModel.LuaChon.Equals("2"))
@@ -1108,7 +1050,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 db.DichVus.Add(dichVu); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
 
 
@@ -1167,7 +1109,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
                 };
                 db.BatDongSans.Add(batDongSan); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
             if (tinTucsViewModel.LuaChon.Equals("4"))
             {
@@ -1217,7 +1159,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 };
 
                 db.ViecLams.Add(viecLam); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
             return View(tinTucsViewModel);
         }
@@ -1825,10 +1767,10 @@ namespace WebRaoTin.Areas.Admin.Controllers
             float tilephantramVL = (float)db.ViecLams.ToList().Count / db.TinTucs.ToList().Count;
             float tilephantramBDS = (float)db.BatDongSans.ToList().Count / db.TinTucs.ToList().Count;
 
-            int tileSP = (int)Math.Ceiling(tilephantramSP * 100);
-            int tileDV = (int)Math.Ceiling(tilephantramDV * 100);
-            int tileBDS = (int)Math.Ceiling(tilephantramBDS * 100);
-            int tileVL = 100 - tileSP - tileDV - tileBDS;
+            double tileSP = (double)Math.Ceiling(tilephantramSP * 100);
+            double tileDV = (double)Math.Ceiling(tilephantramDV * 100);
+            double tileBDS = (double)Math.Ceiling(tilephantramBDS * 100);
+            double tileVL = 100 - tileSP - tileDV - tileBDS;
 
             bieudoLoaiTT.Add(new DataPoint("Sản phẩm", tileSP));
             bieudoLoaiTT.Add(new DataPoint("Dịch vụ", tileDV));
@@ -1846,17 +1788,52 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
 
             // Biểu độ tỉ lệ loại danh mục trong tin tức loại sản phẩm
+            
 
             foreach (var item in db.LoaiSanPhams.ToList())
             {
                 
-                {
+               
                     
                     int soluong = db.SanPhams.ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Count;
                     bieudoTinSP.Add(new DataPoint(item.Name, soluong));
-                }
+                    
+                    
+
                 
             }
+
+            double MostTTSP = bieudoTinSP.Max(s => s.Y.Value);
+            double FewestTTSP = bieudoTinSP.Min(s => s.Y.Value);
+            string MostTTSP_review = "Loại tin tức sản phẩm phổ biến nhất là: ";
+            string FewestTTSP_review = "Loại tin tức sản phẩm ít được quan tâm nhất là: ";
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+
+
+
+                int soluong = db.SanPhams.ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Count;
+
+                if (soluong == MostTTSP)
+                {
+                    MostTTSP_review = MostTTSP_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTSP)
+                {
+                    FewestTTSP_review = FewestTTSP_review + item.Name + ", ";
+                }
+
+
+            }
+
+            
+
+
+            ViewBag.ReviewLSPMost = MostTTSP_review.Remove(MostTTSP_review.Length-2);
+            ViewBag.ReviewLSPFewest = FewestTTSP_review.Remove(FewestTTSP_review.Length-2);
+
             ViewBag.bieudoTTLoaiSP = JsonConvert.SerializeObject(bieudoTinSP);
 
             // Biểu độ tỉ lệ loại danh mục trong tin tức loại dịch vụ
@@ -1870,6 +1847,39 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
 
             }
+
+            double MostTTDV = bieudoTinDV.Max(s => s.Y.Value);
+            double FewestTTDV = bieudoTinDV.Min(s => s.Y.Value);
+            string MostTTDV_review = "Loại tin tức dịch vụ phổ biến nhất là: ";
+            string FewestTTDV_review = "Loại tin tức dịch vụ ít được quan tâm nhất là: ";
+
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+
+
+                int soluong = db.DichVus.ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Count;
+
+                if (soluong == MostTTDV)
+                {
+                    MostTTDV_review = MostTTDV_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTDV)
+                {
+                    FewestTTDV_review = FewestTTDV_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            ViewBag.ReviewLDVMost = MostTTDV_review.Remove(MostTTDV_review.Length - 2);
+            ViewBag.ReviewLDVFewest = FewestTTDV_review.Remove(FewestTTDV_review.Length - 2);
+
+
             ViewBag.bieudoTTLoaiDV = JsonConvert.SerializeObject(bieudoTinDV);
             // Biểu độ tỉ lệ loại danh mục trong tin tức loại bất động sản
             foreach (var item in db.LoaiBatDongSans.ToList())
@@ -1882,6 +1892,38 @@ namespace WebRaoTin.Areas.Admin.Controllers
                 }
 
             }
+
+            double MostTTBDS = bieudoTinBDS.Max(s => s.Y.Value);
+            double FewestTTBDS = bieudoTinBDS.Min(s => s.Y.Value);
+            string MostTTBDS_review = "Loại tin tức bất động sản phổ biến nhất là: ";
+            string FewestTTBDS_review = "Loại tin tức bất động sản ít được quan tâm nhất là: ";
+
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+
+
+                int soluong = db.BatDongSans.ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Count;
+
+                if (soluong == MostTTBDS)
+                {
+                    MostTTBDS_review = MostTTBDS_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTBDS)
+                {
+                    FewestTTBDS_review = FewestTTBDS_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            ViewBag.ReviewLBDSMost = MostTTBDS_review.Remove(MostTTBDS_review.Length - 2);
+            ViewBag.ReviewLBDSFewest = FewestTTBDS_review.Remove(FewestTTBDS_review.Length - 2);
+
             ViewBag.bieudoTTLoaiBDS = JsonConvert.SerializeObject(bieudoTinBDS);
             // Biểu độ tỉ lệ loại danh mục trong tin tức loại việc làm
             foreach (var item in db.LoaiViecLams.ToList())
@@ -1895,6 +1937,37 @@ namespace WebRaoTin.Areas.Admin.Controllers
 
             }
             ViewBag.bieudoTTLoaiVL = JsonConvert.SerializeObject(bieudoTinVL);
+
+            double MostTTVL = bieudoTinVL.Max(s => s.Y.Value);
+            double FewestTTVL = bieudoTinVL.Min(s => s.Y.Value);
+            string MostTTVL_review = "Loại tin tức việc làm phổ biến nhất là: ";
+            string FewestTTVL_review = "Loại tin tức việc làm ít được quan tâm nhất là: ";
+
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+
+
+                int soluong = db.ViecLams.ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Count;
+
+                if (soluong == MostTTVL)
+                {
+                    MostTTVL_review = MostTTVL_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTVL)
+                {
+                    FewestTTVL_review = FewestTTVL_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            ViewBag.ReviewLVLMost = MostTTVL_review.Remove(MostTTVL_review.Length - 2);
+            ViewBag.ReviewLVLFewest = FewestTTVL_review.Remove(FewestTTVL_review.Length - 2);
 
             return View();
         }

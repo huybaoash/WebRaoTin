@@ -179,12 +179,7 @@ namespace WebRaoTin.Controllers
             foreach (var item in batDongSans)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+               
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -216,12 +211,7 @@ namespace WebRaoTin.Controllers
             foreach (var item in dichVus)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+   
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -252,12 +242,7 @@ namespace WebRaoTin.Controllers
             foreach (var item in viecLams)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+  
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -289,12 +274,7 @@ namespace WebRaoTin.Controllers
             foreach (var item in sanPhams)
             {
                 TinTucsViewModel tinTucsViewModel;
-                if (item.Location.Length > 25)
-                {
-                    String str1 = item.Location;
-                    item.Location = str1.Substring(0, 25) + "...";
-
-                }
+             
 
                 tinTucsViewModel = new TinTucsViewModel(item.TinTuc, item);
                 tinTucsViewModel.LuaChon = ngaygiodangTT(item.TinTuc.PublishDay);
@@ -336,12 +316,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "SẢN PHẨM";
                         tenDanhMucs.Add(tenDM);
-                        if (item2.Location.Length > 25)
-                        {
-                            String str1 = item2.Location;
-                            item2.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                        
 
                         tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
@@ -365,12 +340,7 @@ namespace WebRaoTin.Controllers
                         string tenDM = "VIỆC LÀM";
                         tenDanhMucs.Add(tenDM);
                         TinTucsViewModel tinTucsViewModel;
-                        if (item3.Location.Length > 25)
-                        {
-                            String str1 = item3.Location;
-                            item3.Location = str1.Substring(0, 25) + "...";
-
-                        }
+             
 
                         tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
@@ -393,12 +363,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "DỊCH VỤ";
                         tenDanhMucs.Add(tenDM);
-                        if (item4.Location.Length > 25)
-                        {
-                            String str1 = item4.Location;
-                            item4.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                   
 
                         tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
@@ -421,12 +386,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "BÂT ĐỘNG SẢN";
                         tenDanhMucs.Add(tenDM);
-                        if (item5.Location.Length > 25)
-                        {
-                            String str1 = item5.Location;
-                            item5.Location = str1.Substring(0, 25) + "...";
-
-                        }
+               
 
                         tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
@@ -473,12 +433,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "SẢN PHẨM";
                         tenDanhMucs.Add(tenDM);
-                        if (item2.Location.Length > 25)
-                        {
-                            String str1 = item2.Location;
-                            item2.Location = str1.Substring(0, 25) + "...";
-
-                        }
+              
 
                         tinTucsViewModel = new TinTucsViewModel(item2.TinTuc, item2);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item2.TinTuc.PublishDay);
@@ -502,12 +457,7 @@ namespace WebRaoTin.Controllers
                         string tenDM = "VIỆC LÀM";
                         tenDanhMucs.Add(tenDM);
                         TinTucsViewModel tinTucsViewModel;
-                        if (item3.Location.Length > 25)
-                        {
-                            String str1 = item3.Location;
-                            item3.Location = str1.Substring(0, 25) + "...";
-
-                        }
+               
 
                         tinTucsViewModel = new TinTucsViewModel(item3.TinTuc, item3);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item3.TinTuc.PublishDay);
@@ -530,12 +480,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "DỊCH VỤ";
                         tenDanhMucs.Add(tenDM);
-                        if (item4.Location.Length > 25)
-                        {
-                            String str1 = item4.Location;
-                            item4.Location = str1.Substring(0, 25) + "...";
-
-                        }
+             
 
                         tinTucsViewModel = new TinTucsViewModel(item4.TinTuc, item4);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item4.TinTuc.PublishDay);
@@ -558,12 +503,7 @@ namespace WebRaoTin.Controllers
                         TinTucsViewModel tinTucsViewModel;
                         string tenDM = "BÂT ĐỘNG SẢN";
                         tenDanhMucs.Add(tenDM);
-                        if (item5.Location.Length > 25)
-                        {
-                            String str1 = item5.Location;
-                            item5.Location = str1.Substring(0, 25) + "...";
-
-                        }
+                 
 
                         tinTucsViewModel = new TinTucsViewModel(item5.TinTuc, item5);
                         tinTucsViewModel.LuaChon = ngaygiodangTT(item5.TinTuc.PublishDay);
@@ -1035,7 +975,7 @@ namespace WebRaoTin.Controllers
                 };
 
                 db.SanPhams.Add(sanPham); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index","Home");
             };
 
             if (tinTucsViewModel.LuaChon.Equals("2"))
@@ -1079,7 +1019,7 @@ namespace WebRaoTin.Controllers
                 };
 
                 db.DichVus.Add(dichVu); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
 
 
@@ -1138,7 +1078,7 @@ namespace WebRaoTin.Controllers
 
                 };
                 db.BatDongSans.Add(batDongSan); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
             if (tinTucsViewModel.LuaChon.Equals("4"))
             {
@@ -1188,7 +1128,7 @@ namespace WebRaoTin.Controllers
                 };
 
                 db.ViecLams.Add(viecLam); db.SaveChanges();
-                return View(tinTucsViewModel);
+                return RedirectToAction("Index", "Home");
             };
             return View(tinTucsViewModel);
         }

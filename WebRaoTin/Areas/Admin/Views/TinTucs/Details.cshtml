@@ -16,14 +16,7 @@
 *@
 
 @* san phẩm *@
-<a onclick="fbshareCurrentPage()" target="_blank" alt="Share on Facebook">Facebook</a>
-<script language="javascript">
-    function fbshareCurrentPage() {
-        window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href) + "&t=" + document.title, '',
-            'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-        return false;
-    }
-</script>
+
 @if (Model.LuaChon.Equals("1"))
 {
 
@@ -839,7 +832,7 @@
                                     @if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã gửi"))
                                     {
                                         <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                            <p class="btn btn-success btn-xs">Đã gửi CV</p>
+                                            <p class="btn btn-success btn-xs">Đã gửi CV. Nhấp vào đây để hoàn tác.</p>
                                         </a>
                                         <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                     }
