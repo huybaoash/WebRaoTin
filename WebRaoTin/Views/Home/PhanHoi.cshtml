@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout_noAds.cshtml";
 }
 <style>
-    h2{
+    h2 {
         color: #ff4e00;
         font-weight: 700;
     }
@@ -15,10 +15,57 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=421310846306215&autoLogAppEvents=1" nonce="tRuoWQ00"></script>
 <div class="fb-page" data-href="https://www.facebook.com/Web-Rao-Tin-110419288142673" data-tabs="timeline" data-width="1280" data-height="960" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Web-Rao-Tin-110419288142673" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Web-Rao-Tin-110419288142673">Web Rao Tin</a></blockquote></div>
 
+<div><h3>Địa chỉ : 12 Đường số 4, Phường Hiệp Bình Phước,Quận Thủ Đức, Thành phố Hồ Chí Minh</h3></div>
+<div id="map_populate" style="width:100%; height:500px; border: 5px solid #5E5454;">  </div>
+
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=421310846306215&autoLogAppEvents=1" nonce="7LCpv7Az"></script>
 <div class="fb-like" data-href="https://www.facebook.com/Web-Rao-Tin-110419288142673" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=421310846306215&autoLogAppEvents=1" nonce="mnmdrc9b"></script>
-<div class="fb-comments" data-href="https://localhost:44380/" data-width="" data-numposts="50" style="width:100%"></div>
+<div class="fb-comments" data-href="https://localhost:44380/" data-width="960" data-numposts="50" style="width:960px"></div>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=" type="text/javascript"></script>
+<script>
+    var mapcode;
+    var diag;
+    function initialize() {
+        mapcode = new google.maps.Geocoder();
+        var lnt = new google.maps.LatLng(10.8467231, 106.7238288);
+        var diagChoice = {
+            zoom: 21,
+            center: lnt,
+            diagId: google.maps.MapTypeId.ROADMAP
+        }
+
+
+
+        diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
+
+        var marker = new google.maps.Marker({
+            position: lnt,
+            zoom: 21,
+            map: diag,
+            title: '12 Đường số 4, Phường Hiệp Bình Phước, Quận Thủ Đức, Thành phố Hồ Chí Minh'
+        });
+    }
+    function getmap() {
+        var completeaddress = '12 Đường số 4, Phường Hiệp Bình Phước, Quận Thủ Đức, Thành phố Hồ Chí Minh';
+        mapcode.geocode({ 'address': completeaddress }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                diag.setCenter(results[0].geometry.location);
+                var hint = new google.maps.Marker({
+                    diag: diag,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Location Not Tracked. ' + status);
+            }
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>  
