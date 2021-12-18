@@ -16,8 +16,14 @@
 *@
 
 @* san phẩm *@
-
-
+<a onclick="fbshareCurrentPage()" target="_blank" alt="Share on Facebook">Facebook</a>
+<script language="javascript">
+    function fbshareCurrentPage() {
+        window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href) + "&t=" + document.title, '',
+            'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+        return false;
+    }
+</script>
 @if (Model.LuaChon.Equals("1"))
 {
 

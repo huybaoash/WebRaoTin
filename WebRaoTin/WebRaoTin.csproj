@@ -321,6 +321,7 @@
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\BatDongSan.cs" />
     <Compile Include="Models\BinhLuan.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\DemoChat.cs" />
     <Compile Include="Models\DichVu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -441,6 +442,7 @@
     <Content Include="Areas\Admin\Views\Users\Edit_UpRole.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit_DownRole.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Chat.cshtml" />
+    <Content Include="Areas\Admin\Views\TinTucs\Chart.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

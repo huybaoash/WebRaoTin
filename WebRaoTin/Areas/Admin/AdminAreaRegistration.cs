@@ -83,6 +83,14 @@ namespace WebRaoTin.Areas.Admin
             );
 
             context.MapRoute(
+                name: "Thong ke tin tuc Admin",
+                url: "thong-ke-admin",
+                defaults: new { controller = "TinTucs", action = "Chart", id = UrlParameter.Optional },
+                new[] { "WebRaoTin.Areas.Admin.Controllers"
+                }
+            );
+
+            context.MapRoute(
                 name: "Chi tiet CV Admin",
                 url: "{id}-chi-tiet-cv-admin",
                 defaults: new { controller = "PhieuXetUngTuyens", action = "Details", id = UrlParameter.Optional },

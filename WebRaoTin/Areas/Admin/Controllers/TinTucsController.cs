@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity;
 using WebRaoTin.Models;
 using WebRaoTin.ViewModel;
 using PagedList;
+using Newtonsoft.Json;
+
 
 namespace WebRaoTin.Areas.Admin.Controllers
 {
@@ -1806,6 +1808,95 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "TinTucs");
+        }
+
+        public ActionResult Chart()
+        {
+            List<DataPoint> bieudoLoaiTT = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinSP = new List<DataPoint>();
+            List<DataPoint> bieudoTinDV = new List<DataPoint>();
+            List<DataPoint> bieudoTinBDS = new List<DataPoint>();
+            List<DataPoint> bieudoTinVL = new List<DataPoint>();
+
+            // Biểu đồ tỉ lệ số tin tức trong các loại tin tức
+            float tilephantramSP = (float) db.SanPhams.ToList().Count / db.TinTucs.ToList().Count;
+            float tilephantramDV = (float)db.DichVus.ToList().Count / db.TinTucs.ToList().Count;
+            float tilephantramVL = (float)db.ViecLams.ToList().Count / db.TinTucs.ToList().Count;
+            float tilephantramBDS = (float)db.BatDongSans.ToList().Count / db.TinTucs.ToList().Count;
+
+            int tileSP = (int)Math.Ceiling(tilephantramSP * 100);
+            int tileDV = (int)Math.Ceiling(tilephantramDV * 100);
+            int tileBDS = (int)Math.Ceiling(tilephantramBDS * 100);
+            int tileVL = 100 - tileSP - tileDV - tileBDS;
+
+            bieudoLoaiTT.Add(new DataPoint("Sản phẩm", tileSP));
+            bieudoLoaiTT.Add(new DataPoint("Dịch vụ", tileDV));
+            bieudoLoaiTT.Add(new DataPoint("Bất động sản", tileBDS));
+            bieudoLoaiTT.Add(new DataPoint("Việc Làm", tileVL));
+
+
+            ViewBag.bieudoLoaiTT = JsonConvert.SerializeObject(bieudoLoaiTT);
+
+            ViewBag.SoLuongTinTuc = db.TinTucs.ToList().Count;
+            ViewBag.SoLuongTinSP = db.SanPhams.ToList().Count;
+            ViewBag.SoLuongTinDV = db.DichVus.ToList().Count;
+            ViewBag.SoLuongTinBDS = db.BatDongSans.ToList().Count;
+            ViewBag.SoLuongTinVL = db.ViecLams.ToList().Count;
+
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại sản phẩm
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+                
+                {
+                    
+                    int soluong = db.SanPhams.ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Count;
+                    bieudoTinSP.Add(new DataPoint(item.Name, soluong));
+                }
+                
+            }
+            ViewBag.bieudoTTLoaiSP = JsonConvert.SerializeObject(bieudoTinSP);
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại dịch vụ
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+                {
+
+                    int soluong = db.DichVus.ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Count;
+                    bieudoTinDV.Add(new DataPoint(item.Name, soluong));
+                }
+
+            }
+            ViewBag.bieudoTTLoaiDV = JsonConvert.SerializeObject(bieudoTinDV);
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại bất động sản
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+                {
+
+                    int soluong = db.BatDongSans.ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Count;
+                    bieudoTinBDS.Add(new DataPoint(item.Name, soluong));
+                }
+
+            }
+            ViewBag.bieudoTTLoaiBDS = JsonConvert.SerializeObject(bieudoTinBDS);
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại việc làm
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+                {
+
+                    int soluong = db.ViecLams.ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Count;
+                    bieudoTinVL.Add(new DataPoint(item.Name, soluong));
+                }
+
+            }
+            ViewBag.bieudoTTLoaiVL = JsonConvert.SerializeObject(bieudoTinVL);
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .menu-list {
+        font-size: 18px;
+    }
+
+    #menu {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    th {
+        background-color: #a0d1f6;
+    }
+
+    tr:hover {
+        background-color: #eeeeee;
+    }
+</style>
+<div id="menu">
+    <ul class="menu-list">
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "TinTucs")">Tin tức</a>
+        </li>
+
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiSanPhams")">Loại sản phẩm</a>
+        </li>
+
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiDichVus")">Loại dịch vụ</a>
+        </li>
+
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiViecLams")">Loại việc làm</a>
+        </li>
+
+        <li class="menu-item">
+            <a href="@Url.Action("Index", "LoaiBatDongSans")">Loại bất động sản</a>
+        </li>
+        <li class="menu-item">
+            <a href="@Url.Action("Chart", "TinTucs")">Thống kê</a>
+        </li>
+    </ul>
+</div>
+
+<h1>THỐNG KÊ TIN TỨC</h1>
+
+<script>
+window.onload = function () {
+
+    var bieudoTT = new CanvasJS.Chart("bieudoLoaiTT", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Biểu đồ tỉ lệ số tin tức trong các loại tin tức",
+		fontSize: 21
+	},
+	data: [{
+		type: "pie",
+		startAngle: 160,
+		toolTipContent: "<b>{label}</b>: {y}%",
+		indexLabel: "{label} - {y}%",
+		dataPoints: @Html.Raw(ViewBag.bieudoLoaiTT)
+	}]
+});
+    bieudoTT.render();
+
+    var bieudoSP = new CanvasJS.Chart("bieudoLoaiTTSP", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	exportEnabled: true,
+	title: {
+		text: "Biểu đồ thống kê số lượng tin tức loại sản phẩm từng danh mục"
+	},
+	data: [{
+		type: "column",
+		dataPoints:  @Html.Raw(ViewBag.bieudoTTLoaiSP)
+	}]
+});
+	bieudoSP.render();
+
+	var bieudoDV = new CanvasJS.Chart("bieudoLoaiTTDV", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	exportEnabled: true,
+	title: {
+		text: "Biểu đồ thống kê số lượng tin tức loại dịch vụ từng danh mục"
+	},
+	data: [{
+		type: "column",
+		dataPoints:  @Html.Raw(ViewBag.bieudoTTLoaiDV)
+	}]
+});
+    bieudoDV.render();
+
+	var bieudoBDS = new CanvasJS.Chart("bieudoLoaiTTBDS", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	exportEnabled: true,
+	title: {
+		text: "Biểu đồ thống kê số lượng tin tức loại bất động sản từng danh mục"
+	},
+	data: [{
+		type: "column",
+		dataPoints:  @Html.Raw(ViewBag.bieudoTTLoaiBDS)
+	}]
+});
+	bieudoBDS.render();
+
+	var bieudoVL = new CanvasJS.Chart("bieudoLoaiTTVL", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	exportEnabled: true,
+	title: {
+		text: "Biểu đồ thống kê số lượng tin tức loại việc làm từng danh mục"
+	},
+	data: [{
+		type: "column",
+		dataPoints:  @Html.Raw(ViewBag.bieudoTTLoaiVL)
+	}]
+});
+    bieudoVL.render();
+}
+</script>
+
+
+<div id="bieudoLoaiTT" style="height: 370px; width: 100%;"></div>
+<div>
+
+    <p>Tin sản phẩm : @ViewBag.SoLuongTinSP</p>
+    <p>Tin dịch vụ : @ViewBag.SoLuongTinDV</p>
+    <p>Tin bất động sản : @ViewBag.SoLuongTinBDS</p>
+    <p>Tin việc làm : @ViewBag.SoLuongTinVL</p>
+    <p>Tổng tin tức : @ViewBag.SoLuongTinTuc</p>
+</div>
+<div id="bieudoLoaiTTSP" style="height: 370px; width: 100%;"></div>
+<div id="bieudoLoaiTTDV" style="height: 370px; width: 100%;"></div>
+<div id="bieudoLoaiTTBDS" style="height: 370px; width: 100%;"></div>
+<div id="bieudoLoaiTTVL" style="height: 370px; width: 100%;"></div>
+
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
