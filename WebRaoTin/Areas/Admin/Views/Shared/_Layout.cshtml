@@ -1,609 +1,194 @@
-﻿<!-- Layout Admin -->
-@using Microsoft.AspNet.Identity
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style_admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    @using Microsoft.AspNet.Identity
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-    <!-- Custom script -->
-
-    <link href="@Url.Content("~/Content/customDOAN.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/DetailsNewsSP.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/Footer.css")" rel="stylesheet" type="text/css" />
-    <link href="https://maps/documentation/javascript/examples/default.css" rel="stylesheet" />
 
     <title>@ViewBag.Title - Web Rao Tin</title>
-
     <link rel="icon" href="https://www.logopik.com/wp-content/uploads/edd/2018/10/Letter-R-Logo-Vector.png"
           type="image/x-icon">
-    <script>
-
-
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '{your-app-id}',
-                cookie: true,
-                xfbml: true,
-                version: '{api-version}'
-            });
-
-            FB.AppEvents.logPageView();
-
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
-        });
-        function checkLoginState() {
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-        }
-    </script>
-
     <style>
-        .inputSearch {
-            outline: none;
-            padding: 9px;
-            border-radius: 5px !important;
-            padding-left: 10px;
-            border: 0.7px solid #808080;
-            width: 56%;
-        }
-        @* Ngày 7/11 - Huybaoash*@
-        .response1, .response2, .response3, .response0, .response4, .response5 {
-            display: none;
-        }
-
-
-        @*Ngày 15/11 Huybaoash*@
-
-        #carouselExampleControls {
-            width: 30%;
-            margin: auto;
-        }
-
-        #LuaChon {
-            display:none;
-        }
-
-        #displayImg1{
-            margin-top: 30px;
-        }
-        #displayImg1 img {
-                height: 50px;
-                width: 50px;
-                margin-right: 15px;
-                display: inline-block;
-            }
-        #displayImg2 {
-            margin-top: 30px;
-        }
-        #displayImg2 img {
-                height: 50px;
-                width: 50px;
-                margin-right: 15px;
-                display: inline-block;
-            }
-        #displayImg3 {
-            margin-top: 30px;
-        }
-
-        #displayImg3 img {
-                height: 50px;
-                width: 50px;
-                margin-right: 15px;
-                display: inline-block;
-            }
-        #displayImg4 {
-            margin-top: 30px;
-        }
-
-        #displayImg4 img {
-                height: 50px;
-                width: 50px;
-                margin-right: 15px;
-                display: inline-block;
-            }
-
-
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-
-
-        /*---------------User Details---------------------------  */
-
-        /*
-
-        .bd {
-            margin: 20px;
-        }*/
-        .main {
-            padding: 15px;
-            font-family: Arial, Helvetica, sans-serif;
+        header {
+            position: fixed;
+            background: #22242A;
+            width: 100%;
+            height: 60px;
         }
 
-            .main .topbar_ {
-                overflow: hidden;
-            }
-
-                .main .topbar_ a {
-                    float: right;
-                    text-align: center;
-                    padding: 20px 26px;
-                    text-decoration: none;
-                    font-size: 26px;
-                }
-
-                    .main .topbar_ a:hover {
-                    }
-
-        .row .sidebar {
-            background-color: #d7d3d3;
-            border: 1px solid lightgray;
-            height: 480px;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-
-            .row .sidebar a {
-                @* margin-left: 10px;
-                *@ display: block;
-                color: inherit;
-                padding-bottom: 10px;
-                font-size: 18px;
-                text-decoration: none;
-                text-align: center;
-            }
-
-        .edit-tt a:hover {
-            color: cornflowerblue;
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content {
-            @* background-color: rgb(255, 255, 255);
-            *@ border: 1px solid lightgrey;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            padding-left: 25px;
-            margin-top: 5px;
-        }
-
-        hr {
-            margin-right: 20px;
-        }
-
-        .text-secondary {
-            margin-top: 10px;
-        }
-
-        .card-body {
-            margin-top: 10px;
-        }
-
-        .mt-3 h4 {
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 1px solid white;
-        }
-
-
-
-            /*-------------------------------------*/
-            .col {
-                background-color: rgb(247, 129, 51);
-                border: 1px solid none;
-                margin: 0px 20px;
-                height: 200px;
-                font-size: 20px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: opacity 0.6s ease;
-                color: black;
-                border-radius: 5px;
-                box-shadow: 10px;
-                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-                width: 100%;
-                background-size: 250px 200px;
-                background-repeat: no-repeat;
-            }
-        .img-dv {
-            background-image: url("/images/Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg");
-        }
-        .img-vl {
-            background-image: url("/images/tong-hop-cac-cach-cai-thien-ky-nang-noi-chuyen.png");
-        }
-        .img-bds {
-            background-image: url("/images/thutucmuabannha01.jpg");
-        }
-        .img-sp {
-            background-image: url("/images/quy-trinh-ban-hang-truc-tiep.jpg");
-        }
-        .rowbtn-create {
-
-            text-align: center;
-            display: flex;
-        }
-
-        .col:hover {
-            background-color: rgb(248, 155, 94);
-            opacity: 0.8;
-        }
-
-        /*-------------------------------------*/
-
-
-        a {
-            text-decoration: none
-        }
-
-        .small-container {
-            display: none;
-        }
-
-        @*==========================================*@
-        body {
-           @* // background-color: #f8f8f8;
-         //   margin: 0;
-         //   padding: 0;*@
-            font-family: Arial;
-        }
-         .menu {
-            max-height: 60px;
-            background-color: rgb(161, 14, 8);
-            @* text-align: center;
-            *@ margin: 2px 0px 5px 0px;
-            display: flex;
-            justify-content: space-around;
-        }
-
-            .menu ul {
-                margin-bottom: 10px;
-                display: flex;
-
-            }
-
-            .menu li {
-                padding: 20px 15px;
-                list-style-type: none;
-            }
-
-                .menu li a {
-                    text-decoration: none;
-                    color: white;
-                    text-transform: uppercase;
-                    cursor: pointer;
-                }
-
-                .menu li:hover a {
-                    color: rgb(202, 209, 209);
-                }
-        .header {
-            background-color: white;
-            min-height: 80px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap-reverse;
-
-
-        }
-
-
-
-        .header_item {
-            list-style: none;
-            margin-left: 20px;
-            margin-right: 50px;
-            display: inline-block;
-        }
-
-
-        .btn-DT {
-            text-decoration: none;
-            display: inline-block;
-            outline: none;
-            border: none;
+        .left_area h3 {
             color: #fff;
-            padding: 10px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-            box-shadow: 2px 3px 3px gray;
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: 900;
+            padding-left: 20px;
         }
 
-        .btn--warn {
-            background-color: #d62500;
+        .left_area span {
+            color: #1DC4E7;
         }
 
-        .btn-DT:hover {
-            opacity: 0.8;
+        .logout_btn {
+            padding: 5px;
+            background: #19B3D3;
+            text-decoration: none;
+            float: right;
+            margin-top: -30px;
+            margin-right: 40px;
+            border-radius: 2px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            transition-property: backgroud;
         }
 
-        .cardn {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            margin: auto;
-            text-align: center;
-            font-family: arial;
-        }
-
-        .header_item h3 {
-            cursor: pointer;
-        }
-
-
-        .row h3 {
-            text-align: left;
-            margin-left: 10px;
-           @* border-bottom: 1px solid lightgray;*@
-            width: 98%;
-        }
-        #RowTT {
-            margin: auto;
-        }
-
-        .boxDiv {
-            background-color: none;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 5px 5px 0px 5px;
-            color: black;
-            margin-bottom: 5px;
-            text-align: left;
-            border-radius: 4px;
-            height: 368px;
-            box-shadow: 0px 2px 0px 2px #f3f3f3;
-        }
-
-            .boxDiv img {
-                height: 200px;
+            .logout_btn:hover {
+                background: #0D9DBB;
             }
-            .boxDiv:hover {
-                margin-top: -10px;
-                transition: all 0.4s ease;
+
+        .sidebar1 {
+            background: #2F323A;
+            margin-top: 60px;
+            padding-top: 30px;
+            position: fixed;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            transition: 0.5s;
+            transition-property: left;
+        }
+
+            .sidebar1 .profile_image {
+                width: 100px;
+                height: 100px;
+                border-radius: 100px;
+                margin-bottom: 10px;
             }
-        .btn_more {
-            margin-bottom: 20px;
-            padding-left: 93.5%;
-            margin-top: 2px;
-          @*  border-bottom: 1px solid #de1c1c;*@
-        }
-        .row h3 {
-            text-align: left;
+
+            .sidebar1 h4 {
+                color: #ccc;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+            .sidebar1 a {
+                color: #fff;
+                display: block;
+                width: 100%;
+                line-height: 60px;
+                padding-left: 30px;
+                font-size: 16px;
+                box-sizing: border-box;
+                text-decoration: none;
+            }
+
+                .sidebar1 a:hover {
+                    background: #19B3D3;
+                    text-decoration: none;
+                }
+
+            .sidebar1 i {
+                padding-right: 10px;
+            }
+
+        label #sidebar_btn {
+            z-index: 1;
+            color: #fff;
+            position: fixed;
+            cursor: pointer;
+            left: 300px;
+            font-size: 20px;
+            margin: 5px 0;
         }
 
-        .card-body label {
-            margin-bottom: 15px;
+            label #sidebar_btn:hover {
+                color: #19B3D3;
+            }
+
+        #check:checked ~ .sidebar1 {
+            left: -190px;
         }
 
-        .card .form-group .Coins-index {
-            color: #ff6a00;
+            #check:checked ~ .sidebar1 a span {
+                display: none;
+            }
+
+            #check:checked ~ .sidebar1 a {
+                font-size: 20px;
+                margin-left: 170px;
+                width: 80px;
+            }
+
+        .contentAd {
+            margin-left: 250px;
+            background-size: cover;
+            transition: 0.5s;
         }
 
-        #loginLink, #registerLink {
-            color: inherit;
+        #check:checked ~ .contentAd {
+            margin-left: 60px;
         }
-
-    @*    .footer {
-            background-color: rgba(0, 0, 0, 0.2);
-            margin-top:25%;
-
-        }*@
-     @*   .container{
-         margin-bottom:150px;
-        }*@
-        .heard-list .header_item h3 a {
-            color: #ff6a00;
-            font-weight:900;
-            text-decoration:none;
-        }
-        .col-lg-3{
-            padding-left:4px;
-            padding-right:4px;
-        }
-        /* create tin tuc*/
-        #Create:hover{
-
-        }
-        @*css của nút ẩn hiện file trong hồ sơ CV*@
-        #CV{
-            border-radius:3px;
-        }
-        .ND-CV {
-            margin: 10px auto;
-            width: 80%;
-            @*border: 1px solid #e4e4e4;*@
-        }
-
-        @*css drop-down menu*@
-@*--------------------------------------Banner------------------------*@
-
-
+  
 
     </style>
 </head>
 <body>
-
-    <div class="header" style="background-color:#f8eae2;width:100%">
-        <ul class="heard-list">
-            <li class="header_item" style="padding-right:100px;padding-left:200px"><h3>@Html.ActionLink(" RAO TIN ADMIN", "Index", "Home")</h3></li>
-            <li class="header_item active-cyan-3 active-cyan-4 mb-4" style="width:250px">
-                @*   <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:450px;">*@
-            </li>
-            <li class="header_item">
-                <a style="color:white;text-decoration:none" href="@Url.Action("Create","TinTucs")">
-                    <button class="btn-DT btn--warn"> <i class="far fa-plus-square"> </i> ĐĂNG TIN NGAY</button>
-                </a>
-            </li>
-        </ul>
-        @Html.Partial("_LoginPartial")
-    </div>
-
-
-    @*Code của  header mới tui khóa nó ở đây*@
-
-    <!--<div class="container-fluid">-->
-    <!-- <h1>Hello World!</h1>
-    <p>Resize the browser window to see the effect.</p>
-    <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p> -->
-    <!--<div class="row">
-            <div class="col-sm-1"></div>
-
-             <div class="col-sm-4" style="margin-top:5px">
-                <a href="#">
-                    <img src="~/images/logo22.png" alt="" style="height:100px; width:100%; padding:15px" />
-                </a>
-            </div>
-
-            <div class="col-sm-7">
-
-                <div style="margin-top:30px;text-align:center;padding-left:40%">
-                    <button class="btn-DT btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button>
-                    @*  @Html.Partial("_LoginPartial")*@
-
-                </div>
-
-            </div>
-
+    <input type="checkbox" name="" value="" id="check" hidden>
+    <!-- fdsfdsfds  -->
+    <header>
+        <label for="check">
+            <i class="fas fa-exchange-alt" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+            <h3>Quan<span> Tri Vien</span></h3>
         </div>
-
-    </div>-->
-    @*--------------------------------------------------------------------------------------------------------*@
-
-
-
-    <div class="menu">
-        <ul>
-
-            <li><a class="fas fa-hotel">@Html.ActionLink(" Bất động sản", "Index", "BatDongSans")</a></li>
-            <li><a class="fas fa-hammer"> @Html.ActionLink(" Sản phẩm", "Index", "SanPhams")</a></li>
-            <li><a class="fab fa-servicestack">  @Html.ActionLink(" Dịch vụ", "Index", "DichVus")</a></li>
-            <li><a><i class="fas fa-dice-d20"></i> @Html.ActionLink(" Việc làm", "Index", "ViecLams")</a></li>
-        </ul>
-        <ul>
-            <li style="font-weight:bold"><a class="far fa-newspaper"> @Html.ActionLink(" Quản lý tin tức", "Index", "TinTucs") </a></li>
-            <li style="font-weight:bold"><a class="fas fa-user-clock">@Html.ActionLink(" Quản lý người dùng", "Index", "Users")</a></li>
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (User.IsInRole("Quản trị viên"))
-                {
-                    <li style="font-weight:bold"><a>@Html.ActionLink("Giao diện người dùng", "Index", "Home", new { area = "" }, new { })</a></li>
-                }
-            }
-        </ul>
-    </div>
-
-    @*-------------------------------------------------------------------------------------------------------------------------------*@
-    @if (User.Identity.IsAuthenticated)
-    {
-
-        @Html.Partial("Chat")
-        <script src="~/Scripts/Chat.js"></script>
-    }
-
-    @*--------------------------------------------------------------------------------------------------*@
-    <div class="container body-content" style="background-color:white">
-        @RenderBody()
-    </div>
-
-    @*---------------------------------------------------------------------------------------------------------------------------------*@
-    @* <div class="footer" style="height: 170px">
-            <div class="row">
-                <div class="col-sm-4" style="padding-left:50px;">
-                    <p>&copy; @DateTime.Now.Year - Five Chickens</p>
-                    <img src="~/Content/images/logo.png" style="width: 100px" />
-                </div>
-                <div class="col-sm-4 text-center">
-                    <p>Đồ án môn học: Lập trình Web với ASP.Net MVC 5</p>
-                    <p>Tên đồ án:Web RAO TIN</p>
-                    <p>Nhóm: Yuong Boys</p>
-                </div>
-                <div class="col-sm-4 text-right" style="padding-right:50px;">
-                    <p>Phạm Trần Huy Bảo - 1811060047</p>
-                    <p>Vũ Duy Linh - 1811060430</p>
-                </div>
-            </div>
-        </div> *@
-
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="row-footer">
-                <div class="footer-col">
-                    <h4>RAOTIN</h4>
-                    <ul>
-                        <li><a href="#">Quy chế hoạt động</a></li>
-                        <li><a href="#">Điều khoản sử dụng</a></li>
-                        <li><a href="#">Mua hàng an toàn</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Hỗ trợ mua bán</h4>
-                    <ul>
-                        <li><a href="#">Báo giá quảng cáo</a></li>
-                        <li><a href="#">Hỗ trợ đăng tin</a></li>
-                        <li><a href="#">Địa điểm đăng tin</a></li>
-                        <li><a href="#">Tin tức</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Thông tin mua bán</h4>
-                    <ul>
-                        <li><a href="#">Báo mua&bán TPHCM</a></li>
-                        <li><a href="#">Báo mua&bán Hà Nội</a></li>
-                        <li><a href="#">Cẩm nang mua bán</a></li>
-                        <li><a href="#">Môi giới bất động sản</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Liên Kết</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-            </div>
+        <div class="right_area">
+            <a href="@Url.Action("Index", "Home",new { area = "" })" class="logout_btn">Giao diện người dùng</a>
         </div>
-    </footer>
+    </header>
+    <!-- ahhihihih -->
+    <div class="sidebar1">
+        <center>
+            <img src="/images/admin.png" class="profile_image" alt="">
+            <h4>
+                @User.Identity.Name
+            </h4>
+        </center>
 
 
+        <a href="@Url.Action("Index", "TinTucs")"><i class="fas fa-th-list"></i><span>Quản lý tin tức</span></a>
+        <a href="@Url.Action("Index", "Users")"><i class="fas fa-i-cursor"></i><span>Quản lý người dùng</span></a>
+        <a href="@Url.Action("Chart", "TinTucs")"><i class="fas fa-chart-bar"></i><span>Thống kê</span></a>
+        
+        @using (Html.BeginForm("LogOff", "Account",new { area = "" }, FormMethod.Post, new { id = "logoutForm"}))
+        {
+        @Html.AntiForgeryToken()
+
+           
+            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span> </a>
+          
+        }
+
+    </div>
+    <div class="contentAd">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @* Thêm 2 dòng script bên duouis này *@
-    <script src="~/Scripts/jquery.signalR-2.4.2.js"></script>
-    <script src="~/signalr/hubs"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

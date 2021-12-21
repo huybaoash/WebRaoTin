@@ -21,6 +21,7 @@
     tr:hover {
         background-color: #eeeeee;
     }
+
 </style>
 <div id="menu">
     <ul class="menu-list">
@@ -61,7 +62,7 @@ window.onload = function () {
 	title: {
 		text: "Biểu đồ tỉ lệ số tin tức trong các loại tin tức",
 		fontSize: 21
-	},
+        },
 	data: [{
 		type: "pie",
 		startAngle: 160,
@@ -134,15 +135,15 @@ window.onload = function () {
 <div id="bieudoLoaiTT" style="height: 370px; width: 100%;"></div>
 <div>
 
-    <p><strong>Tin sản phẩm : </strong> @ViewBag.SoLuongTinSP</p>
-    <p><strong>Tin dịch vụ : </strong> @ViewBag.SoLuongTinDV</p>
-    <p><strong>Tin bất động sản : </strong> @ViewBag.SoLuongTinBDS</p>
-    <p><strong>Tin việc làm : </strong> @ViewBag.SoLuongTinVL</p>
-    <p><strong>Tổng tin tức : </strong> @ViewBag.SoLuongTinTuc</p>
-    <h4>Nhận xét:</h4>
-    <p><strong>- @ViewBag.ReviewTTMaxTongQuat</strong></p>
-    <p><strong>- @ViewBag.ReviewTTMinTongQuat</strong></p>
-    <p><strong>- @ViewBag.ReviewKhoangCach</strong></p>
+    <h4><strong>Tin sản phẩm : </strong> @ViewBag.SoLuongTinSP</h4>
+    <h4><strong>Tin dịch vụ : </strong> @ViewBag.SoLuongTinDV</h4>
+    <h4><strong>Tin bất động sản : </strong> @ViewBag.SoLuongTinBDS</h4>
+    <h4><strong>Tin việc làm : </strong> @ViewBag.SoLuongTinVL</h4>
+    <h4><strong>Tổng tin tức : </strong> @ViewBag.SoLuongTinTuc</h4>
+    <h4><strong>Nhận xét:</strong></h4>
+    <h4>- @ViewBag.ReviewTTMaxTongQuat</h4>
+    <h4>- @ViewBag.ReviewTTMinTongQuat</h4>
+    <h4>- @ViewBag.ReviewKhoangCach</h4>
 
 </div>
 <br />
@@ -150,41 +151,42 @@ window.onload = function () {
 <div id="bieudoLoaiTTSP" style="height: 370px; width: 100%;">
 </div>
 <div>
-    <p><strong>- @ViewBag.ReviewLSPMost</strong></p>
-    <p><strong>- @ViewBag.ReviewLSP2Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLSP3Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLSPFewest</strong></p>
+    <h4><strong>Nhận xét:</strong></h4>
+    <h4>- @ViewBag.ReviewLSPMost</h4>
+    <h4>- @ViewBag.ReviewLSP2Most</h4>
+    <h4>- @ViewBag.ReviewLSP3Most</h4>
+    <h4>- @ViewBag.ReviewLSPFewest</h4>
 
 </div>
 <br />
 <hr />
 <div id="bieudoLoaiTTDV" style="height: 370px; width: 100%;"></div>
 <div>
-    <h4>Nhận xét :</h4>
-    <p><strong>- @ViewBag.ReviewLDVMost</strong></p>
-    <p><strong>- @ViewBag.ReviewLDV2Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLDV3Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLDVFewest</strong></p>
+    <h4><strong>Nhận xét:</strong></h4>
+    <h4> @ViewBag.ReviewLDVMost</h4>
+    <h4> @ViewBag.ReviewLDV2Most</h4>
+    <h4> @ViewBag.ReviewLDV3Most</h4>
+    <h4> @ViewBag.ReviewLDVFewest</h4>
 </div>
 <br />
 <hr />
 <div id="bieudoLoaiTTBDS" style="height: 370px; width: 100%;"></div>
 <div>
-    <h4>Nhận xét :</h4>
-    <p><strong>- @ViewBag.ReviewLBDSMost</strong></p>
-    <p><strong>- @ViewBag.ReviewLBDS2Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLBDS3Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLBDSFewest</strong></p>
+    <h4><strong>Nhận xét:</strong></h4>
+    <h4>- @ViewBag.ReviewLBDSMost</h4>
+    <h4>- @ViewBag.ReviewLBDS2Most</h4>
+    <h4>- @ViewBag.ReviewLBDS3Most</h4>
+    <h4>- @ViewBag.ReviewLBDSFewest</h4>
 </div>
 <br />
 <hr />
 <div id="bieudoLoaiTTVL" style="height: 370px; width: 100%;"></div>
 <div>
-    <h4>Nhận xét :</h4>
-    <p><strong>- @ViewBag.ReviewLVLMost</strong></p>
-    <p><strong>- @ViewBag.ReviewLVL2Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLVL3Most</strong></p>
-    <p><strong>- @ViewBag.ReviewLVLFewest</strong></p>
+    <h4><strong>Nhận xét:</strong></h4>
+    <h4>- @ViewBag.ReviewLVLMost</h4>
+    <h4>- @ViewBag.ReviewLVL2Most</h4>
+    <h4>- @ViewBag.ReviewLVL3Most</h4>
+    <h4>- @ViewBag.ReviewLVLFewest</h4>
 </div>
 
 

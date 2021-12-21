@@ -90,11 +90,11 @@
             <td>
                 @if (@Model[i].Status.Equals("Công khai") || @Model[i].Status.Equals("Ẩn"))
                 {
-                    <a href="@Url.Action("Edit_LockStatus", "TinTucs",new { id= @Model[i].Id })" class="btn btn-danger btn-xs" onclick="lockTT()">Khóa</a>
+                    <a href="@Url.Action("Edit_LockStatus", "TinTucs",new { id= @Model[i].Id })" class="btn btn-danger btn-sm" onclick="lockTT()">Khóa</a>
                 }
                 else if (@Model[i].Status.Equals("Đã khóa"))
                 {
-                    <a href="@Url.Action("Edit_UnlockStatus", "TinTucs",new { id= @Model[i].Id})" class="btn btn-danger btn-xs" onclick="unblockTT()">Mở khóa</a>
+                    <a href="@Url.Action("Edit_UnlockStatus", "TinTucs",new { id= @Model[i].Id})" class="btn btn-danger btn-sm" onclick="unblockTT()">Mở khóa</a>
                 }
 
             </td>

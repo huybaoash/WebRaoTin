@@ -833,14 +833,14 @@
                                     @if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã gửi"))
                                     {
                                         <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                            <p class="btn btn-success btn-xs">Đã gửi CV. Nhấp vào đây để hoàn tác.</p>
+                                            <p class="btn btn-success btn-sm">Đã gửi CV. [Nhấp vào đây để hoàn tác].</p>
                                         </a>
                                         <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                     }
                                     else if (@ViewBag.phieuXetUngTuyen.Status.Equals("Đã duyệt"))
                                     {
 
-                                        <p class="btn btn-success btn-xs">Nhà tuyển dụng đã duyệt CV của bạn. Xin hãy chờ liên lạc.</p>
+                                        <p class="btn btn-success btn-sm">Nhà tuyển dụng đã duyệt CV của bạn. Xin hãy chờ liên lạc.</p>
 
                                         <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                     }
@@ -848,7 +848,7 @@
                                     {
 
                                         <a href="@Url.Action("XoaPST","PhieuXetUngTuyens",new { Id = @ViewBag.phieuXetUngTuyen.Id })">
-                                            <p class="btn btn-warning btn-xs">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
+                                            <p class="btn btn-warning btn-sm">Nhà tuyển dụng đã từ chối CV của bạn. Nhấp vào đây để gửi lại CV.</p>
                                         </a>
                                         <a href="@Url.Action("Details_Now","PhieuXetUngTuyens", new {userID = User.Identity.GetUserId(),tintucID = Model.IdTinTucs })">Kiểm tra CV >></a>
                                     }
@@ -864,7 +864,7 @@
                                     <div style="padding-left: 10px; line-height: 0.8rem;">
                                         <input type="file" value="" name="cv" id="cv" required title="Chọn đường dẫn CV" accept=".doc,.docx" />
                                         <input type="text" class="form-control" id="ViecLamId" name="ViecLamId" style="display:none;" value="@Model.IdViecLam">
-                                        <button type="submit" class="btn btn-primary btn-xs" style="margin-top:5px" id="uploadCV">Gửi CV</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" style="margin-top:5px" id="uploadCV">Gửi CV</button>
 
 
                                     </div>

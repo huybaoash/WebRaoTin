@@ -362,6 +362,7 @@
     <Content Include="Content\DetailsNewsSP.css" />
     <Content Include="Content\Footer.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style_admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -387,6 +388,7 @@
     <Content Include="imagesGIF\vieclam.jpg" />
     <Content Include="imagesGIF\xeDapdien.gif" />
     <Content Include="imagesGIF\xemayvs.gif" />
+    <Content Include="images\admin.png" />
     <Content Include="images\BanTra.jpg" />
     <Content Include="images\Get-Leads-and-Sales-with-Animated-Explainer-Video-Ads-on-Facebook-Featured-Image.jpg" />
     <Content Include="images\ky-nang-giao-tiep-co-ban-1.png" />
@@ -443,6 +445,7 @@
     <Content Include="Areas\Admin\Views\Users\Edit_DownRole.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Chat.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Chart.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
