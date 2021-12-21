@@ -223,6 +223,7 @@
     <Compile Include="Controllers\PhieuXetUngTuyensController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\ThongBaosController.cs" />
     <Compile Include="Controllers\TinTucsController.cs" />
     <Compile Include="Controllers\ViecLamsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -316,6 +317,14 @@
     <Compile Include="Migrations\202112010509338_Add_LuotXem.Designer.cs">
       <DependentUpon>202112010509338_Add_LuotXem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112211257058_Add Table_ThongBao.cs" />
+    <Compile Include="Migrations\202112211257058_Add Table_ThongBao.Designer.cs">
+      <DependentUpon>202112211257058_Add Table_ThongBao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112211305143_update_status.cs" />
+    <Compile Include="Migrations\202112211305143_update_status.Designer.cs">
+      <DependentUpon>202112211305143_update_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
@@ -333,6 +342,7 @@
     <Compile Include="Models\PhieuXetUngTuyen.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\ThongBao.cs" />
     <Compile Include="Models\TinTuc.cs" />
     <Compile Include="Models\ViecLam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -531,10 +541,12 @@
     <Content Include="Views\Home\GioiThieu.cshtml" />
     <Content Include="Views\Home\PhanHoi.cshtml" />
     <Content Include="Views\Shared\Chat.cshtml" />
+    <Content Include="Views\ThongBaos\ThongBao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Values\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -629,6 +641,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112010509338_Add_LuotXem.resx">
       <DependentUpon>202112010509338_Add_LuotXem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112211257058_Add Table_ThongBao.resx">
+      <DependentUpon>202112211257058_Add Table_ThongBao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112211305143_update_status.resx">
+      <DependentUpon>202112211305143_update_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

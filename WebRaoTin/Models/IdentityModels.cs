@@ -80,7 +80,7 @@ namespace WebRaoTin.Models
         public DbSet<ViecLam> ViecLams { get; set; }
         public DbSet<PhieuXetUngTuyen> PhieuXetUngTuyens { get; set; }
 
-        
+        public DbSet<ThongBao> ThongBaos { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -100,6 +100,11 @@ namespace WebRaoTin.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<BinhLuan>().HasRequired(c => c.Customer)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ThongBao>().HasRequired(c => c.Customer)
                .WithMany()
                .WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);

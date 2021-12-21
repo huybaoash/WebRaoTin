@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -18,12 +19,19 @@ namespace WebRaoTin.Models
             Clients.Caller.connect(name);
             
         }
+
+        public Task SendPrivateNofitication(string user, ThongBao thongBaos)
+        {
+            return Clients.User(user).SendAsync("ReceiveNofitication", thongBaos);
+        }
+
         public void Message(string name, string message)
         {
             //trả về cho client pt message vs 2 tham số
             Clients.All.message(name, message);
             
         }
+
 
         public void MessageGroup(string name, string message)
         {
