@@ -1,10 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_admin.css">
+    <link rel="stylesheet" href="~/Content/style_admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,7 +17,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family:Arial;
+            font-family: Arial;
         }
 
         header {
@@ -132,17 +131,43 @@
                 width: 80px;
             }
 
-        .contentAd {
+        .contentAd23 {
             margin-left: 250px;
             background-size: cover;
             transition: 0.5s;
         }
 
-        #check:checked ~ .contentAd {
+        #check:checked ~ .contentAd23 {
             margin-left: 60px;
         }
-  
 
+        #menu {
+            margin-left: 100px;
+            margin-bottom: 2px;
+            margin-right: 150px;
+            margin-top: 80px;
+        }
+
+        .menu-list {
+            padding: 2px 2px 2px 2px;
+            margin: auto;
+        }
+
+        .menu-item {
+            color: rgb(224, 220, 220);
+            padding: 0px 8px 0px 0px;
+            display: inline-flex;
+            border-right: 1px solid rgb(224, 220, 220);
+        }
+
+            .menu-item a {
+                color: #585252;
+                text-decoration: none;
+            }
+
+                .menu-item a:hover {
+                    color: #ff9d40;
+                }
     </style>
 </head>
 <body>
@@ -170,24 +195,23 @@
 
 
         <a href="@Url.Action("Index", "TinTucs")"><i class="fas fa-th-list"></i><span>Quản lý tin tức</span></a>
-        <a href="@Url.Action("Index", "Users")"><i class="fas fa-i-cursor"></i><span>Quản lý người dùng</span></a>
+        <a href="@Url.Action("Index", "Users")"><i class="fas fa-user-cog"></i><span>Quản lý người dùng</span></a>
         <a href="@Url.Action("Chart", "TinTucs")"><i class="fas fa-chart-bar"></i><span>Thống kê</span></a>
-        
-        @using (Html.BeginForm("LogOff", "Account",new { area = "" }, FormMethod.Post, new { id = "logoutForm"}))
-        {
-        @Html.AntiForgeryToken()
 
-           
+        @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+
             <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span> </a>
-          
+
         }
 
     </div>
-    <div class="contentAd">
-        <div class="container body-content">
-            @RenderBody()
-        </div>
+    <div class="contentAd23">
+        <div class="container body-content"> @RenderBody()</div>
     </div>
+
     @Scripts.Render("~/bundles/jquery")
     @* Thêm 2 dòng script bên duouis này *@
     @RenderSection("scripts", required: false)

@@ -446,6 +446,7 @@
     <Content Include="Areas\Admin\Views\Shared\Chat.cshtml" />
     <Content Include="Areas\Admin\Views\TinTucs\Chart.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutOld.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
