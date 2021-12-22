@@ -11,17 +11,22 @@
     .boxDiv:hover{
         margin-top:0 !important;
     }
+    .formBoxdiv{
+        margin-top:60px;
+    }
 </style>
-@foreach (var item in @Model)
-{
-<div class="boxDiv">
-    <div>@item.Customer.UserName đã bình luận ở trang [<a href="@Url.Action("Details","TinTucs", new { Id = @item.TinTucId })"> @item.TinTuc.Title</a>]</div>
-    <h4 style="font-weight:bold">@item.Customer.UserName # @item.PublishDay </h4>
-    <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray ">
-        <p style="font-size:16px">
-            @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
-        </p>
-    </div>
+<div class="formBoxdiv">
+    @foreach (var item in @Model)
+    {
+
+        <div class="boxDiv">
+            <div>@item.Customer.UserName đã bình luận ở trang [<a href="@Url.Action("Details","TinTucs", new { Id = @item.TinTucId })"> @item.TinTuc.Title</a>]</div>
+            <h4 style="font-weight:bold">@item.Customer.UserName # @item.PublishDay </h4>
+            <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:lightgray ">
+                <p style="font-size:16px">
+                    @Html.Raw(Html.Encode(item.Description).Replace("\n", "<br />"))
+                </p>
+            </div>
+        </div>
+    }
 </div>
-    
- }

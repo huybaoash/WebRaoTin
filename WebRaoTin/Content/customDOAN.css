@@ -65,10 +65,10 @@
         div#left ul li p{
             height: 10px;
         }
-         span {
-            float: left;
-            padding: 0px 30px 5px 0px;
-            color: #585252;
+        .desc span {
+        float: left;
+        padding: 0px 30px 5px 0px;
+        color: #585252;
         }
         div#left ul li h3 {
             margin-top: 9px;
@@ -95,7 +95,7 @@
             
         }
         .gia{
-            color: #ffbc03;
+            color: #ffbc03 !important;
             font-weight:600;
         }
 #menu {
