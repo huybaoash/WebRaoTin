@@ -128,6 +128,14 @@ namespace WebRaoTin.Controllers
             return View(phieuXetUngTuyens.Where(t => t.ViecLam.TinTucId == TinTucId).ToList());
         }
 
+        public ActionResult Index_ofUser(string Id)
+        {
+            
+            var phieuXetUngTuyens = db.PhieuXetUngTuyens.Include(p => p.Customer).Include(p => p.ViecLam).Include(p => p.ViecLam.TinTuc);
+
+            return View(phieuXetUngTuyens.Where(t => t.CustomerID.Equals(Id)).ToList());
+        }
+
         // GET: Admin/PhieuXetUngTuyens/Details/5
         public ActionResult Details(int? id)
         {
@@ -231,7 +239,9 @@ namespace WebRaoTin.Controllers
             {
                 if (phieuXetUngTuyen.ViecLamId.Equals(item.Id))
                 {
+                    phieuXetUngTuyen.ViecLam = item;
                     MaTinTuc = item.TinTucId;
+                    break;
                 }
             }
             if (cv?.ContentLength > 0)
@@ -245,10 +255,37 @@ namespace WebRaoTin.Controllers
 
             }
 
+            TinTuc tinTuc = new TinTuc();
+            foreach (var item in db.TinTucs.ToList())
+            {
+                if (item.Id == phieuXetUngTuyen.ViecLam.TinTucId)
+                {
+                    tinTuc = item;
+                    break;
+                }
+            }
+            ApplicationUser applicationUser = new ApplicationUser();
+            foreach(var user in db.Users.ToList())
+            {
+                if (user.Id.Equals(phieuXetUngTuyen.CustomerID)) { 
+                    applicationUser = user;
+                    break;
+                }
+            }
+
+            ThongBao thongBao = new ThongBao();
+            thongBao.Link = Url.Action("Index", "PhieuXetUngTuyens", new { TinTucId = tinTuc.Id });
+            thongBao.PublishDay = DateTime.Now;
+            thongBao.CustomerID = tinTuc.CustomerID;
+            thongBao.Status = "Chưa đọc";
+            thongBao.Description = "Từ tin tức [" + tinTuc.Title + "]\n" + "Người ứng tuyển [" + applicationUser.FullName +"] đã nộp CV lên tin tức của bạn.";
 
             if (ModelState.IsValid)
             {
                 db.PhieuXetUngTuyens.Add(phieuXetUngTuyen);
+                db.SaveChanges();
+
+                db.ThongBaos.Add(thongBao);
                 db.SaveChanges();
                 return RedirectToAction("Details", "TinTucs", new { id = MaTinTuc }); ;
             }
@@ -299,6 +336,23 @@ namespace WebRaoTin.Controllers
 
             PhieuXetUngTuyen phieuXetUngTuyen = db.PhieuXetUngTuyens.Find(id);
             phieuXetUngTuyen.Status = "Đã duyệt";
+            TinTuc tinTuc = new TinTuc();
+            foreach (var item in db.TinTucs.ToList())
+            {
+                if (item.Id == phieuXetUngTuyen.ViecLam.TinTucId)
+                {
+                    tinTuc = item;
+                    break;
+                }
+            }
+
+            ThongBao thongBao = new ThongBao();
+            thongBao.Link = Url.Action("Index_ofUser","PhieuXetUngTuyens",new { Id = phieuXetUngTuyen.CustomerID });
+            thongBao.PublishDay = DateTime.Now;
+            thongBao.CustomerID  = phieuXetUngTuyen.CustomerID;
+            thongBao.Status = "Chưa đọc";
+            thongBao.Description = "Từ tin tức [" + tinTuc.Title + "]\n" + "Nhà ứng tuyển đã xét duyệt CV của bạn. Xin hãy đợi để liên lạc.";
+
 
             if (ModelState.IsValid)
             {
@@ -310,6 +364,9 @@ namespace WebRaoTin.Controllers
                 var existingEntity = db.PhieuXetUngTuyens.Find(phieuXetUngTuyen.Id);
 
                 db.Entry(existingEntity).CurrentValues.SetValues(phieuXetUngTuyen);
+                db.SaveChanges();
+
+                db.ThongBaos.Add(thongBao);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
             }
@@ -326,6 +383,23 @@ namespace WebRaoTin.Controllers
             PhieuXetUngTuyen phieuXetUngTuyen = db.PhieuXetUngTuyens.Find(id);
             phieuXetUngTuyen.Status = "Đã từ chối";
 
+            TinTuc tinTuc = new TinTuc();
+            foreach (var item in db.TinTucs.ToList())
+            {
+                if (item.Id == phieuXetUngTuyen.ViecLam.TinTucId)
+                {
+                    tinTuc = item;
+                    break;
+                }
+            }
+
+            ThongBao thongBao = new ThongBao();
+            thongBao.Link = Url.Action("Index_ofUser", "PhieuXetUngTuyens", new { Id = phieuXetUngTuyen.CustomerID });
+            thongBao.PublishDay = DateTime.Now;
+            thongBao.CustomerID = phieuXetUngTuyen.CustomerID;
+            thongBao.Status = "Chưa đọc";
+            thongBao.Description = "Từ tin tức [" + tinTuc.Title + "]\n" + "Nhà ứng tuyển đã từ chối CV của bạn.";
+
             if (ModelState.IsValid)
             {
 
@@ -336,6 +410,9 @@ namespace WebRaoTin.Controllers
                 var existingEntity = db.PhieuXetUngTuyens.Find(phieuXetUngTuyen.Id);
 
                 db.Entry(existingEntity).CurrentValues.SetValues(phieuXetUngTuyen);
+                db.SaveChanges();
+
+                db.ThongBaos.Add(thongBao);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { TinTucId = phieuXetUngTuyen.ViecLam.TinTucId });
             }

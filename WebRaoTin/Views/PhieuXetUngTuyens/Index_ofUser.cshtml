@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebRaoTin.Models.PhieuXetUngTuyen>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Danh sách CV của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th {
+        background-color: #a0d1f6;
+    }
+
+    tr:hover {
+        background-color: #eeeeee;
+    }
+</style>
+
+<h2>Danh sách các hồ sơ gửi lên</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<table class="table">
+    <tr>
+        <th>
+            Tin tức
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            File
+        </th>
+        <th>
+            Tác vụ
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            if (User.Identity.GetUserId().Equals(item.CustomerID))
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","TinTucs",new { id = item.ViecLam.TinTucId })">@item.ViecLam.TinTuc.Title</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DownloadFile", "PhieuXetUngTuyens", new { fileName =item.Description,TinTucId = item.ViecLam.TinTucId })"><i class="fas fa-file-download"></i> Tải về</a>
+                    </td>
+                    <td>
+                        @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                        @Html.ActionLink("Xem trước", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                        @*     @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
+            }
+        }
+
+    }
+
+</table>

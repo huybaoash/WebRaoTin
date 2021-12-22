@@ -400,8 +400,8 @@ namespace WebRaoTin.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new
                 {
-                    action = "Index",
-                    controller = "Home",
+                    action = "Chart",
+                    controller = "TinTucs",
                     id = UrlParameter.Optional
                 },
                  new[] { "WebRaoTin.Areas.Admin.Controllers" }

@@ -168,6 +168,14 @@ namespace WebRaoTin
             );
 
             routes.MapRoute(
+                name: "Danh sach CV cua Nguoi dung",
+                url: "{Id}-danh-sach-cv-cua-ban",
+                defaults: new { controller = "PhieuXetUngTuyens", action = "Index_ofUser", TinTucId = UrlParameter.Optional },
+                new[] { "WebRaoTin.Controllers"
+                }
+            );
+
+            routes.MapRoute(
                 name: "Danh sach CV",
                 url: "{TinTucId}-danh-sach-cv",
                 defaults: new { controller = "PhieuXetUngTuyens", action = "Index", TinTucId = UrlParameter.Optional },

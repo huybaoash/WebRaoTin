@@ -31,6 +31,9 @@ namespace WebRaoTin.Controllers
             }
 
             ViewBag.CustomerID = new SelectList(db.Users, "Id", "Role", thongBao.CustomerID);
+            var thongBaos = db.ThongBaos.Include(t => t.Customer).ToList();
+            
+            ViewBag.dsTB = thongBao;
             return View(thongBao);
         }
         public ActionResult Index()

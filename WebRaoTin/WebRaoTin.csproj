@@ -472,6 +472,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ThongBao.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -542,6 +543,7 @@
     <Content Include="Views\Home\PhanHoi.cshtml" />
     <Content Include="Views\Shared\Chat.cshtml" />
     <Content Include="Views\ThongBaos\ThongBao.cshtml" />
+    <Content Include="Views\PhieuXetUngTuyens\Index_ofUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
