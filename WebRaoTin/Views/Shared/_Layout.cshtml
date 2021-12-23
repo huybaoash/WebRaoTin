@@ -68,15 +68,13 @@
             border: 0.7px solid #808080;
             width: 56%;
         }
-        @* Ngày 7/11 - Huybaoash*@
-        .response1, .response2, .response3, .response0, .response4, .response5 {
+
+        @* Ngày 7/11 - Huybaoash*@ .response1, .response2, .response3, .response0, .response4, .response5 {
             display: none;
         }
 
 
-        @*Ngày 15/11 Huybaoash*@
-
-        #carouselExampleControls {
+        @*Ngày 15/11 Huybaoash*@ #carouselExampleControls {
             width: 30%;
             margin: auto;
         }
@@ -148,6 +146,7 @@
         .main {
             padding: 15px;
             font-family: Arial, Helvetica, sans-serif;
+            margin-top: 40px;
         }
 
             .main .topbar_ {
@@ -171,7 +170,6 @@
             height: 480px;
             border-radius: 5px;
             margin-top: 5px;
-
         }
 
             .row .sidebar a {
@@ -284,8 +282,8 @@
             // margin: 0;
             // padding: 0;
             *@ font-family: Arial;
-
         }
+
         .menu {
             max-height: 60px;
             background-color: rgb(161, 14, 8);
@@ -348,7 +346,7 @@
         }
 
         .btn--warn {
-            background-color:#d62500;
+            background-color: #d62500;
         }
 
         .btn-DT:hover {
@@ -371,8 +369,8 @@
         .row h3 {
             text-align: left;
             margin-left: 10px;
-         @*   border-bottom: 1px solid lightgray;*@
-            width: 98%;
+            @* border-bottom: 1px solid lightgray;
+            *@ width: 98%;
         }
 
         #RowTT {
@@ -394,16 +392,19 @@
             .boxDiv img {
                 height: 200px;
             }
+
             .boxDiv:hover {
                 margin-top: -10px;
                 transition: all 0.4s ease;
             }
-            .btn_more {
-                margin-bottom: 20px;
-                padding-left: 93.5%;
-                margin-top: 2px;
-                @* border-bottom: 1px solid #de1c1c;*@
-            }
+
+        .btn_more {
+            margin-bottom: 20px;
+            padding-left: 93.5%;
+            margin-top: 2px;
+            @* border-bottom: 1px solid #de1c1c;
+            *@
+        }
 
         .row h3 {
             text-align: left;
@@ -457,8 +458,7 @@
             *@
         }
 
-        @*css drop-down menu*@ @*--------------------------------------Banner------------------------*@
-        .main-container {
+        @*css drop-down menu*@ @*--------------------------------------Banner------------------------*@ .main-container {
             top: 0;
             left: 0;
             width: 1500px;
@@ -474,8 +474,8 @@
         .right-container {
             position: fixed;
             right: 5px;
-        @*    bottom: 0;*@
-            min-width: 90px;
+            @* bottom: 0;
+            *@ min-width: 90px;
             background-color: purple;
             height: 500px;
             margin-left: 10px;
@@ -484,8 +484,8 @@
         .left-container {
             position: fixed;
             left: 5px;
-         @*   bottom: 0;*@
-            min-width: 90px;
+            @* bottom: 0;
+            *@ min-width: 90px;
             background-color: blue;
             height: 500px;
             margin-right: 10px;
@@ -527,6 +527,12 @@
                         <button class="btn-DT btn--warn"><i class="far fa-plus-square"></i> ĐĂNG TIN NGAY</button>
                     </a>
 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        @Html.Partial("~/Views/ThongBaos/ThongBao.cshtml")
+                        <script src="~/Scripts/ThongBao.js"></script>
+                    }
 
                 </div>
 
@@ -560,12 +566,7 @@
     </div>
 
     @*-------------------------------------------------------------------------------------------------------------------------------*@
-    @if (User.Identity.IsAuthenticated)
-    {
- 
-        @Html.Partial("~/Views/ThongBaos/ThongBao.cshtml")
-        <script src="~/Scripts/ThongBao.js"></script>
-    }
+@*    *@
 
     @*--------------------------------------------------------------------------------------------------*@
     <script>!function (s, u, b, i, z) { var o, t, r, y; s[i] || (s._sbzaccid = z, s[i] = function () { s[i].q.push(arguments) }, s[i].q = [], s[i]("setAccount", z), r = ["widget.subiz.net", "storage.googleapis" + (t = ".com"), "app.sbz.workers.dev", i + "a" + (o = function (k, t) { var n = t <= 6 ? 5 : o(k, t - 1) + o(k, t - 3); return k !== t ? n : n.toString(32) })(20, 20) + t, i + "b" + o(30, 30) + t, i + "c" + o(40, 40) + t], (y = function (k) { var t, n; s._subiz_init_2094850928430 || r[k] && (t = u.createElement(b), n = u.getElementsByTagName(b)[0], t.async = 1, t.src = "https://" + r[k] + "/sbz/app.js?accid=" + z, n.parentNode.insertBefore(t, n), setTimeout(y, 2e3, k + 1)) })(0)) }(window, document, "script", "subiz", "acrevxfhvvrpcwzuzaik")</script>
@@ -574,8 +575,8 @@
     @*--------------------------------------------------------------------------------------------------*@
     <div class="main-container">
         <div class="left-container">
-            <a href="https://thesolcity.vn/?gclid=Cj0KCQiA8ICOBhDmARIsAEGI6o1i0XXUbdDb8Z6BZ_vnEYMPnbF2sPQdQufxv4jUL2PomYnIv-v37DQaAuzUEALw_wcB">
-                <img src="https://tpc.googlesyndication.com/daca_images/simgad/14194609787447103846" style="width:130px;height:500px">
+            <a href="https://www.nike.com/">
+                <img src="~/images/posteke.jpg" style="width:130px;height:500px">
             </a>
 
         </div>
@@ -622,8 +623,8 @@
                 <div class="footer-col">
                     <h4>Thông tin mua bán</h4>
                     <ul>
-                        <li><a href="#">Báo mua&bán TPHCM</a></li>
-                        <li><a href="#">Báo mua&bán Hà Nội</a></li>
+                        <li><a href="#">Báo mua & bán TPHCM</a></li>
+                        <li><a href="#">Báo mua & bán Hà Nội</a></li>
                         <li><a href="#">Cẩm nang mua bán</a></li>
                         <li><a href="#">Môi giới bất động sản</a></li>
                     </ul>

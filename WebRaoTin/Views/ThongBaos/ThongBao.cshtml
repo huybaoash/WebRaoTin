@@ -8,30 +8,37 @@
 
     }
 
-    .boxDiv {
+    .boxDivBell {
         height: auto;
+        border:1px solid #808080;
+        margin-bottom:5px;
+        
+        border-radius:5px;
     }
 
-        .boxDiv:hover {
+        .boxDivBell:hover {
             margin-top: 0 !important;
         }
-        .boxDiv p {
+        .boxDivBell p {
             font-size:12px;
             margin-bottom:0 !important;
         }
     /* Nút Để Mở Chatbox */
-     .nut-mo-chatbox {
-        background-color: rgb(161, 14, 8);
+    .nut-mo-chatbox {
         color: white;
         padding: 10px 0px;
         border: none;
         cursor: pointer;
-        position: fixed;
-        bottom: 20px;
+        @*  position: fixed;*@
+        @*top: 20px;
         right: 40px;
-        width: 100px;
-        border-radius: 100px;
-        box-shadow: 0px 1px 4px 4px #a7a7a7;
+      *@
+        width: 50px;
+        border: 1px solid #ddd;
+        margin-left: 10px;
+      
+        border-radius: 100%;
+        background-color: #ce4040;
     }
         .nut-mo-chatbox:hover {
             background-color: #e55a5a;
@@ -39,9 +46,9 @@
     /* Ẩn chatbox mặc định */
     .Chatbox {
         display: none;
-        position: fixed;
-        bottom: 0;
-        right: 15px;
+      position: fixed;
+        top: 70px;
+        right: 250px;
         z-index: 9;
         width:300px;
 
@@ -103,7 +110,7 @@
         opacity: 1;
     }
     .fa-comment-dots{
-       font-size:40px;
+       font-size:20px;
     }
     #contentMsg li {
         list-style-type: none;
@@ -122,9 +129,20 @@
         font-weight: bolder;
         color:#ff7f24;
     }
+    .fa-bell{
+        font-size:20px;
+        color:yellow;
+    }
+    .boxDivBell strong{
+        text-align:left;
+        font-size:14px;
+    }
+    .boxDivBell a{
+        text-decoration: none;
+    }
 </style>
 
-<button class="nut-mo-chatbox" onclick="moForm()"><i class="fas fa-comment-dots"></i></button>
+<button class="nut-mo-chatbox" onclick="moForm()"><i class="far fa-bell"></i></button>
 <div class="Chatbox" id="myForm">
     <form action="" class="form-container" id="containermsg">
         <button type="button" class="btn nut-dong-chatbox" onclick="dongForm()"><i class="fas fa-times"></i></button>
@@ -139,8 +157,11 @@
                 {
                     if (item.CustomerID.Equals(User.Identity.GetUserId()))
                     {   
-                        <div class="boxDiv">
-                            <li><a href="@item.Link"><strong>@Html.Raw(Html.Encode(@item.Description).Replace("\n", "<br />"))</strong></a></li>
+                        <div class="boxDivBell">
+                            <li>
+                            <a href="@item.Link"><strong>@Html.Raw(Html.Encode(@item.Description).Replace("\n", "<br />----------------------------------------<br/>"))</strong>
+                                </a>
+                            </li>
                             <p>@item.PublishDay</p>
                         </div>
                         

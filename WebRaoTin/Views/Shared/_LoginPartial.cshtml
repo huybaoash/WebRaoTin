@@ -5,7 +5,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right" style="margin-top: 10px;margin-right:50px;margin-bottom:14px">
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 15px;margin-right:50px;margin-bottom:14px">
             <li>
                 <a style="color:#2a2626 ;font-size:16px" class="fas fa-user-circle" href="@Url.Action("Details", "Users",new { id=User.Identity.GetUserId() })"> @User.Identity.GetUserName()</a>
             </li>
@@ -15,7 +15,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right" style="margin-top: 10px;margin-right:50px;font-weight:bold;font-size:16px;margin-bottom:14px">
+    <ul class="nav navbar-nav navbar-right" style="margin-top: 15px;margin-right:50px;font-weight:bold;font-size:16px;margin-bottom:14px">
         <li>@Html.ActionLink(" Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class= "fas fa-user-circle" } )</li>
         <li>@Html.ActionLink(" Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "fas fa-user-plus" })</li>
 
