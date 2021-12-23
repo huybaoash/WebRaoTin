@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Thống kê";
+    ViewBag.Title = "Thống kê tháng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 <style>
     .menu-list {
@@ -63,7 +64,22 @@
 </div>
 <hr />
 
-<h1>THỐNG KÊ TIN TỨC</h1>
+
+
+
+
+<h1>THỐNG KÊ TIN TỨC THÁNG @ViewBag.Date.Month / @ViewBag.Date.Year</h1>
+
+@using (Html.BeginForm("ChartMonth", "TinTucs", FormMethod.Post, new { id = "submitMonth" }))
+{
+    @Html.AntiForgeryToken()
+    <input class="form-control text-box single-line" id="dateTime" name="dateTime" type="month" value="">
+    <input id="submit" type="submit" value="Chọn" />
+
+
+}
+
+
 
 <script>
 window.onload = function () {
@@ -143,6 +159,8 @@ window.onload = function () {
 });
     bieudoVL.render();
 }
+
+
 </script>
 <div id="bieudoLoaiTT" style="height: 370px; width: 100%;"></div>
 <div>

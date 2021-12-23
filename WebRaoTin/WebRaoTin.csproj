@@ -458,6 +458,8 @@
     <Content Include="Areas\Admin\Views\TinTucs\Chart.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutOld.cshtml" />
+    <Content Include="Areas\Admin\Views\TinTucs\ChartMonth.cshtml" />
+    <Content Include="Areas\Admin\Views\TinTucs\ChartViewer.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

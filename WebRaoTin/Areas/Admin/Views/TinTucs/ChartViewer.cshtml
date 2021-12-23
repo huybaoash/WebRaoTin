@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Thống kê";
+    ViewBag.Title = "Thống kê lượt xem";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 <style>
     .menu-list {
@@ -63,7 +64,7 @@
 </div>
 <hr />
 
-<h1>THỐNG KÊ TIN TỨC</h1>
+<h1>THỐNG KÊ LƯỢT XEM TIN TỨC</h1>
 
 <script>
 window.onload = function () {
@@ -73,7 +74,7 @@ window.onload = function () {
 	exportEnabled: true,
 	animationEnabled: true,
 	title: {
-		text: "Biểu đồ tỉ lệ số tin tức trong các loại tin tức",
+		text: "Biểu đồ tỉ lệ lượt xem tin tức trong các loại tin tức",
 		fontSize: 21
         },
 	data: [{
@@ -91,7 +92,7 @@ window.onload = function () {
 	theme: "light2", // "light1", "dark1", "dark2"
 	exportEnabled: true,
 	title: {
-        text: "Biểu đồ thống kê số lượng tin tức loại sản phẩm từng danh mục"
+        text: "Biểu đồ thống kê lượt xem tin tức loại sản phẩm từng danh mục"
 
 	},
 	data: [{
@@ -106,7 +107,7 @@ window.onload = function () {
 	theme: "light2", // "light1", "dark1", "dark2"
 	exportEnabled: true,
 	title: {
-		text: "Biểu đồ thống kê số lượng tin tức loại dịch vụ từng danh mục"
+		text: "Biểu đồ thống kê lượt xem tin tức loại dịch vụ từng danh mục"
 	},
 	data: [{
 		type: "column",
@@ -120,7 +121,7 @@ window.onload = function () {
 	theme: "light2", // "light1", "dark1", "dark2"
 	exportEnabled: true,
 	title: {
-		text: "Biểu đồ thống kê số lượng tin tức loại bất động sản từng danh mục"
+		text: "Biểu đồ thống kê lượt xem tin tức loại bất động sản từng danh mục"
 	},
 	data: [{
 		type: "column",
@@ -134,7 +135,7 @@ window.onload = function () {
 	theme: "light2", // "light1", "dark1", "dark2"
 	exportEnabled: true,
 	title: {
-		text: "Biểu đồ thống kê số lượng tin tức loại việc làm từng danh mục"
+		text: "Biểu đồ thống kê lượt xem tin tức loại việc làm từng danh mục"
 	},
 	data: [{
 		type: "column",
@@ -147,11 +148,11 @@ window.onload = function () {
 <div id="bieudoLoaiTT" style="height: 370px; width: 100%;"></div>
 <div>
 
-    <h4><strong>Tin sản phẩm : </strong> @ViewBag.SoLuongTinSP</h4>
-    <h4><strong>Tin dịch vụ : </strong> @ViewBag.SoLuongTinDV</h4>
-    <h4><strong>Tin bất động sản : </strong> @ViewBag.SoLuongTinBDS</h4>
-    <h4><strong>Tin việc làm : </strong> @ViewBag.SoLuongTinVL</h4>
-    <h4><strong>Tổng tin tức : </strong> @ViewBag.SoLuongTinTuc</h4>
+    <h4><strong>Lượt xem tin sản phẩm : </strong> @ViewBag.SoLuongTinSP</h4>
+    <h4><strong>Lượt xem tin dịch vụ : </strong> @ViewBag.SoLuongTinDV</h4>
+    <h4><strong>Lượt xem tin bất động sản : </strong> @ViewBag.SoLuongTinBDS</h4>
+    <h4><strong>Lượt xem tin việc làm : </strong> @ViewBag.SoLuongTinVL</h4>
+    <h4><strong>Tổng lượt xem tin tức : </strong> @ViewBag.SoLuongTinTuc</h4>
     <h4><strong>Nhận xét:</strong></h4>
     <h4>- @ViewBag.ReviewTTMaxTongQuat</h4>
     <h4>- @ViewBag.ReviewTTMinTongQuat</h4>

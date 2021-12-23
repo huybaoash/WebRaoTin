@@ -2232,7 +2232,978 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             return View();
         }
+        public ActionResult ChartMonth(DateTime? dateTime)
+        {
 
+            if (!dateTime.HasValue)
+            {
+                dateTime = DateTime.Now; // set initial page value
+            }
+            ViewBag.Date = dateTime.Value;
+            List<DataPoint> bieudoLoaiTT = new List<DataPoint>();
+            List<DataPoint> bieudoSLLoaiTT = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinSP = new List<DataPoint>();
+            List<DataPoint> bieudoTinSP2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinSP3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinDV = new List<DataPoint>();
+            List<DataPoint> bieudoTinDV2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinDV3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinBDS = new List<DataPoint>();
+            List<DataPoint> bieudoTinBDS2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinBDS3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinVL = new List<DataPoint>();
+            List<DataPoint> bieudoTinVL2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinVL3 = new List<DataPoint>();
+
+            // Biểu đồ tỉ lệ số tin tức trong các loại tin tức
+            float tilephantramSP = (float)db.SanPhams.Include(s => s.LoaiSanPham).Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count / db.TinTucs.Where(p => p.PublishDay.Month == dateTime.Value.Month).ToList().Count;
+            float tilephantramDV = (float)db.DichVus.Include(s => s.LoaiDichVu).Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count / db.TinTucs.Where(p => p.PublishDay.Month == dateTime.Value.Month).ToList().Count;
+            float tilephantramVL = (float)db.ViecLams.Include(s => s.LoaiViecLam).Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count / db.TinTucs.Where(p => p.PublishDay.Month == dateTime.Value.Month).ToList().Count;
+            float tilephantramBDS = (float)db.BatDongSans.Include(s => s.LoaiBatDongSan).Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count / db.TinTucs.Where(p => p.PublishDay.Month == dateTime.Value.Month).ToList().Count;
+
+            double tileSP = (double)Math.Round(tilephantramSP * 100);
+            double tileDV = (double)Math.Round(tilephantramDV * 100);
+            double tileBDS = (double)Math.Round(tilephantramBDS * 100);
+            double tileVL = (double)Math.Round(100 - tileSP - tileDV - tileBDS);
+
+            bieudoLoaiTT.Add(new DataPoint("Sản phẩm", tileSP));
+            bieudoLoaiTT.Add(new DataPoint("Dịch vụ", tileDV));
+            bieudoLoaiTT.Add(new DataPoint("Bất động sản", tileBDS));
+            bieudoLoaiTT.Add(new DataPoint("Việc Làm", tileVL));
+
+
+            ViewBag.bieudoLoaiTT = JsonConvert.SerializeObject(bieudoLoaiTT);
+
+            ViewBag.SoLuongTinTuc = db.TinTucs.Where(p => (p.PublishDay.Month == dateTime.Value.Month)).ToList().Count;
+            ViewBag.SoLuongTinSP = db.SanPhams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count;
+            ViewBag.SoLuongTinDV = db.DichVus.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count;
+            ViewBag.SoLuongTinBDS = db.BatDongSans.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count;
+            ViewBag.SoLuongTinVL = db.ViecLams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count;
+
+            bieudoSLLoaiTT.Add(new DataPoint("Sản phẩm", db.SanPhams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count));
+            bieudoSLLoaiTT.Add(new DataPoint("Dịch vụ", db.DichVus.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count));
+            bieudoSLLoaiTT.Add(new DataPoint("Bất động sản", db.BatDongSans.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count));
+            bieudoSLLoaiTT.Add(new DataPoint("Việc Làm", db.ViecLams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Count));
+
+
+
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại sản phẩm
+
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+
+
+
+                int soluong = db.SanPhams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Count;
+                bieudoTinSP.Add(new DataPoint(item.Name, soluong));
+                bieudoTinSP2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinSP3.Add(new DataPoint(item.Name, soluong));
+
+                if (bieudoTinSP.Count == 0) bieudoTinSP.Add(new DataPoint("Không có", 0));
+
+                if (item == db.LoaiSanPhams.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinSP.Max(s => s.Y.Value);
+                    bieudoTinSP2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    if (bieudoTinSP2 .Count == 0) bieudoTinSP2.Add(new DataPoint("Không có", 0));
+                    double ttmax2 = bieudoTinSP2.Max(y => y.Y.Value);
+                    bieudoTinSP3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinSP3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                    if (bieudoTinSP3.Count == 0) bieudoTinSP3.Add(new DataPoint("Không có", 0));
+                }
+
+            }
+
+            double MostTTSP = bieudoTinSP.Max(s => s.Y.Value);
+            double FewestTTSP = bieudoTinSP.Min(s => s.Y.Value);
+            string MostTTSP_review = "Loại tin tức sản phẩm có số lượng nhiều nhất là: ";
+            string FewestTTSP_review = "Loại tin tức sản phẩm có số lượng ít nhất là: ";
+
+            double MostTTSP2 = bieudoTinSP2.Max(s => s.Y.Value);
+            string MostTTSP2_review = "Loại tin tức sản phẩm có số lượng nhiều thứ 2 là: ";
+
+            double MostTTSP3 = bieudoTinSP3.Max(s => s.Y.Value);
+            string MostTTSP3_review = "Loại tin tức sản phẩm có số lượng nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+
+
+
+                int soluong = db.SanPhams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Count;
+
+                if (soluong == MostTTSP)
+                {
+                    MostTTSP_review = MostTTSP_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTSP2)
+                {
+                    MostTTSP2_review = MostTTSP2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTSP3)
+                {
+                    MostTTSP3_review = MostTTSP3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTSP)
+                {
+                    FewestTTSP_review = FewestTTSP_review + item.Name + ", ";
+                }
+
+
+            }
+
+            MostTTSP_review = MostTTSP_review.Remove(MostTTSP_review.Length - 2);
+            MostTTSP2_review = MostTTSP2_review.Remove(MostTTSP2_review.Length - 2);
+            MostTTSP3_review = MostTTSP3_review.Remove(MostTTSP3_review.Length - 2);
+
+            FewestTTSP_review = FewestTTSP_review.Remove(FewestTTSP_review.Length - 2);
+
+            ViewBag.ReviewLSPMost = MostTTSP_review + " với " + MostTTSP + " tin tức.";
+            ViewBag.ReviewLSP2Most = MostTTSP2_review + " với " + MostTTSP2 + " tin tức.";
+            ViewBag.ReviewLSP3Most = MostTTSP3_review + " với " + MostTTSP3 + " tin tức.";
+
+            ViewBag.ReviewLSPFewest = FewestTTSP_review + " với " + FewestTTSP + " tin tức.";
+
+            ViewBag.bieudoTTLoaiSP = JsonConvert.SerializeObject(bieudoTinSP);
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại dịch vụ
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+
+
+
+
+
+
+
+                int soluong = db.DichVus.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Count;
+                bieudoTinDV.Add(new DataPoint(item.Name, soluong));
+                bieudoTinDV2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinDV3.Add(new DataPoint(item.Name, soluong));
+
+                if (bieudoTinDV.Count == 0) bieudoTinDV.Add(new DataPoint("Không có", 0));
+
+                if (item == db.LoaiDichVus.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinDV.Max(s => s.Y.Value);
+                    bieudoTinDV2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    if (bieudoTinDV2.Count == 0) bieudoTinDV2.Add(new DataPoint("Không có", 0));
+
+                    double ttmax2 = bieudoTinDV2.Max(y => y.Y.Value);
+                    bieudoTinDV3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinDV3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+                    if (bieudoTinDV3.Count == 0) bieudoTinDV3.Add(new DataPoint("Không có", 0));
+                }
+
+            }
+
+            double MostTTDV = bieudoTinDV.Max(s => s.Y.Value);
+            double FewestTTDV = bieudoTinDV.Min(s => s.Y.Value);
+            string MostTTDV_review = "Loại tin tức dịch vụ có số lượng nhiều nhất là: ";
+            string FewestTTDV_review = "Loại tin tức dịch vụ có số lượng ít nhất là: ";
+
+            double MostTTDV2 = bieudoTinDV2.Max(s => s.Y.Value);
+            string MostTTDV2_review = "Loại tin tức dịch vụ có số lượng nhiều thứ 2 là: ";
+
+            double MostTTDV3 = bieudoTinDV3.Max(s => s.Y.Value);
+            string MostTTDV3_review = "Loại tin tức dịch vụ có số lượng nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+
+
+                int soluong = db.DichVus.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Count;
+
+                if (soluong == MostTTDV)
+                {
+                    MostTTDV_review = MostTTDV_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTDV2)
+                {
+                    MostTTDV2_review = MostTTDV2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTDV3)
+                {
+                    MostTTDV3_review = MostTTDV3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTDV)
+                {
+                    FewestTTDV_review = FewestTTDV_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            MostTTDV_review = MostTTDV_review.Remove(MostTTDV_review.Length - 2);
+            MostTTDV2_review = MostTTDV2_review.Remove(MostTTDV2_review.Length - 2);
+            MostTTDV3_review = MostTTDV3_review.Remove(MostTTDV3_review.Length - 2);
+
+            FewestTTDV_review = FewestTTDV_review.Remove(FewestTTDV_review.Length - 2);
+
+            ViewBag.ReviewLDVMost = MostTTDV_review + " với " + MostTTDV + " tin tức.";
+            ViewBag.ReviewLDV2Most = MostTTDV2_review + " với " + MostTTDV2 + " tin tức.";
+            ViewBag.ReviewLDV3Most = MostTTDV3_review + " với " + MostTTDV3 + " tin tức.";
+
+            ViewBag.ReviewLDVFewest = FewestTTDV_review + " với " + FewestTTDV + " tin tức.";
+
+
+            ViewBag.bieudoTTLoaiDV = JsonConvert.SerializeObject(bieudoTinDV);
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại bất động sản
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+
+                int soluong = db.BatDongSans.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Count;
+                bieudoTinBDS.Add(new DataPoint(item.Name, soluong));
+                bieudoTinBDS2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinBDS3.Add(new DataPoint(item.Name, soluong));
+
+                if (bieudoTinBDS.Count == 0) bieudoTinBDS.Add(new DataPoint("Không có", 0));
+
+                if (item == db.LoaiBatDongSans.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinBDS.Max(s => s.Y.Value);
+                    bieudoTinBDS2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    if (bieudoTinBDS2.Count == 0) bieudoTinBDS2.Add(new DataPoint("Không có", 0));
+                    double ttmax2 = bieudoTinBDS2.Max(y => y.Y.Value);
+                    bieudoTinBDS3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinBDS3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                    if (bieudoTinBDS3.Count == 0) bieudoTinBDS3.Add(new DataPoint("Không có", 0));
+                }
+            }
+
+            double MostTTBDS = bieudoTinBDS.Max(s => s.Y.Value);
+            double FewestTTBDS = bieudoTinBDS.Min(s => s.Y.Value);
+            string MostTTBDS_review = "Loại tin tức bất động sản có số lượng nhiều nhất là: ";
+            string FewestTTBDS_review = "Loại tin tức bất động sản có số lượng ít nhất là: ";
+
+            double MostTTBDS2 = bieudoTinBDS2.Max(s => s.Y.Value);
+            string MostTTBDS2_review = "Loại tin tức bất động sản có số lượng nhiều thứ 2 là: ";
+
+            double MostTTBDS3 = bieudoTinBDS3.Max(s => s.Y.Value);
+            string MostTTBDS3_review = "Loại tin tức bất động sản có số lượng nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+
+
+                int soluong = db.BatDongSans.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Count;
+
+                if (soluong == MostTTBDS)
+                {
+                    MostTTBDS_review = MostTTBDS_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTBDS2)
+                {
+                    MostTTBDS2_review = MostTTBDS2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTBDS3)
+                {
+                    MostTTBDS3_review = MostTTBDS3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTBDS)
+                {
+                    FewestTTBDS_review = FewestTTBDS_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            MostTTBDS_review = MostTTBDS_review.Remove(MostTTBDS_review.Length - 2);
+            MostTTBDS2_review = MostTTBDS2_review.Remove(MostTTBDS2_review.Length - 2);
+            MostTTBDS3_review = MostTTBDS3_review.Remove(MostTTBDS3_review.Length - 2);
+
+            FewestTTBDS_review = FewestTTBDS_review.Remove(FewestTTBDS_review.Length - 2);
+
+            ViewBag.ReviewLBDSMost = MostTTBDS_review + " với " + MostTTBDS + " tin tức.";
+            ViewBag.ReviewLBDS2Most = MostTTBDS2_review + " với " + MostTTBDS2 + " tin tức.";
+            ViewBag.ReviewLBDS3Most = MostTTBDS3_review + " với " + MostTTBDS3 + " tin tức.";
+
+            ViewBag.ReviewLBDSFewest = FewestTTBDS_review + " với " + FewestTTBDS + " tin tức.";
+
+            ViewBag.bieudoTTLoaiBDS = JsonConvert.SerializeObject(bieudoTinBDS);
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại việc làm
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+
+
+                int soluong = db.ViecLams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Count;
+                bieudoTinVL.Add(new DataPoint(item.Name, soluong));
+                bieudoTinVL2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinVL3.Add(new DataPoint(item.Name, soluong));
+
+                if (bieudoTinVL.Count == 0) bieudoTinVL.Add(new DataPoint("Không có", 0));
+
+                if (item == db.LoaiViecLams.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinVL.Max(s => s.Y.Value);
+                    bieudoTinVL2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    if (bieudoTinVL2.Count == 0) bieudoTinVL2.Add(new DataPoint("Không có", 0));
+                    double ttmax2 = bieudoTinVL2.Max(y => y.Y.Value);
+                    bieudoTinVL3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinVL3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+                    if (bieudoTinVL3.Count == 0) bieudoTinVL3.Add(new DataPoint("Không có", 0));
+                }
+
+            }
+
+
+            double MostTTVL = bieudoTinVL.Max(s => s.Y.Value);
+            double FewestTTVL = bieudoTinVL.Min(s => s.Y.Value);
+            string MostTTVL_review = "Loại tin tức việc làm có số lượng nhiều nhất là: ";
+            string FewestTTVL_review = "Loại tin tức việc làm có số lượng ít nhất là: ";
+
+            double MostTTVL2 = bieudoTinVL2.Max(s => s.Y.Value);
+            string MostTTVL2_review = "Loại tin tức việc làm có số lượng nhiều thứ 2 là: ";
+
+            double MostTTVL3 = bieudoTinVL3.Max(s => s.Y.Value);
+            string MostTTVL3_review = "Loại tin tức việc làm có số lượng nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+
+
+                int soluong = db.ViecLams.Include(s => s.TinTuc).Where(p => (p.TinTuc.PublishDay.Month == dateTime.Value.Month)).ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Count;
+
+                if (soluong == MostTTVL)
+                {
+                    MostTTVL_review = MostTTVL_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTVL2)
+                {
+                    MostTTVL2_review = MostTTVL2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTVL3)
+                {
+                    MostTTVL3_review = MostTTVL3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTVL)
+                {
+                    FewestTTVL_review = FewestTTVL_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+            MostTTVL_review = MostTTVL_review.Remove(MostTTVL_review.Length - 2);
+            MostTTVL2_review = MostTTVL2_review.Remove(MostTTVL2_review.Length - 2);
+            MostTTVL3_review = MostTTVL3_review.Remove(MostTTVL3_review.Length - 2);
+
+            FewestTTVL_review = FewestTTVL_review.Remove(FewestTTVL_review.Length - 2);
+
+            ViewBag.ReviewLVLMost = MostTTVL_review + " với " + MostTTVL + " tin tức.";
+            ViewBag.ReviewLVL2Most = MostTTVL2_review + " với " + MostTTVL2 + " tin tức.";
+            ViewBag.ReviewLVL3Most = MostTTVL3_review + " với " + MostTTVL3 + " tin tức.";
+
+            ViewBag.ReviewLVLFewest = FewestTTVL_review + " với " + FewestTTVL + " tin tức.";
+
+            ViewBag.bieudoTTLoaiVL = JsonConvert.SerializeObject(bieudoTinVL);
+            //Tổng quát 
+
+            //Tin tức nhiều tin nhất
+            double maxTT = (double)bieudoSLLoaiTT.Max(y => y.Y);
+            int demmaxTT = 0;
+            List<DataPoint> dsmaxTT = new List<DataPoint>();
+            List<DataPoint> dsmaxTile = new List<DataPoint>();
+            string tenTTMax = "";
+            for (int i = 0; i < bieudoSLLoaiTT.Count; i++)
+            {
+                if (bieudoSLLoaiTT[i].Y.Value == maxTT)
+                {
+                    demmaxTT++;
+                    dsmaxTT.Add(bieudoSLLoaiTT[i]);
+                    dsmaxTile.Add(bieudoLoaiTT[i]);
+                    if (demmaxTT == 1) tenTTMax = tenTTMax + bieudoLoaiTT[i].Label;
+                    else tenTTMax = tenTTMax + " và " + bieudoLoaiTT[i].Label;
+                }
+
+            }
+
+            for (int i = 0; i < dsmaxTT.Count; i++)
+            {
+                if (demmaxTT <= 1)
+                {
+                    string danhgiaMaxTT = "Tin tức " + dsmaxTT[i].Label.ToLower() + " chiếm tỉ lệ cao nhất " + dsmaxTile[i].Y + "% tổng số tin tức với số lượng là : " + dsmaxTT[i].Y + " tin tức.";
+                    ViewBag.ReviewTTMaxTongQuat = danhgiaMaxTT;
+                }
+                else
+                {
+                    string danhgiaMaxTT = "Tin tức " + tenTTMax.ToLower() + " chiếm tỉ lệ cao nhất " + dsmaxTile[i].Y + "% so với tổng số tin tức với số lượng là : " + dsmaxTT[i].Y + " tin tức.";
+                    ViewBag.ReviewTTMaxTongQuat = danhgiaMaxTT;
+                    break;
+                }
+            }
+
+            //Tin tức ít tin nhất
+
+            double minTT = (double)bieudoSLLoaiTT.Min(y => y.Y);
+            int demminTT = 0;
+            List<DataPoint> dsminTT = new List<DataPoint>();
+            List<DataPoint> dsminTile = new List<DataPoint>();
+            string tenTTMin = "";
+            for (int i = 0; i < bieudoSLLoaiTT.Count; i++)
+            {
+                if (bieudoSLLoaiTT[i].Y.Value == minTT)
+                {
+                    demminTT++;
+                    dsminTT.Add(bieudoSLLoaiTT[i]);
+                    dsminTile.Add(bieudoLoaiTT[i]);
+                    if (demminTT == 1) tenTTMin = tenTTMin + bieudoLoaiTT[i].Label;
+                    else tenTTMin = tenTTMin + " và " + bieudoLoaiTT[i].Label;
+                }
+
+            }
+
+            for (int i = 0; i < dsminTT.Count; i++)
+            {
+                if (demminTT <= 1)
+                {
+                    string danhgiaMinTT = "Tin tức " + dsminTT[i].Label.ToLower() + " chiếm tỉ lệ thấp nhất " + dsminTile[i].Y + "% tổng số tin tức với số lượng là : " + dsminTT[i].Y + " tin tức.";
+                    ViewBag.ReviewTTMinTongQuat = danhgiaMinTT;
+                }
+                else
+                {
+                    string danhgiaMinTT = "Tin tức " + tenTTMin.ToLower() + " chiếm tỉ lệ thấp nhất " + dsminTile[i].Y + "% so với tổng số tin tức với số lượng là : " + dsminTT[i].Y + " tin tức.";
+                    ViewBag.ReviewTTMinTongQuat = danhgiaMinTT;
+                    break;
+                }
+            }
+
+
+            // Review tỉ lệ phân bố tin tức
+            double khoangcach = (double)bieudoLoaiTT.Max(y => y.Y) - (double)bieudoLoaiTT.Min(y => y.Y);
+            if (khoangcach >= 10)
+            {
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức không đồng đều do tỉ lệ cách biệt giữa tin " + tenTTMax.ToLower() + " với tin " + tenTTMin.ToLower() + " là: " + khoangcach + "%";
+                ViewBag.ReviewKhoangCach = ReviewTilePB;
+            }
+            else
+            {
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
+                ViewBag.ReviewKhoangCach = ReviewTilePB;
+            }
+            return View();
+        }
+        public ActionResult ChartViewer()
+        {
+            List<DataPoint> bieudoLoaiTT = new List<DataPoint>();
+            List<DataPoint> bieudoSLLoaiTT = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinSP = new List<DataPoint>();
+            List<DataPoint> bieudoTinSP2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinSP3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinDV = new List<DataPoint>();
+            List<DataPoint> bieudoTinDV2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinDV3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinBDS = new List<DataPoint>();
+            List<DataPoint> bieudoTinBDS2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinBDS3 = new List<DataPoint>();
+
+            List<DataPoint> bieudoTinVL = new List<DataPoint>();
+            List<DataPoint> bieudoTinVL2 = new List<DataPoint>();
+            List<DataPoint> bieudoTinVL3 = new List<DataPoint>();
+
+            // Biểu đồ tỉ lệ số tin tức trong các loại tin tức
+            float tilephantramSP = (float)db.SanPhams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem) / db.TinTucs.ToList().Sum(s => s.LuotXem);
+            float tilephantramDV = (float)db.DichVus.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem) / db.TinTucs.ToList().Sum(s => s.LuotXem);
+            float tilephantramVL = (float)db.ViecLams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem) / db.TinTucs.ToList().Sum(s => s.LuotXem);
+            float tilephantramBDS = (float)db.BatDongSans.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem) / db.TinTucs.ToList().Sum(s => s.LuotXem);
+
+            double tileSP = (double)Math.Round(tilephantramSP * 100);
+            double tileDV = (double)Math.Round(tilephantramDV * 100);
+            double tileBDS = (double)Math.Round(tilephantramBDS * 100);
+            double tileVL = (double)Math.Round(100 - tileSP - tileDV - tileBDS);
+
+            bieudoLoaiTT.Add(new DataPoint("Sản phẩm", tileSP));
+            bieudoLoaiTT.Add(new DataPoint("Dịch vụ", tileDV));
+            bieudoLoaiTT.Add(new DataPoint("Bất động sản", tileBDS));
+            bieudoLoaiTT.Add(new DataPoint("Việc Làm", tileVL));
+
+
+            ViewBag.bieudoLoaiTT = JsonConvert.SerializeObject(bieudoLoaiTT);
+
+            ViewBag.SoLuongTinTuc = db.TinTucs.ToList().Sum(s => s.LuotXem);
+            ViewBag.SoLuongTinSP = db.SanPhams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem);
+            ViewBag.SoLuongTinDV = db.DichVus.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem);
+            ViewBag.SoLuongTinBDS = db.BatDongSans.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem);
+            ViewBag.SoLuongTinVL = db.ViecLams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem);
+
+            bieudoSLLoaiTT.Add(new DataPoint("Sản phẩm", db.SanPhams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem)));
+            bieudoSLLoaiTT.Add(new DataPoint("Dịch vụ", db.DichVus.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem)));
+            bieudoSLLoaiTT.Add(new DataPoint("Bất động sản", db.BatDongSans.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem)));
+            bieudoSLLoaiTT.Add(new DataPoint("Việc Làm", db.ViecLams.Include(s => s.TinTuc).ToList().Sum(s => s.TinTuc.LuotXem)));
+
+
+
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại sản phẩm
+
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+
+
+
+                int soluong = db.SanPhams.Include(s => s.TinTuc).ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+                bieudoTinSP.Add(new DataPoint(item.Name, soluong));
+                bieudoTinSP2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinSP3.Add(new DataPoint(item.Name, soluong));
+
+
+
+                if (item == db.LoaiSanPhams.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinSP.Max(s => s.Y.Value);
+                    bieudoTinSP2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    double ttmax2 = bieudoTinSP2.Max(y => y.Y.Value);
+                    bieudoTinSP3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinSP3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                }
+
+            }
+
+            double MostTTSP = bieudoTinSP.Max(s => s.Y.Value);
+            double FewestTTSP = bieudoTinSP.Min(s => s.Y.Value);
+            string MostTTSP_review = "Loại tin tức sản phẩm có số lượt xem nhiều nhất là: ";
+            string FewestTTSP_review = "Loại tin tức sản phẩm có số lượng ít nhất là: ";
+
+            double MostTTSP2 = bieudoTinSP2.Max(s => s.Y.Value);
+            string MostTTSP2_review = "Loại tin tức sản phẩm có số lượt xem nhiều thứ 2 là: ";
+
+            double MostTTSP3 = bieudoTinSP3.Max(s => s.Y.Value);
+            string MostTTSP3_review = "Loại tin tức sản phẩm có số lượt xem nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiSanPhams.ToList())
+            {
+
+
+
+                int soluong = db.SanPhams.Include(s => s.TinTuc).ToList().Where(s => s.LoaiSanPhamId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+
+                if (soluong == MostTTSP)
+                {
+                    MostTTSP_review = MostTTSP_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTSP2)
+                {
+                    MostTTSP2_review = MostTTSP2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTSP3)
+                {
+                    MostTTSP3_review = MostTTSP3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTSP)
+                {
+                    FewestTTSP_review = FewestTTSP_review + item.Name + ", ";
+                }
+
+
+            }
+
+            MostTTSP_review = MostTTSP_review.Remove(MostTTSP_review.Length - 2);
+            MostTTSP2_review = MostTTSP2_review.Remove(MostTTSP2_review.Length - 2);
+            MostTTSP3_review = MostTTSP3_review.Remove(MostTTSP3_review.Length - 2);
+
+            FewestTTSP_review = FewestTTSP_review.Remove(FewestTTSP_review.Length - 2);
+
+            ViewBag.ReviewLSPMost = MostTTSP_review + " với " + MostTTSP + " lượt xem.";
+            ViewBag.ReviewLSP2Most = MostTTSP2_review + " với " + MostTTSP2 + " lượt xem.";
+            ViewBag.ReviewLSP3Most = MostTTSP3_review + " với " + MostTTSP3 + " lượt xem.";
+
+            ViewBag.ReviewLSPFewest = FewestTTSP_review + " với " + FewestTTSP + " lượt xem.";
+
+            ViewBag.bieudoTTLoaiSP = JsonConvert.SerializeObject(bieudoTinSP);
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại dịch vụ
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+
+
+
+
+
+
+
+                int soluong = db.DichVus.Include(s => s.TinTuc).ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+                bieudoTinDV.Add(new DataPoint(item.Name, soluong));
+                bieudoTinDV2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinDV3.Add(new DataPoint(item.Name, soluong));
+
+
+
+                if (item == db.LoaiDichVus.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinDV.Max(s => s.Y.Value);
+                    bieudoTinDV2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    double ttmax2 = bieudoTinDV2.Max(y => y.Y.Value);
+                    bieudoTinDV3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinDV3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                }
+
+            }
+
+            double MostTTDV = bieudoTinDV.Max(s => s.Y.Value);
+            double FewestTTDV = bieudoTinDV.Min(s => s.Y.Value);
+            string MostTTDV_review = "Loại tin tức dịch vụ có số lượt xem nhiều nhất là: ";
+            string FewestTTDV_review = "Loại tin tức dịch vụ có số lượng ít nhất là: ";
+
+            double MostTTDV2 = bieudoTinDV2.Max(s => s.Y.Value);
+            string MostTTDV2_review = "Loại tin tức dịch vụ có số lượt xem nhiều thứ 2 là: ";
+
+            double MostTTDV3 = bieudoTinDV3.Max(s => s.Y.Value);
+            string MostTTDV3_review = "Loại tin tức dịch vụ có số lượt xem nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiDichVus.ToList())
+            {
+
+
+
+                int soluong = db.DichVus.Include(s => s.TinTuc).ToList().Where(s => s.LoaiDichVuId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+
+                if (soluong == MostTTDV)
+                {
+                    MostTTDV_review = MostTTDV_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTDV2)
+                {
+                    MostTTDV2_review = MostTTDV2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTDV3)
+                {
+                    MostTTDV3_review = MostTTDV3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTDV)
+                {
+                    FewestTTDV_review = FewestTTDV_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            MostTTDV_review = MostTTDV_review.Remove(MostTTDV_review.Length - 2);
+            MostTTDV2_review = MostTTDV2_review.Remove(MostTTDV2_review.Length - 2);
+            MostTTDV3_review = MostTTDV3_review.Remove(MostTTDV3_review.Length - 2);
+
+            FewestTTDV_review = FewestTTDV_review.Remove(FewestTTDV_review.Length - 2);
+
+            ViewBag.ReviewLDVMost = MostTTDV_review + " với " + MostTTDV + " lượt xem.";
+            ViewBag.ReviewLDV2Most = MostTTDV2_review + " với " + MostTTDV2 + " lượt xem.";
+            ViewBag.ReviewLDV3Most = MostTTDV3_review + " với " + MostTTDV3 + " lượt xem.";
+
+            ViewBag.ReviewLDVFewest = FewestTTDV_review + " với " + FewestTTDV + " lượt xem.";
+
+
+            ViewBag.bieudoTTLoaiDV = JsonConvert.SerializeObject(bieudoTinDV);
+
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại bất động sản
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+
+                int soluong = db.BatDongSans.Include(s => s.TinTuc).ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+                bieudoTinBDS.Add(new DataPoint(item.Name, soluong));
+                bieudoTinBDS2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinBDS3.Add(new DataPoint(item.Name, soluong));
+
+
+
+                if (item == db.LoaiBatDongSans.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinBDS.Max(s => s.Y.Value);
+                    bieudoTinBDS2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    double ttmax2 = bieudoTinBDS2.Max(y => y.Y.Value);
+                    bieudoTinBDS3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinBDS3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                }
+            }
+
+            double MostTTBDS = bieudoTinBDS.Max(s => s.Y.Value);
+            double FewestTTBDS = bieudoTinBDS.Min(s => s.Y.Value);
+            string MostTTBDS_review = "Loại tin tức bất động sản có số lượt xem nhiều nhất là: ";
+            string FewestTTBDS_review = "Loại tin tức bất động sản có số lượt xem ít nhất là: ";
+
+            double MostTTBDS2 = bieudoTinBDS2.Max(s => s.Y.Value);
+            string MostTTBDS2_review = "Loại tin tức bất động sản có số lượt xem nhiều thứ 2 là: ";
+
+            double MostTTBDS3 = bieudoTinBDS3.Max(s => s.Y.Value);
+            string MostTTBDS3_review = "Loại tin tức bất động sản có số lượt xem nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiBatDongSans.ToList())
+            {
+
+
+
+                int soluong = db.BatDongSans.Include(s => s.TinTuc).ToList().Where(s => s.LoaiBatDongSanId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+
+                if (soluong == MostTTBDS)
+                {
+                    MostTTBDS_review = MostTTBDS_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTBDS2)
+                {
+                    MostTTBDS2_review = MostTTBDS2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTBDS3)
+                {
+                    MostTTBDS3_review = MostTTBDS3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTBDS)
+                {
+                    FewestTTBDS_review = FewestTTBDS_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+
+
+            MostTTBDS_review = MostTTBDS_review.Remove(MostTTBDS_review.Length - 2);
+            MostTTBDS2_review = MostTTBDS2_review.Remove(MostTTBDS2_review.Length - 2);
+            MostTTBDS3_review = MostTTBDS3_review.Remove(MostTTBDS3_review.Length - 2);
+
+            FewestTTBDS_review = FewestTTBDS_review.Remove(FewestTTBDS_review.Length - 2);
+
+            ViewBag.ReviewLBDSMost = MostTTBDS_review + " với " + MostTTBDS + " lượt xem.";
+            ViewBag.ReviewLBDS2Most = MostTTBDS2_review + " với " + MostTTBDS2 + " lượt xem.";
+            ViewBag.ReviewLBDS3Most = MostTTBDS3_review + " với " + MostTTBDS3 + " lượt xem.";
+
+            ViewBag.ReviewLBDSFewest = FewestTTBDS_review + " với " + FewestTTBDS + " lượt xem.";
+
+            ViewBag.bieudoTTLoaiBDS = JsonConvert.SerializeObject(bieudoTinBDS);
+            // Biểu độ tỉ lệ loại danh mục trong tin tức loại việc làm
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+
+
+                int soluong = db.ViecLams.Include(s => s.TinTuc).ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+                bieudoTinVL.Add(new DataPoint(item.Name, soluong));
+                bieudoTinVL2.Add(new DataPoint(item.Name, soluong));
+                bieudoTinVL3.Add(new DataPoint(item.Name, soluong));
+
+
+
+                if (item == db.LoaiViecLams.ToList().Last())
+                {
+
+                    double ttmax1 = bieudoTinVL.Max(s => s.Y.Value);
+                    bieudoTinVL2.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+
+                    double ttmax2 = bieudoTinVL2.Max(y => y.Y.Value);
+                    bieudoTinVL3.RemoveAll(p => p.Y.Value.Equals(ttmax1));
+                    bieudoTinVL3.RemoveAll(p => p.Y.Value.Equals(ttmax2));
+
+                }
+
+            }
+
+
+            double MostTTVL = bieudoTinVL.Max(s => s.Y.Value);
+            double FewestTTVL = bieudoTinVL.Min(s => s.Y.Value);
+            string MostTTVL_review = "Loại tin tức việc làm có số lượt xem nhiều nhất là: ";
+            string FewestTTVL_review = "Loại tin tức việc làm có số lượt xem ít nhất là: ";
+
+            double MostTTVL2 = bieudoTinVL2.Max(s => s.Y.Value);
+            string MostTTVL2_review = "Loại tin tức việc làm có số lượt xem nhiều thứ 2 là: ";
+
+            double MostTTVL3 = bieudoTinVL3.Max(s => s.Y.Value);
+            string MostTTVL3_review = "Loại tin tức việc làm có số lượt xem nhiều thứ 3 là: ";
+
+            foreach (var item in db.LoaiViecLams.ToList())
+            {
+
+
+
+                int soluong = db.ViecLams.Include(s => s.TinTuc).ToList().Where(s => s.LoaiViecLamId == item.Id).ToList().Sum(p => p.TinTuc.LuotXem);
+
+                if (soluong == MostTTVL)
+                {
+                    MostTTVL_review = MostTTVL_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTVL2)
+                {
+                    MostTTVL2_review = MostTTVL2_review + item.Name + ", ";
+                }
+
+                if (soluong == MostTTVL3)
+                {
+                    MostTTVL3_review = MostTTVL3_review + item.Name + ", ";
+                }
+
+                if (soluong == FewestTTVL)
+                {
+                    FewestTTVL_review = FewestTTVL_review + item.Name + ", ";
+                }
+
+
+            }
+
+
+            MostTTVL_review = MostTTVL_review.Remove(MostTTVL_review.Length - 2);
+            MostTTVL2_review = MostTTVL2_review.Remove(MostTTVL2_review.Length - 2);
+            MostTTVL3_review = MostTTVL3_review.Remove(MostTTVL3_review.Length - 2);
+
+            FewestTTVL_review = FewestTTVL_review.Remove(FewestTTVL_review.Length - 2);
+
+            ViewBag.ReviewLVLMost = MostTTVL_review + " với " + MostTTVL + " lượt xem.";
+            ViewBag.ReviewLVL2Most = MostTTVL2_review + " với " + MostTTVL2 + " lượt xem.";
+            ViewBag.ReviewLVL3Most = MostTTVL3_review + " với " + MostTTVL3 + " lượt xem.";
+
+            ViewBag.ReviewLVLFewest = FewestTTVL_review + " với " + FewestTTVL + " lượt xem.";
+
+            ViewBag.bieudoTTLoaiVL = JsonConvert.SerializeObject(bieudoTinVL);
+            //Tổng quát 
+
+            //Tin tức nhiều tin nhất
+            double maxTT = (double)bieudoSLLoaiTT.Max(y => y.Y);
+            int demmaxTT = 0;
+            List<DataPoint> dsmaxTT = new List<DataPoint>();
+            List<DataPoint> dsmaxTile = new List<DataPoint>();
+            string tenTTMax = "";
+            for (int i = 0; i < bieudoSLLoaiTT.Count; i++)
+            {
+                if (bieudoSLLoaiTT[i].Y.Value == maxTT)
+                {
+                    demmaxTT++;
+                    dsmaxTT.Add(bieudoSLLoaiTT[i]);
+                    dsmaxTile.Add(bieudoLoaiTT[i]);
+                    if (demmaxTT == 1) tenTTMax = tenTTMax + bieudoLoaiTT[i].Label;
+                    else tenTTMax = tenTTMax + " và " + bieudoLoaiTT[i].Label;
+                }
+
+            }
+
+            for (int i = 0; i < dsmaxTT.Count; i++)
+            {
+                if (demmaxTT <= 1)
+                {
+                    string danhgiaMaxTT = "Tin tức " + dsmaxTT[i].Label.ToLower() + " chiếm tỉ lệ cao nhất " + dsmaxTile[i].Y + "% tổng số tin tức với số lượt xem là : " + dsmaxTT[i].Y + " lượt xem.";
+                    ViewBag.ReviewTTMaxTongQuat = danhgiaMaxTT;
+                }
+                else
+                {
+                    string danhgiaMaxTT = "Tin tức " + tenTTMax.ToLower() + " chiếm tỉ lệ cao nhất " + dsmaxTile[i].Y + "% so với tổng số tin tức với số lượt xem là : " + dsmaxTT[i].Y + " lượt xem.";
+                    ViewBag.ReviewTTMaxTongQuat = danhgiaMaxTT;
+                    break;
+                }
+            }
+
+            //Tin tức ít tin nhất
+
+            double minTT = (double)bieudoSLLoaiTT.Min(y => y.Y);
+            int demminTT = 0;
+            List<DataPoint> dsminTT = new List<DataPoint>();
+            List<DataPoint> dsminTile = new List<DataPoint>();
+            string tenTTMin = "";
+            for (int i = 0; i < bieudoSLLoaiTT.Count; i++)
+            {
+                if (bieudoSLLoaiTT[i].Y.Value == minTT)
+                {
+                    demminTT++;
+                    dsminTT.Add(bieudoSLLoaiTT[i]);
+                    dsminTile.Add(bieudoLoaiTT[i]);
+                    if (demminTT == 1) tenTTMin = tenTTMin + bieudoLoaiTT[i].Label;
+                    else tenTTMin = tenTTMin + " và " + bieudoLoaiTT[i].Label;
+                }
+
+            }
+
+            for (int i = 0; i < dsminTT.Count; i++)
+            {
+                if (demminTT <= 1)
+                {
+                    string danhgiaMinTT = "Tin tức " + dsminTT[i].Label.ToLower() + " chiếm tỉ lệ thấp nhất " + dsminTile[i].Y + "% tổng số tin tức với số lượt xem là : " + dsminTT[i].Y + " lượt xem.";
+                    ViewBag.ReviewTTMinTongQuat = danhgiaMinTT;
+                }
+                else
+                {
+                    string danhgiaMinTT = "Tin tức " + tenTTMin.ToLower() + " chiếm tỉ lệ thấp nhất " + dsminTile[i].Y + "% so với tổng số tin tức với số lượt xem là : " + dsminTT[i].Y + " lượt xem.";
+                    ViewBag.ReviewTTMinTongQuat = danhgiaMinTT;
+                    break;
+                }
+            }
+
+
+            // Review tỉ lệ phân bố tin tức
+            double khoangcach = (double)bieudoLoaiTT.Max(y => y.Y) - (double)bieudoLoaiTT.Min(y => y.Y);
+            if (khoangcach >= 10)
+            {
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức không đồng đều do tỉ lệ cách biệt giữa tin " + tenTTMax.ToLower() + " với tin " + tenTTMin.ToLower() + " là: " + khoangcach + "%";
+                ViewBag.ReviewKhoangCach = ReviewTilePB;
+            }
+            else
+            {
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
+                ViewBag.ReviewKhoangCach = ReviewTilePB;
+            }
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
