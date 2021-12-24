@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Thống kê tháng";
+    ViewBag.Title = "Thống kê tháng " + ViewBag.Date.Month + "/" + ViewBag.Date.Year;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -73,10 +73,10 @@
 @using (Html.BeginForm("ChartMonth", "TinTucs", FormMethod.Post, new { id = "submitMonth" }))
 {
     @Html.AntiForgeryToken()
-    <input class="form-control text-box single-line" id="dateTime" name="dateTime" type="month" value="">
+    <input class="form-control text-box single-line" id="dateTime" name="dateTime" type="month" value="@DateTime.Now">
     <input id="submit" type="submit" value="Chọn" />
 
-
+    
 }
 
 

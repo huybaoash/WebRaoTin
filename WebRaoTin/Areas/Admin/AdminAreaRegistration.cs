@@ -91,6 +91,22 @@ namespace WebRaoTin.Areas.Admin
             );
 
             context.MapRoute(
+                name: "Thong ke tin tuc theo thang Admin",
+                url: "thong-ke-thang-admin",
+                defaults: new { controller = "TinTucs", action = "ChartMonth", dateTime = UrlParameter.Optional },
+                new[] { "WebRaoTin.Areas.Admin.Controllers"
+                }
+            );
+
+            context.MapRoute(
+                name: "Thong ke tin tuc theo luot xem Admin",
+                url: "thong-ke-luot-xem-admin",
+                defaults: new { controller = "TinTucs", action = "ChartViewer", id = UrlParameter.Optional },
+                new[] { "WebRaoTin.Areas.Admin.Controllers"
+                }
+            );
+
+            context.MapRoute(
                 name: "Chi tiet CV Admin",
                 url: "{id}-chi-tiet-cv-admin",
                 defaults: new { controller = "PhieuXetUngTuyens", action = "Details", id = UrlParameter.Optional },

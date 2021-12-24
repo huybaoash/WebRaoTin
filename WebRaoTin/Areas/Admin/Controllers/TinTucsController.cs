@@ -2227,7 +2227,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             else
             {
-                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đồng đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
                 ViewBag.ReviewKhoangCach = ReviewTilePB;
             }
             return View();
@@ -2719,7 +2719,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             else
             {
-                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đồng đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
                 ViewBag.ReviewKhoangCach = ReviewTilePB;
             }
             return View();
@@ -3199,7 +3199,7 @@ namespace WebRaoTin.Areas.Admin.Controllers
             }
             else
             {
-                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
+                string ReviewTilePB = "Tỉ lệ phân bố giữa các loại tin tức đồng đều do tỉ lệ cách biệt giữa các tin tức đều < 10% ";
                 ViewBag.ReviewKhoangCach = ReviewTilePB;
             }
             return View();
