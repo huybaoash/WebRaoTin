@@ -11,7 +11,6 @@
 
 
     <link href="@Url.Content("~/Content/DetailsNewsSP.css")" rel="stylesheet" type="text/css" />
-    
     <link href="https://maps/documentation/javascript/examples/default.css" rel="stylesheet" />
 
     <title>@ViewBag.Title - Web Rao Tin</title>
@@ -598,10 +597,11 @@
         }
 
         .menu-item {
-            color: rgb(224, 220, 220);
-            padding: 0px 8px 0px 0px;
+           @* color: rgb(224, 220, 220);*@
+            font-weight:bold;
+            padding: 0px 20px 0px 0px;
             display: inline-flex;
-            border-right: 1px solid rgb(224, 220, 220);
+          @*  border-right: 1px solid rgb(224, 220, 220);*@
         }
 
             .menu-item a {
@@ -612,8 +612,6 @@
                 .menu-item a:hover {
                     color: #ff9d40;
                 }
-
-
     </style>
 </head>
 <body>

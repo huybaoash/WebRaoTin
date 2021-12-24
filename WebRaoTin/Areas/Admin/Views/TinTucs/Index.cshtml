@@ -55,7 +55,7 @@
     <p style="margin-top:10px;display:inline-flex">
      
         <input type="text" name="searchString" value="@ViewBag.Keyword" class="form-control" style="width:500px;margin-right:5px"  placeholder="Tìm kiếm theo tiêu đề"/>
-        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+        <button type="submit" class="btn btn-primary" style="padding:0px 30px"> <i class="fas fa-search"></i> </button>
     </p>
 }
 
@@ -87,11 +87,11 @@
             <td>
                 @if (@Model[i].Status.Equals("Công khai") || @Model[i].Status.Equals("Ẩn"))
                 {
-                    <a href="@Url.Action("Edit_LockStatus", "TinTucs",new { id= @Model[i].Id })" class="btn btn-danger btn-sm" onclick="lockTT()">Khóa</a>
+                <a href="@Url.Action("Edit_LockStatus", "TinTucs",new { id= @Model[i].Id })" class="btn btn-success btn-sm" onclick="lockTT()"><i class="fas fa-unlock-alt"></i> Mở khóa</a>
                 }
                 else if (@Model[i].Status.Equals("Đã khóa"))
                 {
-                    <a href="@Url.Action("Edit_UnlockStatus", "TinTucs",new { id= @Model[i].Id})" class="btn btn-danger btn-sm" onclick="unblockTT()">Mở khóa</a>
+            <a href="@Url.Action("Edit_UnlockStatus", "TinTucs",new { id= @Model[i].Id})" class="btn btn-danger btn-sm" onclick="unblockTT()"><i class="fas fa-lock"></i> Khóa</a>
                 }
 
             </td>

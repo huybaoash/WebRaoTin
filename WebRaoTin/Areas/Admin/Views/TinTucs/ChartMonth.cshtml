@@ -72,10 +72,13 @@
 
 @using (Html.BeginForm("ChartMonth", "TinTucs", FormMethod.Post, new { id = "submitMonth" }))
 {
-    @Html.AntiForgeryToken()
-    <input class="form-control text-box single-line" id="dateTime" name="dateTime" type="month" value="@DateTime.Now">
-    <input id="submit" type="submit" value="Chọn" />
-
+<div class="row" style="margin-bottom:20px;">
+    <div class="col-sm-5" style="display:inline-flex;">
+        @Html.AntiForgeryToken()
+        <input class="form-control text-box" id="dateTime" name="dateTime" type="month" style="width:300px" value="@DateTime.Now">
+        <input id="submit" type="submit" value="Chọn" style="margin-left:10px;padding:0px 15px;font-weight:bold" class="btn btn-primary">
+    </div>
+</div>
     
 }
 
