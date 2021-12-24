@@ -73,11 +73,11 @@
             <td>
                 @if (User.Identity.GetUserId().Equals(item.Id))
                 {
-                    <a href="@Url.Action("Details", "Users", new { id = item.Id })">@Html.DisplayFor(modelItem => item.UserName)</a><h> (Bạn)</h>
+                    <a href="@Url.Action("Details", "Users", new { id = item.Id ,area = ""})">@Html.DisplayFor(modelItem => item.UserName)</a><h> (Bạn)</h>
                 }
                 else
                 {
-                    <a href="@Url.Action("Details","Users",new { id = item.Id })">@Html.DisplayFor(modelItem => item.UserName)</a>
+                    <a href="@Url.Action("Details","Users",new { id = item.Id,area = "" })">@Html.DisplayFor(modelItem => item.UserName)</a>
                 }
 
 
