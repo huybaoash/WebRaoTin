@@ -1,0 +1,33 @@
+{
+  "CacheSourceKey": "t7d3aj",
+  "CachePdfKey": "t7d3aj/t7d3aj-4z1dcu.pdf",
+  "CacheXpzKey": "t7d3aj/t7d3aj-1jrv8rw.xpz",
+  "CacheInfoKey": "t7d3aj/t7d3aj-1jrv8rw.json",
+  "CacheCopyKey": null,
+  "Document": "CV-nvVanPhong.docx",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": "C:\\Users\\GIGABYTE\\source\\repos\\WebRaoTin\\WebRaoTin\\Content\\TinTuc\\TinTucID19\\CV",
+  "DocumentFileName": "CV-nvVanPhong.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "t7d3aj",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}
